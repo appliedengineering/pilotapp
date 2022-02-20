@@ -3,12 +3,18 @@
 
 #include <QWidget>
 
+//
+
+#include <QPushButton>
+
+//
+
 class homePage : public QWidget
 {
 	Q_OBJECT
 
 public:
-	homePage();
+	homePage(QWidget* parent = nullptr);
 	~homePage();
 
 };
