@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.5)
 
 project(pilotapp LANGUAGES CXX)
 
-# Only needed for MSVC and not Qt Creator
+# Only needed for MSVC/VS code and not Qt Creator
 # set(CMAKE_PREFIX_PATH "O:\\Qt\\5.15.2\\msvc2019_64")
-set(CMAKE_PREFIX_PATH "/Users/richy/Qt/6.2.3/macos")
+set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/qt@5/5.15.2_1")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

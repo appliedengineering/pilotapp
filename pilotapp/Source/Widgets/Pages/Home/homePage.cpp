@@ -2,7 +2,7 @@
 
 homePage::homePage(QWidget* parent) {
     QPushButton* t = new QPushButton(this);
-    t->setText("Test");
+    t->setText("Test 2");
 }
 
 homePage::~homePage() {
