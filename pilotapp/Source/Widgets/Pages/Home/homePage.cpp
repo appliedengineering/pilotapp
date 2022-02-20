@@ -5,9 +5,13 @@
 
 homePage::homePage(QWidget* parent) {
 
-    QHBoxLayout* hBox = new QHBoxLayout(this);
+    QVBoxLayout* vBox = new QVBoxLayout(this);
 
     //
+
+    QHBoxLayout* hBox = new QHBoxLayout();
+
+    ///
 
     QPushButton* t = new QPushButton(this);
     t->setText("Test 1");
@@ -23,9 +27,18 @@ homePage::homePage(QWidget* parent) {
 
     hBox->addWidget(exit);
 
-    connect(exit, &QPushButton::released, utilities::findMainWindow(), &MainWindow::handleExit);
+    connect(exit, &QPushButton::released, utilities::findMainWindow(), &MainWindow::closeApplication);
+
+    ///
+
+    tLabel = new QLabel(this);
+    tLabel->setText("Before");
+
+    vBox->addWidget(tLabel);
 
     //
+
+    vBox->addLayout(hBox);
 
 }
 
@@ -36,5 +49,6 @@ homePage::~homePage() {
 //
 
 void homePage::handleTest() {
-    qInfo() << "test";
+    //qInfo() << "test";
+    tLabel->setText("Success press");
 }

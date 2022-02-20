@@ -14,7 +14,8 @@ MainWindow::~MainWindow(){
 
 //
 
-void MainWindow::handleExit() {
-    qInfo() << "exit";
+void MainWindow::closeApplication() {
+    //qInfo() << "exit";
+    QApplication::quit();
 }
 

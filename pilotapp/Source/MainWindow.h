@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QApplication>
 
 //
 
@@ -17,7 +18,7 @@ private:
     homePage* home;
 
 public slots:
-    void handleExit();
+    void closeApplication();
 
 public:
     MainWindow(QWidget* parent = nullptr);

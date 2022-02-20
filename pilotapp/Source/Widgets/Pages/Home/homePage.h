@@ -8,6 +8,7 @@
 
 #include <QPushButton>
 #include <QHBoxLayout>
+#include <QVBoxLayout>
 #include <QLabel>
 
 //
@@ -18,6 +19,9 @@ class homePage : public QWidget
 
 private slots:
     void handleTest();
+
+private:
+	QLabel* tLabel;
 
 public:
 	homePage(QWidget* parent = nullptr);
