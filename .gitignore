@@ -1,0 +1,6 @@
+*
+!pilotapp/
+!.gitignore
+!.gitattributes
+!LICENSE
+!*.md
