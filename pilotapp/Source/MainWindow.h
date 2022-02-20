@@ -16,6 +16,9 @@ class MainWindow : public QMainWindow
 private:
     homePage* home;
 
+public slots:
+    void handleExit();
+
 public:
     MainWindow(QWidget* parent = nullptr);
     ~MainWindow();

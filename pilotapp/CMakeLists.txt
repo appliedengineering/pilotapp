@@ -43,7 +43,9 @@ else()
     "Source/MainWindow.cpp"
     "Source/MainWindow.h"
     "Source/Widgets/Pages/Home/homePage.cpp"
-    "Source/Widgets/Pages/Home/homePage.h")
+    "Source/Widgets/Pages/Home/homePage.h"
+    "Source/Utilities/utilities.cpp"
+    "Source/Utilities/utilities.h")
 endif()
 
 target_link_libraries(pilotapp PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

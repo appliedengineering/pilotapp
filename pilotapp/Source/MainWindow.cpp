@@ -12,3 +12,9 @@ MainWindow::~MainWindow(){
 
 }
 
+//
+
+void MainWindow::handleExit() {
+    qInfo() << "exit";
+}
+
