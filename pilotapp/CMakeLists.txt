@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.5)
 
 project(pilotapp LANGUAGES CXX)
 
+# Only needed for MSVC and not Qt Creator
+set(CMAKE_PREFIX_PATH "O:\\Qt\\5.15.2\\msvc2019_64")
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
@@ -35,10 +38,11 @@ if(ANDROID)
   )
 else()
   add_executable(pilotapp
-    main.cpp
-    home.cpp
-    home.h
-  )
+    "Source/main.cpp"
+    "Source/MainWindow.cpp"
+    "Source/MainWindow.h"
+    "Source/Widgets/Pages/Home/homePage.cpp"
+    "Source/Widgets/Pages/Home/homePage.h")
 endif()
 
 target_link_libraries(pilotapp PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
