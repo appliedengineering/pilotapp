@@ -2,9 +2,10 @@
 
 #include <QApplication>
 #include <QFile>
+#include <QDebug>
 
 void setupStyleSheet(QApplication* a){
-    QFile sheet(":/style.qss");
+    QFile sheet("style.qss");
 
     if (sheet.open(QIODevice::ReadOnly | QIODevice::Text)){
         a->setStyleSheet(sheet.readAll());

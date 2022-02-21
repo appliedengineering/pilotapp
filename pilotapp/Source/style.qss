@@ -1,11 +1,10 @@
 $text = #222;
-$background = #FDFDFD;
-$border = #999999;
-$selected = #8BF; /*hover*/
+$background = #FFFFFF;
+$secondaryBackground = #D1D1D1;
+$border = #e0e0e0;
+$selected = #90caf9; /*hover*/
 $pressed = #59F;
-$focused = #EA2; /*actived*/
-$grad1a = #EEEEEF; /*gradient start*/
-$grad1b = #DADADF; /*gradient end*/
+$focused = #1e88e5; /*actived*/
 
 QWidget
 {
@@ -15,7 +14,7 @@ QWidget
 
 QFrame{
     color: $text;
-    background-color: $background;/*不能设置为transparent*/
+    background-color: $background;
 }
 QMainWindow::separator{
     border: 1px solid $border;
@@ -32,7 +31,7 @@ QSplitter::handle{
     width: 4px;
     height: 4px;
 }
-QSplitter::handle:hover{/*splitter->handle(1)->setAttribute(Qt::WA_Hover, true);才生效*/
+QSplitter::handle:hover{/*splitter->handle(1)->setAttribute(Qt::WA_Hover, true);*/
     border-color: $focused;
 }
 QSplitter::handle:pressed{
@@ -65,7 +64,7 @@ QToolTip {
 /* TextBox                                         */
 /* =============================================== */
 QLineEdit {
-    background: $background;/*不建议设为透明，否则table编辑时会字显示*/
+    background: $background;
     selection-background-color: $selected;
     border: 1px solid $border;
     border-radius: 2px;
@@ -81,7 +80,7 @@ QLineEdit:focus{
 }
 /*QLineEdit[readOnly="true"] { color: gray }*/
 QLineEdit[echoMode="2"]{
-    lineedit-password-character: 9679;/*字符的ascii码35 88等 */
+    lineedit-password-character: 9679;
 }
 
 QLineEdit:read-only {
@@ -108,14 +107,14 @@ QTextEdit:focus{
 /* Button                                          */
 /* =============================================== */
 QPushButton {
-    border: 1px solid $border;
-    border-radius: 2px;
+    border: 2px solid $border;
+    border-radius: 10px;
     /*background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, 
         stop: 0 $grad1a, stop: 0.05 $grad1b,stop: 0.5 $grad1b, 
         stop: 0.9 $grad1a, stop: 1 $grad1a);*/
     padding: 1px 4px;
-    min-width: 50px;
-    min-height: 16px;
+    min-width: 30px;
+    min-height: 20px;
 }
 
 QPushButton:hover{
@@ -135,7 +134,7 @@ QPushButton:focus, QPushButton:default {
 }
 
 
-QToolButton,QToolButton:unchecked { /* ToolBar里的按钮和带下拉菜单的按钮 */
+QToolButton,QToolButton:unchecked {
     border: 1px solid transparent;
     border-radius: 3px;
     background-color: transparent;
@@ -207,7 +206,7 @@ QSlider::groove{
     border: 1px solid $border;
     background: $background;
 }
-QSlider::handle {/*设置中间的那个滑动的键*/                           
+QSlider::handle {                         
     border: 1px solid $border;
     background: $selected;
 }
@@ -227,11 +226,11 @@ QSlider::handle:vertical{
     height: 6px;
     margin: -7px; /* height */
 }
-QSlider::add-page{/*还没有滑上去的地方*/
+QSlider::add-page{
     border: 1px solid $border;
     background:$grad1a;
 }
-QSlider::sub-page{/*已经划过的从地方*/                            
+QSlider::sub-page{                         
     background: $focused;
 }
 
@@ -383,8 +382,8 @@ QHeaderView {
 	margin: 0px;
 	padding: 0px;
 }
-QHeaderView::section, QTableCornerButton::section {/*设置表头属性*//*左上角*/
-	background-color: $grad1a;
+QHeaderView::section, QTableCornerButton::section {
+    background-color: $grad1a;
 	padding: 0 3px;
 	border-right: 1px solid $border;
 	border-bottom: 1px solid $border;
@@ -405,16 +404,11 @@ QHeaderView::section:checked {
 /* =============================================== */
 QTableWidget, QTableView
 {
-    gridline-color: $border;    /*表格中的网格线条颜色*/
+    gridline-color: $border;
     background: $background;
-    /*设置交替颜色，需要在函数属性中设置:tableWidget->setAlternatingRowColors(true)*/
     alternate-background-color: $grad1a;
-    /*selection-color:$background;    鼠标选中时前景色：文字颜色*/
-    selection-background-color:$selected;   /*鼠标选中时背景色*/
-    border:1px solid $border;  /*边框线的宽度、颜色*/
-    /*border:none;    去除边界线*/
-    /*border-radius:5px;*/
-    /*padding:10px 10px;*/  /*表格与边框的间距*/
+    selection-background-color:$selected; 
+    border:1px solid $border; 
 }
 QTableView::item, QTabWidget::item{
     background: transparent;
