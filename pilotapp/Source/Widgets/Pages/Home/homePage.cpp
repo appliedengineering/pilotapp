@@ -34,6 +34,8 @@ homePage::homePage(QWidget* parent) {
     tLabel = new QLabel(this);
     tLabel->setText("Before");
 
+    utilities::changeFontSize(tLabel, 50);
+
     vBox->addWidget(tLabel);
 
     //

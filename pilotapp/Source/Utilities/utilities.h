@@ -10,6 +10,7 @@ private:
 	static MainWindow* mainWindow;
 public:
 	static MainWindow* findMainWindow();
+	static void changeFontSize(QLabel* l, int s);
 };
 
 #endif // !UTILITIES_H

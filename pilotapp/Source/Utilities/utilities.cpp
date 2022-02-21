@@ -17,3 +17,9 @@ MainWindow* utilities::findMainWindow() {
 
 	return nullptr;
 }
+
+void utilities::changeFontSize(QLabel* l, int s) {
+	QFont f = l->font();
+	f.setPointSize(s);
+	l->setFont(f);
+}
