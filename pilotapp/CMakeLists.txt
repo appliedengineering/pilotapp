@@ -9,6 +9,7 @@ set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/qt@5/5.15.2_1")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(EXECUTABLE_OUTPUT_PATH "bin")
 
+
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -47,6 +48,20 @@ else()
     "Source/Widgets/Pages/Home/homePage.h"
     "Source/Utilities/utilities.cpp"
     "Source/Utilities/utilities.h")
+
+  add_custom_command( # copies style.qss to bin folder
+    TARGET pilotapp POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Source/style.qss
+            ${CMAKE_CURRENT_BINARY_DIR}/bin/style.qss)
+
+  add_custom_command( # copies assets folder to bin folder
+    TARGET pilotapp POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Assets
+            ${CMAKE_CURRENT_BINARY_DIR}/bin/Assets)
+
+
 endif()
 
 target_link_libraries(pilotapp PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

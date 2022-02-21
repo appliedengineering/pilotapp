@@ -7,15 +7,15 @@
 
 void setupStyleSheet(QApplication* a){
     
-    QFontDatabase::addApplicationFont("Fonts/Inter-Regular.otf");
-    QFontDatabase::addApplicationFont("Fonts/Inter-Bold.otf");
-    QFontDatabase::addApplicationFont("Fonts/Inter-SemiBold.otf");
+    QFontDatabase::addApplicationFont("Assets/Fonts/Inter-Regular.otf");
+    QFontDatabase::addApplicationFont("Assets/Fonts/Inter-Bold.otf");
+    QFontDatabase::addApplicationFont("Assets/Fonts/Inter-SemiBold.otf");
 
-    QFontDatabase db;
+    /*QFontDatabase db;
     for(int i=0; i<db.families().size(); i++)
     {
         qDebug() << db.families().at(i);
-    }
+    }*/
 
     //
 
