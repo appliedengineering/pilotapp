@@ -7,7 +7,7 @@ project(pilotapp LANGUAGES CXX)
 set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/qt@5/5.15.2_1")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(EXECUTABLE_OUTPUT_PATH "../bin")
+set(EXECUTABLE_OUTPUT_PATH "bin")
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
