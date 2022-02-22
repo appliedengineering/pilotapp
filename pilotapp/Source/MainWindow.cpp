@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     home = new homePage(this);
 
     setCentralWidget(home);
+
+    setFocusPolicy(Qt::NoFocus);
 }
 
 MainWindow::~MainWindow(){

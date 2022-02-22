@@ -5,6 +5,8 @@
 
 homePage::homePage(QWidget* parent) {
 
+    //
+
     QVBoxLayout* vBox = new QVBoxLayout(this);
 
     //
