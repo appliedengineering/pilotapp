@@ -2,3 +2,5 @@
 out/*
 .vs/*
 *.user
+.vscode/*
+build/*
