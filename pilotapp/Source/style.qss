@@ -1,6 +1,10 @@
 /*hover*/
 /*actived*/
 
+QMainWindow {
+    background-color: #FFFFFF;
+}
+
 QLabel {
     color: black;
     font: 24pt 'Inter';
@@ -13,13 +17,15 @@ QPushButton {
     min-width: 30px;
     min-height: 16px;
     outline: 0;
+    color: black;
 }
 
 QPushButton:pressed
 {
     border-width: 2px;      
-    background-color: #59F;
+    background-color: #c7c7c7;
     border-color: #c7c7c7;
     outline: 0;
+    color: black;
 }
 
