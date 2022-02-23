@@ -18,11 +18,12 @@ void homePage::setupLayout() {
     vBox = new QVBoxLayout(this);
 
     vBox->setContentsMargins(0,0,0,0);
+    vBox->setSpacing(0);
 
     /// 
 
     topContentHBox = new QHBoxLayout();
-//    topContentHBox->setContentsMargins(0,0,0,0);
+    topContentHBox->setContentsMargins(0,0,0,0);
     topContentHBox->setSpacing(0);
 
     vBox->addLayout(topContentHBox);
