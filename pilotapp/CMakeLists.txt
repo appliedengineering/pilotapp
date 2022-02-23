@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.5)
 project(pilotapp LANGUAGES CXX)
 
 # Only needed for MSVC/VS code and not Qt Creator
-# set(CMAKE_PREFIX_PATH "O:\\Qt\\5.15.2\\msvc2019_64")
-set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/qt@5/5.15.2_1")
+ set(CMAKE_PREFIX_PATH "O:\\Qt\\5.15.2\\msvc2019_64")
+# set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/qt@5/5.15.2_1")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(EXECUTABLE_OUTPUT_PATH "bin")
@@ -47,7 +47,13 @@ else()
     "Source/Widgets/Pages/Home/homePage.cpp"
     "Source/Widgets/Pages/Home/homePage.h"
     "Source/Utilities/utilities.cpp"
-    "Source/Utilities/utilities.h")
+    "Source/Utilities/utilities.h"
+    "Source/Widgets/Widgets/Toolbar/toolbar.cpp"
+    "Source/Widgets/Widgets/Toolbar/toolbar.h"
+    "Source/Widgets/Widgets/LeftContentSlate/leftContentSlate.cpp"
+    "Source/Widgets/Widgets/LeftContentSlate/leftContentSlate.h"
+    "Source/Widgets/Widgets/MainContentSlate/mainContentSlate.cpp"
+    "Source/Widgets/Widgets/MainContentSlate/mainContentSlate.h")
 
   add_custom_command( # copies style.qss to bin folder
     TARGET pilotapp POST_BUILD

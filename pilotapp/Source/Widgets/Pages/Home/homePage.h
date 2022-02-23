@@ -11,17 +11,24 @@
 #include <QVBoxLayout>
 #include <QLabel>
 
+#include "../../Widgets/Toolbar/toolbar.h"
+#include "../../Widgets/LeftContentSlate/leftContentSlate.h"
+#include "../../Widgets/MainContentSlate/mainContentSlate.h"
+
 //
 
-class homePage : public QWidget
-{
+class homePage : public QWidget{
 	Q_OBJECT
 
-private slots:
-    void handleTest();
-
 private:
-	QLabel* tLabel;
+	QVBoxLayout* vBox;
+	QHBoxLayout* topContentHBox;
+	
+	leftContentSlateWidget* leftContentSlate;
+	mainContentSlateWidget* mainContentSlate;
+	toolbarWidget* toolbar;
+
+	void setupLayout();
 
 public:
 	homePage(QWidget* parent = nullptr);

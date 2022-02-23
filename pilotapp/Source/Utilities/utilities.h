@@ -11,6 +11,7 @@ private:
 public:
 	static MainWindow* findMainWindow();
 	static void changeFontSize(QLabel* l, int s);
+	static void setBackgroundColor(QWidget* w, Qt::GlobalColor c);
 };
 
 #endif // !UTILITIES_H

@@ -23,3 +23,12 @@ void utilities::changeFontSize(QLabel* l, int s) {
 	f.setPointSize(s);
 	l->setFont(f);
 }
+
+void utilities::setBackgroundColor(QWidget* w, Qt::GlobalColor c) {
+	QPalette pal = w->palette();
+
+	pal.setColor(QPalette::Background, c);
+	w->setAutoFillBackground(true);
+	
+	w->setPalette(pal);
+}
