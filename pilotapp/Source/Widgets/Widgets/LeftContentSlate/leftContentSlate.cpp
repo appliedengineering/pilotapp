@@ -8,7 +8,7 @@ leftContentSlateWidget::leftContentSlateWidget(QWidget* parent) {
 
 	//
 
-	utilities::setBackgroundColor(this, Qt::red);
+	utilities::setBackgroundColor(this, Qt::white);
 
 }
 

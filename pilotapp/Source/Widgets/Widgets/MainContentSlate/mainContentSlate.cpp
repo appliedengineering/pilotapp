@@ -3,8 +3,6 @@
 #include "../../../Utilities/utilities.h"
 
 mainContentSlateWidget::mainContentSlateWidget(QWidget* parent) {
-	
-	this->setMaximumWidth(parent->width() * widthRatio);
 
 	//
 	

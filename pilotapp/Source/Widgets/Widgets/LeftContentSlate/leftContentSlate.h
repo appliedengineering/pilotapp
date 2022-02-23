@@ -9,7 +9,7 @@ class leftContentSlateWidget : public QWidget {
 	Q_OBJECT
 
 private:
-	const float widthRatio = 0.3; // 1.0 - mainContentSlateWidget width ratio
+	const float widthRatio = 0.38;
 
 public:
 	leftContentSlateWidget(QWidget* parent = nullptr);

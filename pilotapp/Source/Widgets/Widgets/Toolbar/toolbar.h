@@ -9,7 +9,7 @@ class toolbarWidget : public QWidget{
 	Q_OBJECT
 
 private:
-	const float heightRatio = 0.1;
+	const float heightRatio = 0.14;
 
 public:
 	toolbarWidget(QWidget* parent = nullptr);
