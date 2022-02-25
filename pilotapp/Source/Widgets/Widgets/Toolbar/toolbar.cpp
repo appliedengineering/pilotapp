@@ -53,7 +53,13 @@ void toolbarWidget::setupButtons(){
 		utilities::setPaletteColor(toolbarButtons[i], QPalette::Button, Qt::black);
 		//utilities::setPaletteColor(toolbarButtons[i], QPalette::Foreground, Qt::black);
 
+		connect(toolbarButtons[i], &QPushButton::released, this, [=]{ handleToolbarButton(i); });
+
 		//
 		
 	}
+}
+
+void toolbarWidget::handleToolbarButton(int buttonIndex){
+	qInfo() << "button pressed " << buttonIndex;
 }

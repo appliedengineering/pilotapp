@@ -15,6 +15,9 @@
 class toolbarWidget : public QWidget{
 	Q_OBJECT
 
+private slots:
+	void handleToolbarButton(int buttonIndex);
+
 private:
 	const float heightRatio = 0.14;
 
