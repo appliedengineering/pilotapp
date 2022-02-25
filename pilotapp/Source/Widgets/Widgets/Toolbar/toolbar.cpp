@@ -10,7 +10,7 @@ toolbarWidget::toolbarWidget(QWidget* parent) {
 
 	//
 
-	utilities::setBackgroundColor(this, Qt::black);
+	utilities::setPaletteColor(this, QPalette::Background, Qt::black);
 
 	//
 
@@ -39,13 +39,16 @@ void toolbarWidget::setupButtons(){
 
 		//
 
-		QPixmap pmap(("/Assets/Icons/" + toolBarButtonIconNames[i]));
+		QPixmap pmap((":/Assets/Icons/" + toolBarButtonIconNames[i]));
 		QIcon ic(pmap);
 
-		qInfo() << pmap.isNull();
-
 		toolbarButtons[i]->setIcon(ic);
-		toolbarButtons[i]->setIconSize(pmap.rect().size());
+
+		const int iconPadding = 20;
+		toolbarButtons[i]->setIconSize(QSize(this->height() - 2*iconPadding, this->height() - 2*iconPadding));
+		//toolbarButtons[i]->setIconSize(pmap.rect().size());
+
+		utilities::setPaletteColor(toolbarButtons[i], QPalette::Button, Qt::black);
 
 		//
 		

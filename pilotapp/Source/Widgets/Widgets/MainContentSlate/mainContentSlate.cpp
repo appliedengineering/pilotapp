@@ -6,7 +6,7 @@ mainContentSlateWidget::mainContentSlateWidget(QWidget* parent) {
 
 	//
 	
-	utilities::setBackgroundColor(this, Qt::gray);
+	utilities::setPaletteColor(this, QPalette::Background, Qt::gray);
 }
 
 mainContentSlateWidget::~mainContentSlateWidget() {

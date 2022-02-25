@@ -4,7 +4,7 @@ project(pilotapp LANGUAGES CXX)
 
 # Only needed for MSVC/VS code and not Qt Creator
 # set(CMAKE_PREFIX_PATH "O:\\Qt\\5.15.2\\msvc2019_64")
-set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/qt@5/5.15.2_1")
+# set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/qt@5/5.15.2_1")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(EXECUTABLE_OUTPUT_PATH "bin")
@@ -53,19 +53,20 @@ else()
     "Source/Widgets/Widgets/LeftContentSlate/leftContentSlate.cpp"
     "Source/Widgets/Widgets/LeftContentSlate/leftContentSlate.h"
     "Source/Widgets/Widgets/MainContentSlate/mainContentSlate.cpp"
-    "Source/Widgets/Widgets/MainContentSlate/mainContentSlate.h")
+    "Source/Widgets/Widgets/MainContentSlate/mainContentSlate.h"
+    "resources.qrc")
 
-  add_custom_command( # copies style.qss to bin folder
-    TARGET pilotapp POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_SOURCE_DIR}/Source/style.qss
-            ${CMAKE_CURRENT_BINARY_DIR}/bin/style.qss)
+ # add_custom_command( # copies style.qss to bin folder
+ #   TARGET pilotapp POST_BUILD
+ #   COMMAND ${CMAKE_COMMAND} -E copy
+ #           ${CMAKE_SOURCE_DIR}/Source/style.qss
+ #           ${CMAKE_CURRENT_BINARY_DIR}/bin/style.qss)
 
-  add_custom_command( # copies assets folder to bin folder
-    TARGET pilotapp POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_SOURCE_DIR}/Assets
-            ${CMAKE_CURRENT_BINARY_DIR}/bin/Assets)
+ # add_custom_command( # copies assets folder to bin folder
+ #   TARGET pilotapp POST_BUILD
+ #   COMMAND ${CMAKE_COMMAND} -E copy
+ #           ${CMAKE_SOURCE_DIR}/Assets
+ #           ${CMAKE_CURRENT_BINARY_DIR}/bin/Assets)
 
 
 endif()

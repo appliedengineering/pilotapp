@@ -19,7 +19,6 @@ QPushButton#iconPushButton {
 QPushButton#iconPushButton:pressed {
     border: 0;
     border-radius: 0px;
-    background-color: #4287f5;
     outline: 0;
 }
 
