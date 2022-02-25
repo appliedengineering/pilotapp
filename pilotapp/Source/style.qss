@@ -32,9 +32,12 @@ QPushButton:pressed {
 QPushButton#iconPushButton {
     border: none;
     outline: none;
+    margin: 0px;
+    padding: 0px;
 }
 
 QPushButton#iconPushButton:pressed {
+    background-color: #000000;
     border: none;
     outline: none;
 }
