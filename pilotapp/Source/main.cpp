@@ -23,7 +23,7 @@ void setupStyleSheet(QApplication* a){
 
     if (sheet.open(QIODevice::ReadOnly | QIODevice::Text)){
 
-        qInfo() << sheet.readAll();
+        //qInfo() << sheet.readAll();
 
         a->setStyleSheet(sheet.readAll());
         sheet.close();
