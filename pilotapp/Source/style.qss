@@ -10,18 +10,6 @@ QLabel {
     font: 'Inter';
 }
 
-QPushButton#iconPushButton {
-    border: 0;
-    border-radius: 0px;
-    outline: 0;
-}
-
-QPushButton#iconPushButton:pressed {
-    border: 0;
-    border-radius: 0px;
-    outline: 0;
-}
-
 QPushButton {
     border: 2px solid #c7c7c7;
     border-radius: 8px;
@@ -40,4 +28,21 @@ QPushButton:pressed {
     outline: 0;
     color: black;
 }
+
+QPushButton#iconPushButton {
+    border: 0;
+    border-radius: 0px;
+    padding: 0px 0px;
+    outline: 0;
+}
+
+QPushButton#iconPushButton:pressed {
+    border-width: 0px;
+    background-color: #000000;
+    border-color: #000000;
+    border: 0;
+    border-radius: 0px;
+    outline: 0;
+}
+
 

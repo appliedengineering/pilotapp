@@ -34,6 +34,8 @@ void toolbarWidget::setupButtons(){
 		
 		toolbarButtons[i]->setMaximumWidth(this->height());
 		toolbarButtons[i]->setFixedSize(this->height(), this->height());
+		
+		toolbarButtons[i]->setFlat(true);
 
 		hLayout->addWidget(toolbarButtons[i]);
 
@@ -49,6 +51,7 @@ void toolbarWidget::setupButtons(){
 		//toolbarButtons[i]->setIconSize(pmap.rect().size());
 
 		utilities::setPaletteColor(toolbarButtons[i], QPalette::Button, Qt::black);
+		//utilities::setPaletteColor(toolbarButtons[i], QPalette::Foreground, Qt::black);
 
 		//
 		
