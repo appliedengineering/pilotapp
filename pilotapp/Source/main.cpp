@@ -19,9 +19,12 @@ void setupStyleSheet(QApplication* a){
 
     //
 
-    QFile sheet(":/style.qss");
+    QFile sheet(":/Source/style.qss");
 
     if (sheet.open(QIODevice::ReadOnly | QIODevice::Text)){
+
+        qInfo() << sheet.readAll();
+
         a->setStyleSheet(sheet.readAll());
         sheet.close();
     }

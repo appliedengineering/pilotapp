@@ -30,19 +30,14 @@ QPushButton:pressed {
 }
 
 QPushButton#iconPushButton {
-    border: 0;
-    border-radius: 0px;
-    padding: 0px 0px;
-    outline: 0;
+    border: none;
+    outline: none;
 }
 
 QPushButton#iconPushButton:pressed {
-    border-width: 0px;
-    background-color: #000000;
-    border-color: #000000;
-    border: 0;
-    border-radius: 0px;
-    outline: 0;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #dadbde, stop: 1 #f6f7fa);
+    border: 1px inset black;
+    outline: none;
 }
 
 
