@@ -34,5 +34,9 @@ public:
 	homePage(QWidget* parent = nullptr);
 	~homePage();
 
+	leftContentSlateWidget* getLeftContentSlateWidget();
+	mainContentSlateWidget* getMainContentSlateWidget();
+	toolbarWidget* getToolbarWidget();
+
 };
 #endif // !HOMEPAGE_H

@@ -5,8 +5,16 @@
 
 #include <QPalette>
 
+#include "ContentWidgets/Map/mapWidget.h"
+#include "ContentWidgets/Settings/settingsWidget.h"
+
 class mainContentSlateWidget : public QWidget {
 	Q_OBJECT
+
+private:
+	mapWidget* map;
+
+	void setupMapWidget();
 
 public:
 	mainContentSlateWidget(QWidget* parent = nullptr);

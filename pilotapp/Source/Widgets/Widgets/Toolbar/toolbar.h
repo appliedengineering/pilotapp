@@ -12,6 +12,7 @@
 
 #define toolbarButtonSize 7
 
+class homePage;
 class toolbarWidget : public QWidget{
 	Q_OBJECT
 
@@ -21,6 +22,7 @@ private slots:
 private:
 	const float heightRatio = 0.14;
 
+	homePage* home;
 	QHBoxLayout* hLayout;
 
 	// home, audio, display, battery/solar (electronics), environment, telemetry, settings

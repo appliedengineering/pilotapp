@@ -6,6 +6,10 @@
 
 toolbarWidget::toolbarWidget(QWidget* parent) {
 
+	home = qobject_cast<homePage*>(parent);
+
+	//
+
 	this->setMaximumHeight(parent->height() * heightRatio);
 
 	//
@@ -22,7 +26,6 @@ toolbarWidget::toolbarWidget(QWidget* parent) {
 }
 
 toolbarWidget::~toolbarWidget() {
-
 }
 
 //
@@ -62,4 +65,5 @@ void toolbarWidget::setupButtons(){
 
 void toolbarWidget::handleToolbarButton(int buttonIndex){
 	qInfo() << "button pressed " << buttonIndex;
+
 }

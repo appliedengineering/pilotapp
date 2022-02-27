@@ -54,6 +54,10 @@ else()
     "Source/Widgets/Widgets/LeftContentSlate/leftContentSlate.h"
     "Source/Widgets/Widgets/MainContentSlate/mainContentSlate.cpp"
     "Source/Widgets/Widgets/MainContentSlate/mainContentSlate.h"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapWidget.cpp"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapWidget.h"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Settings/settingsWidget.cpp"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Settings/settingsWidget.h"
     "resources.qrc")
 
  # add_custom_command( # copies style.qss to bin folder

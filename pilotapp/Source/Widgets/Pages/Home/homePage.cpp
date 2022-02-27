@@ -8,7 +8,6 @@ homePage::homePage(QWidget* parent) {
 }
 
 homePage::~homePage() {
-
 }
 
 //
@@ -49,3 +48,14 @@ void homePage::setupLayout() {
 
 }
 
+leftContentSlateWidget* homePage::getLeftContentSlateWidget(){
+    return leftContentSlate;
+}
+
+mainContentSlateWidget* homePage::getMainContentSlateWidget(){
+    return mainContentSlate;
+}
+
+toolbarWidget* homePage::getToolbarWidget(){
+    return toolbar;
+}
