@@ -2,9 +2,11 @@
 
 #include "../../../Utilities/utilities.h"
 
+const float leftContentSlateWidget::widthRatio = 0.38;
+
 leftContentSlateWidget::leftContentSlateWidget(QWidget* parent) {
 	
-	this->setMaximumWidth(parent->width() * widthRatio);
+	this->setFixedWidth(parent->width() * leftContentSlateWidget::widthRatio);
 
 	//
 

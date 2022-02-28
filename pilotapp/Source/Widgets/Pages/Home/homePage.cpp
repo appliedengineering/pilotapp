@@ -4,6 +4,8 @@
 #include "../../../Utilities/utilities.h"
 
 homePage::homePage(QWidget* parent) {
+    this->setFixedSize(utilities::findMainWindow()->size());
+
     setupLayout();
 }
 

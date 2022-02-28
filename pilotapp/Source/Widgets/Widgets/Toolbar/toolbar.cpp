@@ -4,13 +4,15 @@
 
 #include <QDebug>
 
+const float toolbarWidget::heightRatio = 0.14;
+
 toolbarWidget::toolbarWidget(QWidget* parent) {
 
 	home = qobject_cast<homePage*>(parent);
 
 	//
 
-	this->setMaximumHeight(parent->height() * heightRatio);
+	this->setFixedHeight((parent->height() * toolbarWidget::heightRatio));
 
 	//
 
@@ -64,6 +66,6 @@ void toolbarWidget::setupButtons(){
 }
 
 void toolbarWidget::handleToolbarButton(int buttonIndex){
-	qInfo() << "button pressed " << buttonIndex;
-
+	//qInfo() << "button pressed " << buttonIndex;
+	home->getMainContentSlateWidget()->updateToWidgetIndex(buttonIndex);
 }

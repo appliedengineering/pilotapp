@@ -20,8 +20,6 @@ private slots:
 	void handleToolbarButton(int buttonIndex);
 
 private:
-	const float heightRatio = 0.14;
-
 	homePage* home;
 	QHBoxLayout* hLayout;
 
@@ -32,6 +30,8 @@ private:
 	void setupButtons();
 
 public:
+	static const float heightRatio; // 0.14
+
 	toolbarWidget(QWidget* parent = nullptr);
 	~toolbarWidget();
 };
