@@ -9,7 +9,7 @@ mainContentSlateWidget::mainContentSlateWidget(QWidget* parent) {
 	
 	//
 	
-	utilities::setPaletteColor(this, QPalette::Background, Qt::gray);
+	utilities::setPaletteColor(this, QPalette::Background, Qt::white);
 
 	//
 
@@ -17,7 +17,6 @@ mainContentSlateWidget::mainContentSlateWidget(QWidget* parent) {
 }
 
 mainContentSlateWidget::~mainContentSlateWidget() {
-
 }
 
 //
@@ -38,6 +37,30 @@ void mainContentSlateWidget::setupMapWidget(){
 	
 }
 
+//
+
+void mainContentSlateWidget::createContentWidgetForIndex(int index){
+	
+	switch (index)
+	{
+	case 1:
+		//contentWidget = new 
+		break;
+	
+	default:
+		qWarning() << "invalid index for content widget creation";
+		break;
+	}
+}
+
+void mainContentSlateWidget::showContentWidget(){
+	qInfo() << "show";
+}
+
+void mainContentSlateWidget::hideContentWidget(){
+	qInfo() << "hide";
+}
+
 void mainContentSlateWidget::updateToWidgetIndex(int index){
 	//qInfo() << "index " << index;
 
@@ -46,5 +69,16 @@ void mainContentSlateWidget::updateToWidgetIndex(int index){
 		return;
 	}
 
+	if (!index){ // index  == 0
 
+		hideContentWidget();
+
+	}
+	else{
+
+		createContentWidgetForIndex(index);
+
+		showContentWidget();
+
+	}
 }

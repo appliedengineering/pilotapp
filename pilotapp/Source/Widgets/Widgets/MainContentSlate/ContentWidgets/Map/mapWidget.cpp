@@ -3,7 +3,7 @@
 #include "../../../../../Utilities/utilities.h"
 
 mapWidget::mapWidget(QWidget* parent){
-	utilities::setPaletteColor(this, QPalette::Background, Qt::green);
+	utilities::setPaletteColor(this, QPalette::Background, Qt::gray);
 }
 
 mapWidget::~mapWidget(){

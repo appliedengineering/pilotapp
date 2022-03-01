@@ -15,8 +15,13 @@ class mainContentSlateWidget : public QWidget {
 private:
 	QHBoxLayout* mapLayout;
 	mapWidget* map;
+	QWidget* contentWidget;
 
 	void setupMapWidget();
+	
+	void createContentWidgetForIndex(int index);
+	void showContentWidget();
+	void hideContentWidget();
 
 public:
 	mainContentSlateWidget(QWidget* parent = nullptr);

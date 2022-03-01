@@ -5,13 +5,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->setFixedSize(800, 480); // size of offical raspberry pi display
 
+    //
+
     home = new homePage(this);
 
     setCentralWidget(home);
 }
 
 MainWindow::~MainWindow(){
-
 }
 
 //

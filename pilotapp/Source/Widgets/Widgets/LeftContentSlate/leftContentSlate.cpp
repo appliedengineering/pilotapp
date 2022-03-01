@@ -2,7 +2,7 @@
 
 #include "../../../Utilities/utilities.h"
 
-const float leftContentSlateWidget::widthRatio = 0.38;
+const float leftContentSlateWidget::widthRatio = 0.35;
 
 leftContentSlateWidget::leftContentSlateWidget(QWidget* parent) {
 	

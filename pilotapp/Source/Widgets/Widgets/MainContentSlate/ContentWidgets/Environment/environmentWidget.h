@@ -1,0 +1,4 @@
+#ifndef ENVIRONMENT_WIDGET_H_
+#define ENVIRONMENT_WIDGET_H_
+
+#endif

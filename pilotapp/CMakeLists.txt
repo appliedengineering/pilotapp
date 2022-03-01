@@ -54,10 +54,20 @@ else()
     "Source/Widgets/Widgets/LeftContentSlate/leftContentSlate.h"
     "Source/Widgets/Widgets/MainContentSlate/mainContentSlate.cpp"
     "Source/Widgets/Widgets/MainContentSlate/mainContentSlate.h"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Environment/environmentWidget.cpp"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Environment/environmentWidget.h"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapWidget.cpp"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapWidget.h"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Power/powerWidget.cpp"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Power/powerWidget.h"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Screen/screenWidget.cpp"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Screen/screenWidget.h"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Settings/settingsWidget.cpp"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Settings/settingsWidget.h"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Telemetry/telemetryWidget.cpp"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Telemetry/telemetryWidget.h"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Voice/voiceWidget.cpp"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Voice/voiceWidget.h"
     "resources.qrc")
 
  # add_custom_command( # copies style.qss to bin folder
