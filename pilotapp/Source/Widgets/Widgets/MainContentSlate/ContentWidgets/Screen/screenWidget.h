@@ -3,14 +3,14 @@
 
 #include <QWidget>
 
-class powerWidget : public QWidget{
+class screenWidget : public QWidget{
     Q_OBJECT
 
 private:
 
 public:
-    powerWidget(QWidget* parent = nullptr);
-    ~powerWidget();
+    screenWidget(QWidget* parent = nullptr);
+    ~screenWidget();
 };
 
 #endif

@@ -5,6 +5,7 @@
 
 #include <QPalette>
 #include <QHBoxLayout>
+#include <QFrame>
 
 #include "ContentWidgets/Map/mapWidget.h"
 #include "ContentWidgets/Settings/settingsWidget.h"
@@ -15,12 +16,14 @@ class mainContentSlateWidget : public QWidget {
 private:
 	QHBoxLayout* mapLayout;
 	mapWidget* map;
+
+	QFrame* contentFrame;
 	QWidget* contentWidget;
 
 	void setupMapWidget();
 	
 	void createContentWidgetForIndex(int index);
-	void showContentWidget();
+	void showContentWidget(int index);
 	void hideContentWidget();
 
 public:

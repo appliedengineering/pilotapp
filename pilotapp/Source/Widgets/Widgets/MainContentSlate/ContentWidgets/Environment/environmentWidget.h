@@ -6,6 +6,12 @@
 class environmentWidget : public QWidget{
     Q_OBJECT
 
+private:
+
+public:
+    environmentWidget(QWidget* parent = nullptr);
+    ~environmentWidget();
+
 };
 
 #endif

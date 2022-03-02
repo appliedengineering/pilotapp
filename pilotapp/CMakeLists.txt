@@ -54,6 +54,8 @@ else()
     "Source/Widgets/Widgets/LeftContentSlate/leftContentSlate.h"
     "Source/Widgets/Widgets/MainContentSlate/mainContentSlate.cpp"
     "Source/Widgets/Widgets/MainContentSlate/mainContentSlate.h"
+    "Source/Widgets/Widgets/MainContentSlate/contentWidget.cpp"
+    "Source/Widgets/Widgets/MainContentSlate/contentWidget.h"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Environment/environmentWidget.cpp"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Environment/environmentWidget.h"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapWidget.cpp"

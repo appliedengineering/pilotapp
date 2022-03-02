@@ -3,14 +3,14 @@
 
 #include <QWidget>
 
-class settingsWidget : public QWidget{
+class telemetryWidget : public QWidget{
     Q_OBJECT
 
 private:
 
 public:
-    settingsWidget(QWidget* parent = nullptr);
-    ~settingsWidget();
+    telemetryWidget(QWidget* parent = nullptr);
+    ~telemetryWidget();
 
 };
 
