@@ -2,8 +2,9 @@
 #define ENVIRONMENT_WIDGET_H_
 
 #include <QWidget>
+#include "../../contentWidget.h"
 
-class environmentWidget : public QWidget{
+class environmentWidget : public ContentWidget{
     Q_OBJECT
 
 private:

@@ -2,8 +2,9 @@
 #define VOICE_WIDGET_H_
 
 #include <QWidget>
+#include "../../contentWidget.h"
 
-class voiceWidget : public QWidget{
+class voiceWidget : public ContentWidget{
     Q_OBJECT
 
 private:

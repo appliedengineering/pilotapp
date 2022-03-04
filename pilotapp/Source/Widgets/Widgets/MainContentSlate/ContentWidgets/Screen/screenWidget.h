@@ -2,8 +2,9 @@
 #define SCREEN_WIDGET_H_
 
 #include <QWidget>
+#include "../../contentWidget.h"
 
-class screenWidget : public QWidget{
+class screenWidget : public ContentWidget{
     Q_OBJECT
 
 private:

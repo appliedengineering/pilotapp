@@ -7,6 +7,7 @@
 #include <QHBoxLayout>
 #include <QFrame>
 
+#include "contentWidget.h"
 #include "ContentWidgets/Map/mapWidget.h"
 #include "ContentWidgets/Settings/settingsWidget.h"
 
@@ -17,8 +18,9 @@ private:
 	QHBoxLayout* mapLayout;
 	mapWidget* map;
 
-	QFrame* contentFrame;
-	QWidget* contentWidget;
+	ContentWidget* contentWidget;
+	const int contentWidgetVerticalPadding = 25;
+	const int contentWidgetHorizontalPadding = 40;
 
 	void setupMapWidget();
 	

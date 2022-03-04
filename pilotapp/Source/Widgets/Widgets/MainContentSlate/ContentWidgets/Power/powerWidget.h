@@ -2,8 +2,9 @@
 #define POWER_WIDGET_H_
 
 #include <QWidget>
+#include "../../contentWidget.h"
 
-class powerWidget : public QWidget{
+class powerWidget : public ContentWidget{
     Q_OBJECT
 
 private:

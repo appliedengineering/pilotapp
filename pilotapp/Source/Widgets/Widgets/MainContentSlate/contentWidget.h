@@ -11,11 +11,11 @@ enum ContentWidgetType{
 class ContentWidget : public QWidget{
     Q_OBJECT
 
-private:
-    ContentWidgetType widgetType;
+protected:
+    ContentWidgetType widgetType = windowed;
 
 public:
-
+    ContentWidgetType getContentWidgetType();
 };
 
 #endif

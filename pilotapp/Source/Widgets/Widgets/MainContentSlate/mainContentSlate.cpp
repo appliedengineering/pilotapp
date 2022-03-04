@@ -92,8 +92,13 @@ void mainContentSlateWidget::showContentWidget(int index){
 
 	//
 
-	//contentWidget->setGeometry(QRect(10, 10, 20, 20));
-	contentWidget->move(0, 0);	// size is determined by widget
+	if (contentWidget->getContentWidgetType() == fullscreen){ // size is determined by widget unless its fullscreen
+		contentWidget->move(contentWidgetHorizontalPadding, contentWidgetVerticalPadding);	
+		contentWidget->setFixedSize(this->width() - 2*contentWidgetHorizontalPadding, this->height() - contentWidgetVerticalPadding);
+
+		//contentWidget->setStyleSheet("ContentWidget{border-radius: 10px;}");
+	}
+
 	contentWidget->show();
 }
 

@@ -3,10 +3,7 @@
 #include "../../../../../Utilities/utilities.h"
 
 settingsWidget::settingsWidget(QWidget* parent){
-    qInfo() << "settings - " << parent->size();
-
-    this->setFixedSize(20, 20);
-
+    this->widgetType = fullscreen;
 	utilities::setPaletteColor(this, QPalette::Background, Qt::black);
 }
 
