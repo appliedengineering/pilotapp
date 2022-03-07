@@ -3,6 +3,8 @@
 
 #include <QApplication>
 #include <QMainWindow>
+#include <QPainterPath>
+#include <QRegion>
 #include "../MainWindow.h"
 
 class utilities {
@@ -12,6 +14,7 @@ public:
 	static MainWindow* findMainWindow();
 	static void changeFontSize(QLabel* l, int s);
 	static void setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalColor c);
+	static void setWidgetRoundedCorner(QWidget* w, int r);
 };
 
 #endif // !UTILITIES_H

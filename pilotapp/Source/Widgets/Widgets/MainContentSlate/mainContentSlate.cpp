@@ -95,8 +95,8 @@ void mainContentSlateWidget::showContentWidget(int index){
 	if (contentWidget->getContentWidgetType() == fullscreen){ // size is determined by widget unless its fullscreen
 		contentWidget->move(contentWidgetHorizontalPadding, contentWidgetVerticalPadding);	
 		contentWidget->setFixedSize(this->width() - 2*contentWidgetHorizontalPadding, this->height() - contentWidgetVerticalPadding);
-
-		//contentWidget->setStyleSheet("ContentWidget{border-radius: 10px;}");
+		
+		utilities::setWidgetRoundedCorner(contentWidget, 10);
 	}
 
 	contentWidget->show();

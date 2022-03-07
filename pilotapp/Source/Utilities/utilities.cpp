@@ -32,3 +32,10 @@ void utilities::setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalCol
 	
 	w->setPalette(pal);
 }
+
+void utilities::setWidgetRoundedCorner(QWidget* w, int r){
+	QPainterPath path;
+	path.addRoundedRect(w->rect(), r, r);
+	QRegion mask = QRegion(path.toFillPolygon().toPolygon());
+	w->setMask(mask);
+}
