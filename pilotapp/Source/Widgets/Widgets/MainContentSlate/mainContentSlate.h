@@ -18,7 +18,7 @@ private:
 	QHBoxLayout* mapLayout;
 	mapWidget* map;
 
-	ContentWidget* contentWidget;
+	ContentWidget* contentWidget = nullptr;
 	const int contentWidgetVerticalPadding = 25;
 	const int contentWidgetHorizontalPadding = 40;
 
