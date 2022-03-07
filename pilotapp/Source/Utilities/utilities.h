@@ -5,6 +5,8 @@
 #include <QMainWindow>
 #include <QPainterPath>
 #include <QRegion>
+#include <QBitmap>
+#include <QPainter>
 #include "../MainWindow.h"
 
 class utilities {
