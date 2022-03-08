@@ -33,7 +33,8 @@ void utilities::setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalCol
 	w->setPalette(pal);
 }
 
-void utilities::setWidgetRoundedCorner(QWidget* w, int r){
+// https://stackoverflow.com/a/15289912/
+void utilities::setWidgetRoundedCorner(QWidget* w, int r, std::vector<corners> noRoundCorner){
 	QBitmap bmp(w->size());
     bmp.clear();
     QPainter painter(&bmp);
@@ -41,5 +42,32 @@ void utilities::setWidgetRoundedCorner(QWidget* w, int r){
     painter.setPen(QColor(Qt::black));
     painter.setBrush(QColor(Qt::black));
     painter.drawRoundedRect(w->rect(), r, r, Qt::AbsoluteSize);
-    w->setMask(bmp);
+	
+	for (int i = 0; i < noRoundCorner.size(); i++){
+		switch (noRoundCorner[i])
+		{	
+		case topLeft:
+			painter.drawRect(0, 0, r, r);
+			break;
+		
+		case topRight:
+			painter.drawRect(w->width() - r, 0, r, r);
+			break;
+
+		case bottomLeft:
+			painter.drawRect(0, w->height() - r, r, r);
+			break;
+
+		case bottomRight:
+			painter.drawRect(w->width() - r, w->height() - r, r, r);
+			break;
+
+		default:
+			break;
+		}
+	}
+	/*painter.drawRect(0, w->height() - r, r, r);
+	painter.drawRect(w->width() - r, w->height() - r, r, r);*/
+    
+	w->setMask(bmp);
 }

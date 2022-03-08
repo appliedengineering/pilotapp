@@ -96,7 +96,7 @@ void mainContentSlateWidget::showContentWidget(int index){
 		contentWidget->move(contentWidgetHorizontalPadding, contentWidgetVerticalPadding);	
 		contentWidget->setFixedSize(this->width() - 2*contentWidgetHorizontalPadding, this->height() - contentWidgetVerticalPadding);
 		
-		utilities::setWidgetRoundedCorner(contentWidget, 10);
+		utilities::setWidgetRoundedCorner(contentWidget, 10, {utilities::bottomLeft, utilities::bottomRight});
 	}
 
 	contentWidget->show();
