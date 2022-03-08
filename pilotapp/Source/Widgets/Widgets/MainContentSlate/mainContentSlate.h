@@ -19,8 +19,8 @@ private:
 	mapWidget* map;
 
 	ContentWidget* contentWidget = nullptr;
-	const int contentWidgetVerticalPadding = 25;
-	const int contentWidgetHorizontalPadding = 40;
+	const int contentWidgetVerticalPadding = 20;
+	const int contentWidgetHorizontalPadding = 20;
 
 	void setupMapWidget();
 	
