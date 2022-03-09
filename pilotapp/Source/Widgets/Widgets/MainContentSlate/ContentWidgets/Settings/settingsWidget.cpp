@@ -9,32 +9,37 @@ settingsWidget::settingsWidget(QWidget* parent){
     //
 
     setupLayout();
+    setupContent();
 }
 
 settingsWidget::~settingsWidget(){
-
 }
 
 //
 
 void settingsWidget::setupLayout(){
 
-    QHBoxLayout* hBoxLayout = new QHBoxLayout(this);
-    this->setLayout(hBoxLayout);
+    vBoxLayout = new QVBoxLayout(this);
+    this->setLayout(vBoxLayout);
+    
+    vBoxLayout->setContentsMargins(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding);
+    vBoxLayout->setSpacing(verticalPadding);
 
-    //
+}
+
+void settingsWidget::setupContent(){
 
     exitButton = new QPushButton(this);
-    exitButton->setText("Exit");
+
+    exitButton->setText("Close Application");
     utilities::setPaletteColor(exitButton, QPalette::Text, Qt::white);
 
-    hBoxLayout->addWidget(exitButton);
+    //vBoxLayout->setAlignment(Qt::AlignLeft);
+    vBoxLayout->addWidget(exitButton, 0, Qt::AlignRight);
 
     connect(exitButton, &QPushButton::released, this, &settingsWidget::handleExit);
 
     //
-
-
 }
 
 void settingsWidget::handleExit(){
