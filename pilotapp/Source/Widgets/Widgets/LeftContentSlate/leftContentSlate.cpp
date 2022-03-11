@@ -82,8 +82,9 @@ void leftContentSlateWidget::renderTopContent(){
 	//speedometerLabelFont.setLetterSpacing(QFont::AbsoluteSpacing, 0.5);
 	speedometerLabel->setFont(speedometerLabelFont);
 
-	utilities::setPaletteColor(speedometerLabel, QPalette::Text, Qt::black);
-	utilities::setPaletteColor(speedometerLabel, QPalette::Background, Qt::white);
+	//utilities::setPaletteColor(speedometerLabel, QPalette::Text, Qt::black, true);
+	//utilities::setPaletteColor(speedometerLabel, QPalette::Background, Qt::black, true);
+	utilities::setPaletteColor(speedometerLabel, QPalette::Foreground, Qt::black, true);
 
 	topContentVBoxLayout->addWidget(speedometerLabel, speedometerLabelStretchFactor);
 
@@ -101,7 +102,9 @@ void leftContentSlateWidget::renderTopContent(){
 	speedometerUnitLabel->setText("MPH");
 	speedometerUnitLabel->setAlignment(Qt::AlignCenter);
 
-	utilities::setPaletteColor(speedometerLabel, QPalette::Text, Qt::gray);
+	//utilities::setPaletteColor(speedometerUnitLabel, QPalette::Text, Qt::gray, true);
+	//utilities::setPaletteColor(speedometerUnitLabel, QPalette::Background, Qt::gray, true);
+	utilities::setPaletteColor(speedometerUnitLabel, QPalette::Foreground, Qt::gray, true);
 
 	QFont speedometerUnitLabelFont = speedometerUnitLabel->font();
 	//speedometerUnitLabelFont.setBold(true);

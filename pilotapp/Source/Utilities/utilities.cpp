@@ -40,11 +40,12 @@ void utilities::setFontLetterSpacing(QFont* f) {
 	f->setLetterSpacing(Qt::absolute);
 }*/
 
-void utilities::setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalColor c) {
+void utilities::setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalColor c, bool shouldNotAutoFillBackground) {
 	QPalette pal = w->palette();
 
 	pal.setColor(r, c);
-	w->setAutoFillBackground(true);
+	if (!shouldNotAutoFillBackground)
+		w->setAutoFillBackground(true);
 	
 	w->setPalette(pal);
 }

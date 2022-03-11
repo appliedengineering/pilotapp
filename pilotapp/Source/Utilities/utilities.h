@@ -31,7 +31,7 @@ public:
 	static void setFontAntialias(QFont* f);
 	static void setFontLetterSpacing(QFont* f);*/
 
-	static void setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalColor c);
+	static void setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalColor c, bool shouldNotAutoFillBackground = false);
 	static void setWidgetRoundedCorner(QWidget* w, int r, std::vector<corners> noRoundCorner = {});
 	static std::string createPaddingString(int n);
 };
