@@ -73,8 +73,10 @@ void leftContentSlateWidget::renderTopContent(){
 	speedometerLabel->setText("88");
 	speedometerLabel->setAlignment(Qt::AlignCenter);
 	utilities::changeFontSize(speedometerLabel, 45);
-	utilities::setPaletteColor(speedometerLabel, QPalette::Background, Qt::black);
-	//utilities::setPaletteColor(speedometerLabel, QPalette::Background, Qt::white);
+	utilities::setPaletteColor(speedometerLabel, QPalette::Text, Qt::black);
+	utilities::setPaletteColor(speedometerLabel, QPalette::Background, Qt::white);
+
+	qDebug() << speedometerLabel->font();
 
 	topContentVBoxLayout->addWidget(speedometerLabel);
 

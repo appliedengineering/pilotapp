@@ -32,7 +32,10 @@ void settingsWidget::setupContent(){
     exitButton = new QPushButton(this);
 
     exitButton->setText("Close Application");
-    utilities::setPaletteColor(exitButton, QPalette::Text, Qt::white);
+
+    qDebug() << " button " << exitButton->font();
+
+    utilities::setPaletteColor(exitButton, QPalette::ButtonText, Qt::white);
 
     //vBoxLayout->setAlignment(Qt::AlignLeft);
     vBoxLayout->addWidget(exitButton, 0, Qt::AlignRight);

@@ -11,11 +11,11 @@ void setupStyleSheet(QApplication* a){
     QFontDatabase::addApplicationFont(":/Assets/Fonts/Inter-Bold.otf");
     QFontDatabase::addApplicationFont(":/Assets/Fonts/Inter-SemiBold.otf");
 
-    /*QFontDatabase db;
+    QFontDatabase db;
     for(int i=0; i<db.families().size(); i++)
     {
         qDebug() << db.families().at(i);
-    }*/
+    }
 
     //
 
@@ -24,6 +24,7 @@ void setupStyleSheet(QApplication* a){
     if (sheet.open(QIODevice::ReadOnly | QIODevice::Text)){
 
         //qInfo() << sheet.readAll();
+        qDebug() << "loaded style sheet";
 
         a->setStyleSheet(sheet.readAll());
         sheet.close();
