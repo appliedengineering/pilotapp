@@ -1,13 +1,19 @@
 /*hover*/
 /*actived*/
 
+* {
+  font-family: Inter;
+  /*font-size: 12px;*/
+  /*font-weight: Normal;*/
+}
+
 QMainWindow {
     background-color: #FFFFFF;
 }
 
 QLabel {
     /*color: black;*/
-    font: 'Inter';
+    /*font: 'Inter';*/
 }
 
 QPushButton {
@@ -18,7 +24,7 @@ QPushButton {
     min-height: 16px;
     outline: 0;
     /*color: black;*/
-    font: 'Inter';
+    /*font: 'Inter';*/
 }
 
 QPushButton:pressed {

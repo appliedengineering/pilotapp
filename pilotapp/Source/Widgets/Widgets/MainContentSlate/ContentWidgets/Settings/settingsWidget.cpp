@@ -31,9 +31,12 @@ void settingsWidget::setupContent(){
 
     exitButton = new QPushButton(this);
 
-    exitButton->setText("Close Application");
-
-    qDebug() << " button " << exitButton->font();
+    exitButton->setText("Close App");
+    //exitButton->setContentsMargins(10, 0, 10, 0);
+    
+    QFont exitButtonFont = exitButton->font();
+    exitButtonFont.setPointSize(12);
+    exitButton->setFont(exitButtonFont);
 
     utilities::setPaletteColor(exitButton, QPalette::ButtonText, Qt::white);
 

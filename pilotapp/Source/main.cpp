@@ -11,11 +11,13 @@ void setupStyleSheet(QApplication* a){
     QFontDatabase::addApplicationFont(":/Assets/Fonts/Inter-Bold.otf");
     QFontDatabase::addApplicationFont(":/Assets/Fonts/Inter-SemiBold.otf");
 
+    /*
     QFontDatabase db;
     for(int i=0; i<db.families().size(); i++)
     {
         qDebug() << db.families().at(i);
     }
+    */
 
     //
 

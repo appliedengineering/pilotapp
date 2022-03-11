@@ -18,11 +18,27 @@ MainWindow* utilities::findMainWindow() {
 	return nullptr;
 }
 
-void utilities::changeFontSize(QLabel* l, int s) {
+/*void utilities::changeFontSize(QLabel* l, int s) {
 	QFont f = l->font();
 	f.setPointSize(s);
+	setFontAntialias(&f);
 	l->setFont(f);
 }
+
+void utilities::changeFontSize(QPushButton* b, int s) {
+	QFont f = b->font();
+	f.setPointSize(s);
+	setFontAntialias(&f);
+	b->setFont(f);
+}
+
+void utilities::setFontAntialias(QFont* f) {
+	f->setStyleStrategy(QFont::PreferAntialias);
+}
+
+void utilities::setFontLetterSpacing(QFont* f) {
+	f->setLetterSpacing(Qt::absolute);
+}*/
 
 void utilities::setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalColor c) {
 	QPalette pal = w->palette();

@@ -19,8 +19,14 @@ private:
 	
 	//
 	QWidget* topContent;
+	
 	QVBoxLayout* topContentVBoxLayout;
 	QLabel* speedometerLabel;
+
+	QHBoxLayout* topContentBottomHBoxLayout;
+	QLabel* speedometerUnitLabel;
+	QWidget* batteryWidget;
+
 	//
 
 	QWidget* bottomContent;

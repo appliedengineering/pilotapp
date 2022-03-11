@@ -52,7 +52,7 @@ void leftContentSlateWidget::setupLayout(){
 	//
 
 	bottomContent = new QWidget(this);
-	
+
 	mainVBoxLayout->addWidget(bottomContent, 100-lineContentStretchFactor-topContentStretchFactor);
 
 	//
@@ -68,19 +68,52 @@ void leftContentSlateWidget::renderTopContent(){
 
 	//
 
-	speedometerLabel = new QLabel(this);
+	const int speedometerLabelStretchFactor = 70;
+	speedometerLabel = new QLabel(topContent);
 
-	speedometerLabel->setText("88");
-	speedometerLabel->setAlignment(Qt::AlignCenter);
-	utilities::changeFontSize(speedometerLabel, 45);
+	speedometerLabel->setText("50");
+	speedometerLabel->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
+	speedometerLabel->setContentsMargins(0, 0, 0, 0);
+
+	QFont speedometerLabelFont = speedometerLabel->font();
+	speedometerLabelFont.setBold(true);
+	speedometerLabelFont.setPointSize(45);
+	speedometerLabelFont.setStyleStrategy(QFont::PreferAntialias);
+	//speedometerLabelFont.setLetterSpacing(QFont::AbsoluteSpacing, 0.5);
+	speedometerLabel->setFont(speedometerLabelFont);
+
 	utilities::setPaletteColor(speedometerLabel, QPalette::Text, Qt::black);
 	utilities::setPaletteColor(speedometerLabel, QPalette::Background, Qt::white);
 
-	qDebug() << speedometerLabel->font();
-
-	topContentVBoxLayout->addWidget(speedometerLabel);
+	topContentVBoxLayout->addWidget(speedometerLabel, speedometerLabelStretchFactor);
 
 	//
+
+	topContentBottomHBoxLayout = new QHBoxLayout();
+	topContentBottomHBoxLayout->setContentsMargins(0, 0, 0, 0);
+
+	topContentVBoxLayout->addLayout(topContentBottomHBoxLayout, 100 - speedometerLabelStretchFactor);
+
+	//
+
+	speedometerUnitLabel = new QLabel(topContent);
+
+	speedometerUnitLabel->setText("MPH");
+	speedometerUnitLabel->setAlignment(Qt::AlignCenter);
+
+	utilities::setPaletteColor(speedometerLabel, QPalette::Text, Qt::gray);
+
+	QFont speedometerUnitLabelFont = speedometerUnitLabel->font();
+	//speedometerUnitLabelFont.setBold(true);
+	speedometerUnitLabelFont.setPointSize(10);
+	speedometerUnitLabel->setFont(speedometerUnitLabelFont);
+
+	topContentBottomHBoxLayout->addWidget(speedometerUnitLabel);
+
+	//
+
+	
+	
 }
 
 void leftContentSlateWidget::renderBottomContent(){

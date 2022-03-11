@@ -13,6 +13,7 @@
 class utilities {
 private:
 	static MainWindow* mainWindow;
+
 public:
 	enum corners{
 		topLeft = 0,
@@ -23,7 +24,12 @@ public:
 	};
 
 	static MainWindow* findMainWindow();
-	static void changeFontSize(QLabel* l, int s);
+	
+	/*static void changeFontSize(QLabel* l, int s);
+	static void changeFontSize(QPushButton* b, int s);
+	static void setFontAntialias(QFont* f);
+	static void setFontLetterSpacing(QFont* f);*/
+
 	static void setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalColor c);
 	static void setWidgetRoundedCorner(QWidget* w, int r, std::vector<corners> noRoundCorner = {});
 };
