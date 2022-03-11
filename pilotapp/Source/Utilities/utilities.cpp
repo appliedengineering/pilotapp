@@ -87,3 +87,7 @@ void utilities::setWidgetRoundedCorner(QWidget* w, int r, std::vector<corners> n
     
 	w->setMask(bmp);
 }
+
+std::string utilities::createPaddingString(int n) {
+	return std::string(" ", n);
+}

@@ -8,6 +8,7 @@
 #include <QBitmap>
 #include <QPainter>
 #include <vector>
+#include <string>
 #include "../MainWindow.h"
 
 class utilities {
@@ -32,6 +33,7 @@ public:
 
 	static void setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalColor c);
 	static void setWidgetRoundedCorner(QWidget* w, int r, std::vector<corners> noRoundCorner = {});
+	static std::string createPaddingString(int n);
 };
 
 #endif // !UTILITIES_H
