@@ -11,5 +11,6 @@
     <file>Assets/Icons/sound.png</file>
     <file>Assets/Icons/telemetry.png</file>
     <file>Source/style.qss</file>
+    <file>Source/ArcGISApiKey.txt</file>
 </qresource>
 </RCC>

@@ -5,3 +5,4 @@ out/*
 *.DS_Store
 .vscode/*
 build/*
+Source/ArcGISApiKey.txt

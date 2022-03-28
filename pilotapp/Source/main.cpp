@@ -30,14 +30,30 @@ void setupStyleSheet(QApplication* a){
         qDebug() << "loaded style sheet";
 
         a->setStyleSheet(sheet.readAll());
-        sheet.close();
     }
+    sheet.close();
+}
+
+void setupArcGISEnvironment(){
+    
+    QFile apiKeyFile(":/Source/ArcGISApiKey.txt");
+    if (apiKeyFile.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QString key = apiKeyFile.readAll();
+        //qDebug() << "ArcGIS API Key - " << key;
+        Esri::ArcGISRuntime::ArcGISRuntimeEnvironment::setApiKey(key);
+    }
+    else{
+        qFatal("No ArcGIS API Key file found");
+    }
+
+    apiKeyFile.close();
 }
 
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
 
     setupStyleSheet(&a);
+    setupArcGISEnvironment();
 
     //
 
