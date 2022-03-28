@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QDebug>
 #include <QFontDatabase>
+#include <ArcGISRuntimeEnvironment.h>
 
 void setupStyleSheet(QApplication* a){
     
