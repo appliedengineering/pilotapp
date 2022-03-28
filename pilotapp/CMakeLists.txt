@@ -15,7 +15,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 ###### Platform Specific Options
 
 
-# make sure to add "/usr/local/Homebrew/Cellar/qt@5/5.15.2_1/include/**" to include paths under cpp config on vs code
+# make sure to add "/usr/local/Homebrew/Cellar/qt@5/5.15.2_2/include/**" to include paths under cpp config on vs code
 # make sure to add "/Users/richy/ArcGIS_SDKs/Qt100.13/sdk/include/**" to include paths under cpp config on vs code
 
 ## QT Options

@@ -38,8 +38,11 @@ void setupArcGISEnvironment(){
     
     QFile apiKeyFile(":/Source/ArcGISApiKey.txt");
     if (apiKeyFile.open(QIODevice::ReadOnly | QIODevice::Text)){
+        
         QString key = apiKeyFile.readAll();
-        //qDebug() << "ArcGIS API Key - " << key;
+        
+        qDebug() << "Loaded ArcGIS API Key";
+        
         Esri::ArcGISRuntime::ArcGISRuntimeEnvironment::setApiKey(key);
     }
     else{
