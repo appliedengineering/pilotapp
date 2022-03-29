@@ -4,7 +4,7 @@
 #include <QFile>
 #include <QDebug>
 #include <QFontDatabase>
-#include <ArcGISRuntimeEnvironment.h>
+#include <ArcGISRuntimeEnvironment.h> 
 
 void setupStyleSheet(QApplication* a){
     
@@ -39,7 +39,7 @@ void setupArcGISEnvironment(){
     QFile apiKeyFile(":/Source/ArcGISApiKey.txt");
     if (apiKeyFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         
-        QString key = apiKeyFile.readAll();
+        QString key(apiKeyFile.readAll());
         
         qDebug() << "Loaded ArcGIS API Key";
         
@@ -53,11 +53,12 @@ void setupArcGISEnvironment(){
 }
 
 int main(int argc, char *argv[]){
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication a(argc, argv);
 
     setupStyleSheet(&a);
     setupArcGISEnvironment();
-
+    
     //
 
     MainWindow w;
