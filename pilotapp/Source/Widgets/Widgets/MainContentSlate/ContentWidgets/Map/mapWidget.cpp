@@ -78,7 +78,7 @@ Viewpoint mapWidget::parseMapData(QString raw){
 	
 	Point centerPoint(longitude, latitude, SpatialReference::wgs84());
 
-	return Viewpoint(centerPoint, 100000.0);
+	return Viewpoint(centerPoint, mapScale);
 }
 
 void mapWidget::setMapCenter(Viewpoint center){
