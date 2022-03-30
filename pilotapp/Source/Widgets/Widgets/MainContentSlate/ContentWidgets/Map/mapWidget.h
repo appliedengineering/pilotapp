@@ -3,11 +3,13 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
+#include <QString>
 
 namespace Esri{
     namespace ArcGISRuntime{
         class Map;
         class MapGraphicsView;
+        class Viewpoint;
     }
 }
 
@@ -18,6 +20,10 @@ private:
     QHBoxLayout* hBoxLayout = nullptr;
     Esri::ArcGISRuntime::Map* arcGISMap = nullptr;
     Esri::ArcGISRuntime::MapGraphicsView* arcGISMapView = nullptr;
+
+    QString readMapFile();
+    Esri::ArcGISRuntime::Viewpoint parseMapData(QString raw);
+    void setMapCenter(Esri::ArcGISRuntime::Viewpoint center);
 public:
     mapWidget(QWidget* parent = nullptr);
     ~mapWidget();
