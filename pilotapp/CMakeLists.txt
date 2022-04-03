@@ -30,6 +30,11 @@ set(ArcGISRuntime_DIR "${ArcGISRuntime_INSTALL_DIR}/sdk/ideintegration")
 set(ArcGIS_PLATFORM_NAME "macOS") # options are: android, iOS, macOS
 include_directories("${ArcGISRuntime_INSTALL_DIR}/sdk/include") # ArcGIS SDK include files
 
+## ZMQ Options
+set(ZMQ_VERSION "4.3.4")
+set(ZMQ_INSTALL_PATH "/usr/local/Homebrew/Cellar/zeromq/${ZMQ_VERSION}/")
+include_directories("${ZMQ_INSTALL_PATH}/include")
+link_directories("${ZMQ_INSTALL_PATH}/lib")
 
 # NOTE: IF YOU GET AN ERROR ABOUT "Library not loaded" referenced from "libEsriCommonQt.dylib", 
 # create a symbolic link between the "Frameworks" folder in the Qt installation folder (QT_INSTALL_PATH)
@@ -69,7 +74,10 @@ message("Source DIR = ${CMAKE_SOURCE_DIR}")
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Multimedia REQUIRED)
+
 find_package(ArcGISRuntime 100.11.2 COMPONENTS Cpp REQUIRED)
+
+#find_package(PkgConfig REQUIRED)
 
 if(ANDROID)
   add_library(pilotapp SHARED
@@ -86,6 +94,10 @@ else()
     "Source/Widgets/Pages/Home/homePage.h"
     "Source/Utilities/utilities.cpp"
     "Source/Utilities/utilities.h"
+    "Source/Utilities/Communication/communicationManager.cpp"
+    "Source/Utilities/Communication/communicationManager.h"
+    "Source/Utilities/Communication/communicationThread.cpp"
+    "Source/Utilities/Communication/communicationThread.h"
     "Source/Widgets/Widgets/Toolbar/toolbar.cpp"
     "Source/Widgets/Widgets/Toolbar/toolbar.h"
     "Source/Widgets/Widgets/LeftContentSlate/leftContentSlate.cpp"
@@ -136,5 +148,6 @@ target_link_libraries(pilotapp PRIVATE
   Qt${QT_VERSION_MAJOR}::Widgets 
   Qt${QT_VERSION_MAJOR}::Multimedia
   ArcGISRuntime::Cpp
+  zmq
   )
 

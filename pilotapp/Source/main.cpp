@@ -4,7 +4,13 @@
 #include <QFile>
 #include <QDebug>
 #include <QFontDatabase>
-#include <ArcGISRuntimeEnvironment.h> 
+#include <ArcGISRuntimeEnvironment.h>
+#include <thread>
+#include <chrono>
+#include <future>
+
+#include "Utilities/Communication/communicationManager.h"
+#include "Utilities/Communication/communicationThread.h"
 
 void setupStyleSheet(QApplication* a){
     
@@ -58,6 +64,12 @@ int main(int argc, char *argv[]){
 
     setupStyleSheet(&a);
     setupArcGISEnvironment();
+
+    communicationManager::getInstance();
+
+    auto commThread = std::async(std::launch::async, [&] {
+        communicationThread::getInstance()->start();
+    });
     
     //
 

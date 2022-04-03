@@ -69,16 +69,16 @@ Viewpoint mapWidget::parseMapData(QString raw){
 		qDebug() << QString::fromStdString(i);
 	}*/
 
-	if (sArray.size() != 2){
+	if (sArray.size() != 3){
 		qFatal("Map data is invalid");
 		return Viewpoint();
 	}
 
-	double latitude = std::stod(sArray[0]), longitude = std::stod(sArray[1]);
+	double latitude = std::stod(sArray[0]), longitude = std::stod(sArray[1]), scale = std::stod(sArray[2]); // default scale is 100000.0
 	
 	Point centerPoint(longitude, latitude, SpatialReference::wgs84());
 
-	return Viewpoint(centerPoint, mapScale);
+	return Viewpoint(centerPoint, scale);
 }
 
 void mapWidget::setMapCenter(Viewpoint center){

@@ -23,9 +23,7 @@ private:
 
     QString readMapFile();
     Esri::ArcGISRuntime::Viewpoint parseMapData(QString raw);
-    void setMapCenter(Esri::ArcGISRuntime::Viewpoint center);
-
-    const double mapScale = 20000.0; // default is 100000.0
+    void setMapCenter(Esri::ArcGISRuntime::Viewpoint center); 
 public:
     mapWidget(QWidget* parent = nullptr);
     ~mapWidget();
