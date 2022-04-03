@@ -24,11 +24,8 @@ communicationThread* communicationThread::getInstance(){
 void communicationThread::start(){
     isRunning = true;
 
-    int i = 0;
     while(isRunning){
-        qInfo() << "running thread " << i;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        i++;
     }
 }
 

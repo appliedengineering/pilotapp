@@ -23,5 +23,7 @@ public slots:
 public:
     MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
+
+    void closeEvent(QCloseEvent* event);
 };
 #endif // MAINWINDOW_H

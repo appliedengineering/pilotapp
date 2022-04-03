@@ -1,5 +1,7 @@
 #include "MainWindow.h"
 
+#include "Source/Utilities/Communication/communicationThread.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent){
 
@@ -18,7 +20,11 @@ MainWindow::~MainWindow(){
 //
 
 void MainWindow::closeApplication() {
-    //qInfo() << "exit";
+    communicationThread::getInstance()->stop();
     QApplication::quit();
+}
+
+void MainWindow::closeEvent(QCloseEvent* event){
+    closeApplication();
 }
 
