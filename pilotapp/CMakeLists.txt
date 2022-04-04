@@ -106,8 +106,6 @@ else()
     "Source/Widgets/Widgets/MainContentSlate/mainContentSlate.h"
     "Source/Widgets/Widgets/MainContentSlate/contentWidget.cpp"
     "Source/Widgets/Widgets/MainContentSlate/contentWidget.h"
-    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Environment/environmentWidget.cpp"
-    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Environment/environmentWidget.h"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapWidget.cpp"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapWidget.h"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Power/powerWidget.cpp"

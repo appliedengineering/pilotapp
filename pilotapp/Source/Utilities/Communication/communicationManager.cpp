@@ -7,7 +7,7 @@ communicationManager* communicationManager::instance = nullptr;
 communicationManager::communicationManager(){
     printZMQVersion();
     ctx = zmq_ctx_new();
-
+    setupIPCSocket();
 }
 
 communicationManager::~communicationManager(){

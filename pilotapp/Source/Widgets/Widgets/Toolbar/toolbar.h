@@ -10,7 +10,7 @@
 #include <QPixmap>
 #include <QString>
 
-#define toolbarButtonSize 7
+#define toolbarButtonSize 6
 
 class homePage;
 class toolbarWidget : public QWidget{
@@ -23,9 +23,9 @@ private:
 	homePage* home;
 	QHBoxLayout* hLayout;
 
-	// home, audio, display, battery/solar (electronics), environment, telemetry, settings
+	// home, audio, display, battery/solar (electronics), telemetry, settings
 	QPushButton* toolbarButtons[toolbarButtonSize]; 
-	const QString toolBarButtonIconNames[toolbarButtonSize] = {"home.png", "sound.png", "screen.png", "electronics.png", "environment.png", "telemetry.png", "settings.png"};
+	const QString toolBarButtonIconNames[toolbarButtonSize] = {"home.png", "sound.png", "screen.png", "electronics.png", "telemetry.png", "settings.png"};
 
 	void setupButtons();
 

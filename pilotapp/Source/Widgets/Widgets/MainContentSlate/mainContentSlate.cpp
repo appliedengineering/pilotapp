@@ -2,7 +2,6 @@
 
 #include "../../../Utilities/utilities.h"
 
-#include "ContentWidgets/Environment/environmentWidget.h"
 #include "ContentWidgets/Map/mapWidget.h"
 #include "ContentWidgets/Power/powerWidget.h"
 #include "ContentWidgets/Screen/screenWidget.h"
@@ -66,14 +65,10 @@ void mainContentSlateWidget::createContentWidgetForIndex(int index){
 		break;
 
 	case 4:
-		contentWidget = new environmentWidget(this);
-		break;
-
-	case 5:
 		contentWidget = new telemetryWidget(this);
 		break;
 
-	case 6:
+	case 5:
 		contentWidget = new settingsWidget(this);
 		break;
 	
@@ -120,7 +115,7 @@ void mainContentSlateWidget::hideContentWidget(){
 void mainContentSlateWidget::updateToWidgetIndex(int index){
 	//qInfo() << "index " << index;
 
-	if (index > 6 || index < 0){
+	if (index > 5 || index < 0){
 		qWarning() << "Invalid updateWidget index called " << index;
 		return;
 	}

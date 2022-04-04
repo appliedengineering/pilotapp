@@ -1,5 +1,6 @@
 #include "communicationThread.h"
 
+#include "communicationManager.h"
 #include <thread>
 #include <chrono>
 #include <QDebug>
@@ -25,6 +26,9 @@ void communicationThread::start(){
     isRunning = true;
 
     while(isRunning){
+
+        communicationManager::getInstance()->getIPCSocket();
+
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
