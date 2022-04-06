@@ -27,7 +27,10 @@ void communicationThread::start(){
 
     while(isRunning){
 
-        communicationManager::getInstance()->getIPCSocket();
+        std::string buf;
+        if (communicationManager::recv(communicationManager::getInstance()->getIPCSocket(), buf)){
+            qInfo() << "recv - " << QString::fromStdString(buf); 
+        }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }

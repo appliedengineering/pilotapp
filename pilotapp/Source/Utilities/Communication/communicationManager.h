@@ -2,6 +2,7 @@
 #define COMMUNICATION_MANAGER_H
 
 #include <zmq.h>
+#include <string>
 
 class communicationManager{
 private:
@@ -19,6 +20,7 @@ public:
     static communicationManager* getInstance();
 
     void* getIPCSocket();
+    static bool recv(void* s, std::string& b);
 };
 
 #endif

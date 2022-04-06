@@ -41,10 +41,35 @@ void communicationManager::setupIPCSocket(){
     if (zmq_setsockopt(ipcSub, ZMQ_CONFLATE, &t, sizeof(t)) == -1)
         qCritical("Failed to set ipcSub conflate option");
 
-    if (zmq_connect(ipcSub, "tcp://localhost:5555") == -1)
+    if (zmq_connect(ipcSub, "tcp://localhost:5556") == -1)
         qCritical("Failed to connect ipcSub");
 }
 
 void* communicationManager::getIPCSocket(){
     return ipcSub;
+}
+
+bool communicationManager::recv(void* s, std::string& b){
+    if (!s){
+        qDebug() << "nullptr socket passed to recv";
+        return false;
+    }
+
+    zmq_msg_t msg;
+
+    if (zmq_msg_init(&msg) == -1){
+        qDebug() << "failed to init zmq msg in recv";
+        return false;
+    }
+
+    if (zmq_msg_recv(&msg, s, ZMQ_NOBLOCK) == -1){
+        if (zmq_errno() != EAGAIN)
+            qDebug() << "failed to recv zmq msg";
+        return false;
+    }
+
+    b = std::string(static_cast<char*>(zmq_msg_data(&msg)), zmq_msg_size(&msg));
+
+    zmq_msg_close(&msg);
+    return true;
 }
