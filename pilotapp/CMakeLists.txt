@@ -37,10 +37,14 @@ set(ZMQ_INSTALL_PATH "/usr/local/Homebrew/Cellar/zeromq/${ZMQ_VERSION}/")
 include_directories("${ZMQ_INSTALL_PATH}/include")
 link_directories("${ZMQ_INSTALL_PATH}/lib")
 
+## Boost Options
+set(BOOST_INSTALL_PATH "/Users/richy/Boost")
+include_directories("${BOOST_INSTALL_PATH}")
+
 ## msgpack Options
-set(MSGPACK_INSTALL_PATH "${PROJECT_SOURCE_DIR}/3rd_party/msgpack")
-add_subdirectory("${MSGPACK_INSTALL_PATH}")
-include_directories("${MSGPACK_INSTALL_PATH}/include/msgpack")
+#set(MSGPACK_INSTALL_PATH "${PROJECT_SOURCE_DIR}/3rd_party/msgpack")
+#add_subdirectory("${MSGPACK_INSTALL_PATH}")
+#include_directories("${MSGPACK_INSTALL_PATH}/include/msgpack")
 
 # NOTE: IF YOU GET AN ERROR ABOUT "Library not loaded" referenced from "libEsriCommonQt.dylib", 
 # create a symbolic link between the "Frameworks" folder in the Qt installation folder (QT_INSTALL_PATH)
