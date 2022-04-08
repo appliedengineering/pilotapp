@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.9)
 
 project(pilotapp LANGUAGES CXX)
 
@@ -9,14 +9,15 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ###### Platform Specific Options
 
-
 # make sure to add "/usr/local/Homebrew/Cellar/qt@5/5.15.2_2/include/**" to include paths under cpp config on vs code
 # make sure to add "/Users/richy/ArcGIS_SDKs/Qt100.13/sdk/include/**" to include paths under cpp config on vs code
+# make sure to add "/usr/local/Homebrew/Cellar/zeromq/4.3.4/include/**" to include paths under cpp config on vs code
 
 ## QT Options
 set(QT_INSTALL_PATH "/usr/local/Homebrew/Cellar/qt@5/5.15.2_2")
@@ -35,6 +36,11 @@ set(ZMQ_VERSION "4.3.4")
 set(ZMQ_INSTALL_PATH "/usr/local/Homebrew/Cellar/zeromq/${ZMQ_VERSION}/")
 include_directories("${ZMQ_INSTALL_PATH}/include")
 link_directories("${ZMQ_INSTALL_PATH}/lib")
+
+## msgpack Options
+set(MSGPACK_INSTALL_PATH "${PROJECT_SOURCE_DIR}/3rd_party/msgpack")
+add_subdirectory("${MSGPACK_INSTALL_PATH}")
+include_directories("${MSGPACK_INSTALL_PATH}/include/msgpack")
 
 # NOTE: IF YOU GET AN ERROR ABOUT "Library not loaded" referenced from "libEsriCommonQt.dylib", 
 # create a symbolic link between the "Frameworks" folder in the Qt installation folder (QT_INSTALL_PATH)

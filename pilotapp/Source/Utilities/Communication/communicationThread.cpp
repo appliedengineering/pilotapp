@@ -4,6 +4,7 @@
 #include <thread>
 #include <chrono>
 #include <QDebug>
+#include <msgpack.hpp>
 
 communicationThread* communicationThread::instance = nullptr;
 
