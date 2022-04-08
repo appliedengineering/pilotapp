@@ -4,7 +4,8 @@
 #include <thread>
 #include <chrono>
 #include <QDebug>
-#include <msgpack.hpp>
+//#include <msgpack.hpp>
+#include <unordered_map>
 
 communicationThread* communicationThread::instance = nullptr;
 
@@ -28,10 +29,18 @@ void communicationThread::start(){
 
     while(isRunning){
 
+        //std::vector<uint8_t> buf;
         std::string buf;
         if (communicationManager::recv(communicationManager::getInstance()->getIPCSocket(), buf)){
-            qInfo() << "recv - " << QString::fromStdString(buf); 
+            
+            /*qInfo() << "recv - " << QString::fromStdString(buf); 
+            msgpackmap data = msgpack::unpack<msgpackmap>(std::vector<uint8_t>(buf.begin(), buf.end()));
+            for(std::pair<std::string, std::string> i : data.m){
+                qInfo() << QString::fromStdString(i.first) << " " << QString::fromStdString(i.second);
+            }*/
+
         }
+        buf.clear();
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }

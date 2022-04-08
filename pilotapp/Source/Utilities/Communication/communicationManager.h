@@ -3,6 +3,7 @@
 
 #include <zmq.h>
 #include <string>
+#include <vector>
 
 class communicationManager{
 private:

@@ -68,6 +68,9 @@ bool communicationManager::recv(void* s, std::string& b){
         return false;
     }
 
+    /*size_t msgsize = zmq_msg_size(&msg);
+    b = std::vector<uint8_t>(msgsize);
+    memcpy(b.data(), zmq_msg_data(&msg), msgsize);*/
     b = std::string(static_cast<char*>(zmq_msg_data(&msg)), zmq_msg_size(&msg));
 
     zmq_msg_close(&msg);
