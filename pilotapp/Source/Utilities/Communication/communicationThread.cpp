@@ -4,8 +4,8 @@
 #include <thread>
 #include <chrono>
 #include <QDebug>
-//#include <msgpack.hpp>
 #include <unordered_map>
+#include <msgpack.hpp>
 
 communicationThread* communicationThread::instance = nullptr;
 

@@ -38,8 +38,9 @@ include_directories("${ZMQ_INSTALL_PATH}/include")
 link_directories("${ZMQ_INSTALL_PATH}/lib")
 
 ## Boost Options
-set(BOOST_INSTALL_PATH "/Users/richy/Boost")
-include_directories("${BOOST_INSTALL_PATH}")
+set(BOOST_INSTALL_PATH "/usr/local/Homebrew/Cellar/boost/1.78.0_1") # before the "boost" (mind the lowercase) folder
+include_directories("${BOOST_INSTALL_PATH}/include")
+set(Boost_INCLUDE_DIR "${BOOST_INSTALL_PATH}/include")
 
 ## msgpack Options
 #set(MSGPACK_INSTALL_PATH "${PROJECT_SOURCE_DIR}/3rd_party/msgpack")
@@ -86,6 +87,8 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Multimedia REQUIRED)
 
 find_package(ArcGISRuntime 100.11.2 COMPONENTS Cpp REQUIRED)
+
+find_package(msgpack REQUIRED)
 
 #find_package(PkgConfig REQUIRED)
 
@@ -157,5 +160,6 @@ target_link_libraries(pilotapp PRIVATE
   Qt${QT_VERSION_MAJOR}::Multimedia
   ArcGISRuntime::Cpp
   zmq
+  msgpackc-cxx
   )
 
