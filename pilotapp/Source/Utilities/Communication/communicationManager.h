@@ -7,13 +7,6 @@
 #include <map>
 #include <msgpack.hpp>
 
-/*class myclass {
-private:
-    std::vector<int> m = {};
-public:
-    MSGPACK_DEFINE(m);
-};*/
-
 class communicationManager{
 private:
     communicationManager();

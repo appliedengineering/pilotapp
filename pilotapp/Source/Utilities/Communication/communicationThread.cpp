@@ -33,15 +33,10 @@ void communicationThread::start(){
         std::string buf;
         if (communicationManager::recv(communicationManager::getInstance()->getIPCSocket(), buf)){
             
-            qInfo() << "recv - " << QString::fromStdString(buf); 
-            /*msgpackmap data = msgpack::unpack<msgpackmap>(std::vector<uint8_t>(buf.begin(), buf.end()));
-            for(std::pair<std::string, std::string> i : data.m){
-                qInfo() << QString::fromStdString(i.first) << " " << QString::fromStdString(i.second);
-            }*/
-
-            //communicationManager::deserializeRawBoatData(buf);
-            dataManager::deserializeRawBoatData(buf);
-
+            //qInfo() << "recv - " << QString::fromStdString(buf);             
+            rawDataPack r = dataManager::deserializeRawBoatData(buf);
+            boatDataPack data(r);
+            qInfo() << data.getTimestamp();
         }
         buf.clear();
 

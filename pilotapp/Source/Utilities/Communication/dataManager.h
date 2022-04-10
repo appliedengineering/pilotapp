@@ -27,8 +27,21 @@ private:
     bool UV; // Undervoltage Protection
     bool OV; // Overvoltage Protection
     bool SM; // Solar Mode
-    bool EN; // Motor Enabled
+    bool EM; // Motor Enabled
     double timeStamp;
+public:
+    boatDataPack(rawDataPack& raw);
+
+    int getThrottlePercent();
+    int getDutyPercent();
+    float getChipTemp();
+    double getBatteryVoltage();
+    bool getUndervolt();
+    bool getOvervolt();
+    bool getSolarMode();
+    bool getMotorEnabled();
+    
+    double getTimestamp();
 };
 
 class dataManager{
