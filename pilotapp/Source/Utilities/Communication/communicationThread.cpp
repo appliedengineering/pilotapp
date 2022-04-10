@@ -1,11 +1,11 @@
 #include "communicationThread.h"
 
 #include "communicationManager.h"
+#include "dataManager.h"
 #include <thread>
 #include <chrono>
 #include <QDebug>
 #include <unordered_map>
-#include <msgpack.hpp>
 
 communicationThread* communicationThread::instance = nullptr;
 
@@ -33,11 +33,14 @@ void communicationThread::start(){
         std::string buf;
         if (communicationManager::recv(communicationManager::getInstance()->getIPCSocket(), buf)){
             
-            /*qInfo() << "recv - " << QString::fromStdString(buf); 
-            msgpackmap data = msgpack::unpack<msgpackmap>(std::vector<uint8_t>(buf.begin(), buf.end()));
+            qInfo() << "recv - " << QString::fromStdString(buf); 
+            /*msgpackmap data = msgpack::unpack<msgpackmap>(std::vector<uint8_t>(buf.begin(), buf.end()));
             for(std::pair<std::string, std::string> i : data.m){
                 qInfo() << QString::fromStdString(i.first) << " " << QString::fromStdString(i.second);
             }*/
+
+            //communicationManager::deserializeRawBoatData(buf);
+            dataManager::deserializeRawBoatData(buf);
 
         }
         buf.clear();

@@ -111,6 +111,8 @@ else()
     "Source/Utilities/Communication/communicationManager.h"
     "Source/Utilities/Communication/communicationThread.cpp"
     "Source/Utilities/Communication/communicationThread.h"
+    "Source/Utilities/Communication/dataManager.cpp"
+    "Source/Utilities/Communication/dataManager.h"
     "Source/Widgets/Widgets/Toolbar/toolbar.cpp"
     "Source/Widgets/Widgets/Toolbar/toolbar.h"
     "Source/Widgets/Widgets/LeftContentSlate/leftContentSlate.cpp"

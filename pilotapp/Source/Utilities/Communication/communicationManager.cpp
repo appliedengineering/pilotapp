@@ -1,6 +1,7 @@
 #include "communicationManager.h"
 
 #include <QDebug>
+#include <iostream>
 
 communicationManager* communicationManager::instance = nullptr;
 

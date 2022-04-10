@@ -4,6 +4,15 @@
 #include <zmq.h>
 #include <string>
 #include <vector>
+#include <map>
+#include <msgpack.hpp>
+
+/*class myclass {
+private:
+    std::vector<int> m = {};
+public:
+    MSGPACK_DEFINE(m);
+};*/
 
 class communicationManager{
 private:
@@ -22,6 +31,7 @@ public:
 
     void* getIPCSocket();
     static bool recv(void* s, std::string& b);
+
 };
 
 #endif
