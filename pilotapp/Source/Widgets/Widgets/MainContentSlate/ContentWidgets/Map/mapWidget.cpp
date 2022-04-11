@@ -1,6 +1,6 @@
 #include "mapWidget.h"
 
-#include "../../../../../Utilities/utilities.h"
+#include "../../../../../Backend/Utilities/utilities.h"
 
 #include <ArcGISRuntimeEnvironment.h>
 #include <Map.h>
@@ -35,7 +35,6 @@ mapWidget::mapWidget(QWidget* parent){
 }
 
 mapWidget::~mapWidget(){
-    
 }
 
 //
@@ -49,7 +48,7 @@ QString mapWidget::readMapFile(){
 	   	return data;
 	}
 	
-	qDebug() << "No map data file found (navcenter.txt)";
+	qInfo() << "No map data file found (navcenter.txt)";
 	return "";
 }
 

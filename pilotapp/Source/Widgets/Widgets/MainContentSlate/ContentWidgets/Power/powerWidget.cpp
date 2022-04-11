@@ -1,6 +1,6 @@
 #include "powerWidget.h"
 
-#include "../../../../../Utilities/utilities.h"
+#include "../../../../../Backend/Utilities/utilities.h"
 
 powerWidget::powerWidget(QWidget* parent){
     this->widgetType = fullscreen;

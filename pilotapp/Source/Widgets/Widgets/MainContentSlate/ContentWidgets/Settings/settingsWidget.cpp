@@ -1,6 +1,6 @@
 #include "settingsWidget.h"
 
-#include "../../../../../Utilities/utilities.h"
+#include "../../../../../Backend/Utilities/utilities.h"
 
 settingsWidget::settingsWidget(QWidget* parent){
     this->widgetType = fullscreen;

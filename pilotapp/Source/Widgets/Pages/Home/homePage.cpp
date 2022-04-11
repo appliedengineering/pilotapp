@@ -1,7 +1,7 @@
 #include "homePage.h"
 
 #include "../../../MainWindow.h"
-#include "../../../Utilities/utilities.h"
+#include "../../../Backend/Utilities/utilities.h"
 
 homePage::homePage(QWidget* parent) {
     this->setFixedSize(utilities::findMainWindow()->size());

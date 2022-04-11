@@ -9,7 +9,7 @@
 #include <QPainter>
 #include <vector>
 #include <string>
-#include "../MainWindow.h"
+#include "../../MainWindow.h"
 
 class utilities {
 private:

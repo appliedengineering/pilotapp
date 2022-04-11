@@ -1,6 +1,6 @@
 #include "leftContentSlate.h"
 
-#include "../../../Utilities/utilities.h"
+#include "../../../Backend/Utilities/utilities.h"
 #include <QDebug>
 
 const float leftContentSlateWidget::widthRatio = 0.35;

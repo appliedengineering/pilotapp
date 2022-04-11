@@ -1,6 +1,6 @@
 #include "MainWindow.h"
 
-#include "Source/Utilities/Communication/communicationThread.h"
+#include "Source/Backend/Communication/communicationThread.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent){

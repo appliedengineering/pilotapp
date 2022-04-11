@@ -9,8 +9,8 @@
 #include <chrono>
 #include <future>
 
-#include "Utilities/Communication/communicationManager.h"
-#include "Utilities/Communication/communicationThread.h"
+#include "Backend/Communication/communicationManager.h"
+#include "Backend/Communication/communicationThread.h"
 
 void setupStyleSheet(QApplication* a){
     
