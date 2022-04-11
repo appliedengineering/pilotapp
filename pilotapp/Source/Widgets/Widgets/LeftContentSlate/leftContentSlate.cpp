@@ -1,6 +1,7 @@
 #include "leftContentSlate.h"
 
 #include "../../../Utilities/utilities.h"
+#include <QDebug>
 
 const float leftContentSlateWidget::widthRatio = 0.35;
 
@@ -120,5 +121,28 @@ void leftContentSlateWidget::renderTopContent(){
 }
 
 void leftContentSlateWidget::renderBottomContent(){
+	//utilities::setPaletteColor(this->bottomContent, QPalette::Background, Qt::gray);
+	bottomContentVBoxLayout = new QVBoxLayout(bottomContent);
 
+	bottomContentVBoxLayout->setContentsMargins(0, 0, 0, 0);
+	bottomContentVBoxLayout->setSpacing(0);
+
+	//
+
+	modelLabel = new QLabel(bottomContent);
+
+	int modelLabelPadding = 10;
+	modelLabel->setContentsMargins(3*modelLabelPadding, modelLabelPadding, 3*modelLabelPadding, modelLabelPadding);
+
+	QPixmap modelPixMap(":/Assets/Model/topdownboat.png");
+	double modelWidthToHeightRatio = modelPixMap.height() / modelPixMap.width();
+
+	modelPixMap.scaled(modelLabel->width(), modelLabel->width() * modelWidthToHeightRatio, Qt::KeepAspectRatio);
+
+	modelLabel->setPixmap(modelPixMap);
+	modelLabel->setScaledContents(1);
+
+	bottomContentVBoxLayout->addWidget(modelLabel);
+
+	//utilities::setPaletteColor(modelLabel, QPalette::Background, Qt::gray);
 }

@@ -25,13 +25,13 @@ communicationManager* communicationManager::getInstance(){
     return communicationManager::instance;
 }
 
-//
-
 void communicationManager::printZMQVersion(){
     int major, minor, patch;
     zmq_version(&major, &minor, &patch);
     qInfo() << "ZMQ Version " << major << "." << minor << "." << patch;
 }
+
+//
 
 void communicationManager::setupIPCSocket(){
     ipcSub = zmq_socket(ctx, ZMQ_SUB);

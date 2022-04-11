@@ -31,6 +31,10 @@ private:
 
 	QWidget* bottomContent;
 
+	QVBoxLayout* bottomContentVBoxLayout;
+	QLabel* modelLabel;
+
+	//
 
 	void setupLayout();
 	
