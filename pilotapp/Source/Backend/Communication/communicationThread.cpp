@@ -2,6 +2,7 @@
 
 #include "communicationManager.h"
 #include "dataManager.h"
+#include "../boatKernel.h"
 #include <thread>
 #include <chrono>
 #include <QDebug>
@@ -36,7 +37,10 @@ void communicationThread::start(){
             //qInfo() << "recv - " << QString::fromStdString(buf);             
             rawDataPack r = dataManager::deserializeRawBoatData(buf);
             boatDataPack data(r);
-            qInfo() << data.getTimestamp();
+            //qInfo() << data.getTimestamp();
+
+            boatKernel::getInstance()->receiveBoatDataPack(data);
+
         }
         buf.clear();
 

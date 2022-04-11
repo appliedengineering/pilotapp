@@ -113,6 +113,8 @@ else()
     "Source/Backend/Communication/communicationThread.h"
     "Source/Backend/Communication/dataManager.cpp"
     "Source/Backend/Communication/dataManager.h"
+    "Source/Backend/boatKernel.cpp"
+    "Source/Backend/boatKernel.h"
     "Source/Widgets/Widgets/Toolbar/toolbar.cpp"
     "Source/Widgets/Widgets/Toolbar/toolbar.h"
     "Source/Widgets/Widgets/LeftContentSlate/leftContentSlate.cpp"
