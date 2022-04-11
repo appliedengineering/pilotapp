@@ -1,4 +1,9 @@
 #include "boatKernel.h"
+#include "Utilities/utilities.h"
+
+#include <QDebug>
+
+//
 
 boatKernel* boatKernel::instance = nullptr;
 
@@ -18,5 +23,15 @@ boatKernel* boatKernel::getInstance(){
 //
 
 void boatKernel::receiveBoatDataPack(boatDataPack data){
+    qInfo() << "recv boat data";
     
+    //
+
+    updateSpeedLabel(data.getSpeed());
+}
+
+//
+
+void boatKernel::updateSpeedLabel(double speed){
+    utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateSpeedLabel(speed);
 }

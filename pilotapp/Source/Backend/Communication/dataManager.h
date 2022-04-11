@@ -28,6 +28,8 @@ private:
     bool OV; // Overvoltage Protection
     bool SM; // Solar Mode
     bool EM; // Motor Enabled
+    // End Motor Data
+    double Speed;
     double timeStamp;
 public:
     boatDataPack(rawDataPack& raw);
@@ -40,7 +42,9 @@ public:
     bool getOvervolt();
     bool getSolarMode();
     bool getMotorEnabled();
-    
+
+    double getSpeed();
+
     double getTimestamp();
 };
 

@@ -25,5 +25,7 @@ public:
     ~MainWindow();
 
     void closeEvent(QCloseEvent* event);
+
+    homePage* getHomePageWidget();
 };
 #endif // MAINWINDOW_H

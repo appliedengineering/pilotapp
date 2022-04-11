@@ -28,3 +28,7 @@ void MainWindow::closeEvent(QCloseEvent* event){
     closeApplication();
 }
 
+homePage* MainWindow::getHomePageWidget(){
+    return home;
+}
+

@@ -9,6 +9,8 @@ private:
     ~boatKernel();
     static boatKernel* instance;
 
+    void updateSpeedLabel(double speed);
+
 public:
     static boatKernel* getInstance();
 

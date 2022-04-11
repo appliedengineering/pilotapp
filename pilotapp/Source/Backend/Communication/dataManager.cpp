@@ -1,5 +1,5 @@
 #include "dataManager.h"
-//#include <iostream>
+#include <iostream>
 //#include <iomanip>
 
 #include <QDebug>
@@ -39,6 +39,9 @@ boatDataPack::boatDataPack(rawDataPack& raw){
     OV = m["OV"].as_bool();
     SM = m["SM"].as_bool();
     EM = m["EM"].as_bool();
+
+    Speed = m["Speed"].as_double();
+
     timeStamp = m["timeStamp"].as_double();
 
     //qInfo() << "after const";
@@ -74,6 +77,10 @@ bool boatDataPack::getSolarMode(){
 
 bool boatDataPack::getMotorEnabled(){
     return EM;
+}
+
+double boatDataPack::getSpeed(){
+    return Speed;
 }
 
 double boatDataPack::getTimestamp(){

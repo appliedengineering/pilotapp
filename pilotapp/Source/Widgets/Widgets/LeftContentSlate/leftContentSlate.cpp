@@ -1,7 +1,9 @@
 #include "leftContentSlate.h"
 
 #include "../../../Backend/Utilities/utilities.h"
+
 #include <QDebug>
+#include <cmath>
 
 const float leftContentSlateWidget::widthRatio = 0.35;
 
@@ -16,7 +18,6 @@ leftContentSlateWidget::leftContentSlateWidget(QWidget* parent) {
 
 	renderTopContent();
 	renderBottomContent();
-
 }
 
 leftContentSlateWidget::~leftContentSlateWidget() {
@@ -72,7 +73,7 @@ void leftContentSlateWidget::renderTopContent(){
 	const int speedometerLabelStretchFactor = 70;
 	speedometerLabel = new QLabel(topContent);
 
-	speedometerLabel->setText("50");
+	speedometerLabel->setText("0");
 	speedometerLabel->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
 	speedometerLabel->setContentsMargins(0, 0, 0, 0);
 
@@ -145,4 +146,11 @@ void leftContentSlateWidget::renderBottomContent(){
 	bottomContentVBoxLayout->addWidget(modelLabel);
 
 	//utilities::setPaletteColor(modelLabel, QPalette::Background, Qt::gray);
+}
+
+//
+
+void leftContentSlateWidget::updateSpeedLabel(double speed){
+	if (speedometerLabel != nullptr)
+		speedometerLabel->setText(QString::number(round(speed)));
 }

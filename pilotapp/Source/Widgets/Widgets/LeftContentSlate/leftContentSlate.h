@@ -47,6 +47,8 @@ public:
 	leftContentSlateWidget(QWidget* parent = nullptr);
 	~leftContentSlateWidget();
 
+	void updateSpeedLabel(double speed);
+
 };
 
 #endif // !LEFT_CONTENT_SLATE_H_
