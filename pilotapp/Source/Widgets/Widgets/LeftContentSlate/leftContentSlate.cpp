@@ -123,17 +123,113 @@ void leftContentSlateWidget::renderTopContent(){
 
 void leftContentSlateWidget::renderBottomContent(){
 	//utilities::setPaletteColor(this->bottomContent, QPalette::Background, Qt::gray);
-	bottomContentVBoxLayout = new QVBoxLayout(bottomContent);
+	bottomContentHBoxLayout = new QHBoxLayout(bottomContent);
 
-	bottomContentVBoxLayout->setContentsMargins(0, 0, 0, 0);
-	bottomContentVBoxLayout->setSpacing(0);
+	int contentPadding = 10;
+
+	bottomContentHBoxLayout->setContentsMargins(contentPadding, contentPadding, contentPadding, contentPadding);
+	bottomContentHBoxLayout->setSpacing(contentPadding);
+
+	///
+
+	bottomContentBarVBoxLayout = new QVBoxLayout();
+
+	bottomContentBarVBoxLayout->setContentsMargins(0, 0, 0, 0);
+	bottomContentBarVBoxLayout->setSpacing(0);
+
+	bottomContentHBoxLayout->addLayout(bottomContentBarVBoxLayout);
 
 	//
 
+	// Bar labels go here
+
+	bottomContentBarLabelHBoxLayout = new QHBoxLayout();
+
+	bottomContentBarLabelHBoxLayout->setContentsMargins(0, 0, 0, 0);
+	bottomContentBarLabelHBoxLayout->setSpacing(contentPadding);
+
+	bottomContentBarVBoxLayout->addLayout(bottomContentBarLabelHBoxLayout);
+
+	//
+
+	throttleBarLabel = new QLabel(bottomContent);
+
+	throttleBarLabel->setText("T");
+	utilities::setPaletteColor(throttleBarLabel, QPalette::Foreground, Qt::black, true);
+	throttleBarLabel->setAlignment(Qt::AlignCenter);
+
+	QFont throttleBarLabelFont = throttleBarLabel->font();
+	throttleBarLabelFont.setBold(true);
+	throttleBarLabelFont.setStyleStrategy(QFont::PreferAntialias);
+	throttleBarLabel->setFont(throttleBarLabelFont);
+
+	bottomContentBarLabelHBoxLayout->addWidget(throttleBarLabel);
+
+	//
+
+	dutyBarLabel = new QLabel(bottomContent);
+
+	dutyBarLabel->setText("D");
+	utilities::setPaletteColor(dutyBarLabel, QPalette::Foreground, Qt::black, true);
+	dutyBarLabel->setAlignment(Qt::AlignCenter);
+
+	QFont dutyBarLabelFont = dutyBarLabel->font();
+	dutyBarLabelFont.setBold(true);
+	dutyBarLabelFont.setStyleStrategy(QFont::PreferAntialias);
+	dutyBarLabel->setFont(dutyBarLabelFont);
+
+	bottomContentBarLabelHBoxLayout->addWidget(dutyBarLabel);
+
+	//
+
+	bottomContentBarHBoxLayout = new QHBoxLayout();
+
+	bottomContentBarHBoxLayout->setContentsMargins(0, 0, 0, 0);
+	bottomContentBarHBoxLayout->setSpacing(contentPadding);
+
+	bottomContentBarVBoxLayout->addLayout(bottomContentBarHBoxLayout);
+
+	//
+
+	throttleBar = new QProgressBar(bottomContent);
+
+	//throttleBar->setContentsMargins(contentPadding, contentPadding, contentPadding, contentPadding);
+
+	throttleBar->setOrientation(Qt::Vertical);
+	throttleBar->setMinimum(0);
+	throttleBar->setMaximum(100);
+	throttleBar->setTextVisible(false);
+
+	throttleBar->setValue(50);
+
+	/*utilities::setPaletteColor(throttleBar, QPalette::Highlight, Qt::black, true);
+	utilities::setPaletteColor(throttleBar, QPalette::Foreground, Qt::gray, true);
+	utilities::setPaletteColor(throttleBar, QPalette::Background, Qt::white);*/
+
+	bottomContentBarHBoxLayout->addWidget(throttleBar);
+	
+	//
+
+	dutyBar = new QProgressBar(bottomContent);
+
+	//dutyBar->setContentsMargins(contentPadding, contentPadding, contentPadding, contentPadding);
+
+	dutyBar->setOrientation(Qt::Vertical);
+	dutyBar->setMinimum(0);
+	dutyBar->setMaximum(100);
+	dutyBar->setTextVisible(false);
+
+	dutyBar->setValue(80);
+
+	//utilities::setPaletteColor(dutyBar, QPalette::Background, Qt::gray);
+
+	bottomContentBarHBoxLayout->addWidget(dutyBar);
+
+	///
+
 	modelLabel = new QLabel(bottomContent);
 
-	int modelLabelPadding = 10;
-	modelLabel->setContentsMargins(3*modelLabelPadding, modelLabelPadding, 3*modelLabelPadding, modelLabelPadding);
+	modelLabel->setContentsMargins(contentPadding, 0, contentPadding, 0);
 
 	QPixmap modelPixMap(":/Assets/Model/topdownboat.png");
 	double modelWidthToHeightRatio = modelPixMap.height() / modelPixMap.width();
@@ -143,9 +239,10 @@ void leftContentSlateWidget::renderBottomContent(){
 	modelLabel->setPixmap(modelPixMap);
 	modelLabel->setScaledContents(1);
 
-	bottomContentVBoxLayout->addWidget(modelLabel);
+	bottomContentHBoxLayout->addWidget(modelLabel);
 
 	//utilities::setPaletteColor(modelLabel, QPalette::Background, Qt::gray);
+
 }
 
 //

@@ -15,6 +15,7 @@ public:
     static boatKernel* getInstance();
 
     void receiveBoatDataPack(boatDataPack data);
+    //void toggleMotor();
 };
 
 #endif

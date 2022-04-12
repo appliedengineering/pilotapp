@@ -8,6 +8,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QFrame>
+#include <QProgressBar>
 
 class leftContentSlateWidget : public QWidget {
 	Q_OBJECT
@@ -31,8 +32,18 @@ private:
 
 	QWidget* bottomContent;
 
-	QVBoxLayout* bottomContentVBoxLayout;
+	QHBoxLayout* bottomContentHBoxLayout;
 	QLabel* modelLabel;
+
+	QVBoxLayout* bottomContentBarVBoxLayout;
+	
+	QHBoxLayout* bottomContentBarLabelHBoxLayout;
+	QLabel* throttleBarLabel;
+	QLabel* dutyBarLabel;
+
+	QHBoxLayout* bottomContentBarHBoxLayout;
+	QProgressBar* throttleBar;
+	QProgressBar* dutyBar;
 
 	//
 
