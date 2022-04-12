@@ -224,8 +224,39 @@ void leftContentSlateWidget::renderBottomContent(){
 	//utilities::setPaletteColor(dutyBar, QPalette::Background, Qt::gray);
 
 	bottomContentBarHBoxLayout->addWidget(dutyBar);
+	
+	//
+	// Bar Percentage Labels go here
+
+	bottomContentBarPercentLabelHBoxLayout = new QHBoxLayout();
+
+	bottomContentBarPercentLabelHBoxLayout->setContentsMargins(0, 0, 0, 0);
+	bottomContentBarPercentLabelHBoxLayout->setSpacing(contentPadding);
+
+	bottomContentBarVBoxLayout->addLayout(bottomContentBarPercentLabelHBoxLayout);
+	
+	//
+
+	throttleBarPercentLabel = new QLabel(bottomContent);
+
+	throttleBarPercentLabel->setText("50%");
+	utilities::setPaletteColor(throttleBarPercentLabel, QPalette::Foreground, Qt::black, true);
+	throttleBarPercentLabel->setAlignment(Qt::AlignCenter);
+
+	bottomContentBarPercentLabelHBoxLayout->addWidget(throttleBarPercentLabel);
+
+	//
+
+	dutyBarPercentLabel = new QLabel(bottomContent);
+
+	dutyBarPercentLabel->setText("80%");
+	utilities::setPaletteColor(dutyBarPercentLabel, QPalette::Foreground, Qt::black, true);
+	dutyBarPercentLabel->setAlignment(Qt::AlignCenter);
+
+	bottomContentBarPercentLabelHBoxLayout->addWidget(dutyBarPercentLabel);
 
 	///
+	// Model Label
 
 	modelLabel = new QLabel(bottomContent);
 

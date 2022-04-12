@@ -45,6 +45,10 @@ private:
 	QProgressBar* throttleBar;
 	QProgressBar* dutyBar;
 
+	QHBoxLayout* bottomContentBarPercentLabelHBoxLayout;
+	QLabel* throttleBarPercentLabel;
+	QLabel* dutyBarPercentLabel;
+
 	//
 
 	void setupLayout();
