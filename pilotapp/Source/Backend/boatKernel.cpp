@@ -1,5 +1,6 @@
 #include "boatKernel.h"
 #include "Utilities/utilities.h"
+#include "Communication/dataManager.h"
 
 #include <QDebug>
 
@@ -8,6 +9,7 @@
 boatKernel* boatKernel::instance = nullptr;
 
 boatKernel::boatKernel(){
+    
 }
 
 boatKernel::~boatKernel(){
@@ -39,9 +41,11 @@ void boatKernel::updateSpeedLabel(double speed){
 }
 
 void boatKernel::updateThrottle(int percent){
-    utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateThrottle(percent);
+    emit throttleUpdateSignal(percent);
+    //utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateThrottle(percent);
 }
 
 void boatKernel::updateDuty(int percent){
-    utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateDuty(percent);
+    emit dutyUpdateSignal(percent);
+    //utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateDuty(percent);
 }

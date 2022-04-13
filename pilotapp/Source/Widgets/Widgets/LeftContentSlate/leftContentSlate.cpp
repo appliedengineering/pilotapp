@@ -1,6 +1,7 @@
 #include "leftContentSlate.h"
 
 #include "../../../Backend/Utilities/utilities.h"
+#include "../../../Backend/boatKernel.h"
 
 #include <QDebug>
 #include <cmath>
@@ -18,6 +19,11 @@ leftContentSlateWidget::leftContentSlateWidget(QWidget* parent) {
 
 	renderTopContent();
 	renderBottomContent();
+
+	//
+	
+	connect(boatKernel::getInstance(), &boatKernel::throttleUpdateSignal, this, &leftContentSlateWidget::updateThrottle);
+	connect(boatKernel::getInstance(), &boatKernel::dutyUpdateSignal, this, &leftContentSlateWidget::updateDuty);
 }
 
 leftContentSlateWidget::~leftContentSlateWidget() {
@@ -326,7 +332,7 @@ void leftContentSlateWidget::updateSpeedLabel(double speed){
 void leftContentSlateWidget::updateThrottle(int percent){
 	if (throttleBar != nullptr){
 		if (percent >= 0 && percent <= 100){
-			//throttleBar->setValue(percent);
+			throttleBar->setValue(percent);
 			throttleBarPercentLabel->setText(QString::number(percent) + "%");
 		}
 		else
@@ -337,7 +343,7 @@ void leftContentSlateWidget::updateThrottle(int percent){
 void leftContentSlateWidget::updateDuty(int percent){
 	if (dutyBar != nullptr){
 		if (percent >= 0 && percent <= 100){
-			//dutyBar->setValue(percent);
+			dutyBar->setValue(percent);
 			dutyBarPercentLabel->setText(QString::number(percent) + "%");
 		}
 		else

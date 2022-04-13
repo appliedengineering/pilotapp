@@ -1,9 +1,12 @@
 #ifndef BOAT_KERNEL_H
 #define BOAT_KERNEL_H
 
-#include "Communication/dataManager.h"
+class boatDataPack;
 
-class boatKernel{
+#include <QObject>
+
+class boatKernel : public QObject{
+    Q_OBJECT
 private:
     boatKernel();
     ~boatKernel();
@@ -18,6 +21,10 @@ public:
 
     void receiveBoatDataPack(boatDataPack data);
     //void toggleMotor();
+
+signals:
+    void throttleUpdateSignal(int percent);
+    void dutyUpdateSignal(int percent);
 };
 
 #endif
