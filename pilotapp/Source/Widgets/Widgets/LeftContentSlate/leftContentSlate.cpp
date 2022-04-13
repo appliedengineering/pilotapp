@@ -132,6 +132,8 @@ void leftContentSlateWidget::renderBottomContent(){
 
 	///
 
+	int bottomContentBarWidth = 32;
+
 	bottomContentBarVBoxLayout = new QVBoxLayout();
 
 	bottomContentBarVBoxLayout->setContentsMargins(0, 0, 0, 0);
@@ -157,11 +159,14 @@ void leftContentSlateWidget::renderBottomContent(){
 	throttleBarLabel->setText("T");
 	utilities::setPaletteColor(throttleBarLabel, QPalette::Foreground, Qt::black, true);
 	throttleBarLabel->setAlignment(Qt::AlignCenter);
+	throttleBarLabel->setFixedWidth(35);
 
 	QFont throttleBarLabelFont = throttleBarLabel->font();
 	throttleBarLabelFont.setBold(true);
 	throttleBarLabelFont.setStyleStrategy(QFont::PreferAntialias);
 	throttleBarLabel->setFont(throttleBarLabelFont);
+
+	//utilities::setPaletteColor(throttleBarLabel, QPalette::Background, Qt::gray);
 
 	bottomContentBarLabelHBoxLayout->addWidget(throttleBarLabel);
 
@@ -172,11 +177,14 @@ void leftContentSlateWidget::renderBottomContent(){
 	dutyBarLabel->setText("D");
 	utilities::setPaletteColor(dutyBarLabel, QPalette::Foreground, Qt::black, true);
 	dutyBarLabel->setAlignment(Qt::AlignCenter);
+	dutyBarLabel->setFixedWidth(bottomContentBarWidth);
 
 	QFont dutyBarLabelFont = dutyBarLabel->font();
 	dutyBarLabelFont.setBold(true);
 	dutyBarLabelFont.setStyleStrategy(QFont::PreferAntialias);
 	dutyBarLabel->setFont(dutyBarLabelFont);
+
+	//utilities::setPaletteColor(dutyBarLabel, QPalette::Background, Qt::gray);
 
 	bottomContentBarLabelHBoxLayout->addWidget(dutyBarLabel);
 
@@ -199,12 +207,14 @@ void leftContentSlateWidget::renderBottomContent(){
 	throttleBar->setMinimum(0);
 	throttleBar->setMaximum(100);
 	throttleBar->setTextVisible(false);
+	throttleBar->setFixedWidth(bottomContentBarWidth);
 
-	throttleBar->setValue(50);
+	throttleBar->setValue(0);
 
 	/*utilities::setPaletteColor(throttleBar, QPalette::Highlight, Qt::black, true);
 	utilities::setPaletteColor(throttleBar, QPalette::Foreground, Qt::gray, true);
 	utilities::setPaletteColor(throttleBar, QPalette::Background, Qt::white);*/
+	//utilities::setPaletteColor(throttleBar, QPalette::Background, Qt::gray);
 
 	bottomContentBarHBoxLayout->addWidget(throttleBar);
 	
@@ -218,8 +228,9 @@ void leftContentSlateWidget::renderBottomContent(){
 	dutyBar->setMinimum(0);
 	dutyBar->setMaximum(100);
 	dutyBar->setTextVisible(false);
+	dutyBar->setFixedWidth(bottomContentBarWidth);
 
-	dutyBar->setValue(80);
+	dutyBar->setValue(0);
 
 	//utilities::setPaletteColor(dutyBar, QPalette::Background, Qt::gray);
 
@@ -239,9 +250,14 @@ void leftContentSlateWidget::renderBottomContent(){
 
 	throttleBarPercentLabel = new QLabel(bottomContent);
 
-	throttleBarPercentLabel->setText("50%");
+	throttleBarPercentLabel->setText("0%");
 	utilities::setPaletteColor(throttleBarPercentLabel, QPalette::Foreground, Qt::black, true);
 	throttleBarPercentLabel->setAlignment(Qt::AlignCenter);
+	//throttleBarPercentLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	//throttleBarPercentLabel->setWordWrap(false);
+	throttleBarPercentLabel->setFixedWidth(bottomContentBarWidth);
+
+	//utilities::setPaletteColor(throttleBarPercentLabel, QPalette::Background, Qt::gray);
 
 	bottomContentBarPercentLabelHBoxLayout->addWidget(throttleBarPercentLabel);
 
@@ -249,9 +265,13 @@ void leftContentSlateWidget::renderBottomContent(){
 
 	dutyBarPercentLabel = new QLabel(bottomContent);
 
-	dutyBarPercentLabel->setText("80%");
+	dutyBarPercentLabel->setText("0%");
 	utilities::setPaletteColor(dutyBarPercentLabel, QPalette::Foreground, Qt::black, true);
 	dutyBarPercentLabel->setAlignment(Qt::AlignCenter);
+	//dutyBarPercentLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	dutyBarPercentLabel->setFixedWidth(bottomContentBarWidth);
+
+	//utilities::setPaletteColor(dutyBarPercentLabel, QPalette::Background, Qt::gray);
 
 	bottomContentBarPercentLabelHBoxLayout->addWidget(dutyBarPercentLabel);
 
@@ -301,4 +321,26 @@ void leftContentSlateWidget::renderBottomContent(){
 void leftContentSlateWidget::updateSpeedLabel(double speed){
 	if (speedometerLabel != nullptr)
 		speedometerLabel->setText(QString::number(round(speed)));
+}
+
+void leftContentSlateWidget::updateThrottle(int percent){
+	if (throttleBar != nullptr){
+		if (percent >= 0 && percent <= 100){
+			//throttleBar->setValue(percent);
+			throttleBarPercentLabel->setText(QString::number(percent) + "%");
+		}
+		else
+			qInfo() << "Invalid throttle percent recvd - " << percent;
+	}
+}
+
+void leftContentSlateWidget::updateDuty(int percent){
+	if (dutyBar != nullptr){
+		if (percent >= 0 && percent <= 100){
+			//dutyBar->setValue(percent);
+			dutyBarPercentLabel->setText(QString::number(percent) + "%");
+		}
+		else
+			qInfo() << "Invalid duty percent recvd - " << percent;
+	}
 }

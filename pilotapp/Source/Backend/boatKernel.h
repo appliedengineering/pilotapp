@@ -10,6 +10,8 @@ private:
     static boatKernel* instance;
 
     void updateSpeedLabel(double speed);
+    void updateThrottle(int percent);
+    void updateDuty(int percent);
 
 public:
     static boatKernel* getInstance();

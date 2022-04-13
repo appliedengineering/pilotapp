@@ -71,6 +71,8 @@ public:
 	~leftContentSlateWidget();
 
 	void updateSpeedLabel(double speed);
+	void updateThrottle(int percent);
+	void updateDuty(int percent);
 
 };
 

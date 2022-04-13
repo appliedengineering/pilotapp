@@ -28,10 +28,20 @@ void boatKernel::receiveBoatDataPack(boatDataPack data){
     //
 
     updateSpeedLabel(data.getSpeed());
+    updateThrottle(data.getThrottlePercent());
+    updateDuty(data.getDutyPercent());
 }
 
 //
 
 void boatKernel::updateSpeedLabel(double speed){
     utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateSpeedLabel(speed);
+}
+
+void boatKernel::updateThrottle(int percent){
+    utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateThrottle(percent);
+}
+
+void boatKernel::updateDuty(int percent){
+    utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateDuty(percent);
 }
