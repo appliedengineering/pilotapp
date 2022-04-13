@@ -9,6 +9,7 @@
 #include <QLabel>
 #include <QFrame>
 #include <QProgressBar>
+#include <QPushButton>
 
 class leftContentSlateWidget : public QWidget {
 	Q_OBJECT
@@ -33,10 +34,17 @@ private:
 	QWidget* bottomContent;
 
 	QHBoxLayout* bottomContentHBoxLayout;
+	//
+	
+	QVBoxLayout* bottomContentModelVBoxLayout;
+
 	QLabel* modelLabel;
+	QPushButton* motorButton;
+
+	//
 
 	QVBoxLayout* bottomContentBarVBoxLayout;
-	
+
 	QHBoxLayout* bottomContentBarLabelHBoxLayout;
 	QLabel* throttleBarLabel;
 	QLabel* dutyBarLabel;

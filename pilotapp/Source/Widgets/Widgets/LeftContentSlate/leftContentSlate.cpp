@@ -258,9 +258,19 @@ void leftContentSlateWidget::renderBottomContent(){
 	///
 	// Model Label
 
+	bottomContentModelVBoxLayout = new QVBoxLayout();
+
+	bottomContentModelVBoxLayout->setContentsMargins(contentPadding, 0, contentPadding, 0);
+	bottomContentModelVBoxLayout->setSpacing(contentPadding);
+	bottomContentModelVBoxLayout->setAlignment(Qt::AlignHCenter);
+
+	bottomContentHBoxLayout->addLayout(bottomContentModelVBoxLayout);
+
+	//
+
 	modelLabel = new QLabel(bottomContent);
 
-	modelLabel->setContentsMargins(contentPadding, 0, contentPadding, 0);
+	//modelLabel->setContentsMargins(contentPadding, 0, contentPadding, 0);
 
 	QPixmap modelPixMap(":/Assets/Model/topdownboat.png");
 	double modelWidthToHeightRatio = modelPixMap.height() / modelPixMap.width();
@@ -270,9 +280,19 @@ void leftContentSlateWidget::renderBottomContent(){
 	modelLabel->setPixmap(modelPixMap);
 	modelLabel->setScaledContents(1);
 
-	bottomContentHBoxLayout->addWidget(modelLabel);
+	bottomContentModelVBoxLayout->addWidget(modelLabel);
 
 	//utilities::setPaletteColor(modelLabel, QPalette::Background, Qt::gray);
+
+	//
+
+	motorButton = new QPushButton(bottomContent);
+
+	motorButton->setText("Stop Motor");
+    utilities::setPaletteColor(motorButton, QPalette::ButtonText, Qt::black);
+	//motorButton->setContentMargins(contentPadding, 0, contentPadding, 0);
+
+	bottomContentModelVBoxLayout->addWidget(motorButton);
 
 }
 
