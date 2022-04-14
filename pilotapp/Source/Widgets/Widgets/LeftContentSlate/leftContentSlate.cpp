@@ -314,9 +314,14 @@ void leftContentSlateWidget::renderBottomContent(){
 
 	motorButton = new QPushButton(bottomContent);
 
-	motorButton->setText("Stop Motor");
+	updateMotorButtonStatus();
+
+	//motorButton->setText("Stop Motor");
     utilities::setPaletteColor(motorButton, QPalette::ButtonText, Qt::black);
 	//motorButton->setContentMargins(contentPadding, 0, contentPadding, 0);
+
+	connect(motorButton, &QPushButton::released, this, &leftContentSlateWidget::handleMotorButton);
+	connect(boatKernel::getInstance(), &boatKernel::motorStatusUpdateSignal, this, &leftContentSlateWidget::updateMotorButtonStatus);
 
 	bottomContentModelVBoxLayout->addWidget(motorButton);
 
@@ -348,5 +353,20 @@ void leftContentSlateWidget::updateDuty(int percent){
 		}
 		else
 			qInfo() << "Invalid duty percent recvd - " << percent;
+	}
+}
+
+void leftContentSlateWidget::handleMotorButton(){
+	//qInfo() << "motor";
+	boatKernel::getInstance()->toggleMotor();
+	updateMotorButtonStatus();
+}
+
+void leftContentSlateWidget::updateMotorButtonStatus(){
+	if (boatKernel::getInstance()->getIsMotorEnabled()){
+		this->motorButton->setText("Stop Motor");
+	}
+	else{
+		this->motorButton->setText("Start Motor");
 	}
 }

@@ -32,6 +32,24 @@ void boatKernel::receiveBoatDataPack(boatDataPack data){
     updateSpeedLabel(data.getSpeed());
     updateThrottle(data.getThrottlePercent());
     updateDuty(data.getDutyPercent());
+
+    if (data.getMotorEnabled() != isMotorEnabled){
+        isMotorEnabled = data.getMotorEnabled();
+
+        emit motorStatusUpdateSignal();
+    }
+}
+
+void boatKernel::toggleMotor(){
+    bool newMotorStatus = !isMotorEnabled;
+
+    //
+
+    //send motor status to controller
+
+    //
+
+    isMotorEnabled = newMotorStatus;
 }
 
 //
@@ -48,4 +66,8 @@ void boatKernel::updateThrottle(int percent){
 void boatKernel::updateDuty(int percent){
     emit dutyUpdateSignal(percent);
     //utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateDuty(percent);
+}
+
+bool boatKernel::getIsMotorEnabled(){
+    return isMotorEnabled;
 }

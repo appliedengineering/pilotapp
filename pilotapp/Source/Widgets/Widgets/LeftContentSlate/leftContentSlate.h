@@ -64,6 +64,8 @@ private:
 	void renderTopContent();
 	void renderBottomContent();
 
+	void handleMotorButton();
+
 public:
 	static const float widthRatio; // 0.45
 
@@ -75,6 +77,7 @@ public:
 public slots:
 	void updateThrottle(int percent);
 	void updateDuty(int percent);
+	void updateMotorButtonStatus();
 
 };
 
