@@ -40,7 +40,10 @@ boatDataPack::boatDataPack(rawDataPack& raw){
     SM = m["SM"].as_bool();
     EM = m["EM"].as_bool();
 
-    Speed = m["Speed"].as_double();
+    posLat = m["posLat"].as_double();
+    posLon = m["posLon"].as_double();
+
+    speed = m["speed"].as_double();
 
     timeStamp = m["timeStamp"].as_double();
 
@@ -79,8 +82,16 @@ bool boatDataPack::getMotorEnabled(){
     return EM;
 }
 
+double boatDataPack::getPosLat(){
+    return posLat;
+}
+
+double boatDataPack::getPosLon(){
+    return posLon;
+}
+
 double boatDataPack::getSpeed(){
-    return Speed;
+    return speed;
 }
 
 double boatDataPack::getTimestamp(){

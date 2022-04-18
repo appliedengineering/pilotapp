@@ -29,7 +29,9 @@ private:
     bool SM; // Solar Mode
     bool EM; // Motor Enabled
     // End Motor Data
-    double Speed;
+    double posLat;
+    double posLon;
+    double speed; // m/s
     double timeStamp;
 public:
     boatDataPack(rawDataPack& raw);
@@ -42,6 +44,9 @@ public:
     bool getOvervolt();
     bool getSolarMode();
     bool getMotorEnabled();
+
+    double getPosLat();
+    double getPosLon();
 
     double getSpeed();
 
