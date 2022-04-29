@@ -85,7 +85,8 @@ void leftContentSlateWidget::renderTopContent(){
 
 	QFont speedometerLabelFont = speedometerLabel->font();
 	speedometerLabelFont.setBold(true);
-	speedometerLabelFont.setPointSize(45);
+	//speedometerLabelFont.setPointSize(45);
+	speedometerLabelFont.setPixelSize(45);
 	speedometerLabelFont.setStyleStrategy(QFont::PreferAntialias);
 	//speedometerLabelFont.setLetterSpacing(QFont::AbsoluteSpacing, 0.5);
 	speedometerLabel->setFont(speedometerLabelFont);
@@ -116,7 +117,8 @@ void leftContentSlateWidget::renderTopContent(){
 
 	QFont speedometerUnitLabelFont = speedometerUnitLabel->font();
 	//speedometerUnitLabelFont.setBold(true);
-	speedometerUnitLabelFont.setPointSize(10);
+	//speedometerUnitLabelFont.setPointSize(10);
+	speedometerUnitLabelFont.setPixelSize(10);
 	speedometerUnitLabel->setFont(speedometerUnitLabelFont);
 
 	topContentBottomHBoxLayout->addWidget(speedometerUnitLabel);
