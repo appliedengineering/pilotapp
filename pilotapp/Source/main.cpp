@@ -49,7 +49,7 @@ void setupArcGISEnvironment(){
         
         qDebug() << "Loaded ArcGIS API Key";
         
-        Esri::ArcGISRuntime::ArcGISRuntimeEnvironment::setApiKey(key);
+        //Esri::ArcGISRuntime::ArcGISRuntimeEnvironment::setApiKey(key);
     }
     else{
         qFatal("No ArcGIS API Key file found");

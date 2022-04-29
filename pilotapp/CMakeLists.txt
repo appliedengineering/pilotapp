@@ -17,9 +17,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ## Raspberry Pi 4 Options
 # includes all libs
-include_directories("/usr/include")
-link_directories("/usr/lib")
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+#include_directories("/usr/include")
+#link_directories("/usr/lib")
+#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 ## MacOS Options
 
@@ -28,31 +28,31 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 # make sure to add "/usr/local/Homebrew/Cellar/zeromq/4.3.4/include/**" to include paths under cpp config on vs code
 
 ## QT Options
-#set(QT_INSTALL_PATH "/usr/local/Homebrew/Cellar/qt@5/5.15.2_2")
+set(QT_INSTALL_PATH "/usr/local/Homebrew/Cellar/qt@5/5.15.2_2")
 # set(QT_INSTALL_PATH "O:\\Qt\\5.15.2\\msvc2019_64")
-set(QT_INSTALL_PATH "/opt/Qt/5.15.2/")
+#set(QT_INSTALL_PATH "/opt/Qt/5.15.2/")
 set(CMAKE_PREFIX_PATH "${QT_INSTALL_PATH}")  # <--- MAKE SURE HOMEBREW INSTALLATION FOR QT IS x86_64 (arm is not supported for dependencies)
 
 ## ArcGIS Options
-#set(ArcGISRuntime_INSTALL_DIR "/Users/richy/ArcGIS_SDKs/Qt100.13/") # <--- Location of ArcGIS SDK ([location]/ArcGIS_SDKs/Qt100.13/)
-set(ArcGISRuntime_INSTALL_DIR "/opt/arcgis")
+set(ArcGISRuntime_INSTALL_DIR "/Users/richy/ArcGIS_SDKs/Qt100.7") # <--- Location of ArcGIS SDK ([location]/ArcGIS_SDKs/Qt100.13/)
+#set(ArcGISRuntime_INSTALL_DIR "/opt/arcgis")
 set(ArcGISRuntime_DIR "${ArcGISRuntime_INSTALL_DIR}/sdk/ideintegration")
 
-#set(ArcGIS_PLATFORM_NAME "macOS") # options are: android, iOS, macOS
+set(ArcGIS_PLATFORM_NAME "macOS") # options are: android, iOS, macOS
 include_directories("${ArcGISRuntime_INSTALL_DIR}/sdk/include") # ArcGIS SDK include files
 
 ## ZMQ Options
-#set(ZMQ_VERSION "4.3.4")
-#set(ZMQ_INSTALL_PATH "/usr/local/Homebrew/Cellar/zeromq/${ZMQ_VERSION}/")
-#include_directories("${ZMQ_INSTALL_PATH}/include")
-#link_directories("${ZMQ_INSTALL_PATH}/lib")
+set(ZMQ_VERSION "4.3.4")
+set(ZMQ_INSTALL_PATH "/usr/local/Homebrew/Cellar/zeromq/${ZMQ_VERSION}/")
+include_directories("${ZMQ_INSTALL_PATH}/include")
+link_directories("${ZMQ_INSTALL_PATH}/lib")
 
 ## Boost Options
-#set(BOOST_INSTALL_PATH "/usr/local/Homebrew/Cellar/boost/1.78.0_1") # before the "boost" (mind the lowercase) folder
-#include_directories("${BOOST_INSTALL_PATH}/include")
-#set(Boost_INCLUDE_DIR "${BOOST_INSTALL_PATH}/include")
+set(BOOST_INSTALL_PATH "/usr/local/Homebrew/Cellar/boost/1.78.0_1") # before the "boost" (mind the lowercase) folder
+include_directories("${BOOST_INSTALL_PATH}/include")
+set(Boost_INCLUDE_DIR "${BOOST_INSTALL_PATH}/include")
 
-## msgpack Options
+## msgpack Options (not needed)
 #set(MSGPACK_INSTALL_PATH "${PROJECT_SOURCE_DIR}/3rd_party/msgpack")
 #add_subdirectory("${MSGPACK_INSTALL_PATH}")
 #include_directories("${MSGPACK_INSTALL_PATH}/include/msgpack")
@@ -73,9 +73,9 @@ set(CMAKE_SOURCE_DIR ${PROJECT_SOURCE_DIR})
 
 ## Set CMAKE Arch to x86_64
 
-#set(CMAKE_GENERATOR_PLATFORM x86_64)
-#set(CMAKE_SYSTEM_PROCESSOR x86_64)
-#set(CMAKE_OSX_ARCHITECTURES x86_64)
+set(CMAKE_GENERATOR_PLATFORM x86_64)
+set(CMAKE_SYSTEM_PROCESSOR x86_64)
+set(CMAKE_OSX_ARCHITECTURES x86_64)
 
 message("Binary DIR = ${CMAKE_BINARY_DIR}")
 message("Source DIR = ${CMAKE_SOURCE_DIR}")
@@ -96,7 +96,7 @@ message("Source DIR = ${CMAKE_SOURCE_DIR}")
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Multimedia REQUIRED)
 
-find_package(ArcGISRuntime 100.11.2 COMPONENTS Cpp REQUIRED)
+find_package(ArcGISRuntime 100.7 COMPONENTS Cpp REQUIRED)
 
 find_package(msgpack REQUIRED)
 

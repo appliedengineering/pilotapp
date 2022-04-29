@@ -24,7 +24,7 @@ mapWidget::mapWidget(QWidget* parent){
 	hBoxLayout->setContentsMargins(0, 0, 0, 0);
 	this->setLayout(hBoxLayout);
 
-	arcGISMap = new Map(BasemapStyle::ArcGISImagery, this);
+	arcGISMap = new Map(Basemap::imageryWithLabels(this), this);
 	arcGISMapView = new MapGraphicsView(arcGISMap, this);
 
 	hBoxLayout->addWidget(arcGISMapView);
