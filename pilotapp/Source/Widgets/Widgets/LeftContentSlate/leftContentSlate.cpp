@@ -160,6 +160,8 @@ void leftContentSlateWidget::renderBottomContent(){
 
 	bottomContentBarVBoxLayout->addLayout(bottomContentBarLabelHBoxLayout);
 
+	const int bottomContentBarLabelSize = 13;
+
 	//
 
 	throttleBarLabel = new QLabel(bottomContent);
@@ -171,6 +173,7 @@ void leftContentSlateWidget::renderBottomContent(){
 
 	QFont throttleBarLabelFont = throttleBarLabel->font();
 	throttleBarLabelFont.setBold(true);
+	throttleBarLabelFont.setPixelSize(bottomContentBarLabelSize);
 	throttleBarLabelFont.setStyleStrategy(QFont::PreferAntialias);
 	throttleBarLabel->setFont(throttleBarLabelFont);
 
@@ -189,6 +192,7 @@ void leftContentSlateWidget::renderBottomContent(){
 
 	QFont dutyBarLabelFont = dutyBarLabel->font();
 	dutyBarLabelFont.setBold(true);
+	dutyBarLabelFont.setPixelSize(bottomContentBarLabelSize);
 	dutyBarLabelFont.setStyleStrategy(QFont::PreferAntialias);
 	dutyBarLabel->setFont(dutyBarLabelFont);
 
@@ -256,6 +260,10 @@ void leftContentSlateWidget::renderBottomContent(){
 	
 	//
 
+	const int bottomContentBarPercentLabelSize = 13;
+
+	//
+
 	throttleBarPercentLabel = new QLabel(bottomContent);
 
 	throttleBarPercentLabel->setText("0%");
@@ -264,6 +272,10 @@ void leftContentSlateWidget::renderBottomContent(){
 	//throttleBarPercentLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	//throttleBarPercentLabel->setWordWrap(false);
 	throttleBarPercentLabel->setFixedWidth(bottomContentBarWidth);
+
+	QFont throttleBarPercentLabelFont = throttleBarPercentLabel->font();
+	throttleBarPercentLabelFont.setPixelSize(bottomContentBarPercentLabelSize);
+	throttleBarPercentLabel->setFont(throttleBarPercentLabelFont);
 
 	//utilities::setPaletteColor(throttleBarPercentLabel, QPalette::Background, Qt::gray);
 
@@ -279,6 +291,9 @@ void leftContentSlateWidget::renderBottomContent(){
 	//dutyBarPercentLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	dutyBarPercentLabel->setFixedWidth(bottomContentBarWidth);
 
+	QFont dutyBarPercentLabelFont = dutyBarPercentLabel->font();
+	dutyBarPercentLabelFont.setPixelSize(bottomContentBarPercentLabelSize);
+	dutyBarPercentLabel->setFont(dutyBarPercentLabelFont);
 	//utilities::setPaletteColor(dutyBarPercentLabel, QPalette::Background, Qt::gray);
 
 	bottomContentBarPercentLabelHBoxLayout->addWidget(dutyBarPercentLabel);
@@ -324,6 +339,10 @@ void leftContentSlateWidget::renderBottomContent(){
 
 	connect(motorButton, &QPushButton::released, this, &leftContentSlateWidget::handleMotorButton);
 	connect(boatKernel::getInstance(), &boatKernel::motorStatusUpdateSignal, this, &leftContentSlateWidget::updateMotorButtonStatus);
+
+	QFont motorButtonFont = motorButton->font();
+	motorButtonFont.setPixelSize(13);
+	motorButton->setFont(motorButtonFont);
 
 	bottomContentModelVBoxLayout->addWidget(motorButton);
 
