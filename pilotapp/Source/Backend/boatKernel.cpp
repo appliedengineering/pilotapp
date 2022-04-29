@@ -1,6 +1,7 @@
 #include "boatKernel.h"
 #include "Utilities/utilities.h"
 #include "Communication/dataManager.h"
+#include "Communication/communicationManager.h"
 
 #include <QDebug>
 
@@ -43,13 +44,13 @@ void boatKernel::receiveBoatDataPack(boatDataPack data){
 void boatKernel::toggleMotor(){
     bool newMotorStatus = !isMotorEnabled;
 
-    //
+    // send motor status to controller
 
-    //send motor status to controller
+    communicationManager::send(communicationManager::getInstance()->getScriptSocket(), dataManager::packData(newMotorStatus));
+    //communicationManager::send(communicationManager::getInstance()->getScriptSocket(), "");
+    //dataManager::packData(newMotorStatus);
 
-    //
-
-    isMotorEnabled = newMotorStatus;
+    //isMotorEnabled = newMotorStatus;
 }
 
 //

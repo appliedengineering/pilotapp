@@ -7,10 +7,14 @@
 #include <MapGraphicsView.h>
 #include <Viewpoint.h>
 #include <Point.h>
+#include <MobileMapPackage.h>
+#include <Error.h>
+#include <QDir>
 #include <QFile>
 #include <vector>
 #include <sstream>
 #include <string>
+
 //#include <QDir>
 
 using namespace Esri::ArcGISRuntime;

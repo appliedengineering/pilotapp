@@ -60,6 +60,13 @@ private:
     static const char msgpackDataSuffix = static_cast<char>(-112);
 public:
     static rawDataPack deserializeRawBoatData(std::string& raw);
+
+    template<typename T>
+    static std::string packData(T& data){
+        std::stringstream stream;
+        msgpack::pack(stream, data);
+        return stream.str();
+    }
 };
 
 #endif

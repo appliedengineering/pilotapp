@@ -14,16 +14,20 @@ private:
     static communicationManager* instance;
 
     void* ctx = nullptr;
-    void* ipcSub = nullptr; // used to communicate with python script
+    void* ipcSub = nullptr; // used to receive data from python script
+    void* scriptPair = nullptr; // used to send data to python script
 
     void printZMQVersion();
     void setupIPCSocket();
+    void setupScriptSocket();
 
 public:
     static communicationManager* getInstance();
 
     void* getIPCSocket();
+    void* getScriptSocket();
     static bool recv(void* s, std::string& b);
+    static bool send(void* s, std::string b);
 
 };
 

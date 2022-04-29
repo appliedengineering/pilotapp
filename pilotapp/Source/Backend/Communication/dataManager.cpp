@@ -1,6 +1,7 @@
 #include "dataManager.h"
 #include <iostream>
 //#include <iomanip>
+#include <sstream>
 
 #include <QDebug>
 
@@ -24,6 +25,14 @@ rawDataPack dataManager::deserializeRawBoatData(std::string& raw){
 
     return data;
 }
+
+// https://stackoverflow.com/a/47535491/
+/*//template<typename T>
+std::string dataManager::packData(T& data){
+    std::stringstream stream;
+    msgpack::pack(stream, data);
+    return stream.str();
+}*/
 
 ///
 
