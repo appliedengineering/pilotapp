@@ -35,7 +35,7 @@ void settingsWidget::setupContent(){
     //exitButton->setContentsMargins(10, 0, 10, 0);
     
     QFont exitButtonFont = exitButton->font();
-    exitButtonFont.setPointSize(12);
+    exitButtonFont.setPixelSize(12);
     exitButton->setFont(exitButtonFont);
 
     utilities::setPaletteColor(exitButton, QPalette::ButtonText, Qt::white);
