@@ -28,14 +28,16 @@ mapWidget::mapWidget(QWidget* parent){
 	hBoxLayout->setContentsMargins(0, 0, 0, 0);
 	this->setLayout(hBoxLayout);
 
-	arcGISMap = new Map(Basemap::imageryWithLabels(this), this);
-	arcGISMapView = new MapGraphicsView(arcGISMap, this);
+	//arcGISMap = new Map(Basemap::imageryWithLabels(this), this);
+	arcGISMapView = new MapGraphicsView(nullptr, this);
 
 	hBoxLayout->addWidget(arcGISMapView);
 
 	//
 
-	setMapCenter(parseMapData(readMapFile()));
+	setupMapFromMmpk();
+	//setMapCenter(parseMapData(readMapFile()));
+	//Esri::ArcGISRuntime::GraphicsOverlay
 }
 
 mapWidget::~mapWidget(){
@@ -43,7 +45,7 @@ mapWidget::~mapWidget(){
 
 //
 
-QString mapWidget::readMapFile(){
+/*QString mapWidget::readMapFile(){
 	QFile mapFile("navcenter.txt");
 	
 	if (mapFile.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -68,9 +70,6 @@ Viewpoint mapWidget::parseMapData(QString raw){
 		sArray.push_back(substr);
 	}
 
-	/*for (std::string i : sArray){
-		qDebug() << QString::fromStdString(i);
-	}*/
 
 	if (sArray.size() != 3){
 		qFatal("Map data is invalid");
@@ -86,4 +85,23 @@ Viewpoint mapWidget::parseMapData(QString raw){
 
 void mapWidget::setMapCenter(Viewpoint center){
 	this->arcGISMapView->setViewpoint(center);
+}*/
+
+void mapWidget::setupMapFromMmpk(){
+	QString mmpkPath = QDir::currentPath() + "/map.mmpk";
+
+	//qDebug() << mmpkPath;
+
+	MobileMapPackage* mappackage = new MobileMapPackage(mmpkPath, this);
+
+	connect(mappackage, &MobileMapPackage::doneLoading, this, [mappackage, this](Error error){
+		if (!error.isEmpty()){
+			qDebug() << "Error: " << error.message() << error.additionalMessage();
+			return;
+		}
+
+		arcGISMapView->setMap(mappackage->maps().at(0));
+	});
+
+	mappackage->load();
 }

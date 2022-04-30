@@ -18,12 +18,13 @@ class mapWidget : public QWidget{
 
 private:
     QHBoxLayout* hBoxLayout = nullptr;
-    Esri::ArcGISRuntime::Map* arcGISMap = nullptr;
+    //Esri::ArcGISRuntime::Map* arcGISMap = nullptr;
     Esri::ArcGISRuntime::MapGraphicsView* arcGISMapView = nullptr;
 
-    QString readMapFile();
+    /*QString readMapFile();
     Esri::ArcGISRuntime::Viewpoint parseMapData(QString raw);
-    void setMapCenter(Esri::ArcGISRuntime::Viewpoint center); 
+    void setMapCenter(Esri::ArcGISRuntime::Viewpoint center);*/ 
+    void setupMapFromMmpk();
 public:
     mapWidget(QWidget* parent = nullptr);
     ~mapWidget();
