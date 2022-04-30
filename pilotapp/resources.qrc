@@ -13,6 +13,5 @@
     <file>Assets/Model/slantedboat.png</file>
     <file>Assets/Model/topdownboat.png</file>
     <file>Source/style.qss</file>
-    <file>Source/ArcGISApiKey.txt</file>
 </qresource>
 </RCC>

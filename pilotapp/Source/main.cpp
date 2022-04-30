@@ -40,7 +40,7 @@ void setupStyleSheet(QApplication* a){
     sheet.close();
 }
 
-void setupArcGISEnvironment(){
+/*void setupArcGISEnvironment(){ // NOT USED UNLESS ArcGIS runtime version >= 100.10
     
     QFile apiKeyFile(":/Source/ArcGISApiKey.txt");
     if (apiKeyFile.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -56,14 +56,14 @@ void setupArcGISEnvironment(){
     }
 
     apiKeyFile.close();
-}
+}*/
 
 int main(int argc, char *argv[]){
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication a(argc, argv);
 
     setupStyleSheet(&a);
-    setupArcGISEnvironment();
+    //setupArcGISEnvironment();
 
     communicationManager::getInstance();
 
