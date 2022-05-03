@@ -475,12 +475,10 @@ void leftContentSlateWidget::handleMotorButton(){
 }
 
 void leftContentSlateWidget::updateMotorButtonStatus(){
-	if (boatKernel::getInstance()->getIsMotorEnabled()){
+	if (boatKernel::getInstance()->getIsMotorEnabled())
 		this->motorButton->setText("Stop Motor");
-	}
-	else{
+	else
 		this->motorButton->setText("Start Motor");
-	}
 }
 
 void leftContentSlateWidget::updateBatteryPercent(int percent){

@@ -34,6 +34,7 @@ void boatKernel::receiveBoatDataPack(boatDataPack data){
     updateSpeedLabel(data.getSpeed());
     updateThrottle(data.getThrottlePercent());
     updateDuty(data.getDutyPercent());
+    updateBattery(data.getBatteryVoltage(), data.getBatteryCurrent());
 
     if (data.getMotorEnabled() != isMotorEnabled){
         isMotorEnabled = data.getMotorEnabled();
