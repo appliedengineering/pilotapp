@@ -131,3 +131,7 @@ void mainContentSlateWidget::updateToWidgetIndex(int index){
 
 	}
 }
+
+mapWidget* mainContentSlateWidget::getMapWidget(){
+	return map;
+}

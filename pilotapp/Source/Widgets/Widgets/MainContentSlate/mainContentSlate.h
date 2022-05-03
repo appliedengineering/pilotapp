@@ -33,6 +33,7 @@ public:
 	~mainContentSlateWidget();
 
 	void updateToWidgetIndex(int index);
+	mapWidget* getMapWidget();
 };
 
 #endif // !MAIN_CONTENT_SLATE_H_

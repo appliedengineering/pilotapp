@@ -35,6 +35,7 @@ void boatKernel::receiveBoatDataPack(boatDataPack data){
     updateThrottle(data.getThrottlePercent());
     updateDuty(data.getDutyPercent());
     updateBattery(data.getBatteryVoltage(), data.getBatteryCurrent());
+    updateLocation(data.getPosLat(), data.getPosLon());
 
     if (data.getMotorEnabled() != isMotorEnabled){
         isMotorEnabled = data.getMotorEnabled();
@@ -53,6 +54,10 @@ void boatKernel::toggleMotor(){
     //dataManager::packData(newMotorStatus);
 
     //isMotorEnabled = newMotorStatus;
+}
+
+bool boatKernel::getIsMotorEnabled(){
+    return isMotorEnabled;
 }
 
 //
@@ -87,6 +92,7 @@ void boatKernel::updateBattery(double voltage, double current){
     }
 }
 
-bool boatKernel::getIsMotorEnabled(){
-    return isMotorEnabled;
+void boatKernel::updateLocation(double lat, double lon){
+    emit locationUpdateSignal(lat, lon);
+    //utilities::findMainWindow()->getHomePageWidget()->getMainContentSlateWidget()->getMapWidget()->updateBoatLocation(lat, lon);
 }

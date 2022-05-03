@@ -1,6 +1,13 @@
 #include "mapWidget.h"
 
 #include "../../../../../Backend/Utilities/utilities.h"
+#include "../../../../../Backend/boatKernel.h"
+
+#include <QDir>
+#include <QFile>
+#include <vector>
+#include <sstream>
+#include <string>
 
 #include <ArcGISRuntimeEnvironment.h>
 #include <Map.h>
@@ -9,13 +16,13 @@
 #include <Point.h>
 #include <MobileMapPackage.h>
 #include <Error.h>
-#include <QDir>
-#include <QFile>
-#include <vector>
-#include <sstream>
-#include <string>
 
-//#include <QDir>
+#include <GraphicsOverlay.h>
+#include <PolylineBuilder.h>
+#include <PolygonBuilder.h>
+#include <SimpleMarkerSceneSymbol.h>
+#include <SimpleFillSymbol.h>
+#include <SimpleMarkerSymbol.h>
 
 using namespace Esri::ArcGISRuntime;
 
@@ -35,12 +42,28 @@ mapWidget::mapWidget(QWidget* parent){
 
 	//
 
-	setupMapFromMmpk();
 	//setMapCenter(parseMapData(readMapFile()));
-	//Esri::ArcGISRuntime::GraphicsOverlay
+	setupMapFromMmpk();
+
+	//
+
+	arcGISOverlay = new GraphicsOverlay(this);
+	renderGraphics(arcGISOverlay);
+	arcGISMapView->graphicsOverlays()->append(arcGISOverlay);
+
+	connect(boatKernel::getInstance(), &boatKernel::locationUpdateSignal, this, &mapWidget::updateBoatLocation);
 }
 
 mapWidget::~mapWidget(){
+}
+
+//
+
+void mapWidget::updateBoatLocation(double lat, double lon){
+	boatLat = lat;
+	boatLon = lon;
+	//qInfo() << "update boat location - " << lat << " " << lon;
+	renderGraphics(arcGISOverlay);
 }
 
 //
@@ -104,4 +127,23 @@ void mapWidget::setupMapFromMmpk(){
 	});
 
 	mappackage->load();
+}
+
+void mapWidget::renderGraphics(Esri::ArcGISRuntime::GraphicsOverlay* overlay){
+	overlay->graphics()->clear();
+
+	//
+
+	drawPoint(overlay, boatLat, boatLon);
+}
+
+void mapWidget::drawPoint(Esri::ArcGISRuntime::GraphicsOverlay* overlay, double lat, double lon, QColor pointColor, QColor outlineColor){
+	Point p(lon, lat, SpatialReference::wgs84());
+
+  	SimpleLineSymbol* pOutline = new SimpleLineSymbol(SimpleLineSymbolStyle::Solid, outlineColor, 7, this);
+	SimpleMarkerSymbol* pSymb = new SimpleMarkerSymbol(SimpleMarkerSymbolStyle::Circle, pointColor, 10, this);
+	pSymb->setOutline(pOutline);
+
+	Graphic* pGraphic = new Graphic(p, pSymb, this);
+	overlay->graphics()->append(pGraphic);
 }
