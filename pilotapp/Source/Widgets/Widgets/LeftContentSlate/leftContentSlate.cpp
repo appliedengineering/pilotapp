@@ -360,7 +360,7 @@ void leftContentSlateWidget::renderBottomContent(){
 void leftContentSlateWidget::renderBatteryWidget(){
 
 	const int topContentBatteryHBoxVerticalPadding = 2;
-	const int topContentBatteryHBoxHorizontalPadding = 3;
+	const int topContentBatteryHBoxHorizontalPadding = 5;
 	const int topContentBatteryLabelFontSize = 10;
 
 	topContentBatteryWidgetHBoxLayout = new QHBoxLayout(topContentBatteryWidget);
@@ -432,7 +432,7 @@ void leftContentSlateWidget::resizeEvent(QResizeEvent*){
 
 	//
 
-	const float topContentBatteryWidgetHeightToWidthRatio = 4;
+	const float topContentBatteryWidgetHeightToWidthRatio = 4.2;
 	const int topContentBatteryWidgetHeight = speedometerUnitLabel->height() * 0.6;
 	const int topContentBatteryWidgetWidth = topContentBatteryWidgetHeight * topContentBatteryWidgetHeightToWidthRatio;
 	topContentBatteryWidget->setGeometry(topContent->width() - topContentBatteryWidgetWidth, topContent->height() - topContentBatteryWidgetHeight, topContentBatteryWidgetWidth, topContentBatteryWidgetHeight);

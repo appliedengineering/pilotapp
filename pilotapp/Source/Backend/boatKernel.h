@@ -13,6 +13,7 @@ private:
     static boatKernel* instance;
 
     bool isMotorEnabled = false;
+    int batteryPercentage = 0;
 
     void updateSpeedLabel(double speed);
     void updateThrottle(int percent);

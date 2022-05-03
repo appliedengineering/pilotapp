@@ -77,9 +77,14 @@ void boatKernel::updateBattery(double voltage, double current){
     const double maxVoltage = 30.0;
     const double minVoltage = 22.0;
 
-    int batteryPercent = (int)((std::max(std::min(voltage, maxVoltage), minVoltage) - minVoltage) / (maxVoltage - minVoltage));
+    int currentBatteryPercent = (int)(100 * (std::max(std::min(voltage, maxVoltage), minVoltage) - minVoltage) / (maxVoltage - minVoltage));
 
-    emit batteryPercentUpdateSignal(batteryPercent);
+    //qInfo() << "Battery V - " << voltage << " = " << currentBatteryPercent;
+
+    if (currentBatteryPercent != batteryPercentage){
+        batteryPercentage = currentBatteryPercent;
+        emit batteryPercentUpdateSignal(batteryPercentage);
+    }
 }
 
 bool boatKernel::getIsMotorEnabled(){
