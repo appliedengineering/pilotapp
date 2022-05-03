@@ -108,7 +108,7 @@ void leftContentSlateWidget::renderTopContent(){
 
 	speedometerUnitLabel = new QLabel(topContent);
 
-	speedometerUnitLabel->setText("MPH");
+	speedometerUnitLabel->setText("knots");
 	speedometerUnitLabel->setAlignment(Qt::AlignCenter);
 
 	//utilities::setPaletteColor(speedometerUnitLabel, QPalette::Text, Qt::gray, true);
@@ -125,7 +125,15 @@ void leftContentSlateWidget::renderTopContent(){
 
 	//
 
-	
+	topContentBatteryWidget = new QWidget(topContent);
+
+	topContentBatteryWidget->setContentsMargins(0, 0, 0, 0);
+
+	renderBatteryWidget();
+
+	//utilities::setPaletteColor(topContentBatteryWidget, QPalette::Background, Qt::white);
+
+	//topContentHBoxLayout->addWidget(topContentBatteryWidget, topContentBatteryWidgetStretchFactor);*/
 	
 }
 
@@ -238,7 +246,7 @@ void leftContentSlateWidget::renderBottomContent(){
 
 	dutyBar->setOrientation(Qt::Vertical);
 	dutyBar->setMinimum(0);
-	dutyBar->setMaximum(100);
+	dutyBar->setMaximum(180);
 	dutyBar->setTextVisible(false);
 	dutyBar->setFixedWidth(bottomContentBarWidth);
 
@@ -346,6 +354,87 @@ void leftContentSlateWidget::renderBottomContent(){
 
 	bottomContentModelVBoxLayout->addWidget(motorButton);
 
+}
+
+void leftContentSlateWidget::renderBatteryWidget(){
+
+	const int topContentBatteryHBoxVerticalPadding = 2;
+	const int topContentBatteryHBoxHorizontalPadding = 3;
+	const int topContentBatteryLabelFontSize = 10;
+
+	topContentBatteryWidgetHBoxLayout = new QHBoxLayout(topContentBatteryWidget);
+
+	topContentBatteryWidgetHBoxLayout->setContentsMargins(topContentBatteryHBoxHorizontalPadding, topContentBatteryHBoxVerticalPadding, topContentBatteryHBoxHorizontalPadding, topContentBatteryHBoxVerticalPadding);
+	topContentBatteryWidgetHBoxLayout->setSpacing(2);
+
+	//
+
+	topContentBatteryPercentLabel = new QLabel(topContentBatteryWidget);
+
+	topContentBatteryPercentLabel->setText("100%");
+	utilities::setPaletteColor(topContentBatteryPercentLabel, QPalette::Foreground, Qt::darkGray, true);
+	topContentBatteryPercentLabel->setAlignment(Qt::AlignVCenter);
+
+	QFont topContentBatteryPercentLabelFont = topContentBatteryPercentLabel->font();
+	topContentBatteryPercentLabelFont.setPixelSize(topContentBatteryLabelFontSize);
+	topContentBatteryPercentLabel->setFont(topContentBatteryPercentLabelFont);
+
+	topContentBatteryWidgetHBoxLayout->addWidget(topContentBatteryPercentLabel);
+
+	//
+
+	topContentBatteryPercentBar = new QProgressBar(topContentBatteryWidget);
+	
+	topContentBatteryPercentBar->setOrientation(Qt::Horizontal);
+	topContentBatteryPercentBar->setMinimum(0);
+	topContentBatteryPercentBar->setMaximum(100);
+	topContentBatteryPercentBar->setTextVisible(false);
+	//topContentBatteryPercentBar->setFixedWidth(bottomContentBarWidth);
+
+	topContentBatteryPercentBar->setValue(0);
+
+	topContentBatteryWidgetHBoxLayout->addWidget(topContentBatteryPercentBar);
+
+	//
+
+	/*topContentBatteryVoltageLabel = new QLabel(topContentBatteryWidget);
+
+	topContentBatteryVoltageLabel->setText("0 V");
+	utilities::setPaletteColor(topContentBatteryVoltageLabel, QPalette::Foreground, Qt::black, true);
+	topContentBatteryVoltageLabel->setAlignment(Qt::AlignHCenter);
+
+	QFont topContentBatteryVoltageLabelFont = topContentBatteryVoltageLabel->font();
+	topContentBatteryVoltageLabelFont.setPixelSize(topContentBatteryLabelFontSize);
+	topContentBatteryVoltageLabel->setFont(topContentBatteryVoltageLabelFont);
+
+	topContentBatteryWidgetHBoxLayout->addWidget(topContentBatteryVoltageLabel);
+
+	
+
+	topContentBatteryCurrentLabel = new QLabel(topContentBatteryWidget);
+
+	topContentBatteryCurrentLabel->setText("0 A");
+	utilities::setPaletteColor(topContentBatteryCurrentLabel, QPalette::Foreground, Qt::black, true);
+	topContentBatteryCurrentLabel->setAlignment(Qt::AlignHCenter);
+
+	QFont topContentBatteryCurrentLabelFont = topContentBatteryCurrentLabel->font();
+	topContentBatteryCurrentLabelFont.setPixelSize(topContentBatteryLabelFontSize);
+	topContentBatteryCurrentLabel->setFont(topContentBatteryCurrentLabelFont);
+
+	topContentBatteryWidgetVBoxLayout->addWidget(topContentBatteryCurrentLabel);*/
+}
+
+//
+
+void leftContentSlateWidget::resizeEvent(QResizeEvent*){
+	//qInfo() << "resize -> " << topContent->size();
+
+	//
+
+	const float topContentBatteryWidgetHeightToWidthRatio = 4;
+	const int topContentBatteryWidgetHeight = speedometerUnitLabel->height() * 0.6;
+	const int topContentBatteryWidgetWidth = topContentBatteryWidgetHeight * topContentBatteryWidgetHeightToWidthRatio;
+	topContentBatteryWidget->setGeometry(topContent->width() - topContentBatteryWidgetWidth, topContent->height() - topContentBatteryWidgetHeight, topContentBatteryWidgetWidth, topContentBatteryWidgetHeight);
 }
 
 //

@@ -25,9 +25,9 @@ private:
     float CP; // Chip Temp
     double BV; // Battery Voltage
     bool UV; // Undervoltage Protection
-    bool OV; // Overvoltage Protection
     bool SM; // Solar Mode
-    bool EM; // Motor Enabled
+    bool EN; // Motor Enabled
+    double BC; // Battery Current
     // End Motor Data
     double posLat;
     double posLon;
@@ -41,9 +41,9 @@ public:
     float getChipTemp();
     double getBatteryVoltage();
     bool getUndervolt();
-    bool getOvervolt();
     bool getSolarMode();
     bool getMotorEnabled();
+    double getBatteryCurrent();
 
     double getPosLat();
     double getPosLon();

@@ -56,6 +56,7 @@ void boatKernel::toggleMotor(){
 //
 
 void boatKernel::updateSpeedLabel(double speed){
+    speed *= 1.94384; // from m/s to knots
     utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateSpeedLabel(speed);
 }
 

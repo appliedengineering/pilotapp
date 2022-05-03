@@ -45,9 +45,9 @@ boatDataPack::boatDataPack(rawDataPack& raw){
     CP = m["CP"].as_double();
     BV = m["BV"].as_double();
     UV = m["UV"].as_bool();
-    OV = m["OV"].as_bool();
     SM = m["SM"].as_bool();
-    EM = m["EM"].as_bool();
+    EN = m["EN"].as_bool();
+    BC = m["BC"].as_double();
 
     posLat = m["posLat"].as_double();
     posLon = m["posLon"].as_double();
@@ -79,16 +79,16 @@ bool boatDataPack::getUndervolt(){
     return UV;
 }
 
-bool boatDataPack::getOvervolt(){
-    return OV;
-}
-
 bool boatDataPack::getSolarMode(){
     return SM;
 }
 
 bool boatDataPack::getMotorEnabled(){
-    return EM;
+    return EN;
+}
+
+double boatDataPack::getBatteryCurrent(){
+    return BC;
 }
 
 double boatDataPack::getPosLat(){

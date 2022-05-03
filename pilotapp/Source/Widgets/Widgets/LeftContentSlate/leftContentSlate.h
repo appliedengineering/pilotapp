@@ -10,6 +10,7 @@
 #include <QFrame>
 #include <QProgressBar>
 #include <QPushButton>
+#include <QResizeEvent>
 
 class leftContentSlateWidget : public QWidget {
 	Q_OBJECT
@@ -22,12 +23,21 @@ private:
 	//
 	QWidget* topContent;
 	
+	//QHBoxLayout* topContentHBoxLayout;
+
+	QWidget* topContentBatteryWidget;
+	QHBoxLayout* topContentBatteryWidgetHBoxLayout;
+	
+	QProgressBar* topContentBatteryPercentBar;
+	QLabel* topContentBatteryPercentLabel;
+	QLabel* topContentBatteryVoltageLabel;
+	QLabel* topContentBatteryCurrentLabel;
+
 	QVBoxLayout* topContentVBoxLayout;
 	QLabel* speedometerLabel;
 
 	QHBoxLayout* topContentBottomHBoxLayout;
 	QLabel* speedometerUnitLabel;
-	QWidget* batteryWidget;
 
 	//
 
@@ -64,7 +74,11 @@ private:
 	void renderTopContent();
 	void renderBottomContent();
 
+	void renderBatteryWidget();
+
 	void handleMotorButton();
+
+	void resizeEvent(QResizeEvent*);
 
 public:
 	static const float widthRatio; // 0.45
