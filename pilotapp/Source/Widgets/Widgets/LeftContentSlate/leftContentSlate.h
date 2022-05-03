@@ -92,6 +92,7 @@ public slots:
 	void updateThrottle(int percent);
 	void updateDuty(int percent);
 	void updateMotorButtonStatus();
+	void updateBatteryPercent(int percent);
 
 };
 

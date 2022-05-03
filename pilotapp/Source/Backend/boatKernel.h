@@ -17,6 +17,7 @@ private:
     void updateSpeedLabel(double speed);
     void updateThrottle(int percent);
     void updateDuty(int percent);
+    void updateBattery(double voltage, double current);
 
 public:
     static boatKernel* getInstance();
@@ -30,6 +31,7 @@ signals:
     void throttleUpdateSignal(int percent);
     void dutyUpdateSignal(int percent);
     void motorStatusUpdateSignal();
+    void batteryPercentUpdateSignal(int percent);
 };
 
 #endif

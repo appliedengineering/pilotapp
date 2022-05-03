@@ -4,6 +4,7 @@
 #include "Communication/communicationManager.h"
 
 #include <QDebug>
+#include <math.h>
 
 //
 
@@ -68,6 +69,16 @@ void boatKernel::updateThrottle(int percent){
 void boatKernel::updateDuty(int percent){
     emit dutyUpdateSignal(percent);
     //utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateDuty(percent);
+}
+
+void boatKernel::updateBattery(double voltage, double current){
+
+    const double maxVoltage = 30.0;
+    const double minVoltage = 22.0;
+
+    int batteryPercent = (int)((std::max(std::min(voltage, maxVoltage), minVoltage) - minVoltage) / (maxVoltage - minVoltage));
+
+    emit batteryPercentUpdateSignal(batteryPercent);
 }
 
 bool boatKernel::getIsMotorEnabled(){

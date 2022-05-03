@@ -24,6 +24,7 @@ leftContentSlateWidget::leftContentSlateWidget(QWidget* parent) {
 	
 	connect(boatKernel::getInstance(), &boatKernel::throttleUpdateSignal, this, &leftContentSlateWidget::updateThrottle);
 	connect(boatKernel::getInstance(), &boatKernel::dutyUpdateSignal, this, &leftContentSlateWidget::updateDuty);
+	connect(boatKernel::getInstance(), &boatKernel::batteryPercentUpdateSignal, this, &leftContentSlateWidget::updateBatteryPercent);
 }
 
 leftContentSlateWidget::~leftContentSlateWidget() {
@@ -480,4 +481,15 @@ void leftContentSlateWidget::updateMotorButtonStatus(){
 	else{
 		this->motorButton->setText("Start Motor");
 	}
+}
+
+void leftContentSlateWidget::updateBatteryPercent(int percent){
+	if (topContentBatteryPercentBar == nullptr || topContentBatteryPercentBar == nullptr)
+		return;
+
+	if (percent > 100 || percent < 0)
+		return;
+
+	topContentBatteryPercentBar->setValue(percent);
+	topContentBatteryPercentLabel->setText(QString::number(percent) + "%");
 }
