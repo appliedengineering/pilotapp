@@ -371,9 +371,9 @@ void leftContentSlateWidget::renderBatteryWidget(){
 
 	topContentBatteryPercentLabel = new QLabel(topContentBatteryWidget);
 
-	topContentBatteryPercentLabel->setText("100%");
+	topContentBatteryPercentLabel->setText("0%");
 	utilities::setPaletteColor(topContentBatteryPercentLabel, QPalette::Foreground, Qt::darkGray, true);
-	topContentBatteryPercentLabel->setAlignment(Qt::AlignVCenter);
+	topContentBatteryPercentLabel->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
 
 	QFont topContentBatteryPercentLabelFont = topContentBatteryPercentLabel->font();
 	topContentBatteryPercentLabelFont.setPixelSize(topContentBatteryLabelFontSize);
@@ -435,6 +435,7 @@ void leftContentSlateWidget::resizeEvent(QResizeEvent*){
 	const int topContentBatteryWidgetHeight = speedometerUnitLabel->height() * 0.6;
 	const int topContentBatteryWidgetWidth = topContentBatteryWidgetHeight * topContentBatteryWidgetHeightToWidthRatio;
 	topContentBatteryWidget->setGeometry(topContent->width() - topContentBatteryWidgetWidth, topContent->height() - topContentBatteryWidgetHeight, topContentBatteryWidgetWidth, topContentBatteryWidgetHeight);
+	topContentBatteryPercentLabel->setFixedWidth(topContentBatteryWidget->width() * 0.36);
 }
 
 //
