@@ -40,9 +40,9 @@ void setupStyleSheet(QApplication* a){
     sheet.close();
 }
 
-/*void setupArcGISEnvironment(){ // NOT USED UNLESS ArcGIS runtime version >= 100.10
+void setupArcGISEnvironment(){ 
     
-    QFile apiKeyFile(":/Source/ArcGISApiKey.txt");
+    /*QFile apiKeyFile(":/Source/ArcGISApiKey.txt");
     if (apiKeyFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         
         QString key(apiKeyFile.readAll());
@@ -55,15 +55,29 @@ void setupStyleSheet(QApplication* a){
         qFatal("No ArcGIS API Key file found");
     }
 
-    apiKeyFile.close();
-}*/
+    apiKeyFile.close();*/
+
+    QFile licenseKeyFile(":/Source/ArcGISLicenseKey.txt");
+    if (licenseKeyFile.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QString key(licenseKeyFile.readAll());
+
+        qInfo() << "Loaded ArcGIS License Key = " << key;
+
+        Esri::ArcGISRuntime::ArcGISRuntimeEnvironment::setLicense(key); 
+    }
+    else{
+        qFatal("No ArcGIS License Key file found");
+    }
+
+    licenseKeyFile.close();
+}
 
 int main(int argc, char *argv[]){
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication a(argc, argv);
 
     setupStyleSheet(&a);
-    //setupArcGISEnvironment();
+    setupArcGISEnvironment();
 
     communicationManager::getInstance();
 
@@ -71,12 +85,13 @@ int main(int argc, char *argv[]){
         communicationThread::getInstance()->start();
     });
     
+
     //
 
     MainWindow w;
     w.show();
 
-    
+
 
     return a.exec();
 }
