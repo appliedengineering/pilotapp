@@ -33,7 +33,7 @@ void setupStyleSheet(QApplication* a){
     if (sheet.open(QIODevice::ReadOnly | QIODevice::Text)){
 
         //qInfo() << sheet.readAll();
-        qDebug() << "loaded style sheet";
+        qInfo() << "Loaded style sheet";
 
         a->setStyleSheet(sheet.readAll());
     }
@@ -61,7 +61,7 @@ void setupArcGISEnvironment(){
     if (licenseKeyFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         QString key(licenseKeyFile.readAll());
 
-        qInfo() << "Loaded ArcGIS License Key = " << key;
+        qInfo() << "Loaded ArcGIS License Key";
 
         Esri::ArcGISRuntime::ArcGISRuntimeEnvironment::setLicense(key); 
     }
@@ -85,7 +85,6 @@ int main(int argc, char *argv[]){
         communicationThread::getInstance()->start();
     });
     
-
     //
 
     MainWindow w;

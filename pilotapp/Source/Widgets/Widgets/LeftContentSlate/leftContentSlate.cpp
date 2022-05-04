@@ -459,7 +459,7 @@ void leftContentSlateWidget::updateThrottle(int percent){
 
 void leftContentSlateWidget::updateDuty(int percent){
 	if (dutyBar != nullptr){
-		if (percent >= 0 && percent <= 100){
+		if (percent >= 0 && percent <= 180){
 			dutyBar->setValue(percent);
 			dutyBarPercentLabel->setText(QString::number(percent) + "%");
 		}
