@@ -8,6 +8,7 @@
 #include <vector>
 #include <sstream>
 #include <string>
+#include <fstream>
 
 #include <ArcGISRuntimeEnvironment.h>
 #include <Map.h>
@@ -63,7 +64,7 @@ void mapWidget::updateBoatLocation(double lat, double lon){
 	boatLat = lat;
 	boatLon = lon;
 	//qInfo() << "update boat location - " << lat << " " << lon;
-	renderGraphics(arcGISOverlay);
+	renderGraphics(arcGISOverlay, true);
 }
 
 //
@@ -129,12 +130,24 @@ void mapWidget::setupMapFromMmpk(){
 	mappackage->load();
 }
 
-void mapWidget::renderGraphics(Esri::ArcGISRuntime::GraphicsOverlay* overlay){
+void mapWidget::renderGraphics(Esri::ArcGISRuntime::GraphicsOverlay* overlay, bool shouldOnlyRenderBoat){
 	overlay->graphics()->clear();
 
 	//
 
 	drawPoint(overlay, boatLat, boatLon);
+
+	//
+
+	if (!shouldOnlyRenderBoat){
+
+		std::vector<std::pair<double, double>> c = loadBuoyCoordinates();
+
+		for (std::pair<double, double> i : c){
+			drawPoint(overlay, i.first, i.second, Qt::red, Qt::black);
+		}
+
+	}
 }
 
 void mapWidget::drawPoint(Esri::ArcGISRuntime::GraphicsOverlay* overlay, double lat, double lon, QColor pointColor, QColor outlineColor){
@@ -146,4 +159,32 @@ void mapWidget::drawPoint(Esri::ArcGISRuntime::GraphicsOverlay* overlay, double 
 
 	Graphic* pGraphic = new Graphic(p, pSymb, this);
 	overlay->graphics()->append(pGraphic);
+}
+
+std::vector<std::pair<double, double>> mapWidget::loadBuoyCoordinates(){
+	std::ifstream coordinateFile("buoycoords.txt");
+
+	std::vector<std::pair<double, double>> c;
+
+	if (!coordinateFile.is_open()){
+		qInfo() << "No buoy coordinate file";
+		return c;
+	}
+
+	std::string fileLine;
+	while (std::getline(coordinateFile, fileLine)){
+		if (fileLine.empty())
+			continue;
+		
+		std::istringstream iss(fileLine);
+		double x, y;
+		if (!(iss >> x >> y)){
+			qDebug() << "error parsing line " << QString::fromStdString(fileLine) << " in buoycoords.txt"; 
+			continue;
+		}
+
+		c.push_back({x, y});
+	}
+
+	return c;
 }

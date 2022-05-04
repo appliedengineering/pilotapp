@@ -1,6 +1,7 @@
 #ifndef MAP_WIDGET_H_
 #define MAP_WIDGET_H_
 
+#include <vector>
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QString>
@@ -31,8 +32,10 @@ private:
     void setMapCenter(Esri::ArcGISRuntime::Viewpoint center);*/ 
     void setupMapFromMmpk();
 
-    void renderGraphics(Esri::ArcGISRuntime::GraphicsOverlay* overlay);
+    void renderGraphics(Esri::ArcGISRuntime::GraphicsOverlay* overlay, bool shouldOnlyRenderBoat = false);
     void drawPoint(Esri::ArcGISRuntime::GraphicsOverlay* overlay, double lat, double lon, QColor pointColor = Qt::blue, QColor outlineColor = Qt::white);
+
+    std::vector<std::pair<double, double>> loadBuoyCoordinates();
 
 public:
     mapWidget(QWidget* parent = nullptr);
