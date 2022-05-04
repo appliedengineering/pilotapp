@@ -12,6 +12,7 @@ namespace Esri{
         class MapGraphicsView;
         class Viewpoint;
         class GraphicsOverlay;
+        class Graphic;
     }
 }
 
@@ -24,6 +25,8 @@ private:
     Esri::ArcGISRuntime::MapGraphicsView* arcGISMapView = nullptr;
     Esri::ArcGISRuntime::GraphicsOverlay* arcGISOverlay = nullptr;
 
+    Esri::ArcGISRuntime::Graphic* boatPoint = nullptr;
+
     double boatLat = 0;
     double boatLon = 0;
 
@@ -33,7 +36,7 @@ private:
     void setupMapFromMmpk();
 
     void renderGraphics(Esri::ArcGISRuntime::GraphicsOverlay* overlay, bool shouldOnlyRenderBoat = false);
-    void drawPoint(Esri::ArcGISRuntime::GraphicsOverlay* overlay, double lat, double lon, QColor pointColor = Qt::blue, QColor outlineColor = Qt::white);
+    Esri::ArcGISRuntime::Graphic* drawPoint(Esri::ArcGISRuntime::GraphicsOverlay* overlay, double lat, double lon, QColor pointColor = Qt::blue, QColor outlineColor = Qt::white);
 
     std::vector<std::pair<double, double>> loadBuoyCoordinates();
 

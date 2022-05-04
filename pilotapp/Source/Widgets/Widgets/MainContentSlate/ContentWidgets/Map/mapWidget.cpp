@@ -131,11 +131,23 @@ void mapWidget::setupMapFromMmpk(){
 }
 
 void mapWidget::renderGraphics(Esri::ArcGISRuntime::GraphicsOverlay* overlay, bool shouldOnlyRenderBoat){
-	overlay->graphics()->clear();
+	if (!shouldOnlyRenderBoat)
+		overlay->graphics()->clear();
 
 	//
 
-	drawPoint(overlay, boatLat, boatLon);
+	if (boatPoint != nullptr){
+		//qInfo() << "existing boatPoint";
+		for (int i = 0; i < overlay->graphics()->size(); i++){
+			if (overlay->graphics()->at(i) == boatPoint){
+				//qInfo() << "found boatPoint -> " << overlay->graphics()->size();
+				overlay->graphics()->removeAt(i);
+				break;
+			}
+		}
+	}
+
+	boatPoint = drawPoint(overlay, boatLat, boatLon);
 
 	//
 
@@ -143,22 +155,25 @@ void mapWidget::renderGraphics(Esri::ArcGISRuntime::GraphicsOverlay* overlay, bo
 
 		std::vector<std::pair<double, double>> c = loadBuoyCoordinates();
 
-		for (std::pair<double, double> i : c){
+		for (std::pair<double, double> i : c)
 			drawPoint(overlay, i.first, i.second, Qt::red, Qt::black);
-		}
+
+		//qInfo() << "after loading buoys -> " << overlay->graphics()->size();
 
 	}
 }
 
-void mapWidget::drawPoint(Esri::ArcGISRuntime::GraphicsOverlay* overlay, double lat, double lon, QColor pointColor, QColor outlineColor){
+Esri::ArcGISRuntime::Graphic* mapWidget::drawPoint(Esri::ArcGISRuntime::GraphicsOverlay* overlay, double lat, double lon, QColor pointColor, QColor outlineColor){
+
 	Point p(lon, lat, SpatialReference::wgs84());
 
   	SimpleLineSymbol* pOutline = new SimpleLineSymbol(SimpleLineSymbolStyle::Solid, outlineColor, 7, this);
 	SimpleMarkerSymbol* pSymb = new SimpleMarkerSymbol(SimpleMarkerSymbolStyle::Circle, pointColor, 10, this);
 	pSymb->setOutline(pOutline);
 
-	Graphic* pGraphic = new Graphic(p, pSymb, this);
-	overlay->graphics()->append(pGraphic);
+	Graphic* point = new Graphic(p, pSymb, this);
+	overlay->graphics()->append(point);
+	return point;
 }
 
 std::vector<std::pair<double, double>> mapWidget::loadBuoyCoordinates(){
