@@ -12,6 +12,7 @@
 
 #include <ArcGISRuntimeEnvironment.h>
 #include <Map.h>
+#include <Basemap.h>
 #include <MapGraphicsView.h>
 #include <Viewpoint.h>
 #include <Point.h>
@@ -116,7 +117,7 @@ void mapWidget::setMapCenter(Viewpoint center){
 void mapWidget::setupMapFromMmpk(){
 	QString mmpkPath = QDir::currentPath() + "/map.mmpk";
 
-	qDebug() << "mmpk path" << mmpkPath;
+	//qDebug() << "mmpk path" << mmpkPath;
 
 	MobileMapPackage* mappackage = new MobileMapPackage(mmpkPath, this);
 
@@ -126,14 +127,14 @@ void mapWidget::setupMapFromMmpk(){
 			return;
 		}
 
-		qDebug() << "finished loading mmpk - " << mappackage->maps().size() << " ";
+		//qDebug() << "finished loading mmpk - " << mappackage->maps().size() << " ";
 
 		arcGISMapView->setMap(mappackage->maps().at(0));
 		
-		qDebug() << arcGISMapView->map() << " " << arcGISMapView->map()->basemap();
+		//qDebug() << arcGISMapView->map() << " " << arcGISMapView->map()->basemap();
 	});
 
-	qDebug() << "starting to load mmpk";
+	//qDebug() << "starting to load mmpk";
 
 	mappackage->load();
 }
