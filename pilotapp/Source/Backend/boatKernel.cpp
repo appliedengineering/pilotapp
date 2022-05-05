@@ -34,7 +34,7 @@ void boatKernel::receiveBoatDataPack(boatDataPack data){
     updateSpeedLabel(data.getSpeed());
     updateThrottle(data.getThrottlePercent());
     updateDuty(data.getDutyPercent());
-    updateBattery(data.getBatteryVoltage(), data.getBatteryCurrent());
+    updateBattery(data.getBatteryVoltage(), data.getBatteryCurrent(), data.getSolarMode());
     updateLocation(data.getPosLat(), data.getPosLon());
 
     if (data.getMotorEnabled() != isMotorEnabled){
@@ -77,7 +77,7 @@ void boatKernel::updateDuty(int percent){
     //utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateDuty(percent);
 }
 
-void boatKernel::updateBattery(double voltage, double current){
+void boatKernel::updateBattery(double voltage, double current, bool isSolar){
 
     const double maxVoltage = 30.0;
     const double minVoltage = 22.0;
@@ -90,6 +90,8 @@ void boatKernel::updateBattery(double voltage, double current){
         batteryPercentage = currentBatteryPercent;
         emit batteryPercentUpdateSignal(batteryPercentage);
     }
+
+    emit batteryDataUpdateSignal(voltage, current, isSolar);
 }
 
 void boatKernel::updateLocation(double lat, double lon){

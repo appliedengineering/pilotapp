@@ -1,8 +1,7 @@
 #include "powerWidget.h"
 
 #include "../../../../../Backend/Utilities/utilities.h"
-
-#include <QPixmap>
+#include "../../../../../Backend/boatKernel.h"
 
 powerWidget::powerWidget(QWidget* parent){
     //this->widgetType = windowed;
@@ -16,14 +15,15 @@ powerWidget::powerWidget(QWidget* parent){
     utilities::setWidgetRoundedCorner(this, 10, {utilities::bottomLeft, utilities::bottomRight});
 
     renderContent();
+
+    connect(boatKernel::getInstance(), &boatKernel::batteryDataUpdateSignal, this, &powerWidget::updateBatteryData);
 }
 
 powerWidget::~powerWidget(){
+    disconnect(boatKernel::getInstance(), &boatKernel::batteryDataUpdateSignal, this, &powerWidget::updateBatteryData);
 }
 
 //
-
-
 
 void powerWidget::renderContent(){
     mainContentHLayout = new QHBoxLayout(this);
@@ -40,7 +40,8 @@ void powerWidget::renderContent(){
     const int powerSourcePadding = 20;
     const int powerSourceLayoutStretchFactor = 30;
 
-    powerSourceVLayout->setContentsMargins(powerSourcePadding, powerSourcePadding - mainContentPadding, powerSourcePadding, powerSourcePadding - mainContentPadding);
+    //powerSourceVLayout->setContentsMargins(powerSourcePadding, powerSourcePadding - mainContentPadding, powerSourcePadding, powerSourcePadding - mainContentPadding);
+    powerSourceVLayout->setContentsMargins(0, -mainContentPadding, 0, -mainContentPadding);
     powerSourceVLayout->setSpacing(0);
 
     mainContentHLayout->addLayout(powerSourceVLayout, powerSourceLayoutStretchFactor);
@@ -49,12 +50,14 @@ void powerWidget::renderContent(){
 
     powerSourceIconLabel = new QLabel(this);
 
-    QPixmap iconPixMap(":/Assets/Icons/electronics.png");
+    batteryIconPixMap = QPixmap(":/Assets/Icons/electronics.png");
+    solarIconPixMap = QPixmap(":/Assets/Icons/solar.png");
 
-	iconPixMap.scaled(powerSourceIconLabel->width(), powerSourceIconLabel->width() * 0.8, Qt::KeepAspectRatio);
+	//powerSourceIconLabel->setPixmap(solarIconPixMap);
+    powerSourceIconLabel->setPixmap(batteryIconPixMap.scaled(powerSourceIconLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
-	powerSourceIconLabel->setPixmap(iconPixMap);
-	powerSourceIconLabel->setScaledContents(1);
+    powerSourceIconLabel->setAlignment(Qt::AlignCenter);
+	//powerSourceIconLabel->setScaledContents(1);
 
     //utilities::setPaletteColor(powerSourceIconLabel, QPalette::Background, Qt::gray);
 
@@ -84,7 +87,7 @@ void powerWidget::renderContent(){
 
     voltageValueLabel = new QLabel(this);
 
-    voltageValueLabel->setText("24");
+    voltageValueLabel->setText("0");
     utilities::setPaletteColor(voltageValueLabel, QPalette::Text, Qt::white, true);
     voltageValueLabel->setAlignment(Qt::AlignHCenter);
 
@@ -98,7 +101,7 @@ void powerWidget::renderContent(){
 
     currentValueLabel = new QLabel(this);
 
-    currentValueLabel->setText("20");
+    currentValueLabel->setText("0");
     utilities::setPaletteColor(currentValueLabel, QPalette::Text, Qt::white, true);
     currentValueLabel->setAlignment(Qt::AlignHCenter);
 
@@ -152,4 +155,17 @@ void powerWidget::renderContent(){
 
 void powerWidget::resizeEvent(QResizeEvent*){
     //mainContentHLayout->setStretchFactor(powerSourceVLayout, this->height() / this->width());
+}
+
+void powerWidget::updateBatteryData(double voltage, double current, bool isSolar){
+    
+    // update icon
+    powerSourceIconLabel->setPixmap((isSolar ? solarIconPixMap : batteryIconPixMap).scaled(powerSourceIconLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+    //
+
+    voltageValueLabel->setText(QString::number(utilities::roundDouble(voltage, 1)));
+
+    currentValueLabel->setText(QString::number(utilities::roundDouble(current, 1)));
+
 }

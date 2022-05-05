@@ -18,7 +18,7 @@ private:
     void updateSpeedLabel(double speed);
     void updateThrottle(int percent);
     void updateDuty(int percent);
-    void updateBattery(double voltage, double current);
+    void updateBattery(double voltage, double current, bool isSolar);
     void updateLocation(double lat, double lon);
 
 public:
@@ -35,6 +35,7 @@ signals:
     void motorStatusUpdateSignal();
     void batteryPercentUpdateSignal(int percent);
     void locationUpdateSignal(double lat, double lon);
+    void batteryDataUpdateSignal(double voltage, double current, bool isSolar);
 };
 
 #endif

@@ -92,3 +92,8 @@ void utilities::setWidgetRoundedCorner(QWidget* w, int r, std::vector<corners> n
 std::string utilities::createPaddingString(int n) {
 	return std::string(" ", n);
 }
+
+double utilities::roundDouble(double a, int places){
+	int p = pow(10, places);
+	return ((double)(round(a * p)) / p);
+}

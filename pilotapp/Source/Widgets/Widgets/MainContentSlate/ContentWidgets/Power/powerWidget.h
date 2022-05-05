@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QResizeEvent>
+#include <QPixmap>
 
 class powerWidget : public ContentWidget{
     Q_OBJECT
@@ -17,6 +18,8 @@ private:
 
     QVBoxLayout* powerSourceVLayout;
     QLabel* powerSourceIconLabel;
+    QPixmap batteryIconPixMap;
+    QPixmap solarIconPixMap;
 
     //
 
@@ -36,6 +39,9 @@ private:
 public:
     powerWidget(QWidget* parent = nullptr);
     ~powerWidget();
+
+public slots:
+    void updateBatteryData(double voltage, double current, bool isSolar);
 };
 
 #endif

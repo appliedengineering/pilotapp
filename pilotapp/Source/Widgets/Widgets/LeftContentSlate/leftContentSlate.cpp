@@ -28,6 +28,9 @@ leftContentSlateWidget::leftContentSlateWidget(QWidget* parent) {
 }
 
 leftContentSlateWidget::~leftContentSlateWidget() {
+	disconnect(boatKernel::getInstance(), &boatKernel::throttleUpdateSignal, this, &leftContentSlateWidget::updateThrottle);
+	disconnect(boatKernel::getInstance(), &boatKernel::dutyUpdateSignal, this, &leftContentSlateWidget::updateDuty);
+	disconnect(boatKernel::getInstance(), &boatKernel::batteryPercentUpdateSignal, this, &leftContentSlateWidget::updateBatteryPercent);
 }
 
 //
