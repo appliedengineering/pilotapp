@@ -114,7 +114,7 @@ void mapWidget::setMapCenter(Viewpoint center){
 void mapWidget::setupMapFromMmpk(){
 	QString mmpkPath = QDir::currentPath() + "/map.mmpk";
 
-	//qDebug() << mmpkPath;
+	qDebug() << "mmpk path" << mmpkPath;
 
 	MobileMapPackage* mappackage = new MobileMapPackage(mmpkPath, this);
 
@@ -124,8 +124,12 @@ void mapWidget::setupMapFromMmpk(){
 			return;
 		}
 
+		qDebug() << "finished loading mmpk - " << mappackage->maps().size();
+
 		arcGISMapView->setMap(mappackage->maps().at(0));
 	});
+
+	qDebug() << "starting to load mmpk";
 
 	mappackage->load();
 }
