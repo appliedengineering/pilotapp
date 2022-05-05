@@ -43,8 +43,10 @@ mapWidget::mapWidget(QWidget* parent){
 
 	//
 
-	//setMapCenter(parseMapData(readMapFile()));
 	setupMapFromMmpk();
+	setMapCenter(parseMapData(readMapFile()));
+
+	//arcGISMapView->map()->basemap()->
 
 	//
 
@@ -69,7 +71,7 @@ void mapWidget::updateBoatLocation(double lat, double lon){
 
 //
 
-/*QString mapWidget::readMapFile(){
+QString mapWidget::readMapFile(){
 	QFile mapFile("navcenter.txt");
 	
 	if (mapFile.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -109,7 +111,7 @@ Viewpoint mapWidget::parseMapData(QString raw){
 
 void mapWidget::setMapCenter(Viewpoint center){
 	this->arcGISMapView->setViewpoint(center);
-}*/
+}
 
 void mapWidget::setupMapFromMmpk(){
 	QString mmpkPath = QDir::currentPath() + "/map.mmpk";
@@ -124,9 +126,11 @@ void mapWidget::setupMapFromMmpk(){
 			return;
 		}
 
-		qDebug() << "finished loading mmpk - " << mappackage->maps().size();
+		qDebug() << "finished loading mmpk - " << mappackage->maps().size() << " ";
 
 		arcGISMapView->setMap(mappackage->maps().at(0));
+		
+		qDebug() << arcGISMapView->map() << " " << arcGISMapView->map()->basemap();
 	});
 
 	qDebug() << "starting to load mmpk";

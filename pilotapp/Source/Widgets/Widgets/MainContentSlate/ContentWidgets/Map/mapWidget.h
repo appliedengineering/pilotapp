@@ -30,9 +30,9 @@ private:
     double boatLat = 0;
     double boatLon = 0;
 
-    /*QString readMapFile();
+    QString readMapFile();
     Esri::ArcGISRuntime::Viewpoint parseMapData(QString raw);
-    void setMapCenter(Esri::ArcGISRuntime::Viewpoint center);*/ 
+    void setMapCenter(Esri::ArcGISRuntime::Viewpoint center); 
     void setupMapFromMmpk();
 
     void renderGraphics(Esri::ArcGISRuntime::GraphicsOverlay* overlay, bool shouldOnlyRenderBoat = false);
