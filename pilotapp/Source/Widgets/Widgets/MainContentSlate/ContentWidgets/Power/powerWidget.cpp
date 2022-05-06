@@ -88,7 +88,7 @@ void powerWidget::renderContent(){
     voltageValueLabel = new QLabel(this);
 
     voltageValueLabel->setText("0");
-    utilities::setPaletteColor(voltageValueLabel, QPalette::Text, Qt::white, true);
+    utilities::setPaletteColor(voltageValueLabel, QPalette::Foreground, Qt::white, true);
     voltageValueLabel->setAlignment(Qt::AlignHCenter);
 
     QFont voltageValueLabelFont = voltageValueLabel->font();
@@ -102,7 +102,7 @@ void powerWidget::renderContent(){
     currentValueLabel = new QLabel(this);
 
     currentValueLabel->setText("0");
-    utilities::setPaletteColor(currentValueLabel, QPalette::Text, Qt::white, true);
+    utilities::setPaletteColor(currentValueLabel, QPalette::Foreground, Qt::white, true);
     currentValueLabel->setAlignment(Qt::AlignHCenter);
 
     QFont currentValueLabelFont = currentValueLabel->font();
@@ -127,7 +127,7 @@ void powerWidget::renderContent(){
     voltageLabelLabel = new QLabel(this);
 
     voltageLabelLabel->setText("Volts");
-    utilities::setPaletteColor(voltageLabelLabel, QPalette::Text, Qt::white, true);
+    utilities::setPaletteColor(voltageLabelLabel, QPalette::Foreground, Qt::white, true);
     voltageLabelLabel->setAlignment(Qt::AlignHCenter);
 
     QFont voltageLabelLabelFont = voltageLabelLabel->font();
@@ -141,7 +141,7 @@ void powerWidget::renderContent(){
     currentLabelLabel = new QLabel(this);
 
     currentLabelLabel->setText("Amps");
-    utilities::setPaletteColor(currentLabelLabel, QPalette::Text, Qt::white, true);
+    utilities::setPaletteColor(currentLabelLabel, QPalette::Foreground, Qt::white, true);
     currentLabelLabel->setAlignment(Qt::AlignHCenter);
 
     QFont currentLabelLabelFont = currentLabelLabel->font();
