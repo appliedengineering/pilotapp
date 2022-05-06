@@ -86,9 +86,8 @@ public:
 	leftContentSlateWidget(QWidget* parent = nullptr);
 	~leftContentSlateWidget();
 
-	void updateSpeedLabel(double speed);
-
 public slots:
+	void updateSpeed(double speed);
 	void updateThrottle(int percent);
 	void updateDuty(int percent);
 	void updateMotorButtonStatus();

@@ -34,10 +34,10 @@ void communicationThread::start(){
         std::string buf;
         if (communicationManager::recv(communicationManager::getInstance()->getIPCSocket(), buf)){
             
-            //qInfo() << "recv - " << QString::fromStdString(buf);             
+            //qInfo() << "recv = " << QString::fromStdString(buf);             
             rawDataPack r = dataManager::deserializeRawBoatData(buf);
             boatDataPack data(r);
-            //qInfo() << data.getTimestamp();
+            //qInfo() << "after parse = " << data.getTimestamp();
 
             boatKernel::getInstance()->receiveBoatDataPack(data);
 

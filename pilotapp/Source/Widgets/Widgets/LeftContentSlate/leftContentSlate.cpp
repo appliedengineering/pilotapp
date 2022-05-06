@@ -22,12 +22,14 @@ leftContentSlateWidget::leftContentSlateWidget(QWidget* parent) {
 
 	//
 	
+	connect(boatKernel::getInstance(), &boatKernel::speedUpdateSignal, this, &leftContentSlateWidget::updateSpeed);
 	connect(boatKernel::getInstance(), &boatKernel::throttleUpdateSignal, this, &leftContentSlateWidget::updateThrottle);
 	connect(boatKernel::getInstance(), &boatKernel::dutyUpdateSignal, this, &leftContentSlateWidget::updateDuty);
 	connect(boatKernel::getInstance(), &boatKernel::batteryPercentUpdateSignal, this, &leftContentSlateWidget::updateBatteryPercent);
 }
 
 leftContentSlateWidget::~leftContentSlateWidget() {
+	disconnect(boatKernel::getInstance(), &boatKernel::speedUpdateSignal, this, &leftContentSlateWidget::updateSpeed);
 	disconnect(boatKernel::getInstance(), &boatKernel::throttleUpdateSignal, this, &leftContentSlateWidget::updateThrottle);
 	disconnect(boatKernel::getInstance(), &boatKernel::dutyUpdateSignal, this, &leftContentSlateWidget::updateDuty);
 	disconnect(boatKernel::getInstance(), &boatKernel::batteryPercentUpdateSignal, this, &leftContentSlateWidget::updateBatteryPercent);
@@ -444,7 +446,7 @@ void leftContentSlateWidget::resizeEvent(QResizeEvent*){
 
 //
 
-void leftContentSlateWidget::updateSpeedLabel(double speed){
+void leftContentSlateWidget::updateSpeed(double speed){
 	if (speedometerLabel != nullptr)
 		speedometerLabel->setText(QString::number(round(speed)));
 }
@@ -478,14 +480,16 @@ void leftContentSlateWidget::handleMotorButton(){
 }
 
 void leftContentSlateWidget::updateMotorButtonStatus(){
-	if (boatKernel::getInstance()->getIsMotorEnabled())
-		this->motorButton->setText("Stop Motor");
-	else
-		this->motorButton->setText("Start Motor");
+	if (motorButton != nullptr){
+		if (boatKernel::getInstance()->getIsMotorEnabled())
+			this->motorButton->setText("Stop Motor");
+		else
+			this->motorButton->setText("Start Motor");
+	}
 }
 
 void leftContentSlateWidget::updateBatteryPercent(int percent){
-	if (topContentBatteryPercentBar == nullptr || topContentBatteryPercentBar == nullptr)
+	if (topContentBatteryPercentBar == nullptr || topContentBatteryPercentLabel == nullptr)
 		return;
 
 	if (percent > 100 || percent < 0)

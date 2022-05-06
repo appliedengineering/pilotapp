@@ -27,7 +27,7 @@ boatKernel* boatKernel::getInstance(){
 //
 
 void boatKernel::receiveBoatDataPack(boatDataPack data){
-    qInfo() << "recv boat data";
+    //qInfo() << "recv boat data";
     
     //
 
@@ -37,11 +37,15 @@ void boatKernel::receiveBoatDataPack(boatDataPack data){
     updateBattery(data.getBatteryVoltage(), data.getBatteryCurrent(), data.getSolarMode());
     updateLocation(data.getPosLat(), data.getPosLon());
 
+    //qInfo() << "middle recv boat data";
+
     if (data.getMotorEnabled() != isMotorEnabled){
         isMotorEnabled = data.getMotorEnabled();
 
         emit motorStatusUpdateSignal();
     }
+
+    //qInfo() << "After recv boat data";
 }
 
 void boatKernel::toggleMotor(){
@@ -64,7 +68,8 @@ bool boatKernel::getIsMotorEnabled(){
 
 void boatKernel::updateSpeedLabel(double speed){
     speed *= 1.94384; // from m/s to knots
-    utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateSpeedLabel(speed);
+    emit speedUpdateSignal(speed);
+    //utilities::findMainWindow()->getHomePageWidget()->getLeftContentSlateWidget()->updateSpeedLabel(speed);
 }
 
 void boatKernel::updateThrottle(int percent){

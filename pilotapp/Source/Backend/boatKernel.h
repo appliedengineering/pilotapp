@@ -30,6 +30,7 @@ public:
     bool getIsMotorEnabled();
 
 signals:
+    void speedUpdateSignal(double speed);
     void throttleUpdateSignal(int percent);
     void dutyUpdateSignal(int percent);
     void motorStatusUpdateSignal();
