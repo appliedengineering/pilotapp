@@ -42,9 +42,9 @@ boatDataPack::boatDataPack(rawDataPack& raw){
 
     TP = m["TP"].as_uint64_t();
     DP = m["DP"].as_uint64_t();
-    CP = m["CP"].as_double();
+    //CP = m["CP"].as_double();
     BV = m["BV"].as_double();
-    UV = m["UV"].as_bool();
+    //UV = m["UV"].as_bool();
     SM = m["SM"].as_bool();
     EN = m["EN"].as_bool();
     BC = m["BC"].as_double();
@@ -67,17 +67,17 @@ int boatDataPack::getDutyPercent(){
     return DP;
 }
 
-float boatDataPack::getChipTemp(){
+/*float boatDataPack::getChipTemp(){
     return CP;
-}
+}*/
 
 double boatDataPack::getBatteryVoltage(){
     return BV;
 }
 
-bool boatDataPack::getUndervolt(){
+/*bool boatDataPack::getUndervolt(){
     return UV;
-}
+}*/
 
 bool boatDataPack::getSolarMode(){
     return SM;

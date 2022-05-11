@@ -22,9 +22,9 @@ class boatDataPack{
 private:
     int TP; // Throttle Percent
     int DP; // Duty Percent
-    float CP; // Chip Temp
+    //float CP; // Chip Temp
     double BV; // Battery Voltage
-    bool UV; // Undervoltage Protection
+    //bool UV; // Undervoltage Protection
     bool SM; // Solar Mode
     bool EN; // Motor Enabled
     double BC; // Battery Current
@@ -38,9 +38,9 @@ public:
 
     int getThrottlePercent();
     int getDutyPercent();
-    float getChipTemp();
+    //float getChipTemp();
     double getBatteryVoltage();
-    bool getUndervolt();
+    //bool getUndervolt();
     bool getSolarMode();
     bool getMotorEnabled();
     double getBatteryCurrent();
