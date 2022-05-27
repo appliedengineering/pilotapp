@@ -81,7 +81,7 @@ void mainContentSlateWidget::createContentWidgetForIndex(int index){
 }
 
 void mainContentSlateWidget::showContentWidget(int index){
-	//qInfo() << "show";
+	qInfo() << "show";
 
 	createContentWidgetForIndex(index);
 
@@ -103,7 +103,7 @@ void mainContentSlateWidget::hideContentWidget(){
 		return;
 	}
 
-	//qInfo() << "hide";
+	qInfo() << "hide";
 
 	contentWidget->hide();
 

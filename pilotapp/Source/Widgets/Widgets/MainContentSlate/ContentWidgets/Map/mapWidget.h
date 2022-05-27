@@ -5,8 +5,10 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QString>
+#include <QtQuick/QQuickView>
+//#include <QMapbox>
 
-namespace Esri{
+/*namespace Esri{
     namespace ArcGISRuntime{
         class Map;
         class MapGraphicsView;
@@ -14,18 +16,22 @@ namespace Esri{
         class GraphicsOverlay;
         class Graphic;
     }
-}
+}*/
 
 class mapWidget : public QWidget{
     Q_OBJECT
 
 private:
-    QHBoxLayout* hBoxLayout = nullptr;
     //Esri::ArcGISRuntime::Map* arcGISMap = nullptr;
-    Esri::ArcGISRuntime::MapGraphicsView* arcGISMapView = nullptr;
+    /*Esri::ArcGISRuntime::MapGraphicsView* arcGISMapView = nullptr;
     Esri::ArcGISRuntime::GraphicsOverlay* arcGISOverlay = nullptr;
 
-    Esri::ArcGISRuntime::Graphic* boatPoint = nullptr;
+    Esri::ArcGISRuntime::Graphic* boatPoint = nullptr;*/
+
+    QHBoxLayout* hBoxLayout = nullptr;
+
+    QQuickView* mapView = nullptr;
+    QWidget* mapViewContainer = nullptr;
 
     double boatLat = 0;
     double boatLon = 0;
@@ -34,12 +40,12 @@ private:
     Esri::ArcGISRuntime::Viewpoint parseMapData(QString raw);
     void setMapCenter(Esri::ArcGISRuntime::Viewpoint center); */
 
-    void setupMapFromMmpk();
+    /*void setupMapFromMmpk();
 
     void renderGraphics(Esri::ArcGISRuntime::GraphicsOverlay* overlay, bool shouldOnlyRenderBoat = false);
     Esri::ArcGISRuntime::Graphic* drawPoint(Esri::ArcGISRuntime::GraphicsOverlay* overlay, double lat, double lon, QColor pointColor = Qt::blue, QColor outlineColor = Qt::white);
 
-    std::vector<std::pair<double, double>> loadBuoyCoordinates();
+    std::vector<std::pair<double, double>> loadBuoyCoordinates();*/
 
 public:
     mapWidget(QWidget* parent = nullptr);

@@ -10,7 +10,7 @@
 #include <string>
 #include <fstream>
 
-#include <ArcGISRuntimeEnvironment.h>
+/*#include <ArcGISRuntimeEnvironment.h>
 #include <Map.h>
 #include <Basemap.h>
 #include <MapGraphicsView.h>
@@ -24,19 +24,36 @@
 #include <PolygonBuilder.h>
 #include <SimpleMarkerSceneSymbol.h>
 #include <SimpleFillSymbol.h>
-#include <SimpleMarkerSymbol.h>
+#include <SimpleMarkerSymbol.h>*/
 
-using namespace Esri::ArcGISRuntime;
+//using namespace Esri::ArcGISRuntime;
 
 mapWidget::mapWidget(QWidget* parent){
-	utilities::setPaletteColor(this, QPalette::Background, Qt::black);
+	utilities::setPaletteColor(this, QPalette::Background, Qt::gray);
 
 	//
-
+	
 	hBoxLayout = new QHBoxLayout(this);
 	hBoxLayout->setContentsMargins(0, 0, 0, 0);
 	this->setLayout(hBoxLayout);
 
+	//
+
+	mapView = new QQuickView();
+
+	mapViewContainer = QWidget::createWindowContainer(mapView, this);
+	hBoxLayout->addWidget(mapViewContainer);
+
+	mapView->setSource(QUrl("qrc:/Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapView.qml"));
+	
+	//
+
+	QWidget* w = new QWidget(this);
+	utilities::setPaletteColor(w, QPalette::Background, Qt::black);
+	w->setGeometry(0, 0, 100, 100);
+
+
+    /*
 	//arcGISMap = new Map(Basemap::imageryWithLabels(this), this);
 	arcGISMapView = new MapGraphicsView(nullptr, this);
 
@@ -53,7 +70,7 @@ mapWidget::mapWidget(QWidget* parent){
 
 	arcGISOverlay = new GraphicsOverlay(this);
 	renderGraphics(arcGISOverlay);
-	arcGISMapView->graphicsOverlays()->append(arcGISOverlay);
+	arcGISMapView->graphicsOverlays()->append(arcGISOverlay);*/
 
 	connect(boatKernel::getInstance(), &boatKernel::locationUpdateSignal, this, &mapWidget::updateBoatLocation);
 }
@@ -67,7 +84,7 @@ void mapWidget::updateBoatLocation(double lat, double lon){
 	boatLat = lat;
 	boatLon = lon;
 	//qInfo() << "update boat location - " << lat << " " << lon;
-	renderGraphics(arcGISOverlay, true);
+	//renderGraphics(arcGISOverlay, true);
 }
 
 //
@@ -112,7 +129,7 @@ Viewpoint mapWidget::parseMapData(QString raw){
 
 void mapWidget::setMapCenter(Viewpoint center){
 	this->arcGISMapView->setViewpoint(center);
-}*/
+}
 
 void mapWidget::setupMapFromMmpk(){
 	QString mmpkPath = QDir::currentPath() + "/map.mmpk";
@@ -211,4 +228,4 @@ std::vector<std::pair<double, double>> mapWidget::loadBuoyCoordinates(){
 	}
 
 	return c;
-}
+}*/

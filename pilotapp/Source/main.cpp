@@ -4,7 +4,7 @@
 #include <QFile>
 #include <QDebug>
 #include <QFontDatabase>
-#include <ArcGISRuntimeEnvironment.h>
+//#include <ArcGISRuntimeEnvironment.h>
 #include <thread>
 #include <chrono>
 #include <future>
@@ -40,22 +40,7 @@ void setupStyleSheet(QApplication* a){
     sheet.close();
 }
 
-void setupArcGISEnvironment(){ 
-    
-    /*QFile apiKeyFile(":/Source/ArcGISApiKey.txt");
-    if (apiKeyFile.open(QIODevice::ReadOnly | QIODevice::Text)){
-        
-        QString key(apiKeyFile.readAll());
-        
-        qDebug() << "Loaded ArcGIS API Key";
-        
-        //Esri::ArcGISRuntime::ArcGISRuntimeEnvironment::setApiKey(key);
-    }
-    else{
-        qFatal("No ArcGIS API Key file found");
-    }
-
-    apiKeyFile.close();*/
+/*void setupArcGISEnvironment(){ 
 
     QFile licenseKeyFile(":/Source/ArcGISLicenseKey.txt");
     if (licenseKeyFile.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -70,14 +55,14 @@ void setupArcGISEnvironment(){
     }
 
     licenseKeyFile.close();
-}
+}*/
 
 int main(int argc, char *argv[]){
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication a(argc, argv);
 
     setupStyleSheet(&a);
-    setupArcGISEnvironment();
+    //setupArcGISEnvironment();
 
     communicationManager::getInstance();
 
