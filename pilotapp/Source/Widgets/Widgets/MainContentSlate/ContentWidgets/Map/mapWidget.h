@@ -5,36 +5,30 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QString>
-#include <QtQuick/QQuickView>
-//#include <QMapbox>
-
-/*namespace Esri{
-    namespace ArcGISRuntime{
-        class Map;
-        class MapGraphicsView;
-        class Viewpoint;
-        class GraphicsOverlay;
-        class Graphic;
-    }
-}*/
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkDiskCache>
+#include <QGeoView/QGVMap.h>
+#include <QGeoView/QGVLayerGoogle.h>
 
 class mapWidget : public QWidget{
     Q_OBJECT
 
 private:
-    //Esri::ArcGISRuntime::Map* arcGISMap = nullptr;
-    /*Esri::ArcGISRuntime::MapGraphicsView* arcGISMapView = nullptr;
-    Esri::ArcGISRuntime::GraphicsOverlay* arcGISOverlay = nullptr;
-
-    Esri::ArcGISRuntime::Graphic* boatPoint = nullptr;*/
 
     QHBoxLayout* hBoxLayout = nullptr;
 
-    QQuickView* mapView = nullptr;
-    QWidget* mapViewContainer = nullptr;
+    QGVMap* mapView = nullptr;
+    QGVLayer* mapLayer = nullptr;
+
+    QNetworkAccessManager* mapNet = nullptr;
+
+    const QString mapCachePath = "mapCache";
+    QNetworkDiskCache* mapCache = nullptr;
 
     double boatLat = 0;
     double boatLon = 0;
+
+    void setupMapView();
 
     /*QString readMapFile();
     Esri::ArcGISRuntime::Viewpoint parseMapData(QString raw);

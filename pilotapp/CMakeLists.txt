@@ -55,9 +55,9 @@ set(BOOST_INSTALL_PATH "/opt/homebrew/Cellar/boost/1.78.0_1")
 include_directories("${BOOST_INSTALL_PATH}/include")
 set(Boost_INCLUDE_DIR "${BOOST_INSTALL_PATH}/include")
 
-## Third Party Options (Mapbox)
-include_directories("${CMAKE_SOURCE_DIR}/3rd_party/include")
-link_directories("${CMAKE_SOURCE_DIR}/3rd_party/lib")
+## Third Party Options (QGeoView)
+include_directories("/usr/local/include")
+link_directories("/usr/local/lib")
 
 ## msgpack Options (not needed)
 #set(MSGPACK_INSTALL_PATH "${PROJECT_SOURCE_DIR}/3rd_party/msgpack")
@@ -99,8 +99,8 @@ message("Source DIR = ${CMAKE_SOURCE_DIR}")
 #    endif()
 #endif()
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets Quick REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Multimedia Quick REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Multimedia REQUIRED)
 
 #find_package(ArcGISRuntime 100.7 COMPONENTS Cpp REQUIRED)
 
@@ -178,9 +178,9 @@ endif()
 target_link_libraries(pilotapp PRIVATE 
   Qt${QT_VERSION_MAJOR}::Widgets 
   Qt${QT_VERSION_MAJOR}::Multimedia
-  Qt${QT_VERSION_MAJOR}::Quick
 #  ArcGISRuntime::Cpp
   zmq
   msgpackc-cxx
+  QGeoView
   )
 

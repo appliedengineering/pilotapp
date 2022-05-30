@@ -10,72 +10,68 @@
 #include <string>
 #include <fstream>
 
-/*#include <ArcGISRuntimeEnvironment.h>
-#include <Map.h>
-#include <Basemap.h>
-#include <MapGraphicsView.h>
-#include <Viewpoint.h>
-#include <Point.h>
-#include <MobileMapPackage.h>
-#include <Error.h>
-
-#include <GraphicsOverlay.h>
-#include <PolylineBuilder.h>
-#include <PolygonBuilder.h>
-#include <SimpleMarkerSceneSymbol.h>
-#include <SimpleFillSymbol.h>
-#include <SimpleMarkerSymbol.h>*/
-
-//using namespace Esri::ArcGISRuntime;
 
 mapWidget::mapWidget(QWidget* parent){
-	utilities::setPaletteColor(this, QPalette::Background, Qt::gray);
+	//utilities::setPaletteColor(this, QPalette::Background, Qt::gray);
 
 	//
 	
 	hBoxLayout = new QHBoxLayout(this);
 	hBoxLayout->setContentsMargins(0, 0, 0, 0);
+	hBoxLayout->setSpacing(0);
 	this->setLayout(hBoxLayout);
 
 	//
 
-	mapView = new QQuickView();
-
-	mapViewContainer = QWidget::createWindowContainer(mapView, this);
-	hBoxLayout->addWidget(mapViewContainer);
-
-	mapView->setSource(QUrl("qrc:/Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapView.qml"));
-	
-	//
-
-	QWidget* w = new QWidget(this);
-	utilities::setPaletteColor(w, QPalette::Background, Qt::black);
-	w->setGeometry(0, 0, 100, 100);
-
-
-    /*
-	//arcGISMap = new Map(Basemap::imageryWithLabels(this), this);
-	arcGISMapView = new MapGraphicsView(nullptr, this);
-
-	hBoxLayout->addWidget(arcGISMapView);
+	setupMapView();
 
 	//
-
-	setupMapFromMmpk();
-	//setMapCenter(parseMapData(readMapFile()));
-
-	//arcGISMapView->map()->basemap()->
-
-	//
-
-	arcGISOverlay = new GraphicsOverlay(this);
-	renderGraphics(arcGISOverlay);
-	arcGISMapView->graphicsOverlays()->append(arcGISOverlay);*/
 
 	connect(boatKernel::getInstance(), &boatKernel::locationUpdateSignal, this, &mapWidget::updateBoatLocation);
 }
 
 mapWidget::~mapWidget(){
+}
+
+void mapWidget::setupMapView(){
+
+	mapView = new QGVMap(this);
+	mapView->setContentsMargins(0, 0, 0, 0);
+	hBoxLayout->addWidget(mapView, 50);
+
+	utilities::setPaletteColor(mapView, QPalette::Background, Qt::red);
+
+	//
+
+	QDir(mapCachePath).removeRecursively();
+
+	mapCache = new QNetworkDiskCache(this);
+	mapCache->setCacheDirectory(mapCachePath);
+
+	//
+	
+	mapNet = new QNetworkAccessManager(this);
+	mapNet->setCache(mapCache);
+	QGV::setNetworkManager(mapNet);
+
+	//
+
+	// set mapview zoom to view entire world
+	/*auto t = mapView->getProjection()->boundaryGeoRect();
+	mapView->cameraTo(QGVCameraActions(mapView).scaleTo(t));*/
+
+	QGVCameraActions mapViewArea(mapView);
+	mapViewArea.moveTo(QGV::GeoPos(38.335253, -121.091880));
+	mapViewArea.scaleTo(0.6);
+
+	mapView->cameraTo(mapViewArea);
+
+
+	//
+
+	mapLayer = new QGVLayerGoogle(QGV::TilesType::Satellite);
+	mapView->addItem(mapLayer);
+	mapLayer->setVisible(true);
 }
 
 //

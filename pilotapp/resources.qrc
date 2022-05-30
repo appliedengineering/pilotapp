@@ -14,6 +14,5 @@
     <file>Assets/Model/slantedboat.png</file>
     <file>Assets/Model/topdownboat.png</file>
     <file>Source/style.qss</file>
-    <file>Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapView.qml</file>
 </qresource>
 </RCC>
