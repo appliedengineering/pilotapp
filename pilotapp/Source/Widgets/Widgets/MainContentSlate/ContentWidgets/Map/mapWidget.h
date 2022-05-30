@@ -10,7 +10,9 @@
 #include <QGeoView/QGVMap.h>
 #include <QGeoView/QGVMapQGView.h>
 #include <QGeoView/QGVCamera.h>
+#include <QGeoView/QGVWidget.h>
 #include <QGeoView/QGVLayerGoogle.h>
+#include <QGeoView/QGVWidgetZoom.h>
 
 class mapWidget : public QWidget{
     Q_OBJECT
@@ -21,6 +23,7 @@ private:
 
     QGVMap* mapView = nullptr;
     QGVLayer* mapLayer = nullptr;
+    QGVWidgetZoom* mapViewZoomWidget = nullptr;
 
     QNetworkAccessManager* mapNet = nullptr;
 
@@ -30,7 +33,10 @@ private:
     double boatLat = 0;
     double boatLon = 0;
 
+    //
+
     void setupMapView();
+    void setupMapWidgets();
     void setDefaultMapCamera();
 
     QString readMapFile();

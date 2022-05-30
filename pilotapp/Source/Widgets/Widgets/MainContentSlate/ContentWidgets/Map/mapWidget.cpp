@@ -64,6 +64,10 @@ void mapWidget::setupMapView(){
 
 	//
 
+	setupMapWidgets();
+
+	//
+
 	setDefaultMapCamera();
 }
 
@@ -77,6 +81,16 @@ void mapWidget::updateBoatLocation(double lat, double lon){
 }
 
 //
+
+void mapWidget::setupMapWidgets(){
+	mapViewZoomWidget = new QGVWidgetZoom();
+	mapViewZoomWidget->setMap(mapView);
+	mapViewZoomWidget->setAnchor(QPoint(10, 10), {Qt::RightEdge, Qt::TopEdge});
+	mapViewZoomWidget->setOrientation(Qt::Vertical);
+	
+	utilities::setPaletteColor(mapViewZoomWidget->plus(), QPalette::Button, Qt::white);
+	utilities::setPaletteColor(mapViewZoomWidget->minus(), QPalette::Button, Qt::white);
+}
 
 void mapWidget::setDefaultMapCamera(){
 	// set mapview zoom to view entire world
