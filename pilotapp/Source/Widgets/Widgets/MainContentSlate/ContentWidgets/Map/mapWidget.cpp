@@ -12,7 +12,7 @@
 
 
 mapWidget::mapWidget(QWidget* parent){
-	//utilities::setPaletteColor(this, QPalette::Background, Qt::gray);
+	utilities::setPaletteColor(this, QPalette::Background, Qt::white);
 
 	//
 	
@@ -37,9 +37,11 @@ void mapWidget::setupMapView(){
 
 	mapView = new QGVMap(this);
 	mapView->setContentsMargins(0, 0, 0, 0);
-	hBoxLayout->addWidget(mapView, 50);
+	mapView->layout()->setContentsMargins(0, 0, 0, 0);
+	mapView->geoView()->setContentsMargins(0, 0, 0, 0);
+	hBoxLayout->addWidget(mapView);
 
-	utilities::setPaletteColor(mapView, QPalette::Background, Qt::red);
+	//utilities::setPaletteColor(mapView, QPalette::Background, Qt::red);
 
 	//
 

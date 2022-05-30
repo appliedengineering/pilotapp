@@ -8,6 +8,7 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkDiskCache>
 #include <QGeoView/QGVMap.h>
+#include <QGeoView/QGVMapQGView.h>
 #include <QGeoView/QGVLayerGoogle.h>
 
 class mapWidget : public QWidget{
