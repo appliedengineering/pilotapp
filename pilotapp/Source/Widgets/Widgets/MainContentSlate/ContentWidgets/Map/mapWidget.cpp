@@ -5,11 +5,11 @@
 
 #include <QDir>
 #include <QFile>
+#include <QDebug>
 #include <vector>
 #include <sstream>
 #include <string>
 #include <fstream>
-
 
 mapWidget::mapWidget(QWidget* parent){
 	utilities::setPaletteColor(this, QPalette::Background, Qt::white);
@@ -58,22 +58,13 @@ void mapWidget::setupMapView(){
 
 	//
 
-	// set mapview zoom to view entire world
-	/*auto t = mapView->getProjection()->boundaryGeoRect();
-	mapView->cameraTo(QGVCameraActions(mapView).scaleTo(t));*/
-
-	QGVCameraActions mapViewArea(mapView);
-	mapViewArea.moveTo(QGV::GeoPos(38.335253, -121.091880));
-	mapViewArea.scaleTo(0.6);
-
-	mapView->cameraTo(mapViewArea);
-
-
-	//
-
 	mapLayer = new QGVLayerGoogle(QGV::TilesType::Satellite);
 	mapView->addItem(mapLayer);
 	mapLayer->setVisible(true);
+
+	//
+
+	setDefaultMapCamera();
 }
 
 //
@@ -87,7 +78,26 @@ void mapWidget::updateBoatLocation(double lat, double lon){
 
 //
 
-/*QString mapWidget::readMapFile(){
+void mapWidget::setDefaultMapCamera(){
+	// set mapview zoom to view entire world
+	/*auto t = mapView->getProjection()->boundaryGeoRect();
+	mapView->cameraTo(QGVCameraActions(mapView).scaleTo(t));*/
+
+	/*QGVCameraActions mapViewArea(mapView);
+	mapViewArea.moveTo(QGV::GeoPos(38.335253, -121.091880));
+	mapViewArea.scaleTo(0.6);*/
+
+	QString mapFileRaw = readMapFile();
+	QGVCameraActions camera(mapView);
+
+	if (!mapFileRaw.isEmpty()){
+		parseMapData(mapFileRaw, &camera);
+	}
+	
+	mapView->cameraTo(camera);
+}
+
+QString mapWidget::readMapFile(){
 	QFile mapFile("navcenter.txt");
 	
 	if (mapFile.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -100,7 +110,7 @@ void mapWidget::updateBoatLocation(double lat, double lon){
 	return "";
 }
 
-Viewpoint mapWidget::parseMapData(QString raw){
+void mapWidget::parseMapData(QString raw, QGVCameraActions* camera){
 	std::string r = raw.toStdString();
 	
 	std::vector<std::string> sArray;
@@ -112,24 +122,22 @@ Viewpoint mapWidget::parseMapData(QString raw){
 		sArray.push_back(substr);
 	}
 
-
 	if (sArray.size() != 3){
-		qFatal("Map data is invalid");
-		return Viewpoint();
+		qInfo() << ("Map data is invalid");
+		return;
 	}
 
 	double latitude = std::stod(sArray[0]), longitude = std::stod(sArray[1]), scale = std::stod(sArray[2]); // default scale is 100000.0
 	
-	Point centerPoint(longitude, latitude, SpatialReference::wgs84());
+	/*Point centerPoint(longitude, latitude, SpatialReference::wgs84());
 
-	return Viewpoint(centerPoint, scale);
+	return Viewpoint(centerPoint, scale);*/
+
+	camera->moveTo(QGV::GeoPos(latitude, longitude));
+	camera->scaleTo(scale);
 }
 
-void mapWidget::setMapCenter(Viewpoint center){
-	this->arcGISMapView->setViewpoint(center);
-}
-
-void mapWidget::setupMapFromMmpk(){
+/*void mapWidget::setupMapFromMmpk(){
 	QString mmpkPath = QDir::currentPath() + "/map.mmpk";
 
 	//qDebug() << "mmpk path" << mmpkPath;

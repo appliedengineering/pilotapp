@@ -9,6 +9,7 @@
 #include <QtNetwork/QNetworkDiskCache>
 #include <QGeoView/QGVMap.h>
 #include <QGeoView/QGVMapQGView.h>
+#include <QGeoView/QGVCamera.h>
 #include <QGeoView/QGVLayerGoogle.h>
 
 class mapWidget : public QWidget{
@@ -30,10 +31,10 @@ private:
     double boatLon = 0;
 
     void setupMapView();
+    void setDefaultMapCamera();
 
-    /*QString readMapFile();
-    Esri::ArcGISRuntime::Viewpoint parseMapData(QString raw);
-    void setMapCenter(Esri::ArcGISRuntime::Viewpoint center); */
+    QString readMapFile();
+    void parseMapData(QString raw, QGVCameraActions* camera);
 
     /*void setupMapFromMmpk();
 
