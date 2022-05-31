@@ -39,6 +39,7 @@ public:
 	static std::string createPaddingString(int n);
 	static double roundDouble(double a, int places);
 	static QIcon setIconColor(QIcon ic, QColor color, QColor current = Qt::black);
+	//static void setPixmapColor(QPixmap* m, QColor color, QColor current = Qt::black);
 };
 
 #endif // !UTILITIES_H

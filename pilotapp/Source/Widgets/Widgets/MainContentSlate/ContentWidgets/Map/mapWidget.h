@@ -33,6 +33,8 @@ private:
     const int boatMarkerSize = 15;
     QGVImage* boatMarker = nullptr;
 
+    const int buoyMarkerSize = 15;
+
     QNetworkAccessManager* mapNet = nullptr;
 
     const QString mapCachePath = "mapCache";
@@ -48,6 +50,7 @@ private:
     void setupMapView();
     void setupMapWidgets();
     void setupBoatMarker();
+    void setupBuoyMarkers();
     void setDefaultMapCamera();
     void setBoatMapCamera();
 
@@ -59,8 +62,6 @@ private:
 
     QString readMapFile();
     void parseMapData(QString raw, QGVCameraActions* camera);
-
-    void loadBuoys();
 
     std::vector<std::pair<double, double>> loadBuoyCoordinates();
 

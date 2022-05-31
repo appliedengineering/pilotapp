@@ -108,3 +108,10 @@ QIcon utilities::setIconColor(QIcon ic, QColor color, QColor current){
 
 	return QIcon(m);
 }
+
+/*void utilities::setPixmapColor(QPixmap* m, QColor color, QColor current){
+	QBitmap mask = m->createMaskFromColor(current, Qt::MaskOutColor);
+
+	m->fill(color);
+	m->setMask(mask);
+}*/

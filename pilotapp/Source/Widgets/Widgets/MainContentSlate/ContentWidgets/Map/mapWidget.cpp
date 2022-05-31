@@ -83,6 +83,10 @@ void mapWidget::setupMapView(){
 
 	//
 
+	setupBuoyMarkers();
+
+	//
+
 	setDefaultMapCamera();
 }
 
@@ -117,11 +121,23 @@ void mapWidget::setupBoatMarker(){
 	boatMarker = new QGVImage();
 	boatMarker->setGeometry(QGV::GeoPos(boatLat, boatLon), QSize(boatMarkerSize, boatMarkerSize));
 
-	QImage marker; 
+	QPixmap marker;
 	marker.load(":/Assets/Icons/mapmarker.png");
-	boatMarker->loadImage(marker);
+	boatMarker->loadImage(marker.toImage());
 
 	mapView->addItem(boatMarker);
+}
+
+void mapWidget::setupBuoyMarkers(){
+
+	std::vector<std::pair<double, double>> c = loadBuoyCoordinates();
+
+	for (auto i : c){
+		/*GVImage* b = new QGVImage();
+		b->setGeometry(QGV::GeoPos(i.first, i.second), QSize(buoyMarkerSize, buoyMarkerSize));*/
+
+		
+	}
 }
 
 void mapWidget::setDefaultMapCamera(){
