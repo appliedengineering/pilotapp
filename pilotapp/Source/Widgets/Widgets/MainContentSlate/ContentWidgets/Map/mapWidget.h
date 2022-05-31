@@ -5,6 +5,8 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QString>
+#include <QResizeEvent>
+
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkDiskCache>
 #include <QGeoView/QGVMap.h>
@@ -24,6 +26,7 @@ private:
     QGVMap* mapView = nullptr;
     QGVLayer* mapLayer = nullptr;
     QGVWidgetZoom* mapViewZoomWidget = nullptr;
+    QToolButton* mapCenterButton = nullptr;
 
     QNetworkAccessManager* mapNet = nullptr;
 
@@ -34,6 +37,8 @@ private:
     double boatLon = 0;
 
     //
+
+    void resizeEvent(QResizeEvent*);
 
     void setupMapView();
     void setupMapWidgets();

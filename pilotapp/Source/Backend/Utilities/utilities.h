@@ -7,6 +7,8 @@
 #include <QRegion>
 #include <QBitmap>
 #include <QPainter>
+#include <QPixmap>
+#include <QIcon>
 #include <vector>
 #include <string>
 #include <math.h>
@@ -35,8 +37,8 @@ public:
 	static void setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalColor c, bool shouldNotAutoFillBackground = false);
 	static void setWidgetRoundedCorner(QWidget* w, int r, std::vector<corners> noRoundCorner = {});
 	static std::string createPaddingString(int n);
-
 	static double roundDouble(double a, int places);
+	static QIcon setIconColor(QIcon ic, QColor color, QColor current = Qt::black);
 };
 
 #endif // !UTILITIES_H

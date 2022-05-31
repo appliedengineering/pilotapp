@@ -76,9 +76,9 @@ private:
 
 	void renderBatteryWidget();
 
-	void handleMotorButton();
-
 	void resizeEvent(QResizeEvent*);
+
+	void handleMotorButton();
 
 public:
 	static const float widthRatio; // 0.45

@@ -97,3 +97,14 @@ double utilities::roundDouble(double a, int places){
 	int p = pow(10, places);
 	return ((double)(round(a * p)) / p);
 }
+
+// https://stackoverflow.com/a/38369468/
+QIcon utilities::setIconColor(QIcon ic, QColor color, QColor current){
+	QPixmap m = ic.pixmap(ic.availableSizes().first());
+	QBitmap mask = m.createMaskFromColor(current, Qt::MaskOutColor);
+
+	m.fill(color);
+	m.setMask(mask);
+
+	return QIcon(m);
+}

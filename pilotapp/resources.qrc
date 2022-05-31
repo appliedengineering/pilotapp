@@ -11,6 +11,7 @@
     <file>Assets/Icons/screen.png</file>
     <file>Assets/Icons/sound.png</file>
     <file>Assets/Icons/telemetry.png</file>
+    <file>Assets/Icons/mapcenter.png</file>
     <file>Assets/Model/slantedboat.png</file>
     <file>Assets/Model/topdownboat.png</file>
     <file>Source/style.qss</file>

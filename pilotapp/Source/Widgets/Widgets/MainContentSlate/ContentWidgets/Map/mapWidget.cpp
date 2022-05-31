@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QFile>
 #include <QDebug>
+#include <QToolButton>
 #include <vector>
 #include <sstream>
 #include <string>
@@ -32,6 +33,16 @@ mapWidget::mapWidget(QWidget* parent){
 
 mapWidget::~mapWidget(){
 }
+
+void mapWidget::resizeEvent(QResizeEvent*){
+	//qInfo() << "resize -> " << this->size();
+	const int mapCenterButtonSize = this->width() / 15;
+	const int mapCenterButtonIconPadding = mapCenterButtonSize / 5;
+	mapCenterButton->setGeometry(mapCenterButton->x(), mapCenterButton->y(), mapCenterButtonSize, mapCenterButtonSize);
+	mapCenterButton->setIconSize(QSize(mapCenterButtonSize - 2*mapCenterButtonIconPadding, mapCenterButtonSize - 2*mapCenterButtonIconPadding));
+}
+
+//
 
 void mapWidget::setupMapView(){
 
@@ -71,25 +82,31 @@ void mapWidget::setupMapView(){
 	setDefaultMapCamera();
 }
 
-//
-
-void mapWidget::updateBoatLocation(double lat, double lon){
-	boatLat = lat;
-	boatLon = lon;
-	//qInfo() << "update boat location - " << lat << " " << lon;
-	//renderGraphics(arcGISOverlay, true);
-}
-
-//
-
 void mapWidget::setupMapWidgets(){
+
+	const int mapWidgetPadding = 10;
+	
+	//
+
 	mapViewZoomWidget = new QGVWidgetZoom();
 	mapViewZoomWidget->setMap(mapView);
-	mapViewZoomWidget->setAnchor(QPoint(10, 10), {Qt::RightEdge, Qt::TopEdge});
+	mapViewZoomWidget->setAnchor(QPoint(mapWidgetPadding, mapWidgetPadding), {Qt::RightEdge, Qt::TopEdge});
 	mapViewZoomWidget->setOrientation(Qt::Vertical);
 	
-	utilities::setPaletteColor(mapViewZoomWidget->plus(), QPalette::Button, Qt::white);
-	utilities::setPaletteColor(mapViewZoomWidget->minus(), QPalette::Button, Qt::white);
+	mapViewZoomWidget->plus()->setIcon(utilities::setIconColor(mapViewZoomWidget->plus()->icon(), Qt::white, Qt::blue));
+	mapViewZoomWidget->minus()->setIcon(utilities::setIconColor(mapViewZoomWidget->minus()->icon(), Qt::white, Qt::blue));
+	//utilities::setPaletteColor(mapViewZoomWidget->plus(), QPalette::Button, Qt::white);
+	//utilities::setPaletteColor(mapViewZoomWidget->minus(), QPalette::Button, Qt::white);
+
+	//
+
+	mapCenterButton = new QToolButton(this);
+	mapCenterButton->setGeometry(mapWidgetPadding, mapWidgetPadding, 0, 0); // size will be set later
+	utilities::setPaletteColor(mapCenterButton, QPalette::Button, Qt::transparent);
+	
+	mapCenterButton->setIcon(utilities::setIconColor(QIcon(":/Assets/Icons/mapcenter.png"), Qt::white));
+
+	connect(mapCenterButton, &QPushButton::released, this, &mapWidget::setDefaultMapCamera);
 }
 
 void mapWidget::setDefaultMapCamera(){
@@ -108,8 +125,20 @@ void mapWidget::setDefaultMapCamera(){
 		parseMapData(mapFileRaw, &camera);
 	}
 	
-	mapView->cameraTo(camera);
+	mapView->cameraTo(camera, true);
 }
+
+//
+
+
+void mapWidget::updateBoatLocation(double lat, double lon){
+	boatLat = lat;
+	boatLon = lon;
+	qInfo() << "update boat location - " << lat << " " << lon;
+	//renderGraphics(arcGISOverlay, true);
+}
+
+//
 
 QString mapWidget::readMapFile(){
 	QFile mapFile("navcenter.txt");
