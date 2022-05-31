@@ -133,10 +133,14 @@ void mapWidget::setupBuoyMarkers(){
 	std::vector<std::pair<double, double>> c = loadBuoyCoordinates();
 
 	for (auto i : c){
-		/*GVImage* b = new QGVImage();
-		b->setGeometry(QGV::GeoPos(i.first, i.second), QSize(buoyMarkerSize, buoyMarkerSize));*/
+		QGVImage* b = new QGVImage();
+		b->setGeometry(QGV::GeoPos(i.first, i.second), QSize(buoyMarkerSize, buoyMarkerSize));
 
-		
+		QPixmap marker;
+		marker.load(":/Assets/Icons/buoymarker.png");
+		b->loadImage(marker.toImage());
+
+		mapView->addItem(b);
 	}
 }
 

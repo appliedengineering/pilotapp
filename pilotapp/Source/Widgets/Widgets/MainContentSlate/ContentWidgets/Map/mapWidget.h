@@ -30,10 +30,10 @@ private:
     QToolButton* mapCenterButton = nullptr;
     bool shouldCenterBoat = true;
 
-    const int boatMarkerSize = 15;
+    const int boatMarkerSize = 12;
     QGVImage* boatMarker = nullptr;
 
-    const int buoyMarkerSize = 15;
+    const int buoyMarkerSize = 5;
 
     QNetworkAccessManager* mapNet = nullptr;
 
