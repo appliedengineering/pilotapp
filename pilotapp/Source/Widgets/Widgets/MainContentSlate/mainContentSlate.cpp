@@ -7,7 +7,7 @@
 #include "ContentWidgets/Screen/screenWidget.h"
 #include "ContentWidgets/Settings/settingsWidget.h"
 #include "ContentWidgets/Telemetry/telemetryWidget.h"
-#include "ContentWidgets/Voice/voiceWidget.h"
+#include "ContentWidgets/Map/mapSettingsWidget.h"
 
 mainContentSlateWidget::mainContentSlateWidget(QWidget* parent) {
 
@@ -53,7 +53,7 @@ void mainContentSlateWidget::createContentWidgetForIndex(int index){
 	switch (index)
 	{
 	case 1:
-		contentWidget = new voiceWidget(this);
+		contentWidget = new mapSettingsWidget(this);
 		break;
 
 	case 2:

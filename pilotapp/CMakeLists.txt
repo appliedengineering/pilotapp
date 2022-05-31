@@ -149,8 +149,8 @@ else()
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Settings/settingsWidget.h"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Telemetry/telemetryWidget.cpp"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Telemetry/telemetryWidget.h"
-    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Voice/voiceWidget.cpp"
-    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Voice/voiceWidget.h"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapSettingsWidget.cpp"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapSettingsWidget.h"
     "resources.qrc")
 
  # add_custom_command( # copies style.qss to bin folder

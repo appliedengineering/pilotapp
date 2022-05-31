@@ -1,12 +1,14 @@
-#include "telemetryWidget.h"
+#include "mapSettingsWidget.h"
 
 #include "../../../../../Backend/Utilities/utilities.h"
 
-telemetryWidget::telemetryWidget(QWidget* parent){
+mapSettingsWidget::mapSettingsWidget(QWidget* parent){
     this->widgetType = fullscreen;
     utilities::setPaletteColor(this, QPalette::Background, Qt::black);
 }
 
-telemetryWidget::~telemetryWidget(){
+mapSettingsWidget::~mapSettingsWidget(){
 
 }
+
+//

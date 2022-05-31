@@ -23,9 +23,9 @@ private:
 	homePage* home;
 	QHBoxLayout* hLayout;
 
-	// home, audio, display, battery/solar (electronics), telemetry, settings
+	// home, map, display, battery/solar (electronics), telemetry, settings
 	QPushButton* toolbarButtons[toolbarButtonSize]; 
-	const QString toolBarButtonIconNames[toolbarButtonSize] = {"home.png", "sound.png", "screen.png", "electronics.png", "telemetry.png", "settings.png"};
+	const QString toolBarButtonIconNames[toolbarButtonSize] = {"home.png", "map.png", "screen.png", "electronics.png", "telemetry.png", "settings.png"};
 
 	void setupButtons();
 
