@@ -38,7 +38,6 @@ private:
     const QString mapCachePath = "mapCache";
     QNetworkDiskCache* mapCache = nullptr;
 
-    double boatMapScale = 1.0;
     double boatLat = 0;
     double boatLon = 0;
 
@@ -61,12 +60,15 @@ private:
     QString readMapFile();
     void parseMapData(QString raw, QGVCameraActions* camera);
 
+    void loadBuoys();
+
+    std::vector<std::pair<double, double>> loadBuoyCoordinates();
+
     /*void setupMapFromMmpk();
 
     void renderGraphics(Esri::ArcGISRuntime::GraphicsOverlay* overlay, bool shouldOnlyRenderBoat = false);
     Esri::ArcGISRuntime::Graphic* drawPoint(Esri::ArcGISRuntime::GraphicsOverlay* overlay, double lat, double lon, QColor pointColor = Qt::blue, QColor outlineColor = Qt::white);
-
-    std::vector<std::pair<double, double>> loadBuoyCoordinates();*/
+    */
 
 public:
     mapWidget(QWidget* parent = nullptr);

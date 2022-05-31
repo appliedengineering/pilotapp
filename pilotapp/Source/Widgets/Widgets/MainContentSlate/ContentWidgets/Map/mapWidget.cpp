@@ -147,7 +147,7 @@ void mapWidget::setBoatMapCamera(){
 	QGVCameraActions camera(mapView);
 
 	camera.moveTo(QGV::GeoPos(boatLat, boatLon));
-	camera.scaleTo(boatMapScale);
+	camera.scaleTo(mapView->getCamera().scale()); // keep same scale
 
 	mapView->cameraTo(camera);
 }
@@ -225,7 +225,35 @@ void mapWidget::parseMapData(QString raw, QGVCameraActions* camera){
 	return Viewpoint(centerPoint, scale);*/
 
 	camera->moveTo(QGV::GeoPos(latitude, longitude));
-	camera->scaleTo(boatMapScale = scale);
+	camera->scaleTo(scale);
+}
+
+std::vector<std::pair<double, double>> mapWidget::loadBuoyCoordinates(){
+	std::ifstream coordinateFile("buoycoords.txt");
+
+	std::vector<std::pair<double, double>> c;
+
+	if (!coordinateFile.is_open()){
+		qInfo() << "No buoy coordinate file";
+		return c;
+	}
+
+	std::string fileLine;
+	while (std::getline(coordinateFile, fileLine)){
+		if (fileLine.empty())
+			continue;
+		
+		std::istringstream iss(fileLine);
+		double x, y;
+		if (!(iss >> x >> y)){
+			qDebug() << "error parsing line " << QString::fromStdString(fileLine) << " in buoycoords.txt"; 
+			continue;
+		}
+
+		c.push_back({x, y});
+	}
+
+	return c;
 }
 
 /*void mapWidget::setupMapFromMmpk(){
@@ -299,30 +327,4 @@ Esri::ArcGISRuntime::Graphic* mapWidget::drawPoint(Esri::ArcGISRuntime::Graphics
 	return point;
 }
 
-std::vector<std::pair<double, double>> mapWidget::loadBuoyCoordinates(){
-	std::ifstream coordinateFile("buoycoords.txt");
-
-	std::vector<std::pair<double, double>> c;
-
-	if (!coordinateFile.is_open()){
-		qInfo() << "No buoy coordinate file";
-		return c;
-	}
-
-	std::string fileLine;
-	while (std::getline(coordinateFile, fileLine)){
-		if (fileLine.empty())
-			continue;
-		
-		std::istringstream iss(fileLine);
-		double x, y;
-		if (!(iss >> x >> y)){
-			qDebug() << "error parsing line " << QString::fromStdString(fileLine) << " in buoycoords.txt"; 
-			continue;
-		}
-
-		c.push_back({x, y});
-	}
-
-	return c;
-}*/
+*/
