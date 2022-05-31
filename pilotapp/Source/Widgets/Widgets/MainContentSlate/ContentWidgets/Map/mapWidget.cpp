@@ -110,7 +110,7 @@ void mapWidget::setupMapWidgets(){
 	
 	mapCenterButton->setIcon(utilities::setIconColor(QIcon(":/Assets/Icons/mapcenter.png"), Qt::white));
 
-	connect(mapCenterButton, &QPushButton::released, this, &mapWidget::centerMap);
+	connect(mapCenterButton, &QPushButton::released, this, &mapWidget::handleCenterMapButton);
 }
 
 void mapWidget::setupBoatMarker(){
@@ -152,12 +152,24 @@ void mapWidget::setBoatMapCamera(){
 	mapView->cameraTo(camera);
 }
 
+//
+
+void mapWidget::handleCenterMapButton(){
+	shouldCenterBoat = !(shouldCenterBoat && isBoatDataValid());
+	centerMap();
+}
+
 void mapWidget::centerMap(){
-	(boatLat == 0 && boatLon == 0) ? setDefaultMapCamera() : setBoatMapCamera();
+	(shouldCenterBoat && isBoatDataValid()) ? setBoatMapCamera() : setDefaultMapCamera(); 
+	//(!shouldCenterBoat || (boatLat == 0 && boatLon == 0)) ? setDefaultMapCamera() : setBoatMapCamera();
 }
 
 void mapWidget::updateBoatMarker(){
 	boatMarker->setGeometry(QGV::GeoPos(boatLat, boatLon), QSize(boatMarkerSize, boatMarkerSize));
+}
+
+bool mapWidget::isBoatDataValid(){
+	return !(boatLat == 0 && boatLon == 0);
 }
 
 //
@@ -169,6 +181,9 @@ void mapWidget::updateBoatLocation(double lat, double lon){
 	//qInfo() << "update boat location - " << lat << " " << lon;
 	//renderGraphics(arcGISOverlay, true);
 	updateBoatMarker();
+	if (shouldCenterBoat){
+		centerMap();
+	}
 }
 
 //

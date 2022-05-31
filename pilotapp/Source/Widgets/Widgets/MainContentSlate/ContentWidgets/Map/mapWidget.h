@@ -28,6 +28,7 @@ private:
     QGVLayer* mapLayer = nullptr;
     QGVWidgetZoom* mapViewZoomWidget = nullptr;
     QToolButton* mapCenterButton = nullptr;
+    bool shouldCenterBoat = true;
 
     const int boatMarkerSize = 15;
     QGVImage* boatMarker = nullptr;
@@ -51,8 +52,11 @@ private:
     void setDefaultMapCamera();
     void setBoatMapCamera();
 
+    void handleCenterMapButton();
     void centerMap();
     void updateBoatMarker();
+
+    bool isBoatDataValid();
 
     QString readMapFile();
     void parseMapData(QString raw, QGVCameraActions* camera);
