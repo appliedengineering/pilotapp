@@ -13,6 +13,7 @@
 #include <QGeoView/QGVMapQGView.h>
 #include <QGeoView/QGVCamera.h>
 #include <QGeoView/QGVWidget.h>
+#include <QGeoView/QGVImage.h>
 #include <QGeoView/QGVLayerGoogle.h>
 #include <QGeoView/QGVWidgetZoom.h>
 
@@ -28,11 +29,15 @@ private:
     QGVWidgetZoom* mapViewZoomWidget = nullptr;
     QToolButton* mapCenterButton = nullptr;
 
+    const int boatMarkerSize = 15;
+    QGVImage* boatMarker = nullptr;
+
     QNetworkAccessManager* mapNet = nullptr;
 
     const QString mapCachePath = "mapCache";
     QNetworkDiskCache* mapCache = nullptr;
 
+    double boatMapScale = 1.0;
     double boatLat = 0;
     double boatLon = 0;
 
@@ -42,7 +47,12 @@ private:
 
     void setupMapView();
     void setupMapWidgets();
+    void setupBoatMarker();
     void setDefaultMapCamera();
+    void setBoatMapCamera();
+
+    void centerMap();
+    void updateBoatMarker();
 
     QString readMapFile();
     void parseMapData(QString raw, QGVCameraActions* camera);

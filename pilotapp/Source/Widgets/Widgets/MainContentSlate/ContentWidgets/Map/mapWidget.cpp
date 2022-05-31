@@ -79,6 +79,10 @@ void mapWidget::setupMapView(){
 
 	//
 
+	setupBoatMarker();
+
+	//
+
 	setDefaultMapCamera();
 }
 
@@ -106,7 +110,18 @@ void mapWidget::setupMapWidgets(){
 	
 	mapCenterButton->setIcon(utilities::setIconColor(QIcon(":/Assets/Icons/mapcenter.png"), Qt::white));
 
-	connect(mapCenterButton, &QPushButton::released, this, &mapWidget::setDefaultMapCamera);
+	connect(mapCenterButton, &QPushButton::released, this, &mapWidget::centerMap);
+}
+
+void mapWidget::setupBoatMarker(){
+	boatMarker = new QGVImage();
+	boatMarker->setGeometry(QGV::GeoPos(boatLat, boatLon), QSize(boatMarkerSize, boatMarkerSize));
+
+	QImage marker; 
+	marker.load(":/Assets/Icons/mapmarker.png");
+	boatMarker->loadImage(marker);
+
+	mapView->addItem(boatMarker);
 }
 
 void mapWidget::setDefaultMapCamera(){
@@ -128,14 +143,32 @@ void mapWidget::setDefaultMapCamera(){
 	mapView->cameraTo(camera, true);
 }
 
+void mapWidget::setBoatMapCamera(){
+	QGVCameraActions camera(mapView);
+
+	camera.moveTo(QGV::GeoPos(boatLat, boatLon));
+	camera.scaleTo(boatMapScale);
+
+	mapView->cameraTo(camera);
+}
+
+void mapWidget::centerMap(){
+	(boatLat == 0 && boatLon == 0) ? setDefaultMapCamera() : setBoatMapCamera();
+}
+
+void mapWidget::updateBoatMarker(){
+	boatMarker->setGeometry(QGV::GeoPos(boatLat, boatLon), QSize(boatMarkerSize, boatMarkerSize));
+}
+
 //
 
 
 void mapWidget::updateBoatLocation(double lat, double lon){
 	boatLat = lat;
 	boatLon = lon;
-	qInfo() << "update boat location - " << lat << " " << lon;
+	//qInfo() << "update boat location - " << lat << " " << lon;
 	//renderGraphics(arcGISOverlay, true);
+	updateBoatMarker();
 }
 
 //
@@ -177,7 +210,7 @@ void mapWidget::parseMapData(QString raw, QGVCameraActions* camera){
 	return Viewpoint(centerPoint, scale);*/
 
 	camera->moveTo(QGV::GeoPos(latitude, longitude));
-	camera->scaleTo(scale);
+	camera->scaleTo(boatMapScale = scale);
 }
 
 /*void mapWidget::setupMapFromMmpk(){
