@@ -260,7 +260,7 @@ std::vector<std::pair<double, double>> mapWidget::loadBuoyCoordinates(){
 
 	std::string fileLine;
 	while (std::getline(coordinateFile, fileLine)){
-		if (fileLine.empty())
+		if (fileLine.empty() || fileLine[0] == '#')
 			continue;
 		
 		std::istringstream iss(fileLine);
