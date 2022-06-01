@@ -64,7 +64,8 @@ void mapSettingsWidget::setupContent(){
 
     coordinateLabel = new QLabel(this);
 
-    coordinateLabel->setText("0.000000, 0.000000");
+    updateBoatLocation(boatKernel::getInstance()->getBoatLat(), boatKernel::getInstance()->getBoatLon());
+    //coordinateLabel->setText();
     utilities::setPaletteColor(coordinateLabel, QPalette::Foreground, Qt::white, true);
     //utilities::setPaletteColor(coordinateLabel, QPalette::Background, Qt::gray);
     coordinateLabel->setAlignment(Qt::AlignCenter);
@@ -96,6 +97,8 @@ void mapSettingsWidget::saveCurrentCoordinates(){
         QString data = QString::number(boatKernel::getInstance()->getBoatLat()) + "," + QString::number(boatKernel::getInstance()->getBoatLon()) + "\n";
         coordinatelog.write(timestamp.toUtf8());
         coordinatelog.write(data.toUtf8());
+
+        qDebug() << "Saved coordinate - " << data;
     }
 
     coordinatelog.close();

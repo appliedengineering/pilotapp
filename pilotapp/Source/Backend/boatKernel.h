@@ -13,7 +13,10 @@ private:
     static boatKernel* instance;
 
     bool isMotorEnabled = false;
+
+    bool boatOnSolar = false;
     int batteryPercentage = 0;
+    double batteryVoltage = 0, batteryCurrent = 0;
 
     double boatLon = 0, boatLat = 0;
 
@@ -30,6 +33,12 @@ public:
     void toggleMotor();
 
     bool getIsMotorEnabled();
+
+    int getBatteryPercentage();
+    double getBatteryVoltage();
+    double getBatteryCurrent();
+    bool getIsSolar();
+
     double getBoatLat();
     double getBoatLon();
 

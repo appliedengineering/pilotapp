@@ -33,7 +33,7 @@ void setupStyleSheet(QApplication* a){
     if (sheet.open(QIODevice::ReadOnly | QIODevice::Text)){
 
         //qInfo() << sheet.readAll();
-        qInfo() << "Loaded style sheet";
+        qDebug() << "Loaded style sheet";
 
         a->setStyleSheet(sheet.readAll());
     }
@@ -74,8 +74,6 @@ int main(int argc, char *argv[]){
 
     MainWindow w;
     w.show();
-
-
 
     return a.exec();
 }

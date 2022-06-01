@@ -39,22 +39,26 @@ std::string dataManager::packData(T& data){
 boatDataPack::boatDataPack(rawDataPack& raw){
     std::map<std::string, msgpack::type::variant> m = raw.getMap();
     //qInfo() << "before const";
+    try{
+        TP = m["TP"].as_uint64_t();
+        DP = m["DP"].as_uint64_t();
+        //CP = m["CP"].as_double();
+        BV = m["BV"].as_double();
+        //UV = m["UV"].as_bool();
+        SM = m["SM"].as_bool();
+        EN = m["EN"].as_bool();
+        BC = m["BC"].as_double();
 
-    TP = m["TP"].as_uint64_t();
-    DP = m["DP"].as_uint64_t();
-    //CP = m["CP"].as_double();
-    BV = m["BV"].as_double();
-    //UV = m["UV"].as_bool();
-    SM = m["SM"].as_bool();
-    EN = m["EN"].as_bool();
-    BC = m["BC"].as_double();
+        posLat = m["posLat"].as_double();
+        posLon = m["posLon"].as_double();
 
-    posLat = m["posLat"].as_double();
-    posLon = m["posLon"].as_double();
+        speed = m["speed"].as_double();
 
-    speed = m["speed"].as_double();
-
-    timeStamp = m["timeStamp"].as_double();
+        timeStamp = m["timeStamp"].as_double();
+    }
+    catch(std::exception& e){
+        qDebug() << e.what();
+    }
 
     //qInfo() << "after const";
 }

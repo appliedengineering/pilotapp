@@ -16,6 +16,12 @@ powerWidget::powerWidget(QWidget* parent){
 
     renderContent();
 
+    //
+
+    updateBatteryData(boatKernel::getInstance()->getBatteryVoltage(), boatKernel::getInstance()->getBatteryCurrent(), boatKernel::getInstance()->getIsSolar());
+
+    //
+
     connect(boatKernel::getInstance(), &boatKernel::batteryDataUpdateSignal, this, &powerWidget::updateBatteryData);
 }
 

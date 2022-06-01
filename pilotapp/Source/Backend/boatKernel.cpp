@@ -64,6 +64,22 @@ bool boatKernel::getIsMotorEnabled(){
     return isMotorEnabled;
 }
 
+int boatKernel::getBatteryPercentage(){
+    return batteryPercentage;
+}
+
+double boatKernel::getBatteryVoltage(){
+    return batteryVoltage;
+}
+
+double boatKernel::getBatteryCurrent(){
+    return batteryCurrent;
+}
+
+bool boatKernel::getIsSolar(){
+    return boatOnSolar;
+}
+
 double boatKernel::getBoatLat(){
     return boatLat;
 }
@@ -103,6 +119,10 @@ void boatKernel::updateBattery(double voltage, double current, bool isSolar){
         batteryPercentage = currentBatteryPercent;
         emit batteryPercentUpdateSignal(batteryPercentage);
     }
+
+    batteryVoltage = voltage;
+    batteryCurrent = current;
+    boatOnSolar = isSolar;
 
     emit batteryDataUpdateSignal(voltage, current, isSolar);
 }
