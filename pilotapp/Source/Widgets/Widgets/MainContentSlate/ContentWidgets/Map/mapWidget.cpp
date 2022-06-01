@@ -32,6 +32,7 @@ mapWidget::mapWidget(QWidget* parent){
 }
 
 mapWidget::~mapWidget(){
+	disconnect(boatKernel::getInstance(), &boatKernel::locationUpdateSignal, this, &mapWidget::updateBoatLocation);
 }
 
 void mapWidget::resizeEvent(QResizeEvent*){
