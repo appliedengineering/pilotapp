@@ -6,6 +6,8 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QFont>
+#include <QPushButton>
+#include <QFile>
 
 class mapSettingsWidget : public ContentWidget{
     Q_OBJECT
@@ -16,9 +18,14 @@ private:
     QLabel* titleLabel = nullptr;
     QLabel* coordinateLabel = nullptr;
 
+    QPushButton* saveCoordinateButton = nullptr;
+
     const int coordinateDecimalPrecision = 6;
 
+    const QString coordinateLogPath = "savedcoords.txt";
+
     void setupContent();
+    void saveCurrentCoordinates();
 
 public:
     mapSettingsWidget(QWidget* parent = nullptr);

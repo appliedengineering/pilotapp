@@ -64,6 +64,14 @@ bool boatKernel::getIsMotorEnabled(){
     return isMotorEnabled;
 }
 
+double boatKernel::getBoatLat(){
+    return boatLat;
+}
+
+double boatKernel::getBoatLon(){
+    return boatLon;
+}
+
 //
 
 void boatKernel::updateSpeedLabel(double speed){
@@ -100,6 +108,8 @@ void boatKernel::updateBattery(double voltage, double current, bool isSolar){
 }
 
 void boatKernel::updateLocation(double lat, double lon){
+    boatLat = lat;
+    boatLon = lon;
     emit locationUpdateSignal(lat, lon);
     //utilities::findMainWindow()->getHomePageWidget()->getMainContentSlateWidget()->getMapWidget()->updateBoatLocation(lat, lon);
 }

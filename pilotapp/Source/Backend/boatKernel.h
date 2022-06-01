@@ -15,6 +15,8 @@ private:
     bool isMotorEnabled = false;
     int batteryPercentage = 0;
 
+    double boatLon = 0, boatLat = 0;
+
     void updateSpeedLabel(double speed);
     void updateThrottle(int percent);
     void updateDuty(int percent);
@@ -28,6 +30,8 @@ public:
     void toggleMotor();
 
     bool getIsMotorEnabled();
+    double getBoatLat();
+    double getBoatLon();
 
 signals:
     void speedUpdateSignal(double speed);
