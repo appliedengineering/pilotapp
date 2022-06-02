@@ -48,7 +48,7 @@ void mapSettingsWidget::setupContent(){
 
     titleLabel = new QLabel(this);
 
-    titleLabel->setText("Boat\nCoordinate");
+    titleLabel->setText("Boat\nPosition");
     utilities::setPaletteColor(titleLabel, QPalette::Foreground, Qt::white, true);
     //utilities::setPaletteColor(titleLabel, QPalette::Background, Qt::gray);
     titleLabel->setAlignment(Qt::AlignCenter);
