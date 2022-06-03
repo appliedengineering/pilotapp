@@ -104,8 +104,8 @@ void mapWidget::setupMapWidgets(){
 	
 	mapViewZoomWidget->plus()->setIcon(utilities::setIconColor(mapViewZoomWidget->plus()->icon(), Qt::white, Qt::blue));
 	mapViewZoomWidget->minus()->setIcon(utilities::setIconColor(mapViewZoomWidget->minus()->icon(), Qt::white, Qt::blue));
-	//utilities::setPaletteColor(mapViewZoomWidget->plus(), QPalette::Button, Qt::white);
-	//utilities::setPaletteColor(mapViewZoomWidget->minus(), QPalette::Button, Qt::white);
+	utilities::setPaletteColor(mapViewZoomWidget->plus(), QPalette::Button, Qt::transparent);
+	utilities::setPaletteColor(mapViewZoomWidget->minus(), QPalette::Button, Qt::transparent);
 
 	//
 
