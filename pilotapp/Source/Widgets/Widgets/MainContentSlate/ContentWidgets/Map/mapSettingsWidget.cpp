@@ -82,7 +82,12 @@ void mapSettingsWidget::setupContent(){
 
     saveCoordinateButton->setText("Save");
     utilities::setPaletteColor(saveCoordinateButton, QPalette::Background, Qt::gray);
+    utilities::setPaletteColor(saveCoordinateButton, QPalette::ButtonText, Qt::white);
     //utilities::setPaletteColor(saveCoordinateButton, QPalette::Background, Qt::white);
+
+    QFont saveCoordinateButtonFont = saveCoordinateButton->font();
+    saveCoordinateButtonFont.setPixelSize(12);
+    saveCoordinateButton->setFont(saveCoordinateButtonFont);
 
     hBoxLayout->addWidget(saveCoordinateButton, sideContentStretchFactor);
 
