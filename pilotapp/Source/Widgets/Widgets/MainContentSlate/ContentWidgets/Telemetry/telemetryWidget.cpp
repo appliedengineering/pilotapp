@@ -10,3 +10,5 @@ telemetryWidget::telemetryWidget(QWidget* parent){
 telemetryWidget::~telemetryWidget(){
 
 }
+
+//

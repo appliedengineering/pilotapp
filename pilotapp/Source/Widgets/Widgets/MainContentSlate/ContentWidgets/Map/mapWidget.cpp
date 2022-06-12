@@ -37,10 +37,20 @@ mapWidget::~mapWidget(){
 
 void mapWidget::resizeEvent(QResizeEvent*){
 	//qInfo() << "resize -> " << this->size();
-	const int mapCenterButtonSize = this->width() / 15;
+	const int mapCenterButtonSize = this->width() / 13;
 	const int mapCenterButtonIconPadding = mapCenterButtonSize / 5;
 	mapCenterButton->setGeometry(mapCenterButton->x(), mapCenterButton->y(), mapCenterButtonSize, mapCenterButtonSize);
 	mapCenterButton->setIconSize(QSize(mapCenterButtonSize - 2*mapCenterButtonIconPadding, mapCenterButtonSize - 2*mapCenterButtonIconPadding));
+
+	//
+
+	const int mapZoomWidgetWidth = this->width() / 13;
+	const int mapZoomWidgetHeight = mapZoomWidgetWidth * 2;
+
+	mapViewZoomWidget->setFixedSize(mapZoomWidgetWidth, mapZoomWidgetHeight);
+	mapViewZoomWidget->plus()->setFixedSize(mapZoomWidgetWidth, mapZoomWidgetHeight / 2);
+	mapViewZoomWidget->minus()->setFixedSize(mapZoomWidgetWidth, mapZoomWidgetHeight / 2);
+
 }
 
 //
