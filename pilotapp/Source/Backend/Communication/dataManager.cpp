@@ -48,7 +48,12 @@ boatDataPack::boatDataPack(rawDataPack& raw){
         SM = m["SM"].as_bool();
         EN = m["EN"].as_bool();
         BC = m["BC"].as_double();
+    }
+    catch(std::exception& e){
+        qDebug() << "Motor Data Unpack Error - " << e.what();
+    }
 
+    try{
         posLat = m["posLat"].as_double();
         posLon = m["posLon"].as_double();
 
@@ -57,7 +62,7 @@ boatDataPack::boatDataPack(rawDataPack& raw){
         timeStamp = m["timeStamp"].as_double();
     }
     catch(std::exception& e){
-        qDebug() << e.what();
+        qDebug() << "Telemetry Data Unpack Error - " << e.what();
     }
 
     //qInfo() << "after const";
