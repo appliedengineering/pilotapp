@@ -212,7 +212,7 @@ void mapWidget::updateBoatLocation(double lat, double lon){
 	//qInfo() << "update boat location - " << lat << " " << lon;
 	//renderGraphics(arcGISOverlay, true);
 	updateBoatMarker();
-	if (shouldCenterBoat){
+	if (shouldCenterBoat && isBoatDataValid()){
 		centerMap();
 	}
 }
