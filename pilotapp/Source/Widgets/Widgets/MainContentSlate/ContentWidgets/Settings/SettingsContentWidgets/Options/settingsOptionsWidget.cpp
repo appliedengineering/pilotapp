@@ -5,7 +5,7 @@
 //
 
 settingsOptionsWidget::settingsOptionsWidget(QWidget* parent){
-    //utilities::setPaletteColor(this, QPalette::Background, Qt::gray);
+    //utilities::setPaletteColor(this, QPalette::Background, Qt::blue);
 
     //
 

@@ -17,14 +17,19 @@ private:
     QHBoxLayout* hBoxLayout = nullptr;
 
     QVBoxLayout* selectionVBoxLayout = nullptr;
+    const int selectionHorizontalPadding = 10;
+    const int selectionCount = 2;
+    const QString selectionTitles[2] = {"Options", "Logs"};
+
     QWidget* settingsContentWidget = nullptr;
 
     void setupLayout();
-    //void handleExit();
+    void renderSelectionContent();
 
     //
 
     void createSettingsContentWidgetForIndex(int index);
+    void handleSelectionButton(int index);
 
 public:
     settingsWidget(QWidget* parent = nullptr);

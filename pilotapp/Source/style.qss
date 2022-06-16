@@ -48,6 +48,19 @@ QPushButton#iconPushButton:pressed {
     outline: none;
 }
 
+QPushButton#selectionPushButton {
+    border: none;
+    border-radius: 0px;
+    outline: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+QPushButton#selectionPushButton:pressed {
+    border: none;
+    outline: none;
+}
+
 QProgressBar {
     border: 1px solid grey;
     border-radius: 3px;

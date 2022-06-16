@@ -1,5 +1,7 @@
 #include "settingsWidget.h"
 
+#include <QFrame>
+#include <QPushButton>
 #include "../../../../../Backend/Utilities/utilities.h"
 
 #include "SettingsContentWidgets/Options/settingsOptionsWidget.h"
@@ -14,6 +16,7 @@ settingsWidget::settingsWidget(QWidget* parent){
 
     setupLayout();
     //setupContent();
+    renderSelectionContent();
 }
 
 settingsWidget::~settingsWidget(){
@@ -44,12 +47,60 @@ void settingsWidget::setupLayout(){
 
     //
 
+    const int dividerLineStretchFactor = 0;
+
+    QFrame* dividerLine = new QFrame(this);
+
+    //utilities::setPaletteColor(dividerWidget, QPalette::Background, Qt::white);
+    dividerLine->setContentsMargins(0, 0, 0, 0);
+    dividerLine->setFrameShape(QFrame::VLine);
+    dividerLine->setFrameShadow(QFrame::Sunken);
+
+    hBoxLayout->addWidget(dividerLine, dividerLineStretchFactor);
+
+    //
+
     createSettingsContentWidgetForIndex(0); // default index
 
-    hBoxLayout->addWidget(settingsContentWidget, 100 - selectionVBoxLayoutStretchFactor);
+    hBoxLayout->addWidget(settingsContentWidget, 100 - selectionVBoxLayoutStretchFactor - dividerLineStretchFactor);
     settingsContentWidget->show();
 
 }
+
+void settingsWidget::renderSelectionContent(){
+
+    for (int i = 0; i < selectionCount; i++){
+        
+        QPushButton* selectionButton = new QPushButton(this);
+        selectionButton->setFixedHeight(50);
+        selectionButton->setObjectName("selectionPushButton");
+        
+        selectionButton->setText(selectionTitles[i]);
+
+        QFont selectionButtonFont = selectionButton->font();
+        selectionButtonFont.setPixelSize(12);
+        selectionButton->setFont(selectionButtonFont);
+
+        utilities::setPaletteColor(selectionButton, QPalette::ButtonText, Qt::white);
+
+        selectionVBoxLayout->addWidget(selectionButton);
+
+        connect(selectionButton, &QPushButton::released, this, [=]{ handleSelectionButton(i); });
+
+        //
+
+        /*QFrame* dividerLine = new QFrame(this);
+
+        dividerLine->setContentsMargins(0, 0, 0, 0);
+        dividerLine->setFrameShape(QFrame::VLine);
+        dividerLine->setFrameShadow(QFrame::Sunken);
+
+        selectionVBoxLayout->addWidget(dividerLine);*/
+
+    }
+}
+
+//
 
 void settingsWidget::createSettingsContentWidgetForIndex(int index){
     switch (index){
@@ -66,27 +117,6 @@ void settingsWidget::createSettingsContentWidgetForIndex(int index){
     settingsContentWidget->setParent(this);
 }
 
-/*void settingsWidget::setupContent(){
-
-    exitButton = new QPushButton(this);
-
-    exitButton->setText("Close App");
-    //exitButton->setContentsMargins(10, 0, 10, 0);
-    
-    QFont exitButtonFont = exitButton->font();
-    exitButtonFont.setPixelSize(12);
-    exitButton->setFont(exitButtonFont);
-
-    utilities::setPaletteColor(exitButton, QPalette::ButtonText, Qt::white);
-
-    //vBoxLayout->setAlignment(Qt::AlignLeft);
-    hBoxLayout->addWidget(exitButton, 0, Qt::AlignHCenter);
-
-    connect(exitButton, &QPushButton::released, this, &settingsWidget::handleExit);
-
-    //
-}*/
-
-/*void settingsWidget::handleExit(){
-    utilities::findMainWindow()->closeApplication();
-}*/
+void settingsWidget::handleSelectionButton(int index){
+    qDebug() << index;
+}
