@@ -112,5 +112,5 @@ void mapSettingsWidget::saveCurrentCoordinates(){
 //
 
 void mapSettingsWidget::updateBoatLocation(double lat, double lon){
-    coordinateLabel->setText(QString::number(utilities::roundDouble(lat, coordinateDecimalPrecision)) + ", " + QString::number(utilities::roundDouble(lon, coordinateDecimalPrecision)));
+    coordinateLabel->setText("(" + QString::number(utilities::roundDouble(lat, coordinateDecimalPrecision)) + ", " + QString::number(utilities::roundDouble(lon, coordinateDecimalPrecision)) + ")");
 }

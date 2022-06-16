@@ -11,15 +11,20 @@ class settingsWidget : public ContentWidget{
     Q_OBJECT
 
 private:
-    const int horizontalPadding = 15;
-    const int verticalPadding = 10;
-    QVBoxLayout* vBoxLayout;
+    /*const int horizontalPadding = 15;
+    const int verticalPadding = 10;*/
 
-    QPushButton* exitButton;
+    QHBoxLayout* hBoxLayout = nullptr;
+
+    QVBoxLayout* selectionVBoxLayout = nullptr;
+    QWidget* settingsContentWidget = nullptr;
 
     void setupLayout();
-    void setupContent();
-    void handleExit();
+    //void handleExit();
+
+    //
+
+    void createSettingsContentWidgetForIndex(int index);
 
 public:
     settingsWidget(QWidget* parent = nullptr);

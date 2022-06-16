@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QString>
 #include <string>
+#include <deque>
 
 class logManager : public QObject{
     Q_OBJECT
@@ -16,12 +17,25 @@ private:
 
     const QString logPath = "logs.txt";
 
-    void clearLogFile();
-    void appendToLogFile(QString s); // appends onto preexisting logs
-    void writeToLogFile(QString s); // removes preexisting logs
+    int logCacheMaxSize = 100;
+    std::deque<std::string> logCache;
+
+    //
+
+    void writeToLogFile(bool shouldReplaceContent);
+    void writeToLogs(std::string s);
+    void resizeLogs();
+
+    std::string getCurrentTimestamp();
 
 public:
     logManager* getInstance();
+
+    void clearLogs();
+    const std::deque<std::string>& getLogCache();
+
+    int getMaxLogSize();
+    void setMaxLogSize(int s);
 
     // info logs
     void i(QString s);
@@ -35,7 +49,6 @@ public:
     void e(QString s);
     void e(std::string s);
 
-    void clearLogs();
 };
 
 #endif

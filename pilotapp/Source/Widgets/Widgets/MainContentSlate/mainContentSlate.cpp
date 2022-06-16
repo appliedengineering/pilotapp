@@ -77,7 +77,8 @@ void mainContentSlateWidget::createContentWidgetForIndex(int index){
 		break;
 	}
 
-	contentWidget->setParent(this);
+	if (index <= 5) // nullptr crashes
+		contentWidget->setParent(this);
 }
 
 void mainContentSlateWidget::showContentWidget(int index){

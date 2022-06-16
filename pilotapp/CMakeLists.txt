@@ -149,6 +149,8 @@ else()
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Screen/screenWidget.h"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Settings/settingsWidget.cpp"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Settings/settingsWidget.h"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Settings/SettingsContentWidgets/Options/settingsOptionsWidget.h"
+    "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Settings/SettingsContentWidgets/Options/settingsOptionsWidget.cpp"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Telemetry/telemetryWidget.cpp"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Telemetry/telemetryWidget.h"
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapSettingsWidget.cpp"
