@@ -17,6 +17,7 @@ private:
     QHBoxLayout* hBoxLayout = nullptr;
 
     QVBoxLayout* selectionVBoxLayout = nullptr;
+    const int selectionVBoxLayoutStretchFactor = 25;
     const int selectionHorizontalPadding = 10;
     const int selectionCount = 2;
     const QString selectionTitles[2] = {"Options", "Logs"};
@@ -28,7 +29,9 @@ private:
 
     //
 
+    void renderSettingsContentWidget(int index);
     void createSettingsContentWidgetForIndex(int index);
+    void removePreviousSettingsContentWidget();
     void handleSelectionButton(int index);
 
 public:

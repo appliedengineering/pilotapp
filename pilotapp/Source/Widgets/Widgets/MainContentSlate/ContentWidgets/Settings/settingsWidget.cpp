@@ -36,18 +36,17 @@ void settingsWidget::setupLayout(){
 
     //
 
-    const int selectionVBoxLayoutStretchFactor = 25;
-
     selectionVBoxLayout = new QVBoxLayout();
     
     selectionVBoxLayout->setContentsMargins(0, 0, 0, 0);
     selectionVBoxLayout->setSpacing(0);
+    selectionVBoxLayout->setAlignment(Qt::AlignTop);
 
     hBoxLayout->addLayout(selectionVBoxLayout, selectionVBoxLayoutStretchFactor);
 
     //
 
-    const int dividerLineStretchFactor = 0;
+    //const int dividerLineStretchFactor = 0;
 
     QFrame* dividerLine = new QFrame(this);
 
@@ -56,15 +55,11 @@ void settingsWidget::setupLayout(){
     dividerLine->setFrameShape(QFrame::VLine);
     dividerLine->setFrameShadow(QFrame::Sunken);
 
-    hBoxLayout->addWidget(dividerLine, dividerLineStretchFactor);
+    hBoxLayout->addWidget(dividerLine);
 
     //
 
-    createSettingsContentWidgetForIndex(0); // default index
-
-    hBoxLayout->addWidget(settingsContentWidget, 100 - selectionVBoxLayoutStretchFactor - dividerLineStretchFactor);
-    settingsContentWidget->show();
-
+    renderSettingsContentWidget(0);
 }
 
 void settingsWidget::renderSelectionContent(){
@@ -72,13 +67,14 @@ void settingsWidget::renderSelectionContent(){
     for (int i = 0; i < selectionCount; i++){
         
         QPushButton* selectionButton = new QPushButton(this);
-        selectionButton->setFixedHeight(50);
         selectionButton->setObjectName("selectionPushButton");
+        selectionButton->setMinimumHeight(50);
+        selectionButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::MinimumExpanding);
         
         selectionButton->setText(selectionTitles[i]);
 
         QFont selectionButtonFont = selectionButton->font();
-        selectionButtonFont.setPixelSize(12);
+        selectionButtonFont.setPixelSize(15);
         selectionButton->setFont(selectionButtonFont);
 
         utilities::setPaletteColor(selectionButton, QPalette::ButtonText, Qt::white);
@@ -89,18 +85,29 @@ void settingsWidget::renderSelectionContent(){
 
         //
 
-        /*QFrame* dividerLine = new QFrame(this);
+        if (i + 1 < selectionCount){
+            QFrame* dividerLine = new QFrame(this);
 
-        dividerLine->setContentsMargins(0, 0, 0, 0);
-        dividerLine->setFrameShape(QFrame::VLine);
-        dividerLine->setFrameShadow(QFrame::Sunken);
+            //dividerLine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-        selectionVBoxLayout->addWidget(dividerLine);*/
+            dividerLine->setContentsMargins(selectionHorizontalPadding, 0, selectionHorizontalPadding, 0);
+            dividerLine->setFrameShape(QFrame::HLine);
+            dividerLine->setFrameShadow(QFrame::Sunken);
+
+            selectionVBoxLayout->addWidget(dividerLine);
+        }
 
     }
 }
 
 //
+
+void settingsWidget::renderSettingsContentWidget(int index){
+    createSettingsContentWidgetForIndex(index);
+
+    hBoxLayout->addWidget(settingsContentWidget, 100 - selectionVBoxLayoutStretchFactor);
+    settingsContentWidget->show();
+}
 
 void settingsWidget::createSettingsContentWidgetForIndex(int index){
     switch (index){
@@ -117,6 +124,15 @@ void settingsWidget::createSettingsContentWidgetForIndex(int index){
     settingsContentWidget->setParent(this);
 }
 
+void settingsWidget::removePreviousSettingsContentWidget(){
+    settingsContentWidget->hide();
+
+    delete settingsContentWidget;
+
+    settingsContentWidget = nullptr;
+}
+
 void settingsWidget::handleSelectionButton(int index){
-    qDebug() << index;
+    removePreviousSettingsContentWidget();
+    renderSettingsContentWidget(index);
 }
