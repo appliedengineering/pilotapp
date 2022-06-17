@@ -118,22 +118,28 @@ QLabel* settingsLogsWidget::renderLogEntry(std::string entry){
 
 void settingsLogsWidget::renderOptions(){
     
-    optionsLayout = new QHBoxLayout(optionsWidget);
+    optionsLayout = new QVBoxLayout(optionsWidget);
 
-    optionsLayout->setContentsMargins(optionsLayoutHoriziontalPadding, 0, optionsLayoutHoriziontalPadding, 0);
-    optionsLayout->setSpacing(optionsLayoutHoriziontalPadding);
+    optionsLayout->setContentsMargins(0, 0, 0, 0);
+    optionsLayout->setSpacing(0);
 
     //
 
-    stopCheckBox = new QCheckBox(optionsWidget);
+    optionsTopLayout = new QHBoxLayout();
 
-    stopCheckBox->setText("Stop");
+    optionsTopLayout->setContentsMargins(optionsLayoutHoriziontalPadding, 0, optionsLayoutHoriziontalPadding, 0);
+    optionsTopLayout->setSpacing(optionsLayoutHoriziontalPadding);
 
-    QFont stopCheckBoxFont = stopCheckBox->font();
-    stopCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
-    stopCheckBox->setFont(stopCheckBoxFont);
+    optionsLayout->addLayout(optionsTopLayout, 50);
 
-    optionsLayout->addWidget(stopCheckBox);
+    //
+
+    optionsBottomLayout = new QHBoxLayout();
+
+    optionsBottomLayout->setContentsMargins(optionsLayoutHoriziontalPadding, 0, optionsLayoutHoriziontalPadding, 0);
+    optionsBottomLayout->setSpacing(optionsLayoutHoriziontalPadding);
+
+    optionsLayout->addLayout(optionsBottomLayout, 50);
 
     //
 
@@ -145,7 +151,7 @@ void settingsLogsWidget::renderOptions(){
     infoCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
     infoCheckBox->setFont(infoCheckBoxFont);
 
-    optionsLayout->addWidget(infoCheckBox);
+    optionsTopLayout->addWidget(infoCheckBox);
 
     //
 
@@ -157,7 +163,7 @@ void settingsLogsWidget::renderOptions(){
     debugCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
     debugCheckBox->setFont(debugCheckBoxFont);
 
-    optionsLayout->addWidget(debugCheckBox);
+    optionsTopLayout->addWidget(debugCheckBox);
 
     //
 
@@ -169,7 +175,7 @@ void settingsLogsWidget::renderOptions(){
     errorCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
     errorCheckBox->setFont(errorCheckBoxFont);
 
-    optionsLayout->addWidget(errorCheckBox);
+    optionsTopLayout->addWidget(errorCheckBox);
 
     //
 
@@ -181,7 +187,19 @@ void settingsLogsWidget::renderOptions(){
     telemetryCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
     telemetryCheckBox->setFont(telemetryCheckBoxFont);
 
-    optionsLayout->addWidget(telemetryCheckBox);
+    optionsTopLayout->addWidget(telemetryCheckBox);
+
+    //
+
+    stopCheckBox = new QCheckBox(optionsWidget);
+
+    stopCheckBox->setText("Stop");
+
+    QFont stopCheckBoxFont = stopCheckBox->font();
+    stopCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
+    stopCheckBox->setFont(stopCheckBoxFont);
+
+    optionsBottomLayout->addWidget(stopCheckBox);
 
     //
 
@@ -193,7 +211,7 @@ void settingsLogsWidget::renderOptions(){
     saveOptionCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
     saveOptionCheckBox->setFont(saveOptionCheckBoxFont);
 
-    optionsLayout->addWidget(saveOptionCheckBox);
+    optionsBottomLayout->addWidget(saveOptionCheckBox);
 
     //
 
@@ -208,7 +226,7 @@ void settingsLogsWidget::renderOptions(){
     saveButtonFont.setPixelSize(12);
     saveButton->setFont(saveButtonFont);
 
-    optionsLayout->addWidget(saveButton);
+    optionsBottomLayout->addWidget(saveButton);
 
 }
 

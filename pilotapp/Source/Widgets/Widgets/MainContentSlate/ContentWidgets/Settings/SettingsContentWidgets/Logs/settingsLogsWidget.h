@@ -17,13 +17,15 @@ private:
     QVBoxLayout* vBoxLayout = nullptr;
 
     QScrollArea* logScrollArea = nullptr;
-    const int logScrollAreaStretchFactor = 90;
+    const int logScrollAreaStretchFactor = 85;
     QWidget* logScrollAreaContentWidget = nullptr;
     QVBoxLayout* logScrollAreaContentLayout = nullptr;
     const int logScrollAreaContentLayoutPadding = 10;
 
     QWidget* optionsWidget = nullptr;
-    QHBoxLayout* optionsLayout = nullptr;
+    QVBoxLayout* optionsLayout = nullptr;
+    QHBoxLayout* optionsTopLayout = nullptr;
+    QHBoxLayout* optionsBottomLayout = nullptr;
     const int optionsLayoutHoriziontalPadding = 10;
     const int optionsCheckBoxFontSize = 14;
     QCheckBox* stopCheckBox = nullptr;
