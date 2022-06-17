@@ -18,11 +18,13 @@ settingsLogsWidget::settingsLogsWidget(QWidget* parent){
     renderLogs();
     renderOptions();
 
-    connect(logManager::getInstance(), &logManager::logUpdateSignal, this, &settingsLogsWidget::renderLogs);
+    connect(logManager::getInstance(), &logManager::removeFrontLogEntrySignal, this, &settingsLogsWidget::removeFrontLogEntry);
+    connect(logManager::getInstance(), &logManager::appendLogEntrySignal, this, &settingsLogsWidget::appendLogEntry);
 }
 
 settingsLogsWidget::~settingsLogsWidget(){
-    disconnect(logManager::getInstance(), &logManager::logUpdateSignal, this, &settingsLogsWidget::renderLogs);
+    disconnect(logManager::getInstance(), &logManager::removeFrontLogEntrySignal, this, &settingsLogsWidget::removeFrontLogEntry);
+    disconnect(logManager::getInstance(), &logManager::appendLogEntrySignal, this, &settingsLogsWidget::appendLogEntry);
 }
 
 //
@@ -88,39 +90,38 @@ void settingsLogsWidget::setupLogs(){
     //logScrollArea->setWidget(logScrollAreaContentLayout->widget());
 }
 
-void settingsLogsWidget::renderOptions(){
-
-}
-
 void settingsLogsWidget::renderLogs(){
     for (int i = 0; i < logScrollAreaContentLayout->count(); i++){
-        QLayoutItem* item = logScrollAreaContentLayout->itemAt(i);
-        QWidget* w = item->widget();
-        if (w){
-            w->hide();
-            delete w;
-            w = nullptr;
-        }
+        QLayoutItem* w = logScrollAreaContentLayout->takeAt(i);
+        delete w->widget();
+        delete w;
     }
 
     //qDebug() << "log cache size = " << QString::number(logManager::getInstance()->getLogCache().size());
 
-    for (auto i : logManager::getInstance()->getLogCache()){
-        QLabel* logEntryLabel = new QLabel(logScrollAreaContentWidget);
+    for (auto i : logManager::getInstance()->getLogCache())
+        logScrollAreaContentLayout->addWidget(renderLogEntry(i));
+}
 
-        logEntryLabel->setText(QString::fromStdString(i));
-        logEntryLabel->setAlignment(Qt::AlignLeft);
-        logEntryLabel->setWordWrap(true);
+QLabel* settingsLogsWidget::renderLogEntry(std::string entry){
+    QLabel* logEntryLabel = new QLabel(logScrollAreaContentWidget);
 
-        utilities::setPaletteColor(logEntryLabel, QPalette::Foreground, Qt::white, true);
+    logEntryLabel->setText(QString::fromStdString(entry));
+    logEntryLabel->setAlignment(Qt::AlignLeft);
+    logEntryLabel->setWordWrap(true);
+
+    utilities::setPaletteColor(logEntryLabel, QPalette::Foreground, Qt::white, true);
         //utilities::setPaletteColor(logEntryLabel, QPalette::Background, Qt::white);
 
-        QFont logEntryLabelFont = logEntryLabel->font();
-        logEntryLabelFont.setPixelSize(12);
-        logEntryLabel->setFont(logEntryLabelFont);
+    QFont logEntryLabelFont = logEntryLabel->font();
+    logEntryLabelFont.setPixelSize(12);
+    logEntryLabel->setFont(logEntryLabelFont);
 
-        logScrollAreaContentLayout->addWidget(logEntryLabel);
-    }
+    return logEntryLabel;
+}
+
+void settingsLogsWidget::renderOptions(){
+
 }
 
 //
@@ -129,4 +130,26 @@ void settingsLogsWidget::handleSaveButton(){
 
 }
 
+//
+
+void settingsLogsWidget::removeFrontLogEntry(){
+    if (logScrollAreaContentLayout->count() > 0){
+        QLayoutItem* i = logScrollAreaContentLayout->takeAt(0);
+        delete i->widget();
+        delete i;
+    }
+}
+
+void settingsLogsWidget::appendLogEntry(){
+    //qInfo() << "called append function";
+
+    QLabel* entryLabel = renderLogEntry(logManager::getInstance()->getLogCache().back());
+    logScrollAreaContentLayout->addWidget(entryLabel);
+    //entryLabel->show();
+
+    logScrollAreaContentLayout->update();
+    //logScrollAreaContentWidget->show();
+
+    //qInfo() << logScrollAreaContentWidget->size();
+}
 

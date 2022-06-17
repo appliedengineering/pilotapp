@@ -31,16 +31,20 @@ private:
 
     void setupLayout();
     void setupLogs();
+    void renderLogs();
+    QLabel* renderLogEntry(std::string entry);
+
     void renderOptions();
 
     void handleSaveButton();
 
-public slots:
-    void renderLogs();
-
 public:
     settingsLogsWidget(QWidget* parent = nullptr);
     ~settingsLogsWidget();
+
+public slots:
+    void removeFrontLogEntry();
+    void appendLogEntry();
 
 };
 

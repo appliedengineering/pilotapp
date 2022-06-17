@@ -53,7 +53,8 @@ public:
     static void t(std::string s);
 
 signals:
-    void logUpdateSignal();
+    void removeFrontLogEntrySignal();
+    void appendLogEntrySignal();
 
 };
 

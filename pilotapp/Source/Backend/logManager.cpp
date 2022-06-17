@@ -35,14 +35,15 @@ void logManager::writeToLogs(std::string s){
     qInfo() << QString::fromStdString(s); // console output
     
     logCache.push_back(s);
-    resizeLogs();
+    emit appendLogEntrySignal();
 
-    emit logUpdateSignal();
+    resizeLogs();
 }
 
 void logManager::resizeLogs(){
     while (logCache.size() > logCacheMaxSize){ // removes excess data points
         logCache.pop_front();
+        emit removeFrontLogEntrySignal();
     }
 }
 
