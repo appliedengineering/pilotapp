@@ -4,6 +4,7 @@
 #include "../../../../../../../Backend/logManager.h"
 
 #include <QFont>
+#include <QFrame>
 #include <deque>
 #include <string>
 
@@ -33,10 +34,24 @@ void settingsLogsWidget::setupLayout(){
 
     logScrollArea = new QScrollArea(this);
 
+    //logScrollArea->setBackgroundRole(QPalette::Dark);
+    logScrollArea->setWidgetResizable(true);
     logScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    logScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     utilities::setPaletteColor(logScrollArea, QPalette::Background, Qt::black);
 
     vBoxLayout->addWidget(logScrollArea, logScrollAreaStretchFactor);
+
+    //
+
+    QFrame* dividerLine = new QFrame(this);
+
+    dividerLine->setContentsMargins(0, 0, 0, 0);
+    dividerLine->setFrameShape(QFrame::HLine);
+    dividerLine->setFrameShadow(QFrame::Sunken);
+
+    vBoxLayout->addWidget(dividerLine);
 
     //
 
@@ -50,22 +65,28 @@ void settingsLogsWidget::setupLayout(){
 }
 
 void settingsLogsWidget::setupLogs(){
-    logScrollAreaContentWidget = new QWidget(this);
+    logScrollAreaContentWidget = new QWidget(logScrollArea);
+    //logScrollAreaContentWidget->setFixedWidth(logScrollArea->width());
 
     utilities::setPaletteColor(logScrollAreaContentWidget, QPalette::Background, Qt::black);
 
     logScrollArea->setWidget(logScrollAreaContentWidget);
+    //logScrollAreaContentWidget->setGeometry(0, 0, 100, 100);*/
 
     //
 
     logScrollAreaContentLayout = new QVBoxLayout(logScrollAreaContentWidget);
 
-    logScrollAreaContentLayout->setContentsMargins(0, 0, 0, 0);
-    logScrollAreaContentLayout->setSpacing(20);    
+    logScrollAreaContentWidget->setLayout(logScrollAreaContentLayout);
+
+    logScrollAreaContentLayout->setContentsMargins(logScrollAreaContentLayoutPadding, logScrollAreaContentLayoutPadding/2, logScrollAreaContentLayoutPadding, logScrollAreaContentLayoutPadding/2);
+    logScrollAreaContentLayout->setSpacing(logScrollAreaContentLayoutPadding);  
+
+    //logScrollArea->setWidget(logScrollAreaContentLayout->widget());
 }
 
 void settingsLogsWidget::renderLogs(){
-    for (int i = 0; i < logScrollAreaContentLayout->count(); i++){
+    /*for (int i = 0; i < logScrollAreaContentLayout->count(); i++){
         QLayoutItem* item = logScrollAreaContentLayout->itemAt(i);
         QWidget* w = item->widget();
         if (w){
@@ -73,17 +94,19 @@ void settingsLogsWidget::renderLogs(){
             delete w;
             w = nullptr;
         }
-    }
+    }*/
 
-    qDebug() << "log cache size = " << QString::number(logManager::getInstance()->getLogCache().size());
+    //qDebug() << "log cache size = " << QString::number(logManager::getInstance()->getLogCache().size());
 
     for (auto i : logManager::getInstance()->getLogCache()){
-        QLabel* logEntryLabel = new QLabel(this);
+        QLabel* logEntryLabel = new QLabel(logScrollAreaContentWidget);
 
         logEntryLabel->setText(QString::fromStdString(i));
         logEntryLabel->setAlignment(Qt::AlignLeft);
+        logEntryLabel->setWordWrap(true);
 
         utilities::setPaletteColor(logEntryLabel, QPalette::Foreground, Qt::white, true);
+        //utilities::setPaletteColor(logEntryLabel, QPalette::Background, Qt::white);
 
         QFont logEntryLabelFont = logEntryLabel->font();
         logEntryLabelFont.setPixelSize(12);
@@ -99,6 +122,11 @@ void settingsLogsWidget::renderOptions(){
 
 //
 
+void settingsLogsWidget::resizeEvent(QResizeEvent*){
+    //logScrollAreaContentWidget->setFixedWidth(logScrollArea->width());
+}
+
 void settingsLogsWidget::handleSaveButton(){
 
 }
+

@@ -3,6 +3,7 @@
 #include "communicationManager.h"
 #include "dataManager.h"
 #include "../boatKernel.h"
+#include "../logManager.h"
 #include <thread>
 #include <chrono>
 #include <QDebug>
@@ -33,7 +34,7 @@ void communicationThread::start(){
         //std::vector<uint8_t> buf;
         std::string buf;
         if (communicationManager::recv(communicationManager::getInstance()->getIPCSocket(), buf)){
-            
+            //logManager::d("recvd buff = " + buf);
             //qInfo() << "recv = " << QString::fromStdString(buf);             
             rawDataPack r = dataManager::deserializeRawBoatData(buf);
             boatDataPack data(r);

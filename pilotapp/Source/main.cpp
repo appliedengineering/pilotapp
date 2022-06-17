@@ -11,6 +11,7 @@
 
 #include "Backend/Communication/communicationManager.h"
 #include "Backend/Communication/communicationThread.h"
+#include "Backend/logManager.h"
 
 void setupStyleSheet(QApplication* a){
     
@@ -33,7 +34,7 @@ void setupStyleSheet(QApplication* a){
     if (sheet.open(QIODevice::ReadOnly | QIODevice::Text)){
 
         //qInfo() << sheet.readAll();
-        qDebug() << "Loaded style sheet";
+        logManager::i("Loaded style sheet");
 
         a->setStyleSheet(sheet.readAll());
     }

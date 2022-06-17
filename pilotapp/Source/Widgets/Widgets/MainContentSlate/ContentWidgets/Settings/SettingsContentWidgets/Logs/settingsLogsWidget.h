@@ -8,6 +8,7 @@
 #include <QCheckBox>
 #include <QPushButton>
 #include <QLabel>
+#include <QResizeEvent>
 
 class settingsLogsWidget : public QWidget{
     Q_OBJECT
@@ -19,6 +20,7 @@ private:
     const int logScrollAreaStretchFactor = 86;
     QWidget* logScrollAreaContentWidget = nullptr;
     QVBoxLayout* logScrollAreaContentLayout = nullptr;
+    const int logScrollAreaContentLayoutPadding = 10;
 
     QHBoxLayout* hBoxLayout = nullptr;
     QCheckBox* saveOptionCheckBox = nullptr;
@@ -31,6 +33,8 @@ private:
     void setupLogs();
     void renderLogs();
     void renderOptions();
+
+    void resizeEvent(QResizeEvent*);
 
     void handleSaveButton();
 

@@ -1,4 +1,6 @@
 #include "dataManager.h"
+
+#include "../logManager.h"
 #include <iostream>
 //#include <iomanip>
 #include <sstream>
@@ -50,7 +52,7 @@ boatDataPack::boatDataPack(rawDataPack& raw){
         BC = m["BC"].as_double();
     }
     catch(std::exception& e){
-        qDebug() << "Motor Data Unpack Error - " << e.what();
+        logManager::e("Motor Data Unpack Error - " + std::string(e.what()));
     }
 
     try{
@@ -62,11 +64,32 @@ boatDataPack::boatDataPack(rawDataPack& raw){
         timeStamp = m["timeStamp"].as_double();
     }
     catch(std::exception& e){
-        qDebug() << "Telemetry Data Unpack Error - " << e.what();
+        logManager::e("Telemetry Data Unpack Error - " + std::string(e.what()));
     }
+
+    logData();
 
     //qInfo() << "after const";
 }
+
+void boatDataPack::logData(){
+    using namespace std;
+    string d = "{";
+    d += "TP: " + to_string(TP) + ",";
+    d += "DP: " + to_string(DP) + ",";
+    d += "BV: " + to_string(BV) + ",";
+    d += "SM: " + string(SM ? "True" : "False") + ",";
+    d += "EN: " + string(EN ? "True" : "False") + ",";
+    d += "BC: " + to_string(BC) + ",";
+    d += "posLat: " + to_string(posLat) + ",";
+    d += "posLon: " + to_string(posLon) + ",";
+    d += "speed: " + to_string(speed) + ",";
+    d += "timeStamp: " + to_string(timeStamp);
+    d += "}";
+    logManager::t(d);
+}
+
+//
 
 int boatDataPack::getThrottlePercent(){
     return TP;

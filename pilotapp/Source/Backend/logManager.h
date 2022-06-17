@@ -38,16 +38,19 @@ public:
     void setMaxLogSize(int s);
 
     // info logs
-    void i(QString s);
-    void i(std::string s);
+    //static void i(QString s);
+    static void i(std::string s);
 
     // debug logs
-    void d(QString s);
-    void d(std::string s);
+    //static void d(QString s);
+    static void d(std::string s);
 
     // errors logs
-    void e(QString s);
-    void e(std::string s);
+    //static void e(QString s);
+    static void e(std::string s);
+
+    // telemetry logs
+    static void t(std::string s);
 
 };
 

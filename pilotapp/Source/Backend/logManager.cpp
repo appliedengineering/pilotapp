@@ -66,30 +66,37 @@ void logManager::setMaxLogSize(int s){
 
 // info
 
-void logManager::i(QString s){
+/*void logManager::i(QString s){
     logManager::i(s.toStdString());
-}
+}*/
 
 void logManager::i(std::string s){
-    writeToLogs(getCurrentTimestamp() + " Info: " + s);
+    logManager::getInstance()->writeToLogs("Info " + logManager::getInstance()->getCurrentTimestamp() + ": " + s);
 }
 
 // debug
 
-void logManager::d(QString s){
+/*void logManager::d(QString s){
     logManager::d(s.toStdString());
-}
+}*/
 
 void logManager::d(std::string s){
-    writeToLogs(getCurrentTimestamp()  + " Debug: " + s);
+    logManager::getInstance()->writeToLogs("Debug " + logManager::getInstance()->getCurrentTimestamp()  + ": " + s);
 }
 
 // errors
 
-void logManager::e(QString s){
+/*void logManager::e(QString s){
     logManager::e(s.toStdString());
-}
+}*/
 
 void logManager::e(std::string s){
-    writeToLogs(getCurrentTimestamp() + " ERROR: " + s);
+    logManager::getInstance()->writeToLogs("ERROR " + logManager::getInstance()->getCurrentTimestamp() + ": " + s);
+}
+
+
+// telemetry
+
+void logManager::t(std::string s){
+    logManager::getInstance()->writeToLogs("Telemetry " + logManager::getInstance()->getCurrentTimestamp() + ": " + s);
 }

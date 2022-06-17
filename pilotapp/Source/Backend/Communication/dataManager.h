@@ -33,6 +33,9 @@ private:
     double posLon;
     double speed; // m/s
     double timeStamp;
+
+    void logData();
+
 public:
     boatDataPack(rawDataPack& raw);
 

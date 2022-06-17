@@ -1,5 +1,7 @@
 #include "communicationManager.h"
 
+#include "../logManager.h"
+
 #include <QDebug>
 #include <iostream>
 
@@ -32,7 +34,7 @@ communicationManager* communicationManager::getInstance(){
 void communicationManager::printZMQVersion(){
     int major, minor, patch;
     zmq_version(&major, &minor, &patch);
-    qInfo() << "ZMQ Version " << major << "." << minor << "." << patch;
+    logManager::i("ZMQ Version " + std::to_string(major) + "." + std::to_string(minor) + "." + std::to_string(patch));
 }
 
 //
@@ -40,20 +42,20 @@ void communicationManager::printZMQVersion(){
 void communicationManager::setupIPCSocket(){
     ipcSub = zmq_socket(ctx, ZMQ_SUB);
     if (zmq_setsockopt(ipcSub, ZMQ_SUBSCRIBE, "", 0) == -1)
-        qCritical("Failed to set ipcSub subscribe option");
+        logManager::e("Failed to set ipcSub subscribe option");
     
     int t = 1;
     if (zmq_setsockopt(ipcSub, ZMQ_CONFLATE, &t, sizeof(t)) == -1)
-        qCritical("Failed to set ipcSub conflate option");
+        logManager::e("Failed to set ipcSub conflate option");
 
     if (zmq_connect(ipcSub, "tcp://localhost:5556") == -1)
-        qCritical("Failed to connect ipcSub");
+        logManager::e("Failed to connect ipcSub");
 }
 
 void communicationManager::setupScriptSocket(){
     scriptPair = zmq_socket(ctx, ZMQ_PAIR);
     if (zmq_bind(scriptPair, "tcp://*:5553") == -1)
-        qCritical("Failed to connect scriptPair");
+        logManager::e("Failed to connect scriptPair");
 }
 
 void* communicationManager::getIPCSocket(){
@@ -66,20 +68,20 @@ void* communicationManager::getScriptSocket(){
 
 bool communicationManager::recv(void* s, std::string& b){
     if (!s){
-        qDebug() << "nullptr socket passed to recv";
+        logManager::e("nullptr socket passed to recv");
         return false;
     }
 
     zmq_msg_t msg;
 
     if (zmq_msg_init(&msg) == -1){
-        qDebug() << "failed to init zmq msg in recv";
+        logManager::e("failed to init zmq msg in recv");
         return false;
     }
 
     if (zmq_msg_recv(&msg, s, ZMQ_NOBLOCK) == -1){
         if (zmq_errno() != EAGAIN)
-            qDebug() << "failed to recv zmq msg";
+            logManager::e("failed to recv zmq msg");
         return false;
     }
 
@@ -96,12 +98,12 @@ bool communicationManager::send(void* s, std::string b){
     zmq_msg_t msg;
     
     if (zmq_msg_init(&msg) == -1){
-        qCritical() << "failed to init zmq msg";
+        logManager::e("failed to init zmq msg");
         return false;
     }
 
     if (zmq_msg_init_size(&msg, b.size()) == -1){
-        qCritical() << "failed to init zmq msg with size of " << b.size();
+        logManager::e("failed to init zmq msg with size of " + std::to_string(b.size()));
         return false;
     }
 
@@ -109,7 +111,7 @@ bool communicationManager::send(void* s, std::string b){
         memcpy(zmq_msg_data(&msg), b.data(), b.size());
 
     if (zmq_msg_send(&msg, s, ZMQ_DONTWAIT) == -1){
-        qDebug() << "Failed to send zmq msg " << zmq_strerror(zmq_errno());
+        logManager::e("Failed to send zmq msg " + std::string(zmq_strerror(zmq_errno())));
         return false;
     }
 
