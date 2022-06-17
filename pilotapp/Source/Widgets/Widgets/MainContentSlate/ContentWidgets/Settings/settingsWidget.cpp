@@ -5,6 +5,7 @@
 #include "../../../../../Backend/Utilities/utilities.h"
 
 #include "SettingsContentWidgets/Options/settingsOptionsWidget.h"
+#include "SettingsContentWidgets/Logs/settingsLogsWidget.h"
 
 //
 
@@ -115,6 +116,10 @@ void settingsWidget::createSettingsContentWidgetForIndex(int index){
         settingsContentWidget = new settingsOptionsWidget(this);
         break;
 
+    case 1:
+        settingsContentWidget = new settingsLogsWidget(this);
+        break;
+        
     default:
         qWarning() << "invalid index for content widget creation";
         settingsContentWidget = new settingsOptionsWidget(this);

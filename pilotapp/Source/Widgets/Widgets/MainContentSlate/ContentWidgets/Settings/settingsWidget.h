@@ -17,7 +17,7 @@ private:
     QHBoxLayout* hBoxLayout = nullptr;
 
     QVBoxLayout* selectionVBoxLayout = nullptr;
-    const int selectionVBoxLayoutStretchFactor = 25;
+    const int selectionVBoxLayoutStretchFactor = 20;
     const int selectionHorizontalPadding = 10;
     const int selectionCount = 2;
     const QString selectionTitles[2] = {"Options", "Logs"};

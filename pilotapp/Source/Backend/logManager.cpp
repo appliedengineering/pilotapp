@@ -2,6 +2,7 @@
 
 #include <QDateTime>
 #include <QFile>
+#include <QDebug>
 
 //
 
@@ -30,6 +31,7 @@ void logManager::writeToLogFile(bool shouldReplaceContent){
 }
 
 void logManager::writeToLogs(std::string s){
+    qInfo() << QString::fromStdString(s); // console output
     logCache.push_back(s);
     resizeLogs();
 }

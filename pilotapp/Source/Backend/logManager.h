@@ -29,7 +29,7 @@ private:
     std::string getCurrentTimestamp();
 
 public:
-    logManager* getInstance();
+    static logManager* getInstance();
 
     void clearLogs();
     const std::deque<std::string>& getLogCache();
