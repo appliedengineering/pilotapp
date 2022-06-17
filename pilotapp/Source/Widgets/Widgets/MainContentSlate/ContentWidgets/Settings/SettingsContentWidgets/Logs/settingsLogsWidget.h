@@ -22,9 +22,9 @@ private:
     QVBoxLayout* logScrollAreaContentLayout = nullptr;
     const int logScrollAreaContentLayoutPadding = 10;
 
-    QWidget* optionsWidget = nullptr;
-    QVBoxLayout* optionsLayout = nullptr;
+    QWidget* optionsTopWidget = nullptr;
     QHBoxLayout* optionsTopLayout = nullptr;
+    QWidget* optionsBottomWidget = nullptr;
     QHBoxLayout* optionsBottomLayout = nullptr;
     const int optionsLayoutHoriziontalPadding = 10;
     const int optionsCheckBoxFontSize = 14;
@@ -43,7 +43,8 @@ private:
     void renderLogs();
     QLabel* renderLogEntry(std::string entry);
 
-    void renderOptions();
+    void renderTopOptions();
+    void renderBottomOptions();
 
     void handleSaveButton();
 

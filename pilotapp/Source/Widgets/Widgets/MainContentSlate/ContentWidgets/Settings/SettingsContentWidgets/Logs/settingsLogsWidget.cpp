@@ -16,7 +16,8 @@ settingsLogsWidget::settingsLogsWidget(QWidget* parent){
     setupLayout();
     setupLogs();
     renderLogs();
-    renderOptions();
+    renderTopOptions();
+    renderBottomOptions();
 
     connect(logManager::getInstance(), &logManager::removeFrontLogEntrySignal, this, &settingsLogsWidget::removeFrontLogEntry);
     connect(logManager::getInstance(), &logManager::appendLogEntrySignal, this, &settingsLogsWidget::appendLogEntry);
@@ -30,10 +31,30 @@ settingsLogsWidget::~settingsLogsWidget(){
 //
 
 void settingsLogsWidget::setupLayout(){
+    const int optionsWidgetsStretchFactor = (100 - logScrollAreaStretchFactor) / 2;
+    
+    //
+
     vBoxLayout = new QVBoxLayout(this);
 
     vBoxLayout->setContentsMargins(0, 0, 0, 0);
     vBoxLayout->setSpacing(0);
+
+    //
+
+    optionsTopWidget = new QWidget(this);
+
+    vBoxLayout->addWidget(optionsTopWidget, optionsWidgetsStretchFactor);
+
+    //
+
+    QFrame* topDividerLine = new QFrame(this);
+
+    topDividerLine->setContentsMargins(0, 0, 0, 0);
+    topDividerLine->setFrameShape(QFrame::HLine);
+    topDividerLine->setFrameShadow(QFrame::Sunken);
+
+    vBoxLayout->addWidget(topDividerLine);
 
     //
 
@@ -50,19 +71,19 @@ void settingsLogsWidget::setupLayout(){
 
     //
 
-    QFrame* dividerLine = new QFrame(this);
+    QFrame* bottomDividerLine = new QFrame(this);
 
-    dividerLine->setContentsMargins(0, 0, 0, 0);
-    dividerLine->setFrameShape(QFrame::HLine);
-    dividerLine->setFrameShadow(QFrame::Sunken);
+    bottomDividerLine->setContentsMargins(0, 0, 0, 0);
+    bottomDividerLine->setFrameShape(QFrame::HLine);
+    bottomDividerLine->setFrameShadow(QFrame::Sunken);
 
-    vBoxLayout->addWidget(dividerLine);
+    vBoxLayout->addWidget(bottomDividerLine);
 
     //
 
-    optionsWidget = new QWidget(this);
+    optionsBottomWidget = new QWidget(this);
 
-    vBoxLayout->addWidget(optionsWidget, 100 - logScrollAreaStretchFactor);
+    vBoxLayout->addWidget(optionsBottomWidget, optionsWidgetsStretchFactor);
 }
 
 void settingsLogsWidget::setupLogs(){
@@ -116,82 +137,16 @@ QLabel* settingsLogsWidget::renderLogEntry(std::string entry){
     return logEntryLabel;
 }
 
-void settingsLogsWidget::renderOptions(){
-    
-    optionsLayout = new QVBoxLayout(optionsWidget);
+void settingsLogsWidget::renderTopOptions(){
 
-    optionsLayout->setContentsMargins(0, 0, 0, 0);
-    optionsLayout->setSpacing(0);
-
-    //
-
-    optionsTopLayout = new QHBoxLayout();
+    optionsTopLayout = new QHBoxLayout(optionsTopWidget);
 
     optionsTopLayout->setContentsMargins(optionsLayoutHoriziontalPadding, 0, optionsLayoutHoriziontalPadding, 0);
     optionsTopLayout->setSpacing(optionsLayoutHoriziontalPadding);
 
-    optionsLayout->addLayout(optionsTopLayout, 50);
-
     //
 
-    optionsBottomLayout = new QHBoxLayout();
-
-    optionsBottomLayout->setContentsMargins(optionsLayoutHoriziontalPadding, 0, optionsLayoutHoriziontalPadding, 0);
-    optionsBottomLayout->setSpacing(optionsLayoutHoriziontalPadding);
-
-    optionsLayout->addLayout(optionsBottomLayout, 50);
-
-    //
-
-    infoCheckBox = new QCheckBox(optionsWidget);
-
-    infoCheckBox->setText("Info");
-
-    QFont infoCheckBoxFont = infoCheckBox->font();
-    infoCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
-    infoCheckBox->setFont(infoCheckBoxFont);
-
-    optionsTopLayout->addWidget(infoCheckBox);
-
-    //
-
-    debugCheckBox = new QCheckBox(optionsWidget);
-
-    debugCheckBox->setText("Debug");
-
-    QFont debugCheckBoxFont = debugCheckBox->font();
-    debugCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
-    debugCheckBox->setFont(debugCheckBoxFont);
-
-    optionsTopLayout->addWidget(debugCheckBox);
-
-    //
-
-    errorCheckBox = new QCheckBox(optionsWidget);
-
-    errorCheckBox->setText("Error");
-
-    QFont errorCheckBoxFont = errorCheckBox->font();
-    errorCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
-    errorCheckBox->setFont(errorCheckBoxFont);
-
-    optionsTopLayout->addWidget(errorCheckBox);
-
-    //
-
-    telemetryCheckBox = new QCheckBox(optionsWidget);
-    
-    telemetryCheckBox->setText("Tmtry");
-
-    QFont telemetryCheckBoxFont = telemetryCheckBox->font();
-    telemetryCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
-    telemetryCheckBox->setFont(telemetryCheckBoxFont);
-
-    optionsTopLayout->addWidget(telemetryCheckBox);
-
-    //
-
-    stopCheckBox = new QCheckBox(optionsWidget);
+    stopCheckBox = new QCheckBox(optionsTopWidget);
 
     stopCheckBox->setText("Stop");
 
@@ -199,11 +154,11 @@ void settingsLogsWidget::renderOptions(){
     stopCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
     stopCheckBox->setFont(stopCheckBoxFont);
 
-    optionsBottomLayout->addWidget(stopCheckBox);
+    optionsTopLayout->addWidget(stopCheckBox);
 
     //
 
-    saveOptionCheckBox = new QCheckBox(optionsWidget);
+    saveOptionCheckBox = new QCheckBox(optionsTopWidget);
 
     saveOptionCheckBox->setText("Replace File");
     
@@ -211,11 +166,11 @@ void settingsLogsWidget::renderOptions(){
     saveOptionCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
     saveOptionCheckBox->setFont(saveOptionCheckBoxFont);
 
-    optionsBottomLayout->addWidget(saveOptionCheckBox);
+    optionsTopLayout->addWidget(saveOptionCheckBox);
 
     //
 
-    saveButton = new QPushButton(optionsWidget);
+    saveButton = new QPushButton(optionsTopWidget);
 
     saveButton->setText("Save");
 
@@ -226,7 +181,64 @@ void settingsLogsWidget::renderOptions(){
     saveButtonFont.setPixelSize(12);
     saveButton->setFont(saveButtonFont);
 
-    optionsBottomLayout->addWidget(saveButton);
+    optionsTopLayout->addWidget(saveButton);
+}
+
+void settingsLogsWidget::renderBottomOptions(){
+    //
+
+    optionsBottomLayout = new QHBoxLayout(optionsBottomWidget);
+
+    optionsBottomLayout->setContentsMargins(optionsLayoutHoriziontalPadding, 0, optionsLayoutHoriziontalPadding, 0);
+    optionsBottomLayout->setSpacing(optionsLayoutHoriziontalPadding);
+
+    //
+
+    infoCheckBox = new QCheckBox(optionsBottomWidget);
+
+    infoCheckBox->setText("Info");
+
+    QFont infoCheckBoxFont = infoCheckBox->font();
+    infoCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
+    infoCheckBox->setFont(infoCheckBoxFont);
+
+    optionsBottomLayout->addWidget(infoCheckBox);
+
+    //
+
+    debugCheckBox = new QCheckBox(optionsBottomWidget);
+
+    debugCheckBox->setText("Debug");
+
+    QFont debugCheckBoxFont = debugCheckBox->font();
+    debugCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
+    debugCheckBox->setFont(debugCheckBoxFont);
+
+    optionsBottomLayout->addWidget(debugCheckBox);
+
+    //
+
+    errorCheckBox = new QCheckBox(optionsBottomWidget);
+
+    errorCheckBox->setText("Error");
+
+    QFont errorCheckBoxFont = errorCheckBox->font();
+    errorCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
+    errorCheckBox->setFont(errorCheckBoxFont);
+
+    optionsBottomLayout->addWidget(errorCheckBox);
+
+    //
+
+    telemetryCheckBox = new QCheckBox(optionsBottomWidget);
+    
+    telemetryCheckBox->setText("Tmtry");
+
+    QFont telemetryCheckBoxFont = telemetryCheckBox->font();
+    telemetryCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
+    telemetryCheckBox->setFont(telemetryCheckBoxFont);
+
+    optionsBottomLayout->addWidget(telemetryCheckBox);
 
 }
 
