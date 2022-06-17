@@ -9,6 +9,7 @@
 logManager* logManager::instance = nullptr;
 
 logManager::logManager(){
+
 }
 
 logManager::~logManager(){
@@ -32,8 +33,11 @@ void logManager::writeToLogFile(bool shouldReplaceContent){
 
 void logManager::writeToLogs(std::string s){
     qInfo() << QString::fromStdString(s); // console output
+    
     logCache.push_back(s);
     resizeLogs();
+
+    emit logUpdateSignal();
 }
 
 void logManager::resizeLogs(){
@@ -98,5 +102,5 @@ void logManager::e(std::string s){
 // telemetry
 
 void logManager::t(std::string s){
-    logManager::getInstance()->writeToLogs("Telemetry " + logManager::getInstance()->getCurrentTimestamp() + ": " + s);
+    logManager::getInstance()->writeToLogs("Tmtry " + logManager::getInstance()->getCurrentTimestamp() + ": " + s);
 }

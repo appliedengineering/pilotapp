@@ -31,16 +31,17 @@ private:
 
     void setupLayout();
     void setupLogs();
-    void renderLogs();
     void renderOptions();
 
-    void resizeEvent(QResizeEvent*);
-
     void handleSaveButton();
+
+public slots:
+    void renderLogs();
 
 public:
     settingsLogsWidget(QWidget* parent = nullptr);
     ~settingsLogsWidget();
+
 };
 
 #endif

@@ -2,6 +2,7 @@
 
 #include "../../../../../Backend/Utilities/utilities.h"
 #include "../../../../../Backend/boatKernel.h"
+#include "../../../../../Backend/logManager.h"
 
 #include <QDir>
 #include <QFile>
@@ -224,11 +225,11 @@ QString mapWidget::readMapFile(){
 	
 	if (mapFile.open(QIODevice::ReadOnly | QIODevice::Text)){
 		QString data = mapFile.readAll();
-	   	qDebug() << "Opened map data file (navcenter.txt) - " << data;
+	   	logManager::i("Opened map data file (navcenter.txt) - " + data.toStdString());
 	   	return data;
 	}
 	
-	qInfo() << "No map data file found (navcenter.txt)";
+	logManager::i("No map data file found (navcenter.txt)");
 	return "";
 }
 
@@ -245,7 +246,7 @@ void mapWidget::parseMapData(QString raw, QGVCameraActions* camera){
 	}
 
 	if (sArray.size() != 3){
-		qInfo() << ("Map data is invalid");
+		logManager::e("Map data is invalid");
 		return;
 	}
 
@@ -265,7 +266,7 @@ std::vector<std::pair<double, double>> mapWidget::loadBuoyCoordinates(){
 	std::vector<std::pair<double, double>> c;
 
 	if (!coordinateFile.is_open()){
-		qInfo() << "No buoy coordinate file";
+		logManager::i("No buoy coordinate file");
 		return c;
 	}
 
@@ -277,7 +278,7 @@ std::vector<std::pair<double, double>> mapWidget::loadBuoyCoordinates(){
 		std::istringstream iss(fileLine);
 		double x, y;
 		if (!(iss >> x >> y)){
-			qDebug() << "error parsing line " << QString::fromStdString(fileLine) << " in buoycoords.txt"; 
+			logManager::e("error parsing line " + fileLine + " in buoycoords.txt"); 
 			continue;
 		}
 

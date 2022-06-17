@@ -52,6 +52,9 @@ public:
     // telemetry logs
     static void t(std::string s);
 
+signals:
+    void logUpdateSignal();
+
 };
 
 #endif

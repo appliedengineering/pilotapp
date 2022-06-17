@@ -17,9 +17,12 @@ settingsLogsWidget::settingsLogsWidget(QWidget* parent){
     setupLogs();
     renderLogs();
     renderOptions();
+
+    connect(logManager::getInstance(), &logManager::logUpdateSignal, this, &settingsLogsWidget::renderLogs);
 }
 
 settingsLogsWidget::~settingsLogsWidget(){
+    disconnect(logManager::getInstance(), &logManager::logUpdateSignal, this, &settingsLogsWidget::renderLogs);
 }
 
 //
@@ -85,8 +88,12 @@ void settingsLogsWidget::setupLogs(){
     //logScrollArea->setWidget(logScrollAreaContentLayout->widget());
 }
 
+void settingsLogsWidget::renderOptions(){
+
+}
+
 void settingsLogsWidget::renderLogs(){
-    /*for (int i = 0; i < logScrollAreaContentLayout->count(); i++){
+    for (int i = 0; i < logScrollAreaContentLayout->count(); i++){
         QLayoutItem* item = logScrollAreaContentLayout->itemAt(i);
         QWidget* w = item->widget();
         if (w){
@@ -94,7 +101,7 @@ void settingsLogsWidget::renderLogs(){
             delete w;
             w = nullptr;
         }
-    }*/
+    }
 
     //qDebug() << "log cache size = " << QString::number(logManager::getInstance()->getLogCache().size());
 
@@ -116,17 +123,10 @@ void settingsLogsWidget::renderLogs(){
     }
 }
 
-void settingsLogsWidget::renderOptions(){
-
-}
-
 //
-
-void settingsLogsWidget::resizeEvent(QResizeEvent*){
-    //logScrollAreaContentWidget->setFixedWidth(logScrollArea->width());
-}
 
 void settingsLogsWidget::handleSaveButton(){
 
 }
+
 
