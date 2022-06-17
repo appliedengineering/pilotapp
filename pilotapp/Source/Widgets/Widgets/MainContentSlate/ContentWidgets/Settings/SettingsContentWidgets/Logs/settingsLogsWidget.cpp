@@ -60,13 +60,9 @@ void settingsLogsWidget::setupLayout(){
 
     //
 
-    hBoxLayout = new QHBoxLayout();
+    optionsWidget = new QWidget(this);
 
-    hBoxLayout->setContentsMargins(0, 0, 0, 0);
-    hBoxLayout->setSpacing(10);
-
-    vBoxLayout->addLayout(hBoxLayout, 100 - logScrollAreaStretchFactor);
-
+    vBoxLayout->addWidget(optionsWidget, 100 - logScrollAreaStretchFactor);
 }
 
 void settingsLogsWidget::setupLogs(){
@@ -121,6 +117,98 @@ QLabel* settingsLogsWidget::renderLogEntry(std::string entry){
 }
 
 void settingsLogsWidget::renderOptions(){
+    
+    optionsLayout = new QHBoxLayout(optionsWidget);
+
+    optionsLayout->setContentsMargins(optionsLayoutHoriziontalPadding, 0, optionsLayoutHoriziontalPadding, 0);
+    optionsLayout->setSpacing(optionsLayoutHoriziontalPadding);
+
+    //
+
+    stopCheckBox = new QCheckBox(optionsWidget);
+
+    stopCheckBox->setText("Stop");
+
+    QFont stopCheckBoxFont = stopCheckBox->font();
+    stopCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
+    stopCheckBox->setFont(stopCheckBoxFont);
+
+    optionsLayout->addWidget(stopCheckBox);
+
+    //
+
+    infoCheckBox = new QCheckBox(optionsWidget);
+
+    infoCheckBox->setText("Info");
+
+    QFont infoCheckBoxFont = infoCheckBox->font();
+    infoCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
+    infoCheckBox->setFont(infoCheckBoxFont);
+
+    optionsLayout->addWidget(infoCheckBox);
+
+    //
+
+    debugCheckBox = new QCheckBox(optionsWidget);
+
+    debugCheckBox->setText("Debug");
+
+    QFont debugCheckBoxFont = debugCheckBox->font();
+    debugCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
+    debugCheckBox->setFont(debugCheckBoxFont);
+
+    optionsLayout->addWidget(debugCheckBox);
+
+    //
+
+    errorCheckBox = new QCheckBox(optionsWidget);
+
+    errorCheckBox->setText("Error");
+
+    QFont errorCheckBoxFont = errorCheckBox->font();
+    errorCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
+    errorCheckBox->setFont(errorCheckBoxFont);
+
+    optionsLayout->addWidget(errorCheckBox);
+
+    //
+
+    telemetryCheckBox = new QCheckBox(optionsWidget);
+    
+    telemetryCheckBox->setText("Tmtry");
+
+    QFont telemetryCheckBoxFont = telemetryCheckBox->font();
+    telemetryCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
+    telemetryCheckBox->setFont(telemetryCheckBoxFont);
+
+    optionsLayout->addWidget(telemetryCheckBox);
+
+    //
+
+    saveOptionCheckBox = new QCheckBox(optionsWidget);
+
+    saveOptionCheckBox->setText("Replace File");
+    
+    QFont saveOptionCheckBoxFont = saveOptionCheckBox->font();
+    saveOptionCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
+    saveOptionCheckBox->setFont(saveOptionCheckBoxFont);
+
+    optionsLayout->addWidget(saveOptionCheckBox);
+
+    //
+
+    saveButton = new QPushButton(optionsWidget);
+
+    saveButton->setText("Save");
+
+    utilities::setPaletteColor(saveButton, QPalette::Background, Qt::gray);
+    utilities::setPaletteColor(saveButton, QPalette::ButtonText, Qt::white);
+
+    QFont saveButtonFont = saveButton->font();
+    saveButtonFont.setPixelSize(12);
+    saveButton->setFont(saveButtonFont);
+
+    optionsLayout->addWidget(saveButton);
 
 }
 
@@ -141,15 +229,7 @@ void settingsLogsWidget::removeFrontLogEntry(){
 }
 
 void settingsLogsWidget::appendLogEntry(){
-    //qInfo() << "called append function";
-
-    QLabel* entryLabel = renderLogEntry(logManager::getInstance()->getLogCache().back());
-    logScrollAreaContentLayout->addWidget(entryLabel);
-    //entryLabel->show();
-
+    logScrollAreaContentLayout->addWidget(renderLogEntry(logManager::getInstance()->getLogCache().back()));
     logScrollAreaContentLayout->update();
-    //logScrollAreaContentWidget->show();
-
-    //qInfo() << logScrollAreaContentWidget->size();
 }
 
