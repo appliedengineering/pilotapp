@@ -69,6 +69,14 @@ void logManager::setMaxLogSize(int s){
     logCacheMaxSize = s;
 }
 
+void logManager::setLogTypeEnabled(logType t, bool isEnabled){
+    logTypeFilter[static_cast<int>(t)] = isEnabled;
+}
+
+bool logManager::getIsLogTypeEnabled(logType t){
+    return logTypeFilter[static_cast<int>(t)];
+}
+
 // info
 
 /*void logManager::i(QString s){

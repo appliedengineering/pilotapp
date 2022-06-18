@@ -9,6 +9,9 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QResizeEvent>
+#include <QLineEdit>
+
+#include "../../../../../../../Backend/logManager.h" // possible header include loop
 
 class settingsLogsWidget : public QWidget{
     Q_OBJECT
@@ -22,19 +25,26 @@ private:
     QVBoxLayout* logScrollAreaContentLayout = nullptr;
     const int logScrollAreaContentLayoutPadding = 10;
 
+    const int optionsLayoutHoriziontalPadding = 10;
+    const int optionsTopWidgetFontSize = 12;
+    const int optionsCheckBoxFontSize = 14;
+
     QWidget* optionsTopWidget = nullptr;
     QHBoxLayout* optionsTopLayout = nullptr;
+    QCheckBox* stopCheckBox = nullptr;
+    //QLineEdit* bufferSizeLineEdit = nullptr;
+    QPushButton* bufferSizeButton = nullptr;
+    QCheckBox* saveOptionCheckBox = nullptr; // append / replace mode
+    QPushButton* saveButton = nullptr;
+
     QWidget* optionsBottomWidget = nullptr;
     QHBoxLayout* optionsBottomLayout = nullptr;
-    const int optionsLayoutHoriziontalPadding = 10;
-    const int optionsCheckBoxFontSize = 14;
-    QCheckBox* stopCheckBox = nullptr;
+    QCheckBox* filterCheckBoxes[4];
     QCheckBox* infoCheckBox = nullptr;
     QCheckBox* debugCheckBox = nullptr;
     QCheckBox* errorCheckBox = nullptr;
     QCheckBox* telemetryCheckBox = nullptr;
-    QCheckBox* saveOptionCheckBox = nullptr; // append / replace mode
-    QPushButton* saveButton = nullptr;
+    QPushButton* clearLogsButton = nullptr;
 
     //
 
@@ -47,6 +57,11 @@ private:
     void renderBottomOptions();
 
     void handleSaveButton();
+    void handleFilterCheckBoxes(logManager::logType t);
+
+    //
+
+    bool isLogEntryTypeEnabled(const std::string& entry);
 
 public:
     settingsLogsWidget(QWidget* parent = nullptr);

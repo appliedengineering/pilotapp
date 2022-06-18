@@ -20,6 +20,8 @@ private:
     int logCacheMaxSize = 100;
     std::deque<std::string> logCache;
 
+    bool logTypeFilter[4] = {1, 1, 1, 1};
+
     //
 
     void writeToLogFile(bool shouldReplaceContent);
@@ -29,6 +31,13 @@ private:
     std::string getCurrentTimestamp();
 
 public:
+    enum logType{
+        info = 0, 
+        debug = 1, 
+        errors = 2, 
+        telemetry = 3
+    };
+
     static logManager* getInstance();
 
     void clearLogs();
@@ -36,6 +45,9 @@ public:
 
     int getMaxLogSize();
     void setMaxLogSize(int s);
+
+    void setLogTypeEnabled(logType t, bool isEnabled);
+    bool getIsLogTypeEnabled(logType t);
 
     // info logs
     //static void i(QString s);
