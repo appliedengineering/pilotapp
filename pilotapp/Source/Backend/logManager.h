@@ -24,7 +24,6 @@ private:
 
     //
 
-    void writeToLogFile(bool shouldReplaceContent);
     void writeToLogs(std::string s);
     void resizeLogs();
 
@@ -40,6 +39,7 @@ public:
 
     static logManager* getInstance();
 
+    void saveToLogFile(bool shouldReplaceContent);
     void clearLogs();
     const std::deque<std::string>& getLogCache();
 
@@ -48,6 +48,7 @@ public:
 
     void setLogTypeEnabled(logType t, bool isEnabled);
     bool getIsLogTypeEnabled(logType t);
+
 
     // info logs
     //static void i(QString s);

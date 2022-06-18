@@ -24,13 +24,6 @@ logManager* logManager::getInstance(){
 
 //
 
-void logManager::writeToLogFile(bool shouldReplaceContent){
-    QFile f(logPath);
-    if (f.open(QIODevice::WriteOnly | (shouldReplaceContent ? QIODevice::Text : QIODevice::Append)))
-        for (std::string i : logCache)
-            f.write(QString::fromStdString(i).toUtf8());
-}
-
 void logManager::writeToLogs(std::string s){
     qInfo() << QString::fromStdString(s); // console output
     
@@ -52,6 +45,24 @@ std::string logManager::getCurrentTimestamp(){
 }
 
 //
+
+void logManager::saveToLogFile(bool shouldReplaceContent){
+
+    QFile f(logPath);
+    
+    bool isFileOpen = false;
+    if (shouldReplaceContent)
+        isFileOpen = f.open(QIODevice::WriteOnly | QIODevice::Text);
+    else
+        isFileOpen = f.open(QIODevice::WriteOnly | QIODevice::Append);
+
+
+    if (isFileOpen){
+        for (std::string i : logCache)
+            f.write(QString::fromStdString(i + '\n').toUtf8());
+        f.close();
+    }
+}
 
 void logManager::clearLogs(){
     logCache.clear();

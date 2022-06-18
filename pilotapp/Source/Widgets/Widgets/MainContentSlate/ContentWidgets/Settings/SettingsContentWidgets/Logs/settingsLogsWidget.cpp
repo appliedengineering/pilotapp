@@ -4,6 +4,7 @@
 
 #include <QFont>
 #include <QFrame>
+#include <QFile>
 #include <deque>
 #include <string>
 
@@ -232,6 +233,8 @@ void settingsLogsWidget::renderTopOptions(){
     saveButtonFont.setPixelSize(optionsTopWidgetFontSize);
     saveButton->setFont(saveButtonFont);
 
+    connect(saveButton, &QPushButton::released, this, &settingsLogsWidget::handleSaveButton);
+
     optionsTopLayout->addWidget(saveButton);
 }
 
@@ -330,6 +333,8 @@ void settingsLogsWidget::renderBottomOptions(){
     clearLogsButtonFont.setPixelSize(optionsTopWidgetFontSize);
     clearLogsButton->setFont(clearLogsButtonFont);
 
+    connect(clearLogsButton, &QPushButton::released, this, &settingsLogsWidget::handleClearButton);
+
     optionsBottomLayout->addWidget(clearLogsButton);
 }
 
@@ -343,6 +348,7 @@ void settingsLogsWidget::handleStopCheckBox(bool shouldStop){
 }
 
 void settingsLogsWidget::handleSaveButton(){
+    logManager::getInstance()->saveToLogFile(saveOptionCheckBox->isChecked());
 
 }
 
@@ -350,6 +356,11 @@ void settingsLogsWidget::handleFilterCheckBoxes(logManager::logType t){
     //logManager::i(std::to_string(static_cast<int>(t)) + " = " + (filterCheckBoxes[static_cast<int>(t)]->isChecked() ? "true" : "false"));
     logManager::getInstance()->setLogTypeEnabled(t, filterCheckBoxes[static_cast<int>(t)]->isChecked());
     renderLogs(); // rerender logs
+}
+
+void settingsLogsWidget::handleClearButton(){
+    logManager::getInstance()->clearLogs();
+    renderLogs();
 }
 
 //

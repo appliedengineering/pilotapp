@@ -62,6 +62,7 @@ private:
 
     void handleSaveButton();
     void handleFilterCheckBoxes(logManager::logType t);
+    void handleClearButton();
 
     //
 
