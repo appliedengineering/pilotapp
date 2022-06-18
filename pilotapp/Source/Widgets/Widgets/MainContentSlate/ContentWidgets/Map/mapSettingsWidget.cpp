@@ -2,6 +2,7 @@
 
 #include "../../../../../Backend/Utilities/utilities.h"
 #include "../../../../../Backend/boatKernel.h"
+#include "../../../../../Backend/logManager.h"
 
 #include <QDateTime>
 
@@ -103,7 +104,7 @@ void mapSettingsWidget::saveCurrentCoordinates(){
         coordinatelog.write(timestamp.toUtf8());
         coordinatelog.write(data.toUtf8());
 
-        qDebug() << "Saved coordinate - " << data;
+        logManager::i("Saved coordinate - " + data.toStdString());
     }
 
     coordinatelog.close();

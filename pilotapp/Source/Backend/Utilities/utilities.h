@@ -9,6 +9,7 @@
 #include <QPainter>
 #include <QPixmap>
 #include <QIcon>
+#include <QMessageBox>
 #include <vector>
 #include <string>
 #include <math.h>
@@ -40,6 +41,7 @@ public:
 	static double roundDouble(double a, int places);
 	static QIcon setIconColor(QIcon ic, QColor color, QColor current = Qt::black);
 	//static void setPixmapColor(QPixmap* m, QColor color, QColor current = Qt::black);
+	static QMessageBox* createStatusDialogBox(QString status, QString title = "Status");
 };
 
 #endif // !UTILITIES_H

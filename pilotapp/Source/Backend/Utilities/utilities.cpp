@@ -115,3 +115,16 @@ QIcon utilities::setIconColor(QIcon ic, QColor color, QColor current){
 	m->fill(color);
 	m->setMask(mask);
 }*/
+
+QMessageBox* utilities::createStatusDialogBox(QString status, QString title){
+	QMessageBox* m = new QMessageBox();
+	m->setWindowTitle(title);
+	m->setText(status);
+	m->setStandardButtons(QMessageBox::Ok);
+
+	QFont mFont = m->font();
+	mFont.setPixelSize(12);
+	m->setFont(mFont);
+
+	return m;
+}

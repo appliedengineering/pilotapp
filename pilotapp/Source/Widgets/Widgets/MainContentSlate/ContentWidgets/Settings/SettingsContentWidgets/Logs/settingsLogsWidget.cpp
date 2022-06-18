@@ -5,6 +5,7 @@
 #include <QFont>
 #include <QFrame>
 #include <QFile>
+#include <QInputDialog>
 #include <deque>
 #include <string>
 
@@ -196,6 +197,8 @@ void settingsLogsWidget::renderTopOptions(){
     bufferSizeButtonFont.setPixelSize(optionsTopWidgetFontSize);
     bufferSizeButton->setFont(bufferSizeButtonFont);
 
+    connect(bufferSizeButton, &QPushButton::released, this, &settingsLogsWidget::handleBufferSizeButton);
+
     optionsTopLayout->addWidget(bufferSizeButton);
 
     //
@@ -349,7 +352,8 @@ void settingsLogsWidget::handleStopCheckBox(bool shouldStop){
 
 void settingsLogsWidget::handleSaveButton(){
     logManager::getInstance()->saveToLogFile(saveOptionCheckBox->isChecked());
-
+    
+    utilities::createStatusDialogBox("Saved Logs")->exec();
 }
 
 void settingsLogsWidget::handleFilterCheckBoxes(logManager::logType t){
@@ -361,6 +365,25 @@ void settingsLogsWidget::handleFilterCheckBoxes(logManager::logType t){
 void settingsLogsWidget::handleClearButton(){
     logManager::getInstance()->clearLogs();
     renderLogs();
+}
+
+void settingsLogsWidget::handleBufferSizeButton(){
+    QInputDialog b;
+    b.setLabelText("Buffer Size");
+
+    QFont bFont = b.font();
+    bFont.setPixelSize(12);
+    b.setFont(bFont);
+
+    b.setIntMinimum(1);
+    b.setIntMaximum(500);
+    b.setIntStep(1);
+    b.setIntValue(logManager::getInstance()->getMaxLogSize());
+
+    //connect(b, &QInputDialog::);
+    
+    if (b.exec())
+        logManager::getInstance()->setMaxLogSize(b.intValue());
 }
 
 //
