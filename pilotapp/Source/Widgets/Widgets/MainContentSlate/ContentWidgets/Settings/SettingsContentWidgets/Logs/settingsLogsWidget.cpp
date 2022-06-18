@@ -154,6 +154,8 @@ void settingsLogsWidget::renderTopOptions(){
     stopCheckBoxFont.setPixelSize(optionsTopWidgetFontSize);
     stopCheckBox->setFont(stopCheckBoxFont);
 
+    connect(stopCheckBox, &QCheckBox::clicked, this, [=] { handleStopCheckBox(stopCheckBox->isChecked()); });
+
     optionsTopLayout->addWidget(stopCheckBox);
 
     //
@@ -333,6 +335,13 @@ void settingsLogsWidget::renderBottomOptions(){
 
 //
 
+void settingsLogsWidget::handleStopCheckBox(bool shouldStop){
+    //qInfo() << "should stop = " << (shouldStop ? "y" : "n");
+    shouldStopLogs = shouldStop;
+    if (!shouldStopLogs)
+        renderLogs();
+}
+
 void settingsLogsWidget::handleSaveButton(){
 
 }
@@ -382,7 +391,7 @@ bool settingsLogsWidget::isLogEntryTypeEnabled(const std::string& entry){
 //
 
 void settingsLogsWidget::removeFrontLogEntry(){
-    if (logScrollAreaContentLayout->count() > 0){
+    if (!shouldStopLogs &&  logScrollAreaContentLayout->count() > 0){
         QLayoutItem* i = logScrollAreaContentLayout->takeAt(0);
         delete i->widget();
         delete i;
@@ -391,7 +400,7 @@ void settingsLogsWidget::removeFrontLogEntry(){
 
 void settingsLogsWidget::appendLogEntry(){
     std::string entry = logManager::getInstance()->getLogCache().back();
-    if (isLogEntryTypeEnabled(entry)){
+    if (!shouldStopLogs && isLogEntryTypeEnabled(entry)){
         logScrollAreaContentLayout->addWidget(renderLogEntry(entry));
         logScrollAreaContentLayout->update();
     }

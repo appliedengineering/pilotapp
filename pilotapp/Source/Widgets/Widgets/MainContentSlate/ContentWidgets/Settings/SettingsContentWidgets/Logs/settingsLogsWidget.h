@@ -17,6 +17,8 @@ class settingsLogsWidget : public QWidget{
     Q_OBJECT
 
 private:
+    bool shouldStopLogs = false;
+
     QVBoxLayout* vBoxLayout = nullptr;
 
     QScrollArea* logScrollArea = nullptr;
@@ -55,6 +57,8 @@ private:
 
     void renderTopOptions();
     void renderBottomOptions();
+
+    void handleStopCheckBox(bool shouldStop);
 
     void handleSaveButton();
     void handleFilterCheckBoxes(logManager::logType t);
