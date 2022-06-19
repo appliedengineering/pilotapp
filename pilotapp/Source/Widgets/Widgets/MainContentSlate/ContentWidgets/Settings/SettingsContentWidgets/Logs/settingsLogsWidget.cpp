@@ -6,6 +6,7 @@
 #include <QFrame>
 #include <QFile>
 #include <QInputDialog>
+#include <QScroller>
 #include <deque>
 #include <string>
 
@@ -65,6 +66,7 @@ void settingsLogsWidget::setupLayout(){
     logScrollArea->setWidgetResizable(true);
     logScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     logScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    QScroller::grabGesture(logScrollArea, QScroller::LeftMouseButtonGesture);
 
     utilities::setPaletteColor(logScrollArea, QPalette::Background, Qt::black);
 
