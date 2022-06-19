@@ -115,6 +115,8 @@ bool communicationManager::send(void* s, std::string b){
         return false;
     }
 
+    logManager::i("Successfully sent message " + b);
+
     zmq_msg_close(&msg);
     return true;
 }
