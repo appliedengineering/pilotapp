@@ -104,7 +104,7 @@ void settingsLogsWidget::setupLogs(){
 
     logScrollAreaContentWidget->setLayout(logScrollAreaContentLayout);
 
-    logScrollAreaContentLayout->setContentsMargins(logScrollAreaContentLayoutPadding, logScrollAreaContentLayoutPadding/2, logScrollAreaContentLayoutPadding, logScrollAreaContentLayoutPadding/2);
+    logScrollAreaContentLayout->setContentsMargins(logScrollAreaContentLayoutPadding, logScrollAreaContentLayoutPadding/2, logScrollAreaContentLayoutPadding + logScrollAreaContentLayoutPadding/2, logScrollAreaContentLayoutPadding/2);
     logScrollAreaContentLayout->setSpacing(logScrollAreaContentLayoutPadding);  
 
     //logScrollArea->setWidget(logScrollAreaContentLayout->widget());
@@ -145,7 +145,7 @@ void settingsLogsWidget::renderTopOptions(){
 
     optionsTopLayout = new QHBoxLayout(optionsTopWidget);
 
-    optionsTopLayout->setContentsMargins(optionsLayoutHoriziontalPadding, 0, optionsLayoutHoriziontalPadding, 0);
+    optionsTopLayout->setContentsMargins(optionsLayoutHoriziontalPadding, optionsLayoutHoriziontalPadding/2, optionsLayoutHoriziontalPadding, optionsLayoutHoriziontalPadding/2);
     optionsTopLayout->setSpacing(optionsLayoutHoriziontalPadding);
 
     //
@@ -252,7 +252,7 @@ void settingsLogsWidget::renderBottomOptions(){
 
     optionsBottomLayout = new QHBoxLayout(optionsBottomWidget);
 
-    optionsBottomLayout->setContentsMargins(optionsLayoutHoriziontalPadding, 0, optionsLayoutHoriziontalPadding, 0);
+    optionsBottomLayout->setContentsMargins(optionsLayoutHoriziontalPadding, optionsLayoutHoriziontalPadding/2, optionsLayoutHoriziontalPadding, optionsLayoutHoriziontalPadding/2);
     optionsBottomLayout->setSpacing(optionsLayoutHoriziontalPadding);
 
     //
