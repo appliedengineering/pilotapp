@@ -105,6 +105,8 @@ void mapSettingsWidget::saveCurrentCoordinates(){
         coordinatelog.write(data.toUtf8());
 
         logManager::i("Saved coordinate - " + data.toStdString());
+
+        utilities::createStatusDialogBox("Saved Coordinates")->exec();
     }
 
     coordinatelog.close();
