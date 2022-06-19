@@ -152,6 +152,8 @@ void settingsLogsWidget::renderTopOptions(){
 
     stopCheckBox->setText("Stop");
 
+    utilities::setPaletteColor(stopCheckBox, QPalette::WindowText, Qt::white, true);
+
     QFont stopCheckBoxFont = stopCheckBox->font();
     stopCheckBoxFont.setPixelSize(optionsTopWidgetFontSize);
     stopCheckBox->setFont(stopCheckBoxFont);
@@ -217,6 +219,8 @@ void settingsLogsWidget::renderTopOptions(){
 
     saveOptionCheckBox->setText("Replace File");
     
+    utilities::setPaletteColor(saveOptionCheckBox, QPalette::WindowText, Qt::white, true);
+
     QFont saveOptionCheckBoxFont = saveOptionCheckBox->font();
     saveOptionCheckBoxFont.setPixelSize(optionsTopWidgetFontSize);
     saveOptionCheckBox->setFont(saveOptionCheckBoxFont);
@@ -257,6 +261,8 @@ void settingsLogsWidget::renderBottomOptions(){
     infoCheckBox->setText("Info");
     infoCheckBox->setChecked(logManager::getInstance()->getIsLogTypeEnabled(logManager::logType::info));
 
+    utilities::setPaletteColor(infoCheckBox, QPalette::WindowText, Qt::white, true);
+
     QFont infoCheckBoxFont = infoCheckBox->font();
     infoCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
     infoCheckBox->setFont(infoCheckBoxFont);
@@ -272,6 +278,8 @@ void settingsLogsWidget::renderBottomOptions(){
 
     debugCheckBox->setText("Debug");
     debugCheckBox->setChecked(logManager::getInstance()->getIsLogTypeEnabled(logManager::logType::debug));
+
+    utilities::setPaletteColor(debugCheckBox, QPalette::WindowText, Qt::white, true);
 
     QFont debugCheckBoxFont = debugCheckBox->font();
     debugCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
@@ -289,6 +297,8 @@ void settingsLogsWidget::renderBottomOptions(){
     errorCheckBox->setText("Error");
     errorCheckBox->setChecked(logManager::getInstance()->getIsLogTypeEnabled(logManager::logType::errors));
 
+    utilities::setPaletteColor(errorCheckBox, QPalette::WindowText, Qt::white, true);
+
     QFont errorCheckBoxFont = errorCheckBox->font();
     errorCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
     errorCheckBox->setFont(errorCheckBoxFont);
@@ -304,6 +314,8 @@ void settingsLogsWidget::renderBottomOptions(){
 
     telemetryCheckBox->setText("Tmtry");
     telemetryCheckBox->setChecked(logManager::getInstance()->getIsLogTypeEnabled(logManager::logType::telemetry));
+
+    utilities::setPaletteColor(telemetryCheckBox, QPalette::WindowText, Qt::white, true);
 
     QFont telemetryCheckBoxFont = telemetryCheckBox->font();
     telemetryCheckBoxFont.setPixelSize(optionsCheckBoxFontSize);
