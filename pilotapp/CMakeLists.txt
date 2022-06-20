@@ -123,6 +123,8 @@ else()
     "Source/Widgets/Pages/Home/homePage.h"
     "Source/Backend/Utilities/utilities.cpp"
     "Source/Backend/Utilities/utilities.h"
+    "Source/Backend/Display Control/displayControlEventFilter.cpp"
+    "Source/Backend/Display Control/displayControlEventFilter.h"
     "Source/Backend/Communication/communicationManager.cpp"
     "Source/Backend/Communication/communicationManager.h"
     "Source/Backend/Communication/communicationThread.cpp"

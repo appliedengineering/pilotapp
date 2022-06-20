@@ -12,6 +12,7 @@
 #include "Backend/Communication/communicationManager.h"
 #include "Backend/Communication/communicationThread.h"
 #include "Backend/logManager.h"
+#include "Backend/Display Control/displayControlEventFilter.h"
 
 void setupStyleSheet(QApplication* a){
     
@@ -59,7 +60,7 @@ void setupStyleSheet(QApplication* a){
 }*/
 
 int main(int argc, char *argv[]){
-    qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
+    //qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
     qputenv("QT_QPA_EGLFS_HIDECURSOR", QByteArray("1"));
 
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -74,6 +75,15 @@ int main(int argc, char *argv[]){
         communicationThread::getInstance()->start();
     });
     
+    //
+
+    displayControlEventFilter displayEventFilter;
+    displayEventFilter.setDebug(false);
+    displayEventFilter.setMaxBrightness(255);
+    displayEventFilter.setMinBrightness(0);
+    displayEventFilter.setTimeOut(60000);
+    a.installEventFilter(&displayEventFilter);
+
     //
 
     MainWindow w;
