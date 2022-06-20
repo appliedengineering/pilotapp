@@ -1,5 +1,7 @@
 #include "displayControlEventFilter.h"
 
+#include "../logManager.h"
+
 #include <QEvent>
 #include <QFile>
 #include <QDebug>
@@ -88,5 +90,5 @@ void displayControlEventFilter::setDebug(bool status){
 
 void displayControlEventFilter::debug(QString message){
     if(DEBUG)
-        qDebug() << message;
+        logManager::d(message.toStdString());
 }

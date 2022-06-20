@@ -74,20 +74,24 @@ int main(int argc, char *argv[]){
     auto commThread = std::async(std::launch::async, [&] {
         communicationThread::getInstance()->start();
     });
-    
-    //
-
-    displayControlEventFilter displayEventFilter;
-    displayEventFilter.setDebug(false);
-    displayEventFilter.setMaxBrightness(255);
-    displayEventFilter.setMinBrightness(0);
-    displayEventFilter.setTimeOut(60000);
-    a.installEventFilter(&displayEventFilter);
 
     //
 
     MainWindow w;
     w.show();
+
+    //
+
+    displayControlEventFilter displayEventFilter;
+    displayEventFilter.setDebug(true);
+    displayEventFilter.setMaxBrightness(255);
+    displayEventFilter.setMinBrightness(0);
+    displayEventFilter.setTimeOut(60000);
+    a.installEventFilter(&displayEventFilter);
+
+    displayEventFilter.commitBrightness(0);
+
+    //
 
     return a.exec();
 }
