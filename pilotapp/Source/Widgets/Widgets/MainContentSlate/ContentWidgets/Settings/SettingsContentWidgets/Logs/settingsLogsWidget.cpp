@@ -391,7 +391,7 @@ void settingsLogsWidget::handleBufferSizeButton(){
 
     b.setIntMinimum(1);
     b.setIntMaximum(500);
-    b.setIntStep(1);
+    b.setIntStep(10);
     b.setIntValue(logManager::getInstance()->getMaxLogSize());
 
     //connect(b, &QInputDialog::);
