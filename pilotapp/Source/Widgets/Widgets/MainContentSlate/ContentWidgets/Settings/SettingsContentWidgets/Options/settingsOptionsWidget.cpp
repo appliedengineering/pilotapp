@@ -9,8 +9,17 @@
 settingsOptionsWidget::settingsOptionsWidget(QWidget* parent){
     //utilities::setPaletteColor(this, QPalette::Background, Qt::blue);
 
-    //
+    setupLayout();
+    renderContent();
 
+}
+
+settingsOptionsWidget::~settingsOptionsWidget(){
+}
+
+//
+
+void settingsOptionsWidget::setupLayout(){
     vBoxLayout = new QVBoxLayout(this);
 
     vBoxLayout->setContentsMargins(0, 0, 0, 0);
@@ -18,15 +27,34 @@ settingsOptionsWidget::settingsOptionsWidget(QWidget* parent){
 
     //
 
-    renderContent();
+    scrollArea = new QScrollArea(this);
 
+    scrollArea->setWidgetResizable(true);
+    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    QScroller::grabGesture(scrollArea, QScroller::LeftMouseButtonGesture);
+
+    utilities::setPaletteColor(scrollArea, QPalette::Background, Qt::black);
+
+    vBoxLayout->addWidget(scrollArea);
+
+    //
+
+    scrollAreaContentWidget = new QWidget(scrollArea);
+
+    utilities::setPaletteColor(scrollAreaContentWidget, QPalette::Background, Qt::black);
+
+    scrollArea->setWidget(scrollAreaContentWidget);
+
+    //
+
+    scrollAreaContentLayout = new QVBoxLayout(scrollAreaContentWidget);
+
+    scrollAreaContentWidget->setLayout(scrollAreaContentLayout);
+
+    scrollAreaContentLayout->setContentsMargins(scrollAreaContentLayoutPadding, scrollAreaContentLayoutPadding/2, scrollAreaContentLayoutPadding + scrollAreaContentLayoutPadding/2, scrollAreaContentLayoutPadding/2);
+    scrollAreaContentLayout->setSpacing(scrollAreaContentLayoutPadding);
 }
-
-settingsOptionsWidget::~settingsOptionsWidget(){
-
-}
-
-//
 
 void settingsOptionsWidget::renderContent(){
     exitButton = new QPushButton(this);
@@ -41,7 +69,7 @@ void settingsOptionsWidget::renderContent(){
     utilities::setPaletteColor(exitButton, QPalette::ButtonText, Qt::white);
 
     //vBoxLayout->setAlignment(Qt::AlignLeft);
-    vBoxLayout->addWidget(exitButton, 0, Qt::AlignHCenter);
+    scrollAreaContentLayout->addWidget(exitButton, 0, Qt::AlignHCenter);
 
     connect(exitButton, &QPushButton::released, this, &settingsOptionsWidget::handleExit);
 }

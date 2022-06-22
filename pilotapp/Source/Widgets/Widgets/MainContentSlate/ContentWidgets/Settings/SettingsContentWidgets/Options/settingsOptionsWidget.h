@@ -4,16 +4,26 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QScrollArea>
+#include <QScroller>
 
 class settingsOptionsWidget : public QWidget{
     Q_OBJECT
 
 private:
     QVBoxLayout* vBoxLayout = nullptr;
-    
+    QScrollArea* scrollArea = nullptr;
+    QWidget* scrollAreaContentWidget = nullptr;
+    QVBoxLayout* scrollAreaContentLayout = nullptr;
+    const int scrollAreaContentLayoutPadding = 10;
+
     QPushButton* exitButton = nullptr;
 
+    void setupLayout();
     void renderContent();
+    
+    //
+    
     void handleExit();
 
 public:
