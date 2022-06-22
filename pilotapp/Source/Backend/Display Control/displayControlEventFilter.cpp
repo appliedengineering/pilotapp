@@ -58,14 +58,14 @@ void displayControlEventFilter::adjustBrightness(int brightness){
         if(brightness != lastBrightness){
             lastBrightness = MIN_BRIGHTNESS;
             this->commitBrightness(MIN_BRIGHTNESS);
-            this->debug(QString("Sleep."));
+            //this->debug(QString("Sleep."));
         }
     }
     else{
         if(brightness != lastBrightness){
             lastBrightness = MAX_BRIGHTNESS;
             this->commitBrightness(MAX_BRIGHTNESS);
-            this->debug(QString("Wake up."));
+            //this->debug(QString("Wake up."));
         }
     }
 }
@@ -82,12 +82,12 @@ void displayControlEventFilter::commitBrightness(int brightness){
 
 int displayControlEventFilter::getCurrentBrightness(){
     if (file.open(QIODevice::ReadOnly)){
-        QTextStream stream( &file );
-        QString data = stream.readAll();
+        QString data = file.readAll();
         bool validData = false;
         int brightness = data.toInt(&validData);
         if (validData){
             this->debug("Current Brightness is " + QString(brightness));
+            file.close();
             return brightness;
         }
     }
