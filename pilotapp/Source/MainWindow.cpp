@@ -9,6 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     //
 
+    displayFilter = new displayControlEventFilter(this);
+
+    //
+
     home = new homePage(this);
 
     setCentralWidget(home);
@@ -30,5 +34,9 @@ void MainWindow::closeEvent(QCloseEvent* event){
 
 homePage* MainWindow::getHomePageWidget(){
     return home;
+}
+
+displayControlEventFilter* MainWindow::getDisplayFilter(){
+    return displayFilter;
 }
 

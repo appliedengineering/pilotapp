@@ -5,15 +5,17 @@
 #include <QEvent>
 #include <QFile>
 #include <QDebug>
+#include <QTextStream>
 
-const QString filename = "/sys/class/backlight/rpi_backlight/brightness";
+const QString filename = "/sys/class/backlight/10-0045/brightness";
 QFile file(filename);
 
 displayControlEventFilter::displayControlEventFilter(QObject *parent) : QObject(parent){
     DEBUG           = false;
-    TIMEOUT         = 60000;
+    TIMEOUT         = 1;
     MIN_BRIGHTNESS  = 12;
-    MAX_BRIGHTNESS  = 200;
+    MAX_BRIGHTNESS  = 255;
+    isAutoSleepEnabled = true;
     isSleeping      = false;
     lastBrightness  = MAX_BRIGHTNESS;
     inactivityTimer.setInterval(TIMEOUT);
@@ -32,8 +34,23 @@ bool displayControlEventFilter::eventFilter(QObject *obj, QEvent *ev){
 }
 
 void displayControlEventFilter::goToSleep(){
-    isSleeping = true;
-    this->adjustBrightness(MIN_BRIGHTNESS);
+    if (isAutoSleepEnabled){
+        //qInfo() << "go to sleep called";
+        isSleeping = true;
+        this->adjustBrightness(MIN_BRIGHTNESS);
+    }
+}
+
+bool displayControlEventFilter::getIsAutoSleepEnabled(){
+    return isAutoSleepEnabled;
+}
+
+void displayControlEventFilter::setAutoSleep(bool autoSleep){
+    isAutoSleepEnabled = autoSleep;
+    if (isAutoSleepEnabled)
+        inactivityTimer.start();
+    else
+        inactivityTimer.stop();
 }
 
 void displayControlEventFilter::adjustBrightness(int brightness){
@@ -63,25 +80,64 @@ void displayControlEventFilter::commitBrightness(int brightness){
     file.close();
 }
 
-void displayControlEventFilter::setTimeOut(int milliseconds){
-    this->TIMEOUT = milliseconds;
+int displayControlEventFilter::getCurrentBrightness(){
+    if (file.open(QIODevice::ReadOnly)){
+        QTextStream stream( &file );
+        QString data = stream.readAll();
+        bool validData = false;
+        int brightness = data.toInt(&validData);
+        if (validData){
+            this->debug("Current Brightness is " + QString(brightness));
+            return brightness;
+        }
+    }
+    else
+        this->debug("Unable to open file.");
+    file.close();
+    return 0;
+}
+
+void displayControlEventFilter::setTimeOut(int mins){
+    int timeoutMilli = mins * 1000 * 60;
+    this->TIMEOUT = (timeoutMilli < 0 ? (35000) : timeoutMilli); // integer overflow
+    qInfo() << "set timeout = " << TIMEOUT << " = " << mins;
     this->inactivityTimer.setInterval(this->TIMEOUT);
 }
 
+int displayControlEventFilter::getTimeOut(){
+    return this->TIMEOUT / (60000);
+}
+
 void displayControlEventFilter::setMinBrightness(int brightness){
-    if(brightness < 0 && brightness > 255){
+    if(brightness < ABS_MIN_BRIGHTNESS && brightness > ABS_MAX_BRIGHTNESS){
         this->debug("Brightness out or range (0-255.");
         return;
     }
     this->MIN_BRIGHTNESS = brightness;
 }
 
+int displayControlEventFilter::getMinBrightness(){
+    return this->MIN_BRIGHTNESS;
+}
+
+int displayControlEventFilter::getAbsoluteMinBrightness(){
+    return this->ABS_MIN_BRIGHTNESS;
+}
+
 void displayControlEventFilter::setMaxBrightness(int brightness){
-    if(brightness < 0 && brightness > 255){
+    if(brightness < ABS_MIN_BRIGHTNESS && brightness > ABS_MAX_BRIGHTNESS){
         this->debug("Brightness out or range (0-255.");
         return;
     }
     this->MAX_BRIGHTNESS = brightness;
+}
+
+int displayControlEventFilter::getMaxBrightness(){
+    return this->MAX_BRIGHTNESS;
+}
+
+int displayControlEventFilter::getAbsoluteMaxBrightness(){
+    return this->ABS_MAX_BRIGHTNESS;
 }
 
 void displayControlEventFilter::setDebug(bool status){
@@ -90,5 +146,5 @@ void displayControlEventFilter::setDebug(bool status){
 
 void displayControlEventFilter::debug(QString message){
     if(DEBUG)
-        logManager::d(message.toStdString());
+        logManager::d("Display - " + message.toStdString());
 }

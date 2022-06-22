@@ -386,7 +386,7 @@ void settingsLogsWidget::handleBufferSizeButton(){
     b.setLabelText("Buffer Size");
 
     QFont bFont = b.font();
-    bFont.setPixelSize(12);
+    bFont.setPixelSize(15);
     b.setFont(bFont);
 
     b.setIntMinimum(1);

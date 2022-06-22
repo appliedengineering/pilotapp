@@ -7,6 +7,7 @@
 //
 
 #include "Widgets/Pages/Home/homePage.h"
+#include "Backend/Display Control/displayControlEventFilter.h"
 
 //
 
@@ -16,6 +17,7 @@ class MainWindow : public QMainWindow
 
 private:
     homePage* home;
+    displayControlEventFilter* displayFilter;
 
 public slots:
     void closeApplication();
@@ -27,5 +29,6 @@ public:
     void closeEvent(QCloseEvent* event);
 
     homePage* getHomePageWidget();
+    displayControlEventFilter* getDisplayFilter();
 };
 #endif // MAINWINDOW_H
