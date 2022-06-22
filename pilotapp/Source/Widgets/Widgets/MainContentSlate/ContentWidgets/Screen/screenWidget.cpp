@@ -2,11 +2,17 @@
 
 #include <QFont>
 #include <QInputDialog>
+#include <QPixmap>
 
 #include "../../../../../Backend/Utilities/utilities.h"
 
 screenWidget::screenWidget(QWidget* parent){
     //this->widgetType = fullscreen;
+
+    displayFilter = utilities::findMainWindow()->getDisplayFilter();
+
+    //
+
     utilities::setPaletteColor(this, QPalette::Background, Qt::black);
 
     const int screenWidgetWidth = parent->width() * 0.7;
@@ -32,9 +38,6 @@ screenWidget::~screenWidget(){
 //
 
 void screenWidget::renderContent(){
-    displayControlEventFilter* displayFilter = utilities::findMainWindow()->getDisplayFilter();
-
-    //
 
     timeoutHBoxLayout = new QHBoxLayout();
 
@@ -112,6 +115,9 @@ void screenWidget::renderContent(){
     brightnessRangeSlider->SetUpperValue(displayFilter->getMaxBrightness());
     brightnessRangeSlider->SetLowerValue(displayFilter->getMinBrightness());
 
+    connect(brightnessRangeSlider, &RangeSlider::lowerValueChanged, this, &screenWidget::handleBrightnessRangeLowerSlider);
+    connect(brightnessRangeSlider, &RangeSlider::upperValueChanged, this, &screenWidget::handleBrightnessRangeUpperSlider);
+
     brightnessRangeHBoxLayout->addWidget(brightnessRangeSlider, brightnessRangeSliderStretchFactor);
 
     //
@@ -141,11 +147,23 @@ void screenWidget::renderContent(){
 
     //
 
+    brightnessIconLabel = new QLabel(this);
+
+    QPixmap iconPixMap(":/Assets/Icons/solar.png");
+    brightnessIconLabel->setPixmap(iconPixMap);
+    brightnessIconLabel->setScaledContents(1);
+
+    brightnessHBoxLayout->addWidget(brightnessIconLabel, (100 - brightnessSliderStretchFactor) / 2);
+
+    //
+
     brightnessSlider = new RangeSlider(Qt::Horizontal, RangeSlider::RightHandle, this);
 
     //brightnessSlider->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);    
     brightnessSlider->SetRange(displayFilter->getAbsoluteMinBrightness(), displayFilter->getAbsoluteMaxBrightness());
     brightnessSlider->SetUpperValue(displayFilter->getCurrentBrightness());
+
+    connect(brightnessSlider, &RangeSlider::upperValueChanged, this, &screenWidget::handleBrightnessSlider);
 
     brightnessHBoxLayout->addWidget(brightnessSlider, brightnessSliderStretchFactor);
 
@@ -155,8 +173,8 @@ void screenWidget::renderContent(){
 
     brightnessLabel->setText(QString::number(displayFilter->getCurrentBrightness()));
     //brightnessLabel->setText("288");
-    brightnessLabel->setWordWrap(true);
-    brightnessLabel->setAlignment(Qt::AlignHCenter);
+    //brightnessLabel->setWordWrap(true);
+    brightnessLabel->setAlignment(Qt::AlignCenter);
     //brightnessLabel->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
     utilities::setPaletteColor(brightnessLabel, QPalette::Foreground, Qt::white, true);
@@ -166,14 +184,18 @@ void screenWidget::renderContent(){
     brightnessLabelFont.setPixelSize(contentFontSize);
     brightnessLabel->setFont(brightnessLabelFont);
 
-    brightnessHBoxLayout->addWidget(brightnessLabel, 100 - brightnessSliderStretchFactor);
+    brightnessHBoxLayout->addWidget(brightnessLabel, (100 - brightnessSliderStretchFactor) / 2);
 
+}
+
+void screenWidget::resizeEvent(QResizeEvent*){
+    brightnessIconLabel->setPixmap(brightnessIconLabel->pixmap()->scaled(brightnessIconLabel->height(), brightnessIconLabel->height(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 
 //
 
 void screenWidget::handleAutoSleepCheckBox(){
-    utilities::findMainWindow()->getDisplayFilter()->setAutoSleep(autoSleepCheckBox->isChecked());
+    displayFilter->setAutoSleep(autoSleepCheckBox->isChecked());
 }
 
 void screenWidget::handleTimeoutButton(){
@@ -187,10 +209,37 @@ void screenWidget::handleTimeoutButton(){
     b.setIntMinimum(1);
     b.setIntMaximum(360);
     b.setIntStep(5);
-    b.setIntValue(utilities::findMainWindow()->getDisplayFilter()->getTimeOut());
+    b.setIntValue(displayFilter->getTimeOut());
 
     //connect(b, &QInputDialog::);
     
     if (b.exec())
-        utilities::findMainWindow()->getDisplayFilter()->setTimeOut(b.intValue());
+        displayFilter->setTimeOut(b.intValue());
+}
+
+void screenWidget::handleBrightnessRangeLowerSlider(){
+    int newMinValue = brightnessRangeSlider->GetLowerValue();
+    minimumBrightnessRangeLabel->setText(QString::number(newMinValue));
+    displayFilter->setMinBrightness(newMinValue);
+
+    if (brightnessSlider->GetUpperValue() < newMinValue){
+        brightnessSlider->SetUpperValue(newMinValue);
+        //handleBrightnessSlider();
+    }
+}
+
+void screenWidget::handleBrightnessRangeUpperSlider(){
+    int newMaxValue = brightnessRangeSlider->GetUpperValue();
+    maximumBrightnessRangeLabel->setText(QString::number(newMaxValue));
+    displayFilter->setMaxBrightness(newMaxValue);
+
+    if (brightnessSlider->GetUpperValue() > newMaxValue){
+        brightnessSlider->SetUpperValue(newMaxValue);
+    }
+}
+
+void screenWidget::handleBrightnessSlider(){
+    int newValue = brightnessSlider->GetUpperValue();
+    brightnessLabel->setText(QString::number(newValue));
+    displayFilter->commitBrightness(newValue);
 }

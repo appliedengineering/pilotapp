@@ -100,8 +100,8 @@ int displayControlEventFilter::getCurrentBrightness(){
 void displayControlEventFilter::setTimeOut(int mins){
     int timeoutMilli = mins * 1000 * 60;
     this->TIMEOUT = (timeoutMilli < 0 ? (35000) : timeoutMilli); // integer overflow
-    qInfo() << "set timeout = " << TIMEOUT << " = " << mins;
     this->inactivityTimer.setInterval(this->TIMEOUT);
+    logManager::i("Set display timeout at " + std::to_string(TIMEOUT) + " milliseconds or " + std::to_string(mins) + " mins");
 }
 
 int displayControlEventFilter::getTimeOut(){
