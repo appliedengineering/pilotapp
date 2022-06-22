@@ -119,7 +119,7 @@ void settingsWidget::createSettingsContentWidgetForIndex(int index){
     case 1:
         settingsContentWidget = new settingsLogsWidget(this);
         break;
-        
+
     default:
         qWarning() << "invalid index for content widget creation";
         settingsContentWidget = new settingsOptionsWidget(this);

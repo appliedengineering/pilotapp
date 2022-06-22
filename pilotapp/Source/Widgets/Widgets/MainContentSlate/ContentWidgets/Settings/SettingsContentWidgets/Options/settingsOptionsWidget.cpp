@@ -1,5 +1,7 @@
 #include "settingsOptionsWidget.h"
 
+#include <QMessageBox>
+
 #include "../../../../../../../Backend/Utilities/utilities.h"
 
 //
@@ -45,5 +47,12 @@ void settingsOptionsWidget::renderContent(){
 }
 
 void settingsOptionsWidget::handleExit(){
-    utilities::findMainWindow()->closeApplication();
+    QMessageBox b;
+    b.setText("Close the program");
+    b.setInformativeText("Are you sure?");
+    b.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    //b.setDefaultButton(QMessageBox::No);
+
+    if (b.exec() == QMessageBox::Yes)
+        utilities::findMainWindow()->closeApplication();
 }
