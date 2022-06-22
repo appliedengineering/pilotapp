@@ -25,6 +25,7 @@ MainWindow::~MainWindow(){
 
 void MainWindow::closeApplication() {
     communicationThread::getInstance()->stop();
+    displayFilter->commitBrightness(displayFilter->getAbsoluteMaxBrightness());
     QApplication::quit();
 }
 

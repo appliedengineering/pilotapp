@@ -83,12 +83,12 @@ int main(int argc, char *argv[]){
     //
 
     w.getDisplayFilter()->setDebug(true);
-    w.getDisplayFilter()->setMaxBrightness(255);
+    w.getDisplayFilter()->setMaxBrightness(w.getDisplayFilter()->getAbsoluteMaxBrightness());
     w.getDisplayFilter()->setMinBrightness(0);
     w.getDisplayFilter()->setTimeOut(1);
     a.installEventFilter(w.getDisplayFilter());
 
-    w.getDisplayFilter()->commitBrightness(255);
+    w.getDisplayFilter()->commitBrightness(w.getDisplayFilter()->getAbsoluteMaxBrightness());
 
     //
 
