@@ -86,7 +86,7 @@ int displayControlEventFilter::getCurrentBrightness(){
         bool validData = false;
         int brightness = data.toInt(&validData);
         if (validData){
-            this->debug("Current Brightness is " + QString(brightness));
+            this->debug("Current Brightness is " + QString::number(brightness));
             file.close();
             return brightness;
         }
