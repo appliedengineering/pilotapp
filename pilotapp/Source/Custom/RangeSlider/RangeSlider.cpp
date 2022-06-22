@@ -5,8 +5,8 @@
 namespace
 {
 
-const int scHandleSideLength = 11;
-const int scSliderBarHeight = 5;
+const int scHandleSideLength = 15;
+const int scSliderBarHeight = 8;
 const int scLeftRightMargin = 1;
 
 }
