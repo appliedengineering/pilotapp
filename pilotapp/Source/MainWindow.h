@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <QApplication>
+#include <QEvent>
+#include <QMouseEvent>
+#include <QQuickWidget>
 
 //
 
@@ -19,6 +22,11 @@ private:
     homePage* home;
     displayControlEventFilter* displayFilter;
 
+    QQuickWidget* virtualKeyboardWidget = nullptr;
+
+    void displayVirtualKeyboard();
+    void hideVirtualKeyboard();
+
 public slots:
     void closeApplication();
 
@@ -27,6 +35,7 @@ public:
     ~MainWindow();
 
     void closeEvent(QCloseEvent* event);
+    void mousePressEvent(QMouseEvent* e);
 
     homePage* getHomePageWidget();
     displayControlEventFilter* getDisplayFilter();

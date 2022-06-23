@@ -60,8 +60,9 @@ void setupStyleSheet(QApplication* a){
 }*/
 
 int main(int argc, char *argv[]){
-    //qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
+    qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
     qputenv("QT_QPA_EGLFS_HIDECURSOR", QByteArray("1"));
+    qputenv("QT_VIRTUALKEYBOARD_DESKTOP_DISABLE", QByteArray("1"));
 
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication a(argc, argv);

@@ -17,5 +17,6 @@
     <file>Assets/Model/slantedboat.png</file>
     <file>Assets/Model/topdownboat.png</file>
     <file>Source/style.qss</file>
+    <file>Source/virtualkeyboard.qml</file>
 </qresource>
 </RCC>

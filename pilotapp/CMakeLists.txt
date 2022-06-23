@@ -99,8 +99,8 @@ message("Source DIR = ${CMAKE_SOURCE_DIR}")
 #    endif()
 #endif()
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Multimedia REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets QuickWidgets VirtualKeyboard REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Multimedia QuickWidgets VirtualKeyboard REQUIRED)
 
 #find_package(ArcGISRuntime 100.7 COMPONENTS Cpp REQUIRED)
 
@@ -188,6 +188,8 @@ endif()
 target_link_libraries(pilotapp PRIVATE 
   Qt${QT_VERSION_MAJOR}::Widgets 
   Qt${QT_VERSION_MAJOR}::Multimedia
+  Qt${QT_VERSION_MAJOR}::QuickWidgets
+  Qt${QT_VERSION_MAJOR}::VirtualKeyboard
 #  ArcGISRuntime::Cpp
   zmq
   msgpackc-cxx
