@@ -8,6 +8,7 @@
 #include <QGridLayout>
 #include <QMouseEvent>
 #include <QPoint>
+#include <QSize>
 
 class touchKeypad : public QWidget{
     Q_OBJECT
@@ -17,6 +18,10 @@ private:
     ~touchKeypad();
     
     static touchKeypad* instance;
+    
+    const int width = 200;
+    const int height = 400;
+    
     QWidget* inputWidget = nullptr; // widget that calls the touchpad
     QPoint mouseEventOffset;
 
@@ -34,7 +39,9 @@ protected:
 
 public:
     static touchKeypad* getInstance();
-    void buttonPressed(int num);
+    void buttonPress(int num);
+
+    QSize getSize();
 };
 
 #endif

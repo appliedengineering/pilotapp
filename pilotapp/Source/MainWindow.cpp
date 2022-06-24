@@ -6,7 +6,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent){
 
-    this->setFixedSize(800, 480); // size of offical raspberry pi display
+    this->setFixedSize(MainWindow::windowWidth, MainWindow::windowHeight); // size of offical raspberry pi display
 
     //
 
@@ -44,6 +44,7 @@ displayControlEventFilter* MainWindow::getDisplayFilter(){
 
 void MainWindow::showTouchKeypad(){
     touchKeypad* keypad = touchKeypad::getInstance();
+    QSize keypadSize = keypad->getSize();
     keypad->show();
-    keypad->setGeometry(0, 0, 100, 100);
+    keypad->setGeometry(0, 0, keypadSize.width(), keypadSize.height());
 }

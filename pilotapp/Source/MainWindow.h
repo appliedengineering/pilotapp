@@ -27,6 +27,9 @@ public:
     MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
 
+    static const int windowWidth = 800;
+    static const int windowHeight = 480;
+
     void closeEvent(QCloseEvent* event);
 
     homePage* getHomePageWidget();
