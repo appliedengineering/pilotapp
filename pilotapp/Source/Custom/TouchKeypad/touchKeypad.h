@@ -19,10 +19,10 @@ private:
     
     static touchKeypad* instance;
     
-    const int width = 180;
-    const int height = 220;
+    const int width = 210;
+    const int height = 250;
     const int cornerRadius = 10;
-    const int fontSize = 12;
+    const int fontSize = 20;
     const int padding = 10;
 
     const QColor backgroundColor = QColor(25, 25, 25);

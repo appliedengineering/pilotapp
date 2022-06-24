@@ -17,6 +17,7 @@ touchKeypad::touchKeypad(QWidget* parent) : QWidget(parent){
     //this->setObjectName("touchKeypad");
     this->setGeometry(0, 0, this->width, this->height);
     this->hide();
+    this->setFocusPolicy(Qt::NoFocus);
 
     utilities::setWidgetRoundedCorner(this, cornerRadius, {});
     utilities::setPaletteColor(this, QPalette::Background, backgroundColor);
@@ -56,6 +57,16 @@ void touchKeypad::renderContent(){
 
     //
 
+    QFrame* lineFrame = new QFrame(this);
+
+    lineFrame->setContentsMargins(0, 0, 0, 0);
+    lineFrame->setFrameShape(QFrame::HLine);
+    lineFrame->setFrameShadow(QFrame::Sunken);
+
+    gridLayout->addWidget(lineFrame, 0, 0, 1, 3);
+
+    //
+
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
             int n = (i * 3) + j + 1;
@@ -68,9 +79,11 @@ void touchKeypad::renderContent(){
             bFont.setPixelSize(fontSize);
             b->setFont(bFont);
 
+            utilities::setPaletteColor(b, QPalette::ButtonText, Qt::white);
+
             connect(b, &QPushButton::released, this, [=]{ buttonPress(n); });
 
-            gridLayout->addWidget(b, i, j);
+            gridLayout->addWidget(b, i + 1, j);
         }
     }
 
@@ -84,9 +97,11 @@ void touchKeypad::renderContent(){
     zeroButtonFont.setPixelSize(fontSize);
     zeroButton->setFont(zeroButtonFont);
 
+    utilities::setPaletteColor(zeroButton, QPalette::ButtonText, Qt::white);
+
     connect(zeroButton, &QPushButton::released, this, [=]{ buttonPress(0); });
 
-    gridLayout->addWidget(zeroButton, 3, 1);
+    gridLayout->addWidget(zeroButton, 4, 1);
 
     //
 
@@ -98,9 +113,11 @@ void touchKeypad::renderContent(){
     backButtonFont.setPixelSize(fontSize);
     backButton->setFont(backButtonFont);
 
+    utilities::setPaletteColor(backButton, QPalette::ButtonText, Qt::white);
+
     connect(backButton, &QPushButton::released, this, [=]{ buttonPress(-1); });
 
-    gridLayout->addWidget(backButton, 3, 0);
+    gridLayout->addWidget(backButton, 4, 0);
 
     //
 
@@ -112,9 +129,11 @@ void touchKeypad::renderContent(){
     exitButtonFont.setPixelSize(fontSize);
     exitButton->setFont(exitButtonFont);
 
+    utilities::setPaletteColor(exitButton, QPalette::ButtonText, Qt::white);
+
     connect(exitButton, &QPushButton::released, this, &touchKeypad::closeKeypad);
 
-    gridLayout->addWidget(exitButton, 3, 2);
+    gridLayout->addWidget(exitButton, 4, 2);
 }
 
 void touchKeypad::closeKeypad(){
