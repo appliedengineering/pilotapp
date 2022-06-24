@@ -161,6 +161,10 @@ else()
     "Source/Widgets/Widgets/MainContentSlate/ContentWidgets/Map/mapSettingsWidget.h"
     "Source/Custom/RangeSlider/RangeSlider.cpp"
     "Source/Custom/RangeSlider/RangeSlider.h"
+    "Source/Custom/TouchKeypad/touchKeypad.cpp"
+    "Source/Custom/TouchKeypad/touchKeypad.h"
+    "Source/Custom/TouchInputWidgets/TouchNumericalLineEdit/touchNumericalLineEdit.cpp"
+    "Source/Custom/TouchInputWidgets/TouchNumericalLineEdit/touchNumericalLineEdit.h"
     "resources.qrc")
 
  # add_custom_command( # copies style.qss to bin folder

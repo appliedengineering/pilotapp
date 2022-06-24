@@ -1,8 +1,11 @@
 #include "settingsOptionsWidget.h"
 
 #include <QMessageBox>
+#include <QFrame>
 
 #include "../../../../../../../Backend/Utilities/utilities.h"
+#include "../../../../../../../Custom/TouchKeypad/touchKeypad.h"
+#include "../../../../../../../Custom/TouchInputWidgets/TouchNumericalLineEdit/touchNumericalLineEdit.h"
 
 //
 
@@ -57,13 +60,38 @@ void settingsOptionsWidget::setupLayout(){
 }
 
 void settingsOptionsWidget::renderContent(){
+    QLineEdit* l = new TouchNumericalLineEdit(this);
+
+    l->setText("0");
+
+    scrollAreaContentLayout->addWidget(l);
+
+    //
+
+    renderDivider();
+    renderExitButton();
+}
+
+//
+
+void settingsOptionsWidget::renderDivider(){
+    QFrame* divider = new QFrame(this);
+
+    divider->setContentsMargins(0, 0, 0, 0);
+    divider->setFrameShape(QFrame::HLine);
+    divider->setFrameShadow(QFrame::Sunken);
+
+    scrollAreaContentLayout->addWidget(divider);
+}
+
+void settingsOptionsWidget::renderExitButton(){
     exitButton = new QPushButton(this);
 
     exitButton->setText("Close App");
     //exitButton->setContentsMargins(10, 0, 10, 0);
     
     QFont exitButtonFont = exitButton->font();
-    exitButtonFont.setPixelSize(12);
+    exitButtonFont.setPixelSize(14);
     exitButton->setFont(exitButtonFont);
 
     utilities::setPaletteColor(exitButton, QPalette::ButtonText, Qt::white);
@@ -73,6 +101,8 @@ void settingsOptionsWidget::renderContent(){
 
     connect(exitButton, &QPushButton::released, this, &settingsOptionsWidget::handleExit);
 }
+
+//
 
 void settingsOptionsWidget::handleExit(){
     QMessageBox b;

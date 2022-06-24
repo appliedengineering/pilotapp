@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QScrollArea>
 #include <QScroller>
+#include <QLineEdit>
 
 class settingsOptionsWidget : public QWidget{
     Q_OBJECT
@@ -21,6 +22,12 @@ private:
 
     void setupLayout();
     void renderContent();
+
+    //
+
+    void renderDivider();
+
+    void renderExitButton();
     
     //
     
