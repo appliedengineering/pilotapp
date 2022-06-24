@@ -1,7 +1,7 @@
 #include "powerWidget.h"
 
 #include "../../../../../Backend/Utilities/utilities.h"
-#include "../../../../../Backend/boatKernel.h"
+#include "../../../../../Backend/Boat Kernel/boatKernel.h"
 
 powerWidget::powerWidget(QWidget* parent){
     //this->widgetType = windowed;

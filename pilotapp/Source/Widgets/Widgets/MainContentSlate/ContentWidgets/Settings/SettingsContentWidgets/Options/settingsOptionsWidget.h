@@ -12,12 +12,18 @@ class settingsOptionsWidget : public QWidget{
     Q_OBJECT
 
 private:
+    const int verticalPadding = 10;
+    const int horizontalPadding = 10;
+
     QVBoxLayout* vBoxLayout = nullptr;
     QScrollArea* scrollArea = nullptr;
     QWidget* scrollAreaContentWidget = nullptr;
     QVBoxLayout* scrollAreaContentLayout = nullptr;
     const int scrollAreaContentLayoutPadding = 10;
 
+    const int bottomActionsFontSize = 14;
+    QHBoxLayout* bottomActionsLayout = nullptr;
+    QPushButton* saveOptionsButton = nullptr;
     QPushButton* exitButton = nullptr;
 
     void setupLayout();
@@ -27,7 +33,7 @@ private:
 
     void renderDivider();
 
-    void renderExitButton();
+    void renderBottomActions();
     
     //
     

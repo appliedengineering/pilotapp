@@ -1,7 +1,7 @@
 #include "boatKernel.h"
-#include "Utilities/utilities.h"
-#include "Communication/dataManager.h"
-#include "Communication/communicationManager.h"
+#include "../Utilities/utilities.h"
+#include "../Communication/dataManager.h"
+#include "../Communication/communicationManager.h"
 
 #include <QDebug>
 #include <math.h>

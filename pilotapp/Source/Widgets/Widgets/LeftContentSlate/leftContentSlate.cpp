@@ -1,7 +1,7 @@
 #include "leftContentSlate.h"
 
 #include "../../../Backend/Utilities/utilities.h"
-#include "../../../Backend/boatKernel.h"
+#include "../../../Backend/Boat Kernel/boatKernel.h"
 
 #include <QDebug>
 #include <cmath>

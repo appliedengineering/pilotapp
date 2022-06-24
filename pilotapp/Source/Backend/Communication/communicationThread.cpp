@@ -2,7 +2,7 @@
 
 #include "communicationManager.h"
 #include "dataManager.h"
-#include "../boatKernel.h"
+#include "../Boat Kernel/boatKernel.h"
 #include "../logManager.h"
 #include <thread>
 #include <chrono>

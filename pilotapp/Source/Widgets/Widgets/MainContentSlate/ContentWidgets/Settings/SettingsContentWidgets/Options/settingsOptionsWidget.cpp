@@ -69,7 +69,7 @@ void settingsOptionsWidget::renderContent(){
     //
 
     renderDivider();
-    renderExitButton();
+    renderBottomActions();
 }
 
 //
@@ -84,20 +84,43 @@ void settingsOptionsWidget::renderDivider(){
     scrollAreaContentLayout->addWidget(divider);
 }
 
-void settingsOptionsWidget::renderExitButton(){
+void settingsOptionsWidget::renderBottomActions(){
+    bottomActionsLayout = new QHBoxLayout(this);
+
+    bottomActionsLayout->setContentsMargins(0, 0, 0, 0);
+    bottomActionsLayout->setSpacing(horizontalPadding);
+
+    scrollAreaContentLayout->addLayout(bottomActionsLayout);
+    
+    //
+
+    saveOptionsButton = new QPushButton(this);
+
+    saveOptionsButton->setText("Save Options");
+
+    QFont saveOptionsButtonFont = saveOptionsButton->font();
+    saveOptionsButtonFont.setPixelSize(bottomActionsFontSize);
+    saveOptionsButton->setFont(saveOptionsButtonFont);
+
+    utilities::setPaletteColor(saveOptionsButton, QPalette::ButtonText, Qt::white);
+
+    bottomActionsLayout->addWidget(saveOptionsButton);
+
+    //
+
     exitButton = new QPushButton(this);
 
     exitButton->setText("Close App");
     //exitButton->setContentsMargins(10, 0, 10, 0);
     
     QFont exitButtonFont = exitButton->font();
-    exitButtonFont.setPixelSize(14);
+    exitButtonFont.setPixelSize(bottomActionsFontSize);
     exitButton->setFont(exitButtonFont);
 
     utilities::setPaletteColor(exitButton, QPalette::ButtonText, Qt::white);
 
     //vBoxLayout->setAlignment(Qt::AlignLeft);
-    scrollAreaContentLayout->addWidget(exitButton, 0, Qt::AlignHCenter);
+    bottomActionsLayout->addWidget(exitButton);
 
     connect(exitButton, &QPushButton::released, this, &settingsOptionsWidget::handleExit);
 }
