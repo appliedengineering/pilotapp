@@ -4,23 +4,37 @@
 #include <QWidget>
 #include <QEvent>
 #include <QObject>
+#include <QPushButton>
+#include <QGridLayout>
+#include <QMouseEvent>
+#include <QPoint>
 
 class touchKeypad : public QWidget{
     Q_OBJECT
 
 private:    
-    touchKeypad();
+    touchKeypad(QWidget* parent = nullptr);
     ~touchKeypad();
     
     static touchKeypad* instance;
+    QWidget* inputWidget = nullptr; // widget that calls the touchpad
+    QPoint mouseEventOffset;
 
-    void buttonPressed(int num);
+    //
+
+    QGridLayout* gridLayout = nullptr;
+
+    void renderContent();
+    void closeKeypad();
 
 protected:
     bool eventFilter(QObject* obj, QEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
 
 public:
     static touchKeypad* getInstance();
+    void buttonPressed(int num);
 };
 
 #endif

@@ -31,5 +31,7 @@ public:
 
     homePage* getHomePageWidget();
     displayControlEventFilter* getDisplayFilter();
+
+    void showTouchKeypad();
 };
 #endif // MAINWINDOW_H

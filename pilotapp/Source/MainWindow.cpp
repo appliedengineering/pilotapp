@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 
 #include "Source/Backend/Communication/communicationThread.h"
+#include "Source/Custom/TouchKeypad/touchKeypad.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent){
@@ -41,3 +42,8 @@ displayControlEventFilter* MainWindow::getDisplayFilter(){
     return displayFilter;
 }
 
+void MainWindow::showTouchKeypad(){
+    touchKeypad* keypad = touchKeypad::getInstance();
+    keypad->show();
+    keypad->setGeometry(0, 0, 100, 100);
+}

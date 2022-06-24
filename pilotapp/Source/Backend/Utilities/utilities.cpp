@@ -1,5 +1,7 @@
 #include "utilities.h"
 
+#include "../logManager.h"
+
 MainWindow* utilities::mainWindow = nullptr;
 
 MainWindow* utilities::findMainWindow() {
@@ -15,6 +17,7 @@ MainWindow* utilities::findMainWindow() {
 		}
 	}
 
+	logManager::e("Failed to find MainWindow");
 	return nullptr;
 }
 
