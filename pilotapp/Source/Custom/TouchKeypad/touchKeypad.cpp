@@ -63,6 +63,10 @@ void touchKeypad::renderContent(){
 
             b->setText(QString::number(n));
 
+            QFont bFont = b->font();
+            bFont.setPixelSize(fontSize);
+            b->setFont(bFont);
+
             gridLayout->addWidget(b, i, j);
         }
     }
@@ -73,6 +77,10 @@ void touchKeypad::renderContent(){
 
     zeroButton->setText("0");
 
+    QFont zeroButtonFont = zeroButton->font();
+    zeroButtonFont.setPixelSize(fontSize);
+    zeroButton->setFont(zeroButtonFont);
+
     gridLayout->addWidget(zeroButton, 3, 1);
 
     //
@@ -81,6 +89,10 @@ void touchKeypad::renderContent(){
 
     backButton->setText("⬅");
 
+    QFont backButtonFont = backButton->font();
+    backButtonFont.setPixelSize(fontSize);
+    backButton->setFont(backButtonFont);
+
     gridLayout->addWidget(backButton, 3, 0);
 
     //
@@ -88,6 +100,10 @@ void touchKeypad::renderContent(){
     QPushButton* exitButton = new QPushButton(this);
 
     exitButton->setText("⬇");
+
+    QFont exitButtonFont = exitButton->font();
+    exitButtonFont.setPixelSize(fontSize);
+    exitButton->setFont(exitButtonFont);
 
     gridLayout->addWidget(exitButton, 3, 2);
 }
