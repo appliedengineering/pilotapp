@@ -3,6 +3,11 @@
 #include "Source/Backend/Communication/communicationThread.h"
 #include "Source/Custom/TouchKeypad/touchKeypad.h"
 
+const int MainWindow::windowWidth = 800;
+const int MainWindow::windowHeight = 480;
+
+//
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent){
 

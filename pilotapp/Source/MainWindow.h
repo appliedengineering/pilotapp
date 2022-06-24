@@ -27,8 +27,8 @@ public:
     MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
 
-    static const int windowWidth = 800;
-    static const int windowHeight = 480;
+    static const int windowWidth;
+    static const int windowHeight;
 
     void closeEvent(QCloseEvent* event);
 
