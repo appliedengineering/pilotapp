@@ -25,7 +25,7 @@ private:
     const int fontSize = 12;
     const int padding = 10;
 
-    const QColor backgroundColor = QColor(36, 36, 36);
+    const QColor backgroundColor = QColor(25, 25, 25);
     
     QWidget* inputWidget = nullptr; // widget that calls the touchpad
     QPoint mouseEventOffset;

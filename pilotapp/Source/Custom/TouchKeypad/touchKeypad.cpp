@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QPushButton>
 #include <QKeyEvent>
+#include <QApplication>
 
 //
 
@@ -67,6 +68,8 @@ void touchKeypad::renderContent(){
             bFont.setPixelSize(fontSize);
             b->setFont(bFont);
 
+            connect(b, &QPushButton::released, this, [=]{ buttonPress(n); });
+
             gridLayout->addWidget(b, i, j);
         }
     }
@@ -81,6 +84,8 @@ void touchKeypad::renderContent(){
     zeroButtonFont.setPixelSize(fontSize);
     zeroButton->setFont(zeroButtonFont);
 
+    connect(zeroButton, &QPushButton::released, this, [=]{ buttonPress(0); });
+
     gridLayout->addWidget(zeroButton, 3, 1);
 
     //
@@ -93,6 +98,8 @@ void touchKeypad::renderContent(){
     backButtonFont.setPixelSize(fontSize);
     backButton->setFont(backButtonFont);
 
+    connect(backButton, &QPushButton::released, this, [=]{ buttonPress(-1); });
+
     gridLayout->addWidget(backButton, 3, 0);
 
     //
@@ -104,6 +111,8 @@ void touchKeypad::renderContent(){
     QFont exitButtonFont = exitButton->font();
     exitButtonFont.setPixelSize(fontSize);
     exitButton->setFont(exitButtonFont);
+
+    connect(exitButton, &QPushButton::released, this, &touchKeypad::closeKeypad);
 
     gridLayout->addWidget(exitButton, 3, 2);
 }
@@ -121,10 +130,15 @@ void touchKeypad::afterShowSetup(QObject* inputobj){
 //
 
 bool touchKeypad::eventFilter(QObject* obj, QEvent* event){
-    if (qobject_cast<TouchNumericalLineEdit*>(obj) && event->type() == QEvent::FocusIn){
-        //qInfo() << "keypad open";
-        utilities::findMainWindow()->showTouchKeypad();
-        afterShowSetup(obj);
+    if (qobject_cast<TouchNumericalLineEdit*>(obj)){
+        if (event->type() == QEvent::FocusIn){
+            //qInfo() << "keypad open";
+            utilities::findMainWindow()->showTouchKeypad();
+            afterShowSetup(obj);
+        }
+        else if (event->type() == QEvent::FocusOut){
+            closeKeypad();
+        }
     }
     return QWidget::eventFilter(obj, event);
 }
@@ -161,7 +175,9 @@ void touchKeypad::mousePressEvent(QMouseEvent* event){
 //
 
 void touchKeypad::buttonPress(int num){
-
+    int keyEnum = (num < 0 ? Qt::Key_Backspace : 48 + num);
+    QKeyEvent* keyPress = new QKeyEvent(QKeyEvent::KeyPress, keyEnum, Qt::NoModifier, num < 0 ? QString() : QString::number(num));
+    QApplication::sendEvent(inputWidget, keyPress);
 }
 
 QSize touchKeypad::getSize(){
