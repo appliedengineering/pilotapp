@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <QKeyEvent>
 #include <QApplication>
+#include <QInputDialog>
 
 //
 
@@ -146,10 +147,14 @@ void touchKeypad::afterShowSetup(QObject* inputobj){
     inputWidget = qobject_cast<QWidget*>(inputobj);
 }
 
+bool touchKeypad::isValidInputWidget(QObject* obj){
+    return qobject_cast<QLineEdit*>(obj) || qobject_cast<TouchNumericalLineEdit*>(obj) || qobject_cast<QInputDialog*>(obj);
+}
+
 //
 
 bool touchKeypad::eventFilter(QObject* obj, QEvent* event){
-    if (qobject_cast<TouchNumericalLineEdit*>(obj)){
+    if (isValidInputWidget(obj)){
         if (event->type() == QEvent::FocusIn){
             //qInfo() << "keypad open";
             utilities::findMainWindow()->showTouchKeypad();

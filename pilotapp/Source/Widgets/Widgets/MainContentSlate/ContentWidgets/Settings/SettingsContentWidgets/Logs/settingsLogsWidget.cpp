@@ -1,6 +1,7 @@
 #include "settingsLogsWidget.h"
 
 #include "../../../../../../../Backend/Utilities/utilities.h"
+#include "../../../../../../../Custom/TouchKeypad/touchKeypad.h"
 
 #include <QFont>
 #include <QFrame>

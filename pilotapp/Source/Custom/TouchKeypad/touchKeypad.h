@@ -37,6 +37,7 @@ private:
     void renderContent();
     void closeKeypad();
     void afterShowSetup(QObject* inputobj);
+    bool isValidInputWidget(QObject* obj);
 
 protected:
     bool eventFilter(QObject* obj, QEvent* event) override;
