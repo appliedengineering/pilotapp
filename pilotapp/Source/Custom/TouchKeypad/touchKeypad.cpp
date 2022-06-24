@@ -13,8 +13,12 @@
 touchKeypad* touchKeypad::instance = nullptr;
 
 touchKeypad::touchKeypad(QWidget* parent) : QWidget(parent){
-    utilities::setPaletteColor(this, QPalette::Background, Qt::blue);
+    //this->setObjectName("touchKeypad");
+    this->setGeometry(0, 0, this->width, this->height);
     this->hide();
+
+    utilities::setWidgetRoundedCorner(this, cornerRadius, {});
+    utilities::setPaletteColor(this, QPalette::Background, backgroundColor);
 
     //
 
@@ -36,18 +40,56 @@ touchKeypad* touchKeypad::getInstance(){
 void touchKeypad::renderContent(){
     gridLayout = new QGridLayout(this);
 
-    gridLayout->setContentsMargins(0, 0, 0, 0);
+    gridLayout->setContentsMargins(padding, 0, padding, 0);
     gridLayout->setSpacing(0);
 
     //
 
-    QPushButton* b = new QPushButton(this);
+    /*QPushButton* b = new QPushButton(this);
 
     b->setText("Close");
 
     connect(b, &QPushButton::clicked, this, &touchKeypad::closeKeypad);
 
-    gridLayout->addWidget(b);
+    gridLayout->addWidget(b);*/
+
+    //
+
+    for (int i = 0; i < 3; i++){
+        for (int j = 0; j < 3; j++){
+            int n = (i * 3) + j + 1;
+            
+            QPushButton* b = new QPushButton(this);
+
+            b->setText(QString::number(n));
+
+            gridLayout->addWidget(b, i, j);
+        }
+    }
+
+    //
+
+    QPushButton* zeroButton = new QPushButton(this);
+
+    zeroButton->setText("0");
+
+    gridLayout->addWidget(zeroButton, 3, 1);
+
+    //
+
+    QPushButton* backButton = new QPushButton(this);
+
+    backButton->setText("⬅");
+
+    gridLayout->addWidget(backButton, 3, 0);
+
+    //
+
+    QPushButton* exitButton = new QPushButton(this);
+
+    exitButton->setText("⬇");
+
+    gridLayout->addWidget(exitButton, 3, 2);
 }
 
 void touchKeypad::closeKeypad(){
@@ -56,13 +98,17 @@ void touchKeypad::closeKeypad(){
         inputWidget->clearFocus();
 }
 
+void touchKeypad::afterShowSetup(QObject* inputobj){
+    inputWidget = qobject_cast<QWidget*>(inputobj);
+}
+
 //
 
 bool touchKeypad::eventFilter(QObject* obj, QEvent* event){
     if (qobject_cast<TouchNumericalLineEdit*>(obj) && event->type() == QEvent::FocusIn){
         //qInfo() << "keypad open";
         utilities::findMainWindow()->showTouchKeypad();
-        inputWidget = qobject_cast<QWidget*>(obj);
+        afterShowSetup(obj);
     }
     return QWidget::eventFilter(obj, event);
 }

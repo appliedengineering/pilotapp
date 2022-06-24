@@ -53,6 +53,16 @@ void utilities::setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalCol
 	w->setPalette(pal);
 }
 
+void utilities::setPaletteColor(QWidget* w, QPalette::ColorRole r, QColor c, bool shouldNotAutoFillBackground) {
+	QPalette pal = w->palette();
+
+	pal.setColor(r, c);
+	if (!shouldNotAutoFillBackground)
+		w->setAutoFillBackground(true);
+	
+	w->setPalette(pal);
+}
+
 // https://stackoverflow.com/a/15289912/
 void utilities::setWidgetRoundedCorner(QWidget* w, int r, std::vector<corners> noRoundCorners){
 	QBitmap bmp(w->size());

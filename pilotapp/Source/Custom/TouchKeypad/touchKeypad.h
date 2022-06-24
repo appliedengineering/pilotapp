@@ -19,8 +19,13 @@ private:
     
     static touchKeypad* instance;
     
-    const int width = 200;
-    const int height = 400;
+    const int width = 180;
+    const int height = 220;
+    const int cornerRadius = 10;
+    const int fontSize = 10;
+    const int padding = 10;
+
+    const QColor backgroundColor = QColor(36, 36, 36);
     
     QWidget* inputWidget = nullptr; // widget that calls the touchpad
     QPoint mouseEventOffset;
@@ -31,6 +36,7 @@ private:
 
     void renderContent();
     void closeKeypad();
+    void afterShowSetup(QObject* inputobj);
 
 protected:
     bool eventFilter(QObject* obj, QEvent* event) override;

@@ -36,6 +36,7 @@ public:
 	static void setFontLetterSpacing(QFont* f);*/
 
 	static void setPaletteColor(QWidget* w, QPalette::ColorRole r, Qt::GlobalColor c, bool shouldNotAutoFillBackground = false);
+	static void setPaletteColor(QWidget* w, QPalette::ColorRole r, QColor c, bool shouldNotAutoFillBackground = false);
 	static void setWidgetRoundedCorner(QWidget* w, int r, std::vector<corners> noRoundCorner = {});
 	static std::string createPaddingString(int n);
 	static double roundDouble(double a, int places);

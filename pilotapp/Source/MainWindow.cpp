@@ -46,5 +46,5 @@ void MainWindow::showTouchKeypad(){
     touchKeypad* keypad = touchKeypad::getInstance();
     QSize keypadSize = keypad->getSize();
     keypad->show();
-    keypad->setGeometry(0, 0, keypadSize.width(), keypadSize.height());
+    keypad->setGeometry(this->width()/2 - keypadSize.width()/2, this->height() - keypadSize.height(), keypadSize.width(), keypadSize.height());
 }
