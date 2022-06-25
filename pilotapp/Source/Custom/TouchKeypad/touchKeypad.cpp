@@ -75,6 +75,7 @@ void touchKeypad::renderContent(){
             QPushButton* b = new QPushButton(this);
 
             b->setText(QString::number(n));
+            b->setFocusPolicy(Qt::NoFocus);
 
             QFont bFont = b->font();
             bFont.setPixelSize(fontSize);
@@ -93,6 +94,7 @@ void touchKeypad::renderContent(){
     QPushButton* zeroButton = new QPushButton(this);
 
     zeroButton->setText("0");
+    zeroButton->setFocusPolicy(Qt::NoFocus);
 
     QFont zeroButtonFont = zeroButton->font();
     zeroButtonFont.setPixelSize(fontSize);
@@ -109,6 +111,7 @@ void touchKeypad::renderContent(){
     QPushButton* backButton = new QPushButton(this);
 
     backButton->setText("⬅");
+    backButton->setFocusPolicy(Qt::NoFocus);
 
     QFont backButtonFont = backButton->font();
     backButtonFont.setPixelSize(fontSize);
@@ -125,6 +128,7 @@ void touchKeypad::renderContent(){
     QPushButton* exitButton = new QPushButton(this);
 
     exitButton->setText("⬇");
+    exitButton->setFocusPolicy(Qt::NoFocus);
 
     QFont exitButtonFont = exitButton->font();
     exitButtonFont.setPixelSize(fontSize);

@@ -85,7 +85,7 @@ void settingsOptionsWidget::renderDivider(){
 }
 
 void settingsOptionsWidget::renderBottomActions(){
-    bottomActionsLayout = new QHBoxLayout(this);
+    bottomActionsLayout = new QHBoxLayout();
 
     bottomActionsLayout->setContentsMargins(0, 0, 0, 0);
     bottomActionsLayout->setSpacing(horizontalPadding);

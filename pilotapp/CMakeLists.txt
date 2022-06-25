@@ -133,6 +133,8 @@ else()
     "Source/Backend/Communication/dataManager.h"
     "Source/Backend/Boat Kernel/boatKernel.cpp"
     "Source/Backend/Boat Kernel/boatKernel.h"
+    "Source/Backend/Preferences/preferencesManager.cpp"
+    "Source/Backend/Preferences/preferencesManager.h"
     "Source/Backend/logManager.cpp"
     "Source/Backend/logManager.h"
     "Source/Widgets/Widgets/Toolbar/toolbar.cpp"
