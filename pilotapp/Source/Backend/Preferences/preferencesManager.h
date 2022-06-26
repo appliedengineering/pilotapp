@@ -10,8 +10,8 @@ private:
     ~preferencesManager();
     static preferencesManager* instance;
 
-    
 public:
+    preferencesManager* getInstance();
 };
 
 #endif

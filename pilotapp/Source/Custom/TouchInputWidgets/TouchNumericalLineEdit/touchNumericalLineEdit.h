@@ -10,4 +10,4 @@ public:
     TouchNumericalLineEdit(QWidget* parent = nullptr);
 };
 
-#endif TOUCH_NUMERICAL_LINE_EDIT_H_
+#endif

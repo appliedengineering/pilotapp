@@ -129,7 +129,7 @@ void settingsOptionsWidget::renderBottomActions(){
 
 void settingsOptionsWidget::handleExit(){
     QMessageBox b;
-    b.setText("Close the program");
+    b.setText("Close program");
     b.setInformativeText("Are you sure?");
     b.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     //b.setDefaultButton(QMessageBox::No);
