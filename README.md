@@ -112,9 +112,6 @@ More information in the video below.
 
 ## [Windows 11/10 Setup](https://youtu.be/8bXEM16MvEQ)
 
-## [Good Git and Github tutorial](https://old.benjaminashbaugh.me/code/simple-git-github-tutorial)
-
-
 
 
 In the video you will see paths being modified in CMakeLists.txt. Use these in c_cpp_properties.json as well.
