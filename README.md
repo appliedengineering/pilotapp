@@ -13,8 +13,8 @@
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [Boost](https://www.boost.org/users/download/)
 - [CMake](https://cmake.org/download/) (binary, either of the x64 if on Windows)
-- [Git] (https://git-scm.com/downloads)
-- [Github Desktop] (https://desktop.github.com/) 
+- [Git](https://git-scm.com/downloads)
+- [Github Desktop](https://desktop.github.com/) 
 
 ## Pre-Setup Instructions
 
