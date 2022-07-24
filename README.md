@@ -112,8 +112,6 @@ More information in the video below.
 
 ## [Windows 11/10 Setup](https://youtu.be/8bXEM16MvEQ)
 
-## [Good Git and Github tutorial](https://old.benjaminashbaugh.me/code/simple-git-github-tutorial)
-
 
 
 
