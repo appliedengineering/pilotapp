@@ -12,7 +12,7 @@ QMainWindow {
 }
 
 QLabel {
-    /*color: black;*/
+    color: white;
     /*font: 'Inter';*/
 }
 

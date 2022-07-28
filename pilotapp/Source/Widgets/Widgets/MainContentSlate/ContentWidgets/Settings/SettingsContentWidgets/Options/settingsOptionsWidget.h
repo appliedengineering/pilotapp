@@ -7,6 +7,7 @@
 #include <QScrollArea>
 #include <QScroller>
 #include <QLineEdit>
+#include <QLabel>
 
 class settingsOptionsWidget : public QWidget{
     Q_OBJECT
@@ -23,8 +24,12 @@ private:
 
     const int bottomActionsFontSize = 14;
     QHBoxLayout* bottomActionsLayout = nullptr;
+    QVBoxLayout* boatKernelLayout = nullptr;
     QPushButton* saveOptionsButton = nullptr;
     QPushButton* exitButton = nullptr;
+
+    QLabel* minVoltage = nullptr;
+    QLabel* maxVoltage = nullptr;
 
     void setupLayout();
     void renderContent();
@@ -34,7 +39,8 @@ private:
     void renderDivider();
 
     void renderBottomActions();
-    
+    void renderBoatKernel();
+    void renderBoatKernel2();
     //
     
     void handleExit();
@@ -46,4 +52,3 @@ public:
 };
 
 #endif
-

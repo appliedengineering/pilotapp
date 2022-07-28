@@ -6,6 +6,7 @@
 #include "../../../../../../../Backend/Utilities/utilities.h"
 #include "../../../../../../../Custom/TouchKeypad/touchKeypad.h"
 #include "../../../../../../../Custom/TouchInputWidgets/TouchNumericalLineEdit/touchNumericalLineEdit.h"
+#include "../../../../../../../Custom/RangeSlider/RangeSlider.h"
 
 //
 
@@ -14,10 +15,11 @@ settingsOptionsWidget::settingsOptionsWidget(QWidget* parent){
 
     setupLayout();
     renderContent();
-
 }
 
-settingsOptionsWidget::~settingsOptionsWidget(){
+settingsOptionsWidget::~settingsOptionsWidget()
+{
+    
 }
 
 //
@@ -68,6 +70,8 @@ void settingsOptionsWidget::renderContent(){
 
     //
 
+    renderBoatKernel();
+    renderBoatKernel2();
     renderDivider();
     renderBottomActions();
 }
@@ -125,14 +129,49 @@ void settingsOptionsWidget::renderBottomActions(){
     connect(exitButton, &QPushButton::released, this, &settingsOptionsWidget::handleExit);
 }
 
+void settingsOptionsWidget::renderBoatKernel()
+{
+    boatKernelLayout = new QVBoxLayout(this);
+    boatKernelLayout->setContentsMargins(0, 0, 0, 0);
+    //boatKernelLayout->setSpacing(horizontalPadding);
+
+    scrollAreaContentLayout->addLayout(boatKernelLayout);
+
+    minVoltage = new QLabel(this);
+    minVoltage->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
+    minVoltage->setText("Set minimum voltage\n");
+    
+    boatKernelLayout->addWidget(minVoltage);
+
+    QLineEdit* minVoltageInput = new TouchNumericalLineEdit(this);
+    scrollAreaContentLayout->addWidget(minVoltageInput);
+
+    boatKernelLayout->addWidget(minVoltageInput);
+    
+}
+
+void settingsOptionsWidget::renderBoatKernel2()
+{
+    maxVoltage = new QLabel(this);
+    maxVoltage->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
+    maxVoltage->setText("Set maximum voltage\n");
+
+    boatKernelLayout->addWidget(maxVoltage);
+
+    QLineEdit* maxVoltageInput = new TouchNumericalLineEdit(this);
+    scrollAreaContentLayout->addWidget(maxVoltageInput);
+
+    boatKernelLayout->addWidget(maxVoltageInput);
+}
+
 //
 
 void settingsOptionsWidget::handleExit(){
     QMessageBox b;
-    b.setText("Close program");
+    b.setText("Exit");
     b.setInformativeText("Are you sure?");
     b.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    //b.setDefaultButton(QMessageBox::No);
+    b.setDefaultButton(QMessageBox::Yes);
 
     if (b.exec() == QMessageBox::Yes)
         utilities::findMainWindow()->closeApplication();
