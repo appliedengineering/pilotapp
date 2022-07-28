@@ -147,7 +147,7 @@ void settingsOptionsWidget::renderBoatKernel()
     scrollAreaContentLayout->addWidget(minVoltageInput);
 
     boatKernelLayout->addWidget(minVoltageInput);
-    
+     
 }
 
 void settingsOptionsWidget::renderBoatKernel2()
