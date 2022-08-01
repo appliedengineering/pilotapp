@@ -1,5 +1,7 @@
 #include "preferencesManager.h"
 
+#include "../../Custom/json.hpp"
+
 preferencesManager* preferencesManager::instance = nullptr;
 
 preferencesManager::preferencesManager(){
@@ -21,22 +23,22 @@ preferencesManager* preferencesManager::getInstance(){
 List of options
 
 Boat Kernel:
-maxVoltage, minVoltage
+maxVoltage (double), minVoltage (double)
 
 Communications Manager:
-ipcSub address/port, scriptPair address/port
+ipcSubAddr (str), ipcSubPort (int), scriptPairAddress (str), scriptPairPort (int)
 
 Communications Thread:
-loop timeout, stop thread
+threadTimeout (int), threadRunning (bool)
 
 leftContentSlate:
-speedometer units
+speedometerUnits (enum)
 
 Map Settings:
-max coordinate precision
+coordinatePrecision (int)
 
 Map:
-buoyMarkerSize, boatMarkerSize, map cache data
+buoyMarkerSize (int), boatMarkerSize (int), shouldCacheMapData (bool), reset cache data button
 
 */
 
