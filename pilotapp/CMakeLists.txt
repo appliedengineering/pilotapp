@@ -29,7 +29,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ## QT Options
 #set(QT_INSTALL_PATH "/usr/local/Homebrew/Cellar/qt@5/5.15.2_2")
-set(QT_INSTALL_PATH "D:\\Qt\\5.15.2\\msvc2019_64")
+set(QT_INSTALL_PATH "/opt/homebrew/Cellar/qt@5/5.15.3")
 #set(QT_INSTALL_PATH "O:\\Qt\\5.15.2\\msvc2019_64")
 #set(QT_INSTALL_PATH "/opt/Qt/5.15.2/")
 set(CMAKE_PREFIX_PATH "${QT_INSTALL_PATH}")  # <--- MAKE SURE HOMEBREW INSTALLATION FOR QT IS x86_64 (arm is not supported for dependencies)
@@ -45,25 +45,21 @@ set(CMAKE_PREFIX_PATH "${QT_INSTALL_PATH}")  # <--- MAKE SURE HOMEBREW INSTALLAT
 ## ZMQ Options
 set(ZMQ_VERSION "4.3.4")
 #set(ZMQ_INSTALL_PATH "/usr/local/Homebrew/Cellar/zeromq/${ZMQ_VERSION}/")
-set(ZMQ_INSTALL_PATH "C:\\Program Files (x86)\\Libraries\\ZMQ")
+set(ZMQ_INSTALL_PATH "/opt/homebrew/Cellar/zeromq/${ZMQ_VERSION}")
 include_directories("${ZMQ_INSTALL_PATH}/include")
 link_directories("${ZMQ_INSTALL_PATH}/lib")
 
 ## Boost Options
 #set(BOOST_INSTALL_PATH "/usr/local/Homebrew/Cellar/boost/1.78.0_1") # before the "boost" (mind the lowercase) folder
-set(BOOST_INSTALL_PATH "C:\\Program Files (x86)\\Libraries\\boost_1_79_0\\boost_1_79_0")
+set(BOOST_INSTALL_PATH "/opt/homebrew/Cellar/boost/1.78.0_1")
 include_directories("${BOOST_INSTALL_PATH}/include")
 set(Boost_INCLUDE_DIR "${BOOST_INSTALL_PATH}/include")
 
 ## Third Party Options (QGeoView)
-set(QGEOVIEW_INSTALL_PATH "C:\\Program Files (x86)\\Libraries\\QGeoView")
-include_directories("${QGEOVIEW_INSTALL_PATH}/include")
-link_directories("${QGEOVIEW_INSTALL_PATH}/lib")
+include_directories("/usr/local/include")
+link_directories("/usr/local/lib")
 
 ## msgpack Options (not needed)
-set(MSGPACK_INSTALL_PATH "C:\\Program Files (x86)\\Libraries\\msgpack")
-include_directories("${MSGPACK_INSTALL_PATH}/include")
-set(msgpack_DIR "C:\\Program Files (x86)\\Libraries\\msgpack\\lib\\cmake\\msgpackc-cxx")
 #set(MSGPACK_INSTALL_PATH "${PROJECT_SOURCE_DIR}/3rd_party/msgpack")
 #add_subdirectory("${MSGPACK_INSTALL_PATH}")
 #include_directories("${MSGPACK_INSTALL_PATH}/include/msgpack")
@@ -103,9 +99,7 @@ message("Source DIR = ${CMAKE_SOURCE_DIR}")
 #    endif()
 #endif()
 
-set(QT_DIR "D:/Qt/5.15.2/mingw81_64/lib/cmake/Qt5" CACHE PATH "Initial cache" FORCE)
-
-find_package(QT NAMES Qt5 Qt6 COMPONENTS Widgets REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Multimedia REQUIRED)
 
 #find_package(ArcGISRuntime 100.7 COMPONENTS Cpp REQUIRED)
@@ -205,4 +199,3 @@ target_link_libraries(pilotapp PRIVATE
   msgpackc-cxx
   QGeoView
   )
-
