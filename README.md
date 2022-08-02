@@ -114,7 +114,6 @@ More information in the video below.
 
 
 
-
 In the video you will see paths being modified in CMakeLists.txt. Use these in c_cpp_properties.json as well.
 
 Your `settings.json` should look like this. Use Visual Studio as your generator; MinGW Makefiles should be a fallback in case if you have it installed.
