@@ -199,3 +199,4 @@ target_link_libraries(pilotapp PRIVATE
   msgpackc-cxx
   QGeoView
   )
+  
