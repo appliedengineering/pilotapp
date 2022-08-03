@@ -17,9 +17,7 @@ settingsOptionsWidget::settingsOptionsWidget(QWidget* parent){
     renderContent();
 }
 
-settingsOptionsWidget::~settingsOptionsWidget()
-{
-    
+settingsOptionsWidget::~settingsOptionsWidget(){
 }
 
 //
@@ -57,14 +55,11 @@ void settingsOptionsWidget::setupLayout(){
 
     scrollAreaContentWidget->setLayout(scrollAreaContentLayout);
 
-    scrollAreaContentLayout->setContentsMargins(scrollAreaContentLayoutPadding, scrollAreaContentLayoutPadding/2, scrollAreaContentLayoutPadding + scrollAreaContentLayoutPadding/2, scrollAreaContentLayoutPadding/2);
-    scrollAreaContentLayout->setSpacing(scrollAreaContentLayoutPadding);
+    scrollAreaContentLayout->setContentsMargins(scrollAreaContentPadding, scrollAreaContentPadding/2, scrollAreaContentPadding + scrollAreaContentPadding/2, scrollAreaContentPadding/2);
+    scrollAreaContentLayout->setSpacing(scrollAreaContentPadding);
 }
 
 void settingsOptionsWidget::renderContent(){
-
-    //
-
     renderBoatKernel();
     renderCommunicationsManager();
     renderCommunicationsThread();
@@ -128,11 +123,16 @@ void settingsOptionsWidget::renderBottomActions(){
     connect(exitButton, &QPushButton::released, this, &settingsOptionsWidget::handleExit);
 }
 
-void settingsOptionsWidget::renderBoatKernel()
-{
+void settingsOptionsWidget::renderBoatKernel(){
+
+    //
+
     boatKernelLayout = new QVBoxLayout(this);
     boatKernelLayout->setContentsMargins(0, 0, 0, 0);
     //boatKernelLayout->setSpacing(horizontalPadding);
+
+    //
+
     auto leftLayout = new QVBoxLayout(this);
     leftLayout->setContentsMargins(0, 0, 0, 0);
     leftLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
@@ -182,8 +182,7 @@ void settingsOptionsWidget::renderBoatKernel()
     voltageBoxLayout->addWidget(maxVoltageRangeLabel);
 }
 
-void settingsOptionsWidget::renderCommunicationsManager()
-{
+void settingsOptionsWidget::renderCommunicationsManager(){
     commsManagerLayout = new QVBoxLayout(this);
     commsManagerLayout->setContentsMargins(0, 0, 0, 0);
     commsManagerLayout->setAlignment(Qt::AlignTop | Qt::AlignRight);
@@ -254,8 +253,7 @@ void settingsOptionsWidget::renderCommunicationsManager()
     commsManagerLayout->addWidget(scriptPairPortNumericalInput);    
 }
 
-void settingsOptionsWidget::renderCommunicationsThread()
-{
+void settingsOptionsWidget::renderCommunicationsThread(){
     commsThreadLayout = new QVBoxLayout(this);
     commsThreadLayout->setContentsMargins(0, 0, 0, 0);
     commsThreadLayout->setAlignment(Qt::AlignTop | Qt::AlignRight);
@@ -301,8 +299,7 @@ void settingsOptionsWidget::renderCommunicationsThread()
     commsThreadLayout->addWidget(stopThreadNumericalInput);
 }
 
-void settingsOptionsWidget::renderLeftContentSlate()
-{
+void settingsOptionsWidget::renderLeftContentSlate(){
     leftContentSlateLayout = new QVBoxLayout(this);
     leftContentSlateLayout->setContentsMargins(0, 0, 0, 0);
     leftContentSlateLayout->setAlignment(Qt::AlignTop | Qt::AlignRight);
@@ -334,8 +331,7 @@ void settingsOptionsWidget::renderLeftContentSlate()
     leftContentSlateLayout->addWidget(speedometerUnitsNumericalInput);
 }
 
-void settingsOptionsWidget::renderMapSettings()
-{
+void settingsOptionsWidget::renderMapSettings(){
     mapSettingsLayout = new QVBoxLayout(this);
     mapSettingsLayout->setContentsMargins(0, 0, 0, 0);
     //mapSettingsLayout->setAlignment(Qt::AlignTop | Qt::AlignRight);
@@ -386,8 +382,7 @@ void settingsOptionsWidget::renderMapSettings()
     maxCoordPrecisionLayout->addWidget(rightMaxCoordPrecisionLabel);
 }
 
-void settingsOptionsWidget::renderMap()
-{
+void settingsOptionsWidget::renderMap(){
     mapLayout = new QVBoxLayout(this);
     mapLayout->setContentsMargins(0, 0, 0, 0);
     mapLayout->setAlignment(Qt::AlignTop | Qt::AlignRight);
@@ -449,7 +444,7 @@ void settingsOptionsWidget::renderMap()
 
 void settingsOptionsWidget::handleExit(){
     QMessageBox b;
-    b.setText("Exit.");
+    b.setText("Close App");
     b.setInformativeText("Are you sure?");
     b.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     b.setDefaultButton(QMessageBox::Yes);

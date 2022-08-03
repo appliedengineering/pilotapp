@@ -20,63 +20,78 @@ private:
     QScrollArea* scrollArea = nullptr;
     QWidget* scrollAreaContentWidget = nullptr;
     QVBoxLayout* scrollAreaContentLayout = nullptr;
-    const int scrollAreaContentLayoutPadding = 10;
+    const int scrollAreaContentPadding = 10;
 
-    const int bottomActionsFontSize = 14;
-    QHBoxLayout* bottomActionsLayout = nullptr;
+    //
+
     QVBoxLayout* boatKernelLayout = nullptr;
-    QVBoxLayout* commsManagerLayout = nullptr;
-    QVBoxLayout* commsThreadLayout = nullptr;
-    QVBoxLayout* leftContentSlateLayout = nullptr;
-    QVBoxLayout* mapSettingsLayout = nullptr;
-    QVBoxLayout* mapLayout = nullptr;
-    QPushButton* saveOptionsButton = nullptr;
-    QPushButton* exitButton = nullptr;
-
-    QHBoxLayout* voltageBoxLayout = nullptr;
     QLabel* boatKernelLabel = nullptr;
+    QHBoxLayout* voltageBoxLayout = nullptr;
     QLabel* minVoltageRangeLabel = nullptr;
     QLabel* maxVoltageRangeLabel = nullptr;
     QLabel* minMaxVoltageLabel = nullptr;
 
+    //
+
+    QVBoxLayout* commsManagerLayout = nullptr;
     QLabel* communicationsLabel = nullptr;
     QLabel* ipcSubAddressLabel = nullptr;
     QLabel* ipcSubPortLabel = nullptr;
     QLabel* scriptPairAddressLabel = nullptr;
     QLabel* scriptPairPortLabel = nullptr;
 
+    //
+
+    QVBoxLayout* commsThreadLayout = nullptr;
     QLabel* communicationsThreadLabel = nullptr;
     QLabel* loopTimeoutLabel = nullptr;
     QLabel* stopThreadLabel = nullptr;
 
+    //
+
+    QVBoxLayout* leftContentSlateLayout = nullptr;
     QLabel* leftContentSlateLabel = nullptr;
     QLabel* speedometerUnitsLabel = nullptr;
 
+    //
+
+
+    QVBoxLayout* mapSettingsLayout = nullptr;
     QHBoxLayout* maxCoordPrecisionLayout = nullptr;
     QLabel* mapSettingsLabel = nullptr;
     QLabel* maxCoordPrecisionLabel = nullptr;
     QLabel* leftMaxCoordPrecisionLabel = nullptr;
     QLabel* rightMaxCoordPrecisionLabel = nullptr;
 
+    //
+
+    QVBoxLayout* mapLayout = nullptr;
     QLabel* mapLabel = nullptr;
     QLabel* buoyMarkerSizeLabel = nullptr;
     QLabel* boatMarkerSizeLabel = nullptr;
     QLabel* mapCacheDataLabel = nullptr;
 
-    void setupLayout();
-    void renderContent();
+    //
+
+    const int bottomActionsFontSize = 14;
+    QHBoxLayout* bottomActionsLayout = nullptr;
+    QPushButton* saveOptionsButton = nullptr;
+    QPushButton* exitButton = nullptr;
 
     //
 
-    void renderDivider();
+    void setupLayout();
+    void renderContent();
 
-    void renderBottomActions();
     void renderBoatKernel();
     void renderCommunicationsManager();
     void renderCommunicationsThread();
     void renderLeftContentSlate();
     void renderMapSettings();
     void renderMap();
+    void renderDivider();
+    void renderBottomActions();
+
     //
     
     void handleExit();
