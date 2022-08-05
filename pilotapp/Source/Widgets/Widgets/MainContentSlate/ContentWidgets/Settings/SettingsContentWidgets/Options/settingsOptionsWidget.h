@@ -82,17 +82,14 @@ private:
 
     //
 
+    QWidget* mapSettingsWidget = nullptr;
     QVBoxLayout* mapSettingsLayout = nullptr;
-    QHBoxLayout* maxCoordPrecisionLayout = nullptr;
     QLabel* mapSettingsLabel = nullptr;
-    QLabel* maxCoordPrecisionLabel = nullptr;
-    QLabel* leftMaxCoordPrecisionLabel = nullptr;
-    QLabel* rightMaxCoordPrecisionLabel = nullptr;
+    
+    QHBoxLayout* coordinatePrecisionLayout = nullptr;
+    QLabel* coordinatePrecisionLabel = nullptr;
+    QLabel* coordinatePrecisionValueLabel = nullptr;
 
-    //
-
-    QVBoxLayout* mapLayout = nullptr;
-    QLabel* mapLabel = nullptr;
     QLabel* buoyMarkerSizeLabel = nullptr;
     QLabel* boatMarkerSizeLabel = nullptr;
     QLabel* mapCacheDataLabel = nullptr;
@@ -114,7 +111,6 @@ private:
     void renderCommunicationsThread();
     void renderLeftContentSlate();
     void renderMapSettings();
-    void renderMap();
     void renderDivider();
     void renderBottomActions();
 

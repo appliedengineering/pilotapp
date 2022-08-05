@@ -63,7 +63,7 @@ void settingsOptionsWidget::renderContent(){
     renderCommunicationsThread();
     renderLeftContentSlate();
     renderMapSettings();
-    renderMap();
+    //renderMap();
     renderDivider();
     renderBottomActions();
 }
@@ -375,17 +375,18 @@ void settingsOptionsWidget::renderLeftContentSlate(){
 }
 
 void settingsOptionsWidget::renderMapSettings(){
-    mapSettingsLayout = new QVBoxLayout(this);
+
+    mapSettingsWidget = new QWidget(this);
+    scrollAreaContentLayout->addWidget(mapSettingsWidget);
+
+    //
+
+    mapSettingsLayout = new QVBoxLayout(mapSettingsWidget);
     mapSettingsLayout->setContentsMargins(0, 0, 0, 0);
-    //mapSettingsLayout->setAlignment(Qt::AlignRight);
-    auto leftLayout = new QVBoxLayout(this);
-    leftLayout->setContentsMargins(0, 0, 0, 0);
-    leftLayout->setAlignment(Qt::AlignLeft);
 
-    scrollAreaContentLayout->addLayout(leftLayout);
-    scrollAreaContentLayout->addLayout(mapSettingsLayout);
+    //
 
-    mapSettingsLabel = new QLabel(this);
+    mapSettingsLabel = new QLabel(mapSettingsWidget);
     //mapSettingsLabel->setStyleSheet("font-weight: bold; font-size: 20px");
     mapSettingsLabel->setText("Map Settings");
     mapSettingsLabel->setAlignment(Qt::AlignLeft);
@@ -395,42 +396,108 @@ void settingsOptionsWidget::renderMapSettings(){
     mapSettingsLabelFont.setBold(true);
     mapSettingsLabel->setFont(mapSettingsLabelFont);
 
-    leftLayout->addWidget(mapSettingsLabel);
+    mapSettingsLayout->addWidget(mapSettingsLabel);
 
-    maxCoordPrecisionLabel = new QLabel(this);
-    maxCoordPrecisionLabel->setFrameStyle(QFrame::Plain);
-    maxCoordPrecisionLabel->setText("Max Coordinate Precision");
-    maxCoordPrecisionLabel->setAlignment(Qt::AlignRight);
+    //
 
-    mapSettingsLayout->addWidget(maxCoordPrecisionLabel);
+    coordinatePrecisionLabel = new QLabel(mapSettingsWidget);
+    coordinatePrecisionLabel->setText("Coordinate Decimal Precision");
+    coordinatePrecisionLabel->setAlignment(Qt::AlignRight);
 
-    maxCoordPrecisionLayout = new QHBoxLayout();
-    maxCoordPrecisionLayout->setContentsMargins(0, 0, 0, 0);
-    maxCoordPrecisionLayout->setSpacing(horizontalPadding);
+    QFont coordinatePrecisionLabelFont = coordinatePrecisionLabel->font();
+    coordinatePrecisionLabelFont.setPixelSize(subHeaderLabelFontSize);
+    coordinatePrecisionLabel->setFont(coordinatePrecisionLabelFont);
 
-    mapSettingsLayout->addLayout(maxCoordPrecisionLayout);
+    mapSettingsLayout->addWidget(coordinatePrecisionLabel);
 
-    leftMaxCoordPrecisionLabel = new QLabel(this);
-    leftMaxCoordPrecisionLabel->setFixedWidth(30);
-    leftMaxCoordPrecisionLabel->setText("0"); //need backend changes
+    ///
 
-    maxCoordPrecisionLayout->addWidget(leftMaxCoordPrecisionLabel);
+    coordinatePrecisionLayout = new QHBoxLayout();
+    coordinatePrecisionLayout->setContentsMargins(0, 0, 0, 0);
+    coordinatePrecisionLayout->setSpacing(horizontalPadding);
 
-    RangeSlider* maxCoordPrecisionSlider = new RangeSlider(Qt::Horizontal, RangeSlider::RightHandle, this);
-    maxCoordPrecisionSlider->SetRange(0, 100);
-    maxCoordPrecisionSlider->SetUpperValue(100);
-    maxCoordPrecisionSlider->SetLowerValue(0);
+    mapSettingsLayout->addLayout(coordinatePrecisionLayout);
 
-    maxCoordPrecisionLayout->addWidget(maxCoordPrecisionSlider);
+    //
 
-    rightMaxCoordPrecisionLabel = new QLabel(this);
-    rightMaxCoordPrecisionLabel->setFixedWidth(30);
-    rightMaxCoordPrecisionLabel->setText("100"); //need backend changes
+    RangeSlider* coordinatePrecisionSlider = new RangeSlider(Qt::Horizontal, RangeSlider::RightHandle, mapSettingsWidget);
+    coordinatePrecisionSlider->SetRange(1, 6);
+    coordinatePrecisionSlider->SetUpperValue(6);
+    coordinatePrecisionSlider->SetLowerValue(1);
 
-    maxCoordPrecisionLayout->addWidget(rightMaxCoordPrecisionLabel);
+    coordinatePrecisionLayout->addWidget(coordinatePrecisionSlider);
+
+    //
+
+    coordinatePrecisionValueLabel = new QLabel(mapSettingsWidget);
+
+    coordinatePrecisionValueLabel->setAlignment(Qt::AlignHCenter);
+    coordinatePrecisionValueLabel->setFixedWidth(30);
+    coordinatePrecisionValueLabel->setText("-1"); //need backend changes
+
+    coordinatePrecisionLayout->addWidget(coordinatePrecisionValueLabel);
+
+    ///
+
+    buoyMarkerSizeLabel = new QLabel(mapSettingsWidget);
+    buoyMarkerSizeLabel->setText("Buoy Marker Size");
+    buoyMarkerSizeLabel->setAlignment(Qt::AlignRight);
+
+    QFont buoyMarkerSizeLabelFont = buoyMarkerSizeLabel->font();
+    buoyMarkerSizeLabelFont.setPixelSize(subHeaderLabelFontSize);
+    buoyMarkerSizeLabel->setFont(buoyMarkerSizeLabelFont);
+
+    mapSettingsLayout->addWidget(buoyMarkerSizeLabel);
+
+    //
+
+    QLineEdit* buoyMarkerSizeLineEdit = new TouchNumericalLineEdit(mapSettingsWidget);
+    buoyMarkerSizeLineEdit->setAlignment(Qt::AlignRight);
+
+    mapSettingsLayout->addWidget(buoyMarkerSizeLineEdit);
+    
+    //
+
+    boatMarkerSizeLabel = new QLabel(mapSettingsWidget);
+    boatMarkerSizeLabel->setText("Boat Marker Size");
+    boatMarkerSizeLabel->setAlignment(Qt::AlignRight);
+
+    QFont boatMarkerSizeLabelFont = boatMarkerSizeLabel->font();
+    boatMarkerSizeLabelFont.setPixelSize(subHeaderLabelFontSize);
+    boatMarkerSizeLabel->setFont(boatMarkerSizeLabelFont);
+
+    mapSettingsLayout->addWidget(boatMarkerSizeLabel);
+
+    //
+
+    QLineEdit* boatMarkerSizeLineEdit = new TouchNumericalLineEdit(mapSettingsWidget);
+    boatMarkerSizeLineEdit->setAlignment(Qt::AlignRight);
+
+    mapSettingsLayout->addWidget(boatMarkerSizeLineEdit);
+
+    //
+
+    mapCacheDataLabel = new QLabel(mapSettingsWidget);
+    mapCacheDataLabel->setText("Map Cache Data");
+    mapCacheDataLabel->setAlignment(Qt::AlignRight);
+
+    QFont mapCacheDataLabelFont = mapCacheDataLabel->font();
+    mapCacheDataLabelFont.setPixelSize(subHeaderLabelFontSize);
+    mapCacheDataLabel->setFont(mapCacheDataLabelFont);
+
+    mapSettingsLayout->addWidget(mapCacheDataLabel);
+
+    //
+
+    QLineEdit* mapCacheDataLineEdit = new TouchNumericalLineEdit(mapSettingsWidget);
+    mapCacheDataLineEdit->setAlignment(Qt::AlignRight);
+
+    mapSettingsLayout->addWidget(mapCacheDataLineEdit);
+
+    //
 }
 
-void settingsOptionsWidget::renderMap(){
+/*void settingsOptionsWidget::renderMap(){
     mapLayout = new QVBoxLayout(this);
     mapLayout->setContentsMargins(0, 0, 0, 0);
     mapLayout->setAlignment(Qt::AlignRight);
@@ -491,7 +558,7 @@ void settingsOptionsWidget::renderMap(){
     mapCacheDataLineEdit->setFixedWidth(300);
 
     mapLayout->addWidget(mapCacheDataLineEdit);
-}
+}*/
 
 void settingsOptionsWidget::renderDivider(){
     QFrame* divider = new QFrame(this);
