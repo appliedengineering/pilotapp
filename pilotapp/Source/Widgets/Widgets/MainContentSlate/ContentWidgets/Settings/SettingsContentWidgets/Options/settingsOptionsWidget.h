@@ -9,6 +9,10 @@
 #include <QLineEdit>
 #include <QLabel>
 
+#include "../../../../../../../Custom/TouchKeypad/touchKeypad.h"
+#include "../../../../../../../Custom/TouchInputWidgets/TouchNumericalLineEdit/touchNumericalLineEdit.h"
+#include "../../../../../../../Custom/RangeSlider/RangeSlider.h"
+
 class settingsOptionsWidget : public QWidget{
     Q_OBJECT
 
@@ -33,13 +37,15 @@ private:
     QVBoxLayout* boatKernelLayout = nullptr;
     QLabel* boatKernelLabel = nullptr;
     QHBoxLayout* voltageBoxLayout = nullptr;
+    RangeSlider* minMaxVoltageSlider = nullptr;
     QLabel* minVoltageRangeLabel = nullptr;
     QLabel* maxVoltageRangeLabel = nullptr;
     QLabel* voltageRangeLabel = nullptr;
 
     //
 
-    QVBoxLayout* commsManagerLayout = nullptr;
+    QWidget* communicationsSettingsWidget = nullptr;
+    QVBoxLayout* communicationsLayout = nullptr;
     QLabel* communicationsLabel = nullptr;
     QLabel* ipcSubAddressLabel = nullptr;
     QLabel* ipcSubPortLabel = nullptr;

@@ -5,9 +5,6 @@
 
 #include "../../../../../../../Backend/Utilities/utilities.h"
 #include "../../../../../../../Backend/Communication/dataManager.h"
-#include "../../../../../../../Custom/TouchKeypad/touchKeypad.h"
-#include "../../../../../../../Custom/TouchInputWidgets/TouchNumericalLineEdit/touchNumericalLineEdit.h"
-#include "../../../../../../../Custom/RangeSlider/RangeSlider.h"
 
 //
 
@@ -129,9 +126,9 @@ void settingsOptionsWidget::renderBoatKernel(){
     //
 
     RangeSlider* minMaxVoltageSlider = new RangeSlider(Qt::Horizontal, RangeSlider::DoubleHandles, boatKernelSettingsWidget);
-    minMaxVoltageSlider->SetRange(0, 14);
-    minMaxVoltageSlider->SetUpperValue(14);
-    minMaxVoltageSlider->SetLowerValue(0);
+    minMaxVoltageSlider->SetRange(boatDataPack::minPossibleVoltage, boatDataPack::maxPossibleVoltage); //TODO: needs preference manager integration
+    minMaxVoltageSlider->SetUpperValue(boatDataPack::maxPossibleVoltage);
+    minMaxVoltageSlider->SetLowerValue(boatDataPack::minPossibleVoltage);
 
     voltageBoxLayout->addWidget(minMaxVoltageSlider);
 
@@ -146,19 +143,18 @@ void settingsOptionsWidget::renderBoatKernel(){
 }
 
 void settingsOptionsWidget::renderCommunicationsManager(){
-    commsManagerLayout = new QVBoxLayout(this);
-    commsManagerLayout->setContentsMargins(0, 0, 0, 0);
-    commsManagerLayout->setAlignment(Qt::AlignRight);
-    auto leftLayout = new QVBoxLayout(this);
-    leftLayout->setContentsMargins(0, 0, 0, 0);
-    leftLayout->setAlignment(Qt::AlignLeft);
+
+    communicationsSettingsWidget = new QWidget(this);
+    scrollAreaContentLayout->addWidget(communicationsSettingsWidget);
+   
+    //
+
+    communicationsLayout = new QVBoxLayout(communicationsSettingsWidget);
+    communicationsLayout->setContentsMargins(0, 0, 0, 0);
 
     //
 
-    scrollAreaContentLayout->addLayout(leftLayout);
-    scrollAreaContentLayout->addLayout(commsManagerLayout);
-
-    communicationsLabel = new QLabel(this);
+    communicationsLabel = new QLabel(communicationsSettingsWidget);
     //communicationsLabel->setStyleSheet("font-weight: bold; font-size: 20px");
     communicationsLabel->setText("Communications");
     communicationsLabel->setAlignment(Qt::AlignLeft);
@@ -168,60 +164,75 @@ void settingsOptionsWidget::renderCommunicationsManager(){
     communicationsLabelFont.setBold(true);
     communicationsLabel->setFont(communicationsLabelFont);
 
-    leftLayout->addWidget(communicationsLabel);
+    communicationsLayout->addWidget(communicationsLabel);
 
-    ipcSubAddressLabel = new QLabel(this);
+    //
+
+    ipcSubAddressLabel = new QLabel(communicationsSettingsWidget);
     ipcSubAddressLabel->setFrameStyle(QFrame::Plain);
     ipcSubAddressLabel->setText("IPC IP Address");
     ipcSubAddressLabel->setAlignment(Qt::AlignRight);
 
-    commsManagerLayout->addWidget(ipcSubAddressLabel);
+    communicationsLayout->addWidget(ipcSubAddressLabel);
 
-    QLineEdit* ipcSubAddressNumericalInput = new TouchNumericalLineEdit(this);
+    //
+
+    QLineEdit* ipcSubAddressNumericalInput = new TouchNumericalLineEdit(communicationsSettingsWidget);
     ipcSubAddressNumericalInput->setAlignment(Qt::AlignRight);
     ipcSubAddressNumericalInput->setFixedWidth(300);
 
-    commsManagerLayout->addWidget(ipcSubAddressNumericalInput);
+    communicationsLayout->addWidget(ipcSubAddressNumericalInput);
 
+    //
 
-    ipcSubPortLabel = new QLabel(this);
+    ipcSubPortLabel = new QLabel(communicationsSettingsWidget);
     ipcSubPortLabel->setFrameStyle(QFrame::Plain);
     ipcSubPortLabel->setText("IPC Port");
     ipcSubPortLabel->setAlignment(Qt::AlignRight);
 
-    commsManagerLayout->addWidget(ipcSubPortLabel);
+    communicationsLayout->addWidget(ipcSubPortLabel);
 
-    QLineEdit* ipcSubPortNumericalInput = new TouchNumericalLineEdit(this);
+    //
+
+    QLineEdit* ipcSubPortNumericalInput = new TouchNumericalLineEdit(communicationsSettingsWidget);
     ipcSubPortNumericalInput->setAlignment(Qt::AlignRight);
     ipcSubPortNumericalInput->setFixedWidth(300);
     
-    commsManagerLayout->addWidget(ipcSubPortNumericalInput);
+    communicationsLayout->addWidget(ipcSubPortNumericalInput);
 
-    scriptPairAddressLabel = new QLabel(this);
+    //
+
+    scriptPairAddressLabel = new QLabel(communicationsSettingsWidget);
     scriptPairAddressLabel->setFrameStyle(QFrame::Plain);
     scriptPairAddressLabel->setText("Script Pair Address");
     scriptPairAddressLabel->setAlignment(Qt::AlignRight);
 
-    commsManagerLayout->addWidget(scriptPairAddressLabel);
+    communicationsLayout->addWidget(scriptPairAddressLabel);
+
+    //
     
-    QLineEdit* scriptPairAddressNumericalInput = new TouchNumericalLineEdit(this);
+    QLineEdit* scriptPairAddressNumericalInput = new TouchNumericalLineEdit(communicationsSettingsWidget);
     scriptPairAddressNumericalInput->setAlignment(Qt::AlignRight);
     scriptPairAddressNumericalInput->setFixedWidth(300);
     
-    commsManagerLayout->addWidget(scriptPairAddressNumericalInput);
+    communicationsLayout->addWidget(scriptPairAddressNumericalInput);
 
-    scriptPairPortLabel = new QLabel(this);
+    //
+
+    scriptPairPortLabel = new QLabel(communicationsSettingsWidget);
     scriptPairPortLabel->setFrameStyle(QFrame::Plain);
     scriptPairPortLabel->setText("Script Pair Address");
     scriptPairPortLabel->setAlignment(Qt::AlignRight);
 
-    commsManagerLayout->addWidget(scriptPairPortLabel);
+    communicationsLayout->addWidget(scriptPairPortLabel);
+
+    //
     
-    QLineEdit* scriptPairPortNumericalInput = new TouchNumericalLineEdit(this);
+    QLineEdit* scriptPairPortNumericalInput = new TouchNumericalLineEdit(communicationsSettingsWidget);
     scriptPairPortNumericalInput->setAlignment(Qt::AlignRight);
     scriptPairPortNumericalInput->setFixedWidth(300);
     
-    commsManagerLayout->addWidget(scriptPairPortNumericalInput);    
+    communicationsLayout->addWidget(scriptPairPortNumericalInput);    
 }
 
 void settingsOptionsWidget::renderCommunicationsThread(){
