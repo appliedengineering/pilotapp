@@ -125,7 +125,7 @@ void settingsOptionsWidget::renderBoatKernel(){
 
     //
 
-    RangeSlider* minMaxVoltageSlider = new RangeSlider(Qt::Horizontal, RangeSlider::DoubleHandles, boatKernelSettingsWidget);
+    minMaxVoltageSlider = new RangeSlider(Qt::Horizontal, RangeSlider::DoubleHandles, boatKernelSettingsWidget);
     minMaxVoltageSlider->SetRange(boatDataPack::minPossibleVoltage, boatDataPack::maxPossibleVoltage); //TODO: needs preference manager integration
     minMaxVoltageSlider->SetUpperValue(boatDataPack::maxPossibleVoltage);
     minMaxVoltageSlider->SetLowerValue(boatDataPack::minPossibleVoltage);
