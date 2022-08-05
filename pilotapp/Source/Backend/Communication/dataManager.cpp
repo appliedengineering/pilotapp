@@ -38,6 +38,9 @@ std::string dataManager::packData(T& data){
 
 ///
 
+const int boatDataPack::maxPossibleVoltage = 30;
+const int boatDataPack::minPossibleVoltage = 10;
+
 boatDataPack::boatDataPack(rawDataPack& raw){
     std::map<std::string, msgpack::type::variant> m = raw.getMap();
     //qInfo() << "before const";

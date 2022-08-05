@@ -24,12 +24,18 @@ private:
 
     //
 
+    const int headerLabelFontSize = 18;
+    const int subHeaderLabelFontSize = 14;
+
+    //
+
+    QWidget* boatKernelSettingsWidget = nullptr;
     QVBoxLayout* boatKernelLayout = nullptr;
     QLabel* boatKernelLabel = nullptr;
     QHBoxLayout* voltageBoxLayout = nullptr;
     QLabel* minVoltageRangeLabel = nullptr;
     QLabel* maxVoltageRangeLabel = nullptr;
-    QLabel* minMaxVoltageLabel = nullptr;
+    QLabel* voltageRangeLabel = nullptr;
 
     //
 

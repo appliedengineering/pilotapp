@@ -39,6 +39,13 @@ private:
 public:
     boatDataPack(rawDataPack& raw);
 
+    //
+
+    const static int maxPossibleVoltage;
+    const static int minPossibleVoltage;
+
+    //
+
     int getThrottlePercent();
     int getDutyPercent();
     //float getChipTemp();
