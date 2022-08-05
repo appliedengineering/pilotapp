@@ -59,10 +59,13 @@ private:
 
     //
 
-    QVBoxLayout* commsThreadLayout = nullptr;
+    QWidget* communicationsThreadSettingsWidget = nullptr;
+    QVBoxLayout* communicationsThreadLayout = nullptr;
     QLabel* communicationsThreadLabel = nullptr;
     QLabel* loopTimeoutLabel = nullptr;
+    QLineEdit* loopTimeoutLineEdit = nullptr;
     QLabel* stopThreadLabel = nullptr;
+    QLineEdit* stopThreadLineEdit = nullptr;
 
     //
 

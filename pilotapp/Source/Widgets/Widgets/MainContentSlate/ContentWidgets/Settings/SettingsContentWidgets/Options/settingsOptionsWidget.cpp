@@ -240,17 +240,18 @@ void settingsOptionsWidget::renderCommunicationsManager(){
 }
 
 void settingsOptionsWidget::renderCommunicationsThread(){
-    commsThreadLayout = new QVBoxLayout(this);
-    commsThreadLayout->setContentsMargins(0, 0, 0, 0);
-    commsThreadLayout->setAlignment(Qt::AlignRight);
-    auto leftLayout = new QVBoxLayout(this);
-    leftLayout->setContentsMargins(0, 0, 0, 0);
-    leftLayout->setAlignment(Qt::AlignLeft);
 
-    scrollAreaContentLayout->addLayout(leftLayout);
-    scrollAreaContentLayout->addLayout(commsThreadLayout);
+    communicationsSettingsWidget = new QWidget(this);
+    scrollAreaContentLayout->addWidget(communicationsSettingsWidget);
 
-    communicationsThreadLabel = new QLabel(this);
+    //
+
+    communicationsThreadLayout = new QVBoxLayout(communicationsSettingsWidget);
+    communicationsThreadLayout->setContentsMargins(0, 0, 0, 0);
+
+    //
+
+    communicationsThreadLabel = new QLabel(communicationsSettingsWidget);
     //communicationsThreadLabel->setStyleSheet("font-weight: bold; font-size: 20px");
     communicationsThreadLabel->setText("Communications Thread");
     communicationsThreadLabel->setAlignment(Qt::AlignLeft);
@@ -260,36 +261,45 @@ void settingsOptionsWidget::renderCommunicationsThread(){
     communicationsThreadLabelFont.setBold(true);
     communicationsThreadLabel->setFont(communicationsThreadLabelFont);
 
-    leftLayout->addWidget(communicationsThreadLabel);
+    communicationsThreadLayout->addWidget(communicationsThreadLabel);
 
     //
 
-    loopTimeoutLabel = new QLabel(this);
-    loopTimeoutLabel->setFrameStyle(QFrame::Plain);
+    loopTimeoutLabel = new QLabel(communicationsSettingsWidget);
     loopTimeoutLabel->setText("Loop Timeout");
     loopTimeoutLabel->setAlignment(Qt::AlignRight);
 
-    commsThreadLayout->addWidget(loopTimeoutLabel);
+    QFont loopTimeoutLabelFont = loopTimeoutLabel->font();
+    loopTimeoutLabelFont.setPixelSize(subHeaderLabelFontSize);
+    loopTimeoutLabel->setFont(loopTimeoutLabelFont);
 
-    QLineEdit* loopTimeoutLineEdit = new TouchNumericalLineEdit(this);
+    communicationsThreadLayout->addWidget(loopTimeoutLabel);
+
+    //
+
+    loopTimeoutLineEdit = new TouchNumericalLineEdit(communicationsSettingsWidget);
     loopTimeoutLineEdit->setAlignment(Qt::AlignRight);
-    loopTimeoutLineEdit->setFixedWidth(300);
 
-    commsThreadLayout->addWidget(loopTimeoutLineEdit);
+    communicationsThreadLayout->addWidget(loopTimeoutLineEdit);
 
+    //
 
-    stopThreadLabel = new QLabel(this);
-    stopThreadLabel->setFrameStyle(QFrame::Plain);
+    stopThreadLabel = new QLabel(communicationsSettingsWidget);
     stopThreadLabel->setText("Stop Thread");
     stopThreadLabel->setAlignment(Qt::AlignRight);
 
-    commsThreadLayout->addWidget(stopThreadLabel);
+    QFont stopThreadLabelFont = stopThreadLabel->font();
+    stopThreadLabelFont.setPixelSize(subHeaderLabelFontSize);
+    stopThreadLabel->setFont(stopThreadLabelFont);
 
-    QLineEdit* stopThreadLineEdit = new TouchNumericalLineEdit(this);
+    communicationsThreadLayout->addWidget(stopThreadLabel);
+
+    //
+
+    stopThreadLineEdit = new TouchNumericalLineEdit(communicationsSettingsWidget);
     stopThreadLineEdit->setAlignment(Qt::AlignRight);
-    stopThreadLineEdit->setFixedWidth(300);
 
-    commsThreadLayout->addWidget(stopThreadLineEdit);
+    communicationsThreadLayout->addWidget(stopThreadLineEdit);
 }
 
 void settingsOptionsWidget::renderLeftContentSlate(){
