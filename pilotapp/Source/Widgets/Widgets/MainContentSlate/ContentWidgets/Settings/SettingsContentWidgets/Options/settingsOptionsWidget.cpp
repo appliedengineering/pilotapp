@@ -169,70 +169,74 @@ void settingsOptionsWidget::renderCommunicationsManager(){
     //
 
     ipcSubAddressLabel = new QLabel(communicationsSettingsWidget);
-    ipcSubAddressLabel->setFrameStyle(QFrame::Plain);
     ipcSubAddressLabel->setText("IPC IP Address");
     ipcSubAddressLabel->setAlignment(Qt::AlignRight);
+
+    QFont ipcSubAddressLabelFont = ipcSubAddressLabel->font();
+    ipcSubAddressLabelFont.setPixelSize(subHeaderLabelFontSize);
+    ipcSubAddressLabel->setFont(ipcSubAddressLabelFont);
 
     communicationsLayout->addWidget(ipcSubAddressLabel);
 
     //
 
-    QLineEdit* ipcSubAddressNumericalInput = new TouchNumericalLineEdit(communicationsSettingsWidget);
-    ipcSubAddressNumericalInput->setAlignment(Qt::AlignRight);
-    ipcSubAddressNumericalInput->setFixedWidth(300);
-
-    communicationsLayout->addWidget(ipcSubAddressNumericalInput);
+    ipcSubAddressLineEdit = new TouchNumericalLineEdit(communicationsSettingsWidget);
+    ipcSubAddressLineEdit->setAlignment(Qt::AlignRight);
+    communicationsLayout->addWidget(ipcSubAddressLineEdit);
 
     //
 
     ipcSubPortLabel = new QLabel(communicationsSettingsWidget);
-    ipcSubPortLabel->setFrameStyle(QFrame::Plain);
     ipcSubPortLabel->setText("IPC Port");
     ipcSubPortLabel->setAlignment(Qt::AlignRight);
+
+    QFont ipcSubPortLabelFont = ipcSubPortLabel->font();
+    ipcSubPortLabelFont.setPixelSize(subHeaderLabelFontSize);
+    ipcSubPortLabel->setFont(ipcSubPortLabelFont);
 
     communicationsLayout->addWidget(ipcSubPortLabel);
 
     //
 
-    QLineEdit* ipcSubPortNumericalInput = new TouchNumericalLineEdit(communicationsSettingsWidget);
-    ipcSubPortNumericalInput->setAlignment(Qt::AlignRight);
-    ipcSubPortNumericalInput->setFixedWidth(300);
-    
-    communicationsLayout->addWidget(ipcSubPortNumericalInput);
+    ipcSubPortLineEdit = new TouchNumericalLineEdit(communicationsSettingsWidget);
+    ipcSubPortLineEdit->setAlignment(Qt::AlignRight);
+    communicationsLayout->addWidget(ipcSubPortLineEdit);
 
     //
 
     scriptPairAddressLabel = new QLabel(communicationsSettingsWidget);
-    scriptPairAddressLabel->setFrameStyle(QFrame::Plain);
     scriptPairAddressLabel->setText("Script Pair Address");
     scriptPairAddressLabel->setAlignment(Qt::AlignRight);
+
+    QFont scriptPairAddressLabelFont = scriptPairAddressLabel->font();
+    scriptPairAddressLabelFont.setPixelSize(subHeaderLabelFontSize);
+    scriptPairAddressLabel->setFont(scriptPairAddressLabelFont);
 
     communicationsLayout->addWidget(scriptPairAddressLabel);
 
     //
     
-    QLineEdit* scriptPairAddressNumericalInput = new TouchNumericalLineEdit(communicationsSettingsWidget);
-    scriptPairAddressNumericalInput->setAlignment(Qt::AlignRight);
-    scriptPairAddressNumericalInput->setFixedWidth(300);
-    
-    communicationsLayout->addWidget(scriptPairAddressNumericalInput);
+    scriptPairAddressLineEdit = new TouchNumericalLineEdit(communicationsSettingsWidget);
+    scriptPairAddressLineEdit->setAlignment(Qt::AlignRight);
+    communicationsLayout->addWidget(scriptPairAddressLineEdit);
 
     //
 
     scriptPairPortLabel = new QLabel(communicationsSettingsWidget);
-    scriptPairPortLabel->setFrameStyle(QFrame::Plain);
-    scriptPairPortLabel->setText("Script Pair Address");
+    scriptPairPortLabel->setText("Script Pair Port");
     scriptPairPortLabel->setAlignment(Qt::AlignRight);
+
+    QFont scriptPairPortLabelFont = scriptPairPortLabel->font();
+    scriptPairPortLabelFont.setPixelSize(subHeaderLabelFontSize);
+    scriptPairPortLabel->setFont(scriptPairPortLabelFont);
 
     communicationsLayout->addWidget(scriptPairPortLabel);
 
     //
     
-    QLineEdit* scriptPairPortNumericalInput = new TouchNumericalLineEdit(communicationsSettingsWidget);
-    scriptPairPortNumericalInput->setAlignment(Qt::AlignRight);
-    scriptPairPortNumericalInput->setFixedWidth(300);
-    
-    communicationsLayout->addWidget(scriptPairPortNumericalInput);    
+    scriptPairPortLineEdit = new TouchNumericalLineEdit(communicationsSettingsWidget);
+    scriptPairPortLineEdit->setAlignment(Qt::AlignRight);
+    communicationsLayout->addWidget(scriptPairPortLineEdit);    
 }
 
 void settingsOptionsWidget::renderCommunicationsThread(){
@@ -267,11 +271,11 @@ void settingsOptionsWidget::renderCommunicationsThread(){
 
     commsThreadLayout->addWidget(loopTimeoutLabel);
 
-    QLineEdit* loopTimeoutNumericalInput = new TouchNumericalLineEdit(this);
-    loopTimeoutNumericalInput->setAlignment(Qt::AlignRight);
-    loopTimeoutNumericalInput->setFixedWidth(300);
+    QLineEdit* loopTimeoutLineEdit = new TouchNumericalLineEdit(this);
+    loopTimeoutLineEdit->setAlignment(Qt::AlignRight);
+    loopTimeoutLineEdit->setFixedWidth(300);
 
-    commsThreadLayout->addWidget(loopTimeoutNumericalInput);
+    commsThreadLayout->addWidget(loopTimeoutLineEdit);
 
 
     stopThreadLabel = new QLabel(this);
@@ -281,11 +285,11 @@ void settingsOptionsWidget::renderCommunicationsThread(){
 
     commsThreadLayout->addWidget(stopThreadLabel);
 
-    QLineEdit* stopThreadNumericalInput = new TouchNumericalLineEdit(this);
-    stopThreadNumericalInput->setAlignment(Qt::AlignRight);
-    stopThreadNumericalInput->setFixedWidth(300);
+    QLineEdit* stopThreadLineEdit = new TouchNumericalLineEdit(this);
+    stopThreadLineEdit->setAlignment(Qt::AlignRight);
+    stopThreadLineEdit->setFixedWidth(300);
 
-    commsThreadLayout->addWidget(stopThreadNumericalInput);
+    commsThreadLayout->addWidget(stopThreadLineEdit);
 }
 
 void settingsOptionsWidget::renderLeftContentSlate(){
@@ -318,11 +322,11 @@ void settingsOptionsWidget::renderLeftContentSlate(){
 
     leftContentSlateLayout->addWidget(speedometerUnitsLabel);
 
-    QLineEdit* speedometerUnitsNumericalInput = new QLineEdit(this);
-    speedometerUnitsNumericalInput->setAlignment(Qt::AlignRight);
-    speedometerUnitsNumericalInput->setFixedWidth(300);
+    QLineEdit* speedometerUnitsLineEdit = new QLineEdit(this);
+    speedometerUnitsLineEdit->setAlignment(Qt::AlignRight);
+    speedometerUnitsLineEdit->setFixedWidth(300);
 
-    leftContentSlateLayout->addWidget(speedometerUnitsNumericalInput);
+    leftContentSlateLayout->addWidget(speedometerUnitsLineEdit);
 }
 
 void settingsOptionsWidget::renderMapSettings(){
@@ -411,11 +415,11 @@ void settingsOptionsWidget::renderMap(){
 
     mapLayout->addWidget(buoyMarkerSizeLabel);
 
-    QLineEdit* buoyMarkerSizeNumericalInput = new TouchNumericalLineEdit(this);
-    buoyMarkerSizeNumericalInput->setAlignment(Qt::AlignRight);
-    buoyMarkerSizeNumericalInput->setFixedWidth(300);
+    QLineEdit* buoyMarkerSizeLineEdit = new TouchNumericalLineEdit(this);
+    buoyMarkerSizeLineEdit->setAlignment(Qt::AlignRight);
+    buoyMarkerSizeLineEdit->setFixedWidth(300);
 
-    mapLayout->addWidget(buoyMarkerSizeNumericalInput);
+    mapLayout->addWidget(buoyMarkerSizeLineEdit);
 
     boatMarkerSizeLabel = new QLabel(this);
     boatMarkerSizeLabel->setFrameStyle(QFrame::Plain);
@@ -424,11 +428,11 @@ void settingsOptionsWidget::renderMap(){
 
     mapLayout->addWidget(boatMarkerSizeLabel);
 
-    QLineEdit* boatMarkerSizeNumericalInput = new TouchNumericalLineEdit(this);
-    boatMarkerSizeNumericalInput->setAlignment(Qt::AlignRight);
-    boatMarkerSizeNumericalInput->setFixedWidth(300);
+    QLineEdit* boatMarkerSizeLineEdit = new TouchNumericalLineEdit(this);
+    boatMarkerSizeLineEdit->setAlignment(Qt::AlignRight);
+    boatMarkerSizeLineEdit->setFixedWidth(300);
 
-    mapLayout->addWidget(boatMarkerSizeNumericalInput);
+    mapLayout->addWidget(boatMarkerSizeLineEdit);
 
     mapCacheDataLabel = new QLabel(this);
     mapCacheDataLabel->setFrameStyle(QFrame::Plain);
@@ -437,11 +441,11 @@ void settingsOptionsWidget::renderMap(){
 
     mapLayout->addWidget(mapCacheDataLabel);
 
-    QLineEdit* mapCacheDataNumericalInput = new QLineEdit(this);
-    mapCacheDataNumericalInput->setAlignment(Qt::AlignRight);
-    mapCacheDataNumericalInput->setFixedWidth(300);
+    QLineEdit* mapCacheDataLineEdit = new QLineEdit(this);
+    mapCacheDataLineEdit->setAlignment(Qt::AlignRight);
+    mapCacheDataLineEdit->setFixedWidth(300);
 
-    mapLayout->addWidget(mapCacheDataNumericalInput);
+    mapLayout->addWidget(mapCacheDataLineEdit);
 }
 
 void settingsOptionsWidget::renderDivider(){

@@ -100,3 +100,8 @@ QScrollBar::add-page, QScrollBar::sub-page {
     width: 0px;
     background: transparent;
 }
+
+QLineEdit {
+    /*border: 1px solid darkgrey;*/
+    border-radius: 3px;
+}

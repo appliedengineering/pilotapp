@@ -47,10 +47,15 @@ private:
     QWidget* communicationsSettingsWidget = nullptr;
     QVBoxLayout* communicationsLayout = nullptr;
     QLabel* communicationsLabel = nullptr;
+    
     QLabel* ipcSubAddressLabel = nullptr;
+    QLineEdit* ipcSubAddressLineEdit = nullptr;
     QLabel* ipcSubPortLabel = nullptr;
+    QLineEdit* ipcSubPortLineEdit = nullptr;
     QLabel* scriptPairAddressLabel = nullptr;
+    QLineEdit* scriptPairAddressLineEdit = nullptr;
     QLabel* scriptPairPortLabel = nullptr;
+    QLineEdit* scriptPairPortLineEdit = nullptr;
 
     //
 
