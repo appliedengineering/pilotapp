@@ -4,10 +4,12 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QScrollArea>
 #include <QScroller>
 #include <QLineEdit>
 #include <QLabel>
+#include <QRadioButton>
 
 #include "../../../../../../../Custom/TouchKeypad/touchKeypad.h"
 #include "../../../../../../../Custom/TouchInputWidgets/TouchNumericalLineEdit/touchNumericalLineEdit.h"
@@ -29,7 +31,7 @@ private:
     //
 
     const int headerLabelFontSize = 18;
-    const int subHeaderLabelFontSize = 14;
+    const int subHeaderLabelFontSize = 15;
 
     //
 
@@ -69,12 +71,16 @@ private:
 
     //
 
+    QWidget* leftContentSlateSettingsWidget = nullptr;
     QVBoxLayout* leftContentSlateLayout = nullptr;
     QLabel* leftContentSlateLabel = nullptr;
+    
     QLabel* speedometerUnitsLabel = nullptr;
+    QHBoxLayout* unitsHorizontalLayout = nullptr;
+    QRadioButton* knotsRadioButton = nullptr;
+    QRadioButton* mphRadioButton = nullptr;    
 
     //
-
 
     QVBoxLayout* mapSettingsLayout = nullptr;
     QHBoxLayout* maxCoordPrecisionLayout = nullptr;

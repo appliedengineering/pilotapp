@@ -303,17 +303,18 @@ void settingsOptionsWidget::renderCommunicationsThread(){
 }
 
 void settingsOptionsWidget::renderLeftContentSlate(){
-    leftContentSlateLayout = new QVBoxLayout(this);
+
+    leftContentSlateSettingsWidget = new QWidget(this);
+    scrollAreaContentLayout->addWidget(leftContentSlateSettingsWidget);
+
+    //
+
+    leftContentSlateLayout = new QVBoxLayout(leftContentSlateSettingsWidget);
     leftContentSlateLayout->setContentsMargins(0, 0, 0, 0);
-    leftContentSlateLayout->setAlignment(Qt::AlignRight);
-    auto leftLayout = new QVBoxLayout(this);
-    leftLayout->setContentsMargins(0, 0, 0, 0);
-    leftLayout->setAlignment(Qt::AlignLeft);
 
-    scrollAreaContentLayout->addLayout(leftLayout);
-    scrollAreaContentLayout->addLayout(leftContentSlateLayout);
+    //
 
-    leftContentSlateLabel = new QLabel(this);
+    leftContentSlateLabel = new QLabel(leftContentSlateSettingsWidget);
     //leftContentSlateLabel->setStyleSheet("font-weight: bold; font-size: 20px");
     leftContentSlateLabel->setText("Left Content Slate");
     leftContentSlateLabel->setAlignment(Qt::AlignLeft);
@@ -323,20 +324,54 @@ void settingsOptionsWidget::renderLeftContentSlate(){
     leftContentSlateLabelFont.setBold(true);
     leftContentSlateLabel->setFont(leftContentSlateLabelFont);
 
-    leftLayout->addWidget(leftContentSlateLabel);
+    leftContentSlateLayout->addWidget(leftContentSlateLabel);
 
-    speedometerUnitsLabel = new QLabel(this);
-    speedometerUnitsLabel->setFrameStyle(QFrame::Plain);
+    //
+
+    speedometerUnitsLabel = new QLabel(leftContentSlateSettingsWidget);
     speedometerUnitsLabel->setText("Speedometer Units");
     speedometerUnitsLabel->setAlignment(Qt::AlignRight);
 
+    QFont speedometerUnitsLabelFont = speedometerUnitsLabel->font();
+    speedometerUnitsLabelFont.setPixelSize(subHeaderLabelFontSize);
+    speedometerUnitsLabel->setFont(speedometerUnitsLabelFont);
+
     leftContentSlateLayout->addWidget(speedometerUnitsLabel);
 
-    QLineEdit* speedometerUnitsLineEdit = new QLineEdit(this);
-    speedometerUnitsLineEdit->setAlignment(Qt::AlignRight);
-    speedometerUnitsLineEdit->setFixedWidth(300);
+    //
 
-    leftContentSlateLayout->addWidget(speedometerUnitsLineEdit);
+    /*QLineEdit* speedometerUnitsLineEdit = new QLineEdit(leftContentSlateSettingsWidget);
+    speedometerUnitsLineEdit->setAlignment(Qt::AlignRight);
+
+    leftContentSlateLayout->addWidget(speedometerUnitsLineEdit);*/
+
+    //
+
+    unitsHorizontalLayout = new QHBoxLayout();
+    unitsHorizontalLayout->setContentsMargins(0, 0, 0, 0);
+    unitsHorizontalLayout->setAlignment(Qt::AlignRight);
+
+    leftContentSlateLayout->addLayout(unitsHorizontalLayout);
+
+    //
+
+    knotsRadioButton = new QRadioButton(leftContentSlateSettingsWidget);
+
+    knotsRadioButton->setContentsMargins(0, 0, 0, 0);
+    knotsRadioButton->setText("Knots");
+    knotsRadioButton->setChecked(true); // needs preferences manager integration
+
+    unitsHorizontalLayout->addWidget(knotsRadioButton);
+
+    //
+
+    mphRadioButton = new QRadioButton(leftContentSlateSettingsWidget);
+
+    mphRadioButton->setContentsMargins(0, 0, 0, 0);
+    mphRadioButton->setText("MPH");
+
+    unitsHorizontalLayout->addWidget(mphRadioButton);
+
 }
 
 void settingsOptionsWidget::renderMapSettings(){
