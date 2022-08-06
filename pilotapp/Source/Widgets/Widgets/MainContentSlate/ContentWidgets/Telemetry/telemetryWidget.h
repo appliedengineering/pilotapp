@@ -19,5 +19,12 @@ public:
 
 };
 
+/* List of features
+ - Connection Status with Groundstation
+ - Acceptable Heading Error
+ - Manual Heading Setting
+ - Servo Speed Setting (0.0 to 1.0)
+ - Voice Settings (once its done)
+*/
 
 #endif
