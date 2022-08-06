@@ -6,3 +6,4 @@ out/*
 .vscode/*
 build/*
 Source/ArcGISLicenseKey.txt
+CMakeLists.config.txt
