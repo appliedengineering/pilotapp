@@ -2,6 +2,7 @@
 
 #include "../../../Backend/Utilities/utilities.h"
 #include "../../../Backend/Boat Kernel/boatKernel.h"
+#include "../../../Backend/logManager.h"
 
 #include <QDebug>
 #include <cmath>
@@ -458,7 +459,7 @@ void leftContentSlateWidget::updateThrottle(int percent){
 			throttleBarPercentLabel->setText(QString::number(percent) + "%");
 		}
 		else
-			qInfo() << "Invalid throttle percent recvd - " << percent;
+			logManager::e("Invalid throttle percent recvd - " + std::to_string(percent));
 	}
 }
 
@@ -469,7 +470,7 @@ void leftContentSlateWidget::updateDuty(int percent){
 			dutyBarPercentLabel->setText(QString::number(percent) + "%");
 		}
 		else
-			qInfo() << "Invalid duty percent recvd - " << percent;
+			logManager::e("Invalid duty percent recvd - " + std::to_string(percent));
 	}
 }
 

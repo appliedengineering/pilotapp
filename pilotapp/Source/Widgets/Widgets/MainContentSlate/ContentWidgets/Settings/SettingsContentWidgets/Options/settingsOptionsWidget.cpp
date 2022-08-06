@@ -90,6 +90,8 @@ void settingsOptionsWidget::renderBoatKernel(){
     boatKernelLabelFont.setPixelSize(headerLabelFontSize);
     boatKernelLabelFont.setBold(true);
     boatKernelLabel->setFont(boatKernelLabelFont);
+
+    utilities::setPaletteColor(boatKernelLabel, QPalette::Foreground, Qt::white, true);
     
     boatKernelLayout->addWidget(boatKernelLabel);
 
@@ -152,12 +154,17 @@ void settingsOptionsWidget::renderBoatKernel(){
     minVoltageLabelFont.setPixelSize(subHeaderLabelFontSize);
     minVoltageLabel->setFont(minVoltageLabelFont);
 
+    utilities::setPaletteColor(minVoltageLabel, QPalette::Foreground, Qt::white, true);
+
     boatKernelLayout->addWidget(minVoltageLabel);
 
     //
 
     minVoltageLineEdit = new TouchNumericalLineEdit(boatKernelSettingsWidget);
     minVoltageLineEdit->setAlignment(Qt::AlignRight);
+
+    utilities::setPaletteColor(minVoltageLineEdit, QPalette::Foreground, Qt::white, true);
+
     boatKernelLayout->addWidget(minVoltageLineEdit);
 
     //
@@ -171,12 +178,17 @@ void settingsOptionsWidget::renderBoatKernel(){
     maxVoltageLabelFont.setPixelSize(subHeaderLabelFontSize);
     maxVoltageLabel->setFont(maxVoltageLabelFont);
 
+    utilities::setPaletteColor(maxVoltageLabel, QPalette::Foreground, Qt::white, true);
+
     boatKernelLayout->addWidget(maxVoltageLabel);
 
     //
 
     maxVoltageLineEdit = new TouchNumericalLineEdit(boatKernelSettingsWidget);
     maxVoltageLineEdit->setAlignment(Qt::AlignRight);
+
+    utilities::setPaletteColor(maxVoltageLineEdit, QPalette::Foreground, Qt::white, true);
+
     boatKernelLayout->addWidget(maxVoltageLineEdit);
 
 }
@@ -203,6 +215,8 @@ void settingsOptionsWidget::renderCommunicationsManager(){
     communicationsLabelFont.setBold(true);
     communicationsLabel->setFont(communicationsLabelFont);
 
+    utilities::setPaletteColor(communicationsLabel, QPalette::Foreground, Qt::white, true);
+
     communicationsLayout->addWidget(communicationsLabel);
 
     //
@@ -215,12 +229,17 @@ void settingsOptionsWidget::renderCommunicationsManager(){
     ipcSubAddressLabelFont.setPixelSize(subHeaderLabelFontSize);
     ipcSubAddressLabel->setFont(ipcSubAddressLabelFont);
 
+    utilities::setPaletteColor(ipcSubAddressLabel, QPalette::Foreground, Qt::white, true);
+
     communicationsLayout->addWidget(ipcSubAddressLabel);
 
     //
 
     ipcSubAddressLineEdit = new TouchNumericalLineEdit(communicationsSettingsWidget);
     ipcSubAddressLineEdit->setAlignment(Qt::AlignRight);
+
+    utilities::setPaletteColor(ipcSubAddressLineEdit, QPalette::Foreground, Qt::white, true);
+
     communicationsLayout->addWidget(ipcSubAddressLineEdit);
 
     //
@@ -233,12 +252,17 @@ void settingsOptionsWidget::renderCommunicationsManager(){
     ipcSubPortLabelFont.setPixelSize(subHeaderLabelFontSize);
     ipcSubPortLabel->setFont(ipcSubPortLabelFont);
 
+    utilities::setPaletteColor(ipcSubPortLabel, QPalette::Foreground, Qt::white, true);
+
     communicationsLayout->addWidget(ipcSubPortLabel);
 
     //
 
     ipcSubPortLineEdit = new TouchNumericalLineEdit(communicationsSettingsWidget);
     ipcSubPortLineEdit->setAlignment(Qt::AlignRight);
+
+    utilities::setPaletteColor(ipcSubPortLineEdit, QPalette::Foreground, Qt::white, true);
+
     communicationsLayout->addWidget(ipcSubPortLineEdit);
 
     //
@@ -251,12 +275,17 @@ void settingsOptionsWidget::renderCommunicationsManager(){
     scriptPairAddressLabelFont.setPixelSize(subHeaderLabelFontSize);
     scriptPairAddressLabel->setFont(scriptPairAddressLabelFont);
 
+    utilities::setPaletteColor(scriptPairAddressLabel, QPalette::Foreground, Qt::white, true);
+
     communicationsLayout->addWidget(scriptPairAddressLabel);
 
     //
     
     scriptPairAddressLineEdit = new TouchNumericalLineEdit(communicationsSettingsWidget);
     scriptPairAddressLineEdit->setAlignment(Qt::AlignRight);
+
+    utilities::setPaletteColor(scriptPairAddressLineEdit, QPalette::Foreground, Qt::white, true);
+
     communicationsLayout->addWidget(scriptPairAddressLineEdit);
 
     //
@@ -269,12 +298,17 @@ void settingsOptionsWidget::renderCommunicationsManager(){
     scriptPairPortLabelFont.setPixelSize(subHeaderLabelFontSize);
     scriptPairPortLabel->setFont(scriptPairPortLabelFont);
 
+    utilities::setPaletteColor(scriptPairPortLabel, QPalette::Foreground, Qt::white, true);
+
     communicationsLayout->addWidget(scriptPairPortLabel);
 
     //
     
     scriptPairPortLineEdit = new TouchNumericalLineEdit(communicationsSettingsWidget);
     scriptPairPortLineEdit->setAlignment(Qt::AlignRight);
+
+    utilities::setPaletteColor(scriptPairPortLineEdit, QPalette::Foreground, Qt::white, true);
+
     communicationsLayout->addWidget(scriptPairPortLineEdit);    
 }
 
@@ -300,6 +334,8 @@ void settingsOptionsWidget::renderCommunicationsThread(){
     communicationsThreadLabelFont.setBold(true);
     communicationsThreadLabel->setFont(communicationsThreadLabelFont);
 
+    utilities::setPaletteColor(communicationsThreadLabel, QPalette::Foreground, Qt::white, true);
+
     communicationsThreadLayout->addWidget(communicationsThreadLabel);
 
     //
@@ -312,12 +348,16 @@ void settingsOptionsWidget::renderCommunicationsThread(){
     loopTimeoutLabelFont.setPixelSize(subHeaderLabelFontSize);
     loopTimeoutLabel->setFont(loopTimeoutLabelFont);
 
+    utilities::setPaletteColor(loopTimeoutLabel, QPalette::Foreground, Qt::white, true);
+
     communicationsThreadLayout->addWidget(loopTimeoutLabel);
 
     //
 
     loopTimeoutLineEdit = new TouchNumericalLineEdit(communicationsSettingsWidget);
     loopTimeoutLineEdit->setAlignment(Qt::AlignRight);
+
+    utilities::setPaletteColor(loopTimeoutLineEdit, QPalette::Foreground, Qt::white, true);
 
     communicationsThreadLayout->addWidget(loopTimeoutLineEdit);
 
@@ -331,12 +371,16 @@ void settingsOptionsWidget::renderCommunicationsThread(){
     stopThreadLabelFont.setPixelSize(subHeaderLabelFontSize);
     stopThreadLabel->setFont(stopThreadLabelFont);
 
+    utilities::setPaletteColor(stopThreadLabel, QPalette::Foreground, Qt::white, true);
+
     communicationsThreadLayout->addWidget(stopThreadLabel);
 
     //
 
     stopThreadLineEdit = new TouchNumericalLineEdit(communicationsSettingsWidget);
     stopThreadLineEdit->setAlignment(Qt::AlignRight);
+
+    utilities::setPaletteColor(stopThreadLineEdit, QPalette::Foreground, Qt::white, true);
 
     communicationsThreadLayout->addWidget(stopThreadLineEdit);
 }
@@ -363,6 +407,8 @@ void settingsOptionsWidget::renderLeftContentSlate(){
     leftContentSlateLabelFont.setBold(true);
     leftContentSlateLabel->setFont(leftContentSlateLabelFont);
 
+    utilities::setPaletteColor(leftContentSlateLabel, QPalette::Foreground, Qt::white, true);
+
     leftContentSlateLayout->addWidget(leftContentSlateLabel);
 
     //
@@ -374,6 +420,8 @@ void settingsOptionsWidget::renderLeftContentSlate(){
     QFont speedometerUnitsLabelFont = speedometerUnitsLabel->font();
     speedometerUnitsLabelFont.setPixelSize(subHeaderLabelFontSize);
     speedometerUnitsLabel->setFont(speedometerUnitsLabelFont);
+
+    utilities::setPaletteColor(speedometerUnitsLabel, QPalette::Foreground, Qt::white, true);
 
     leftContentSlateLayout->addWidget(speedometerUnitsLabel);
 
@@ -400,6 +448,8 @@ void settingsOptionsWidget::renderLeftContentSlate(){
     knotsRadioButton->setText("Knots");
     knotsRadioButton->setChecked(true); // needs preferences manager integration
 
+    utilities::setPaletteColor(knotsRadioButton, QPalette::Foreground, Qt::white, true);
+
     unitsHorizontalLayout->addWidget(knotsRadioButton);
 
     //
@@ -408,6 +458,8 @@ void settingsOptionsWidget::renderLeftContentSlate(){
 
     mphRadioButton->setContentsMargins(0, 0, 0, 0);
     mphRadioButton->setText("MPH");
+
+    utilities::setPaletteColor(mphRadioButton, QPalette::Foreground, Qt::white, true);
 
     unitsHorizontalLayout->addWidget(mphRadioButton);
 
@@ -435,6 +487,8 @@ void settingsOptionsWidget::renderMapSettings(){
     mapSettingsLabelFont.setBold(true);
     mapSettingsLabel->setFont(mapSettingsLabelFont);
 
+    utilities::setPaletteColor(mapSettingsLabel, QPalette::Foreground, Qt::white, true);
+
     mapSettingsLayout->addWidget(mapSettingsLabel);
 
     //
@@ -446,6 +500,8 @@ void settingsOptionsWidget::renderMapSettings(){
     QFont coordinatePrecisionLabelFont = coordinatePrecisionLabel->font();
     coordinatePrecisionLabelFont.setPixelSize(subHeaderLabelFontSize);
     coordinatePrecisionLabel->setFont(coordinatePrecisionLabelFont);
+
+    utilities::setPaletteColor(coordinatePrecisionLabel, QPalette::Foreground, Qt::white, true);
 
     mapSettingsLayout->addWidget(coordinatePrecisionLabel);
 
@@ -474,6 +530,8 @@ void settingsOptionsWidget::renderMapSettings(){
     coordinatePrecisionValueLabel->setFixedWidth(30);
     coordinatePrecisionValueLabel->setText("-1"); //need backend changes
 
+    utilities::setPaletteColor(coordinatePrecisionValueLabel, QPalette::Foreground, Qt::white, true);
+
     coordinatePrecisionLayout->addWidget(coordinatePrecisionValueLabel);
 
     ///
@@ -486,12 +544,16 @@ void settingsOptionsWidget::renderMapSettings(){
     buoyMarkerSizeLabelFont.setPixelSize(subHeaderLabelFontSize);
     buoyMarkerSizeLabel->setFont(buoyMarkerSizeLabelFont);
 
+    utilities::setPaletteColor(buoyMarkerSizeLabel, QPalette::Foreground, Qt::white, true);
+
     mapSettingsLayout->addWidget(buoyMarkerSizeLabel);
 
     //
 
     QLineEdit* buoyMarkerSizeLineEdit = new TouchNumericalLineEdit(mapSettingsWidget);
     buoyMarkerSizeLineEdit->setAlignment(Qt::AlignRight);
+
+    utilities::setPaletteColor(buoyMarkerSizeLineEdit, QPalette::Foreground, Qt::white, true);
 
     mapSettingsLayout->addWidget(buoyMarkerSizeLineEdit);
     
@@ -505,12 +567,16 @@ void settingsOptionsWidget::renderMapSettings(){
     boatMarkerSizeLabelFont.setPixelSize(subHeaderLabelFontSize);
     boatMarkerSizeLabel->setFont(boatMarkerSizeLabelFont);
 
+    utilities::setPaletteColor(boatMarkerSizeLabel, QPalette::Foreground, Qt::white, true);
+
     mapSettingsLayout->addWidget(boatMarkerSizeLabel);
 
     //
 
     QLineEdit* boatMarkerSizeLineEdit = new TouchNumericalLineEdit(mapSettingsWidget);
     boatMarkerSizeLineEdit->setAlignment(Qt::AlignRight);
+
+    utilities::setPaletteColor(boatMarkerSizeLineEdit, QPalette::Foreground, Qt::white, true);
 
     mapSettingsLayout->addWidget(boatMarkerSizeLineEdit);
 
@@ -524,12 +590,16 @@ void settingsOptionsWidget::renderMapSettings(){
     mapCacheDataLabelFont.setPixelSize(subHeaderLabelFontSize);
     mapCacheDataLabel->setFont(mapCacheDataLabelFont);
 
+    utilities::setPaletteColor(mapCacheDataLabel, QPalette::Foreground, Qt::white, true);
+
     mapSettingsLayout->addWidget(mapCacheDataLabel);
 
     //
 
     QLineEdit* mapCacheDataLineEdit = new TouchNumericalLineEdit(mapSettingsWidget);
     mapCacheDataLineEdit->setAlignment(Qt::AlignRight);
+
+    utilities::setPaletteColor(boatMarkerSizeLineEdit, QPalette::Foreground, Qt::white, true);
 
     mapSettingsLayout->addWidget(mapCacheDataLineEdit);
 
