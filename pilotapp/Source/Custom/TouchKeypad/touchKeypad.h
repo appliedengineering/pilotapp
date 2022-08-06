@@ -9,6 +9,7 @@
 #include <QMouseEvent>
 #include <QPoint>
 #include <QSize>
+#include <QLineEdit>
 
 class touchKeypad : public QWidget{
     Q_OBJECT
@@ -20,7 +21,7 @@ private:
     static touchKeypad* instance;
     
     const int width = 210;
-    const int height = 250;
+    const int height = 260;
     const int cornerRadius = 10;
     const int fontSize = 20;
     const int padding = 10;
@@ -37,6 +38,7 @@ private:
     void renderContent();
     void closeKeypad();
     void afterShowSetup(QObject* inputobj);
+    void setCursorToEnd(QLineEdit* inputLineEdit);
     bool isValidInputWidget(QObject* obj);
 
 protected:
