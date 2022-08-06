@@ -38,11 +38,10 @@ private:
     QWidget* boatKernelSettingsWidget = nullptr;
     QVBoxLayout* boatKernelLayout = nullptr;
     QLabel* boatKernelLabel = nullptr;
-    QHBoxLayout* voltageBoxLayout = nullptr;
-    RangeSlider* minMaxVoltageSlider = nullptr;
-    QLabel* minVoltageRangeLabel = nullptr;
-    QLabel* maxVoltageRangeLabel = nullptr;
-    QLabel* voltageRangeLabel = nullptr;
+    QLabel* minVoltageLabel = nullptr;
+    QLineEdit* minVoltageLineEdit = nullptr;
+    QLabel* maxVoltageLabel = nullptr;
+    QLineEdit* maxVoltageLineEdit = nullptr;
 
     //
 
@@ -85,7 +84,7 @@ private:
     QWidget* mapSettingsWidget = nullptr;
     QVBoxLayout* mapSettingsLayout = nullptr;
     QLabel* mapSettingsLabel = nullptr;
-    
+
     QHBoxLayout* coordinatePrecisionLayout = nullptr;
     QLabel* coordinatePrecisionLabel = nullptr;
     QLabel* coordinatePrecisionValueLabel = nullptr;

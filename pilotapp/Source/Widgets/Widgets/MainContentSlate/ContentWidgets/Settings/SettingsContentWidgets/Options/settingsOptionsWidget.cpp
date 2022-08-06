@@ -93,7 +93,7 @@ void settingsOptionsWidget::renderBoatKernel(){
     
     boatKernelLayout->addWidget(boatKernelLabel);
 
-    //
+    /*
 
     voltageRangeLabel = new QLabel(boatKernelSettingsWidget);
     voltageRangeLabel->setFrameStyle(QFrame::Plain);
@@ -139,7 +139,46 @@ void settingsOptionsWidget::renderBoatKernel(){
     maxVoltageRangeLabel->setFixedWidth(30);
     maxVoltageRangeLabel->setText(QString::number(boatDataPack::maxPossibleVoltage)); //need backend changes
 
-    voltageBoxLayout->addWidget(maxVoltageRangeLabel);
+    voltageBoxLayout->addWidget(maxVoltageRangeLabel);*/
+
+    //
+
+    minVoltageLabel = new QLabel(boatKernelSettingsWidget);
+
+    minVoltageLabel->setAlignment(Qt::AlignRight);
+    minVoltageLabel->setText("Min Voltage");
+
+    QFont minVoltageLabelFont = minVoltageLabel->font();
+    minVoltageLabelFont.setPixelSize(subHeaderLabelFontSize);
+    minVoltageLabel->setFont(minVoltageLabelFont);
+
+    boatKernelLayout->addWidget(minVoltageLabel);
+
+    //
+
+    minVoltageLineEdit = new TouchNumericalLineEdit(boatKernelSettingsWidget);
+    minVoltageLineEdit->setAlignment(Qt::AlignRight);
+    boatKernelLayout->addWidget(minVoltageLineEdit);
+
+    //
+
+    maxVoltageLabel = new QLabel(boatKernelSettingsWidget);
+
+    maxVoltageLabel->setAlignment(Qt::AlignRight);
+    maxVoltageLabel->setText("Max Voltage");
+
+    QFont maxVoltageLabelFont = maxVoltageLabel->font();
+    maxVoltageLabelFont.setPixelSize(subHeaderLabelFontSize);
+    maxVoltageLabel->setFont(maxVoltageLabelFont);
+
+    boatKernelLayout->addWidget(maxVoltageLabel);
+
+    //
+
+    maxVoltageLineEdit = new TouchNumericalLineEdit(boatKernelSettingsWidget);
+    maxVoltageLineEdit->setAlignment(Qt::AlignRight);
+    boatKernelLayout->addWidget(maxVoltageLineEdit);
+
 }
 
 void settingsOptionsWidget::renderCommunicationsManager(){
